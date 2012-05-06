@@ -357,6 +357,7 @@ class UserInfo(models.Model):
                             default=twmodeconst.DEFAULT_TEMPLATE_STATUS,
                             choices=twmodeconst.USER_TEMPLATE_CHOICES)
     mobile=models.CharField(max_length=12)
+    mobile_verified=models.BooleanField(default=False)
     address=models.CharField(max_length=30)
     SAT1 =models.BooleanField(default=False)
     SAT2 =models.BooleanField(default=False)

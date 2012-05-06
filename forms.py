@@ -205,7 +205,7 @@ class SubTitleField(forms.CharField):
 
 class PassCodeField(forms.CharField):
     def __init__(self, *args, **kwargs):
-        super(TitleField, self).__init__(*args, **kwargs)
+        super(PassCodeField, self).__init__(*args, **kwargs)
         self.required = True
         self.widget = forms.TextInput(
                                 attrs={'size' : 10, 'autocomplete' : 'off'}

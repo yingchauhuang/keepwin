@@ -233,65 +233,7 @@ class LoginForm(forms.Form):
                                         ), 
                     required=False
                 )
-    mobile = forms.CharField(max_length=12, 
-                    label=_('Mobile'),
-                    widget=forms.widgets.TextInput(
-                                            attrs={'class':'required login'}
-                                        ), 
-                    required=False
-                )
-    age = forms.IntegerField(label = _('Age'),initial='30',required=False)
-    gender = forms.ChoiceField(label = _('Gender'),choices=USER_GENDER_CHOICES,required=False)
-    education = forms.ChoiceField(label = _('Education Background'),choices=USER_EDUCATION_CHOICES,required=False)
-    income = forms.ChoiceField(label = _('Income'),choices=USER_INCOME_CHOICES,required=False)
-    occupational = forms.ChoiceField(label = _('Occupational'),choices=USER_OCCUPATIONAL_CHOICES,required=False)
-    SAT1 = forms.BooleanField(label = _('SAT1'), required = False) 
-    SAT2 = forms.BooleanField(label = _('SAT2'), required = False) 
-    SAT3 = forms.BooleanField(label = _('SAT3'), required = False) 
-    SAT4 = forms.BooleanField(label = _('SAT4'), required = False) 
-    SAT5 = forms.BooleanField(label = _('SAT5'), required = False) 
-    SAT6 = forms.BooleanField(label = _('SAT6'), required = False) 
-    SAT7 = forms.BooleanField(label = _('SAT7'), required = False) 
-    SAT8 = forms.BooleanField(label = _('SAT8'), required = False) 
-    SAT9 = forms.BooleanField(label = _('SAT9'), required = False) 
-    SAT10= forms.BooleanField(label = _('SAT10'), required = False) 
-    SAT11= forms.BooleanField(label = _('SAT11'), required = False) 
-    SAT12= forms.BooleanField(label = _('SAT12'), required = False) 
-    SAT13= forms.BooleanField(label = _('SAT13'), required = False) 
-    SAT14= forms.BooleanField(label = _('SAT14'), required = False) 
-    SAT15= forms.BooleanField(label = _('SAT15'), required = False) 
-    SAT16= forms.BooleanField(label = _('SAT16'), required = False) 
-    SAT17= forms.BooleanField(label = _('SAT17'), required = False) 
-    SAT18= forms.BooleanField(label = _('SAT18'), required = False) 
-    SAT19= forms.BooleanField(label = _('SAT19'), required = False) 
-    SAT20= forms.BooleanField(label = _('SAT20'), required = False) 
-    SAT21= forms.BooleanField(label = _('SAT21'), required = False) 
-    SAT22= forms.BooleanField(label = _('SAT22'), required = False) 
-    SAT23= forms.BooleanField(label = _('SAT23'), required = False) 
-    SAT24= forms.BooleanField(label = _('SAT24'), required = False) 
-    SAT25= forms.BooleanField(label = _('SAT25'), required = False)
-    SAT26= forms.BooleanField(label = _('SAT26'), required = False)
-    SAT27= forms.BooleanField(label = _('SAT27'), required = False) 
-    SAT28= forms.BooleanField(label = _('SAT28'), required = False) 
-    SAT29= forms.BooleanField(label = _('SAT29'), required = False)
-    SAT30= forms.BooleanField(label = _('SAT30'), required = False) 
-    SAT31= forms.BooleanField(label = _('SAT31'), required = False) 
-    SAT32= forms.BooleanField(label = _('SAT32'), required = False) 
-    SAT33= forms.BooleanField(label = _('SAT33'), required = False) 
-    SAT34= forms.BooleanField(label = _('SAT34'), required = False) 
-    SAT35= forms.BooleanField(label = _('SAT35'), required = False) 
-    SAT36= forms.BooleanField(label = _('SAT36'), required = False) 
-    SAT37= forms.BooleanField(label = _('SAT37'), required = False) 
-    SAT38= forms.BooleanField(label = _('SAT38'), required = False) 
-    SAT39= forms.BooleanField(label = _('SAT39'), required = False)
-    SAT40= forms.BooleanField(label = _('SAT40'), required = False) 
-    SAT41= forms.BooleanField(label = _('SAT41'), required = False) 
-    SAT42= forms.BooleanField(label = _('SAT42'), required = False) 
-    SAT43= forms.BooleanField(label = _('SAT43'), required = False) 
-    SAT44= forms.BooleanField(label = _('SAT44'), required = False) 
-    SATOther=forms.CharField(max_length=20, 
-                    widget=forms.widgets.TextInput(), 
-                    required=False)
+
     def set_error_if_missing(self, field_name, error_message):
         """set's error message on a field
         if the field is not present in the cleaned_data dictionary
@@ -456,7 +398,66 @@ class ClassicRegisterForm(SetPasswordForm):
     email = UserEmailField()
     login_provider = PasswordLoginProviderField()
     #fields password1 and password2 are inherited
-
+    mobile = forms.CharField(max_length=12, 
+                    label=_('Mobile'),
+                    widget=forms.widgets.TextInput(
+                                            attrs={'class':'required login'}
+                                        ), 
+                    required=False
+                )
+    mobile_verified = forms.BooleanField(label = _('Mobile_Verified'), required = False) 
+    age = forms.IntegerField(label = _('Age'),initial='30',required=False)
+    gender = forms.ChoiceField(label = _('Gender'),choices=USER_GENDER_CHOICES,required=False)
+    education = forms.ChoiceField(label = _('Education Background'),choices=USER_EDUCATION_CHOICES,required=False)
+    income = forms.ChoiceField(label = _('Income'),choices=USER_INCOME_CHOICES,required=False)
+    occupational = forms.ChoiceField(label = _('Occupational'),choices=USER_OCCUPATIONAL_CHOICES,required=False)
+    SAT1 = forms.BooleanField(label = _('SAT1'), required = False) 
+    SAT2 = forms.BooleanField(label = _('SAT2'), required = False) 
+    SAT3 = forms.BooleanField(label = _('SAT3'), required = False) 
+    SAT4 = forms.BooleanField(label = _('SAT4'), required = False) 
+    SAT5 = forms.BooleanField(label = _('SAT5'), required = False) 
+    SAT6 = forms.BooleanField(label = _('SAT6'), required = False) 
+    SAT7 = forms.BooleanField(label = _('SAT7'), required = False) 
+    SAT8 = forms.BooleanField(label = _('SAT8'), required = False) 
+    SAT9 = forms.BooleanField(label = _('SAT9'), required = False) 
+    SAT10= forms.BooleanField(label = _('SAT10'), required = False) 
+    SAT11= forms.BooleanField(label = _('SAT11'), required = False) 
+    SAT12= forms.BooleanField(label = _('SAT12'), required = False) 
+    SAT13= forms.BooleanField(label = _('SAT13'), required = False) 
+    SAT14= forms.BooleanField(label = _('SAT14'), required = False) 
+    SAT15= forms.BooleanField(label = _('SAT15'), required = False) 
+    SAT16= forms.BooleanField(label = _('SAT16'), required = False) 
+    SAT17= forms.BooleanField(label = _('SAT17'), required = False) 
+    SAT18= forms.BooleanField(label = _('SAT18'), required = False) 
+    SAT19= forms.BooleanField(label = _('SAT19'), required = False) 
+    SAT20= forms.BooleanField(label = _('SAT20'), required = False) 
+    SAT21= forms.BooleanField(label = _('SAT21'), required = False) 
+    SAT22= forms.BooleanField(label = _('SAT22'), required = False) 
+    SAT23= forms.BooleanField(label = _('SAT23'), required = False) 
+    SAT24= forms.BooleanField(label = _('SAT24'), required = False) 
+    SAT25= forms.BooleanField(label = _('SAT25'), required = False)
+    SAT26= forms.BooleanField(label = _('SAT26'), required = False)
+    SAT27= forms.BooleanField(label = _('SAT27'), required = False) 
+    SAT28= forms.BooleanField(label = _('SAT28'), required = False) 
+    SAT29= forms.BooleanField(label = _('SAT29'), required = False)
+    SAT30= forms.BooleanField(label = _('SAT30'), required = False) 
+    SAT31= forms.BooleanField(label = _('SAT31'), required = False) 
+    SAT32= forms.BooleanField(label = _('SAT32'), required = False) 
+    SAT33= forms.BooleanField(label = _('SAT33'), required = False) 
+    SAT34= forms.BooleanField(label = _('SAT34'), required = False) 
+    SAT35= forms.BooleanField(label = _('SAT35'), required = False) 
+    SAT36= forms.BooleanField(label = _('SAT36'), required = False) 
+    SAT37= forms.BooleanField(label = _('SAT37'), required = False) 
+    SAT38= forms.BooleanField(label = _('SAT38'), required = False) 
+    SAT39= forms.BooleanField(label = _('SAT39'), required = False)
+    SAT40= forms.BooleanField(label = _('SAT40'), required = False) 
+    SAT41= forms.BooleanField(label = _('SAT41'), required = False) 
+    SAT42= forms.BooleanField(label = _('SAT42'), required = False) 
+    SAT43= forms.BooleanField(label = _('SAT43'), required = False) 
+    SAT44= forms.BooleanField(label = _('SAT44'), required = False) 
+    SATOther=forms.CharField(max_length=20, 
+                    widget=forms.widgets.TextInput(), 
+                    required=False)
 class SafeClassicRegisterForm(ClassicRegisterForm):
     """this form uses recaptcha in addition
     to the base register form
