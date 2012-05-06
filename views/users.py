@@ -42,6 +42,7 @@ from askbot.skins.loaders import render_into_skin
 from askbot.templatetags import extra_tags
 from askbot.search.state_manager import SearchState
 from askbot.models import Post
+from askbot.models.user import UserInfo
 
 def owner_or_moderator_required(f):
     @functools.wraps(f)
@@ -327,6 +328,61 @@ def edit_user(request, id):
             user.show_country = form.cleaned_data['show_country']
 
             user.save()
+            
+            userinfo = UserInfo.objects.get(user=user)
+            userinfo.mobile = form.cleaned_data['mobile']
+            #userinfo.age = form.cleaned_data['age']
+            userinfo.gender = form.cleaned_data['gender']
+            userinfo.education = form.cleaned_data['education']
+            userinfo.income = form.cleaned_data['income']
+            userinfo.occupational = form.cleaned_data['occupational']
+            
+            userinfo.SAT1 = form.cleaned_data['SAT1']
+            userinfo.SAT2 = form.cleaned_data['SAT2']
+            userinfo.SAT3 = form.cleaned_data['SAT3']
+            userinfo.SAT4 = form.cleaned_data['SAT4']
+            userinfo.SAT5 = form.cleaned_data['SAT5']
+            userinfo.SAT6 = form.cleaned_data['SAT6']
+            userinfo.SAT7 = form.cleaned_data['SAT7']
+            userinfo.SAT8 = form.cleaned_data['SAT8']
+            userinfo.SAT9 = form.cleaned_data['SAT9']
+            userinfo.SAT10 = form.cleaned_data['SAT10']
+            userinfo.SAT11 = form.cleaned_data['SAT11']
+            userinfo.SAT12 = form.cleaned_data['SAT12']
+            userinfo.SAT13 = form.cleaned_data['SAT13']
+            userinfo.SAT14 = form.cleaned_data['SAT14']
+            userinfo.SAT15 = form.cleaned_data['SAT15']
+            userinfo.SAT16 = form.cleaned_data['SAT16']
+            userinfo.SAT17 = form.cleaned_data['SAT17']
+            userinfo.SAT18 = form.cleaned_data['SAT18']
+            userinfo.SAT19 = form.cleaned_data['SAT19']
+            userinfo.SAT20 = form.cleaned_data['SAT20']
+            userinfo.SAT21 = form.cleaned_data['SAT21']
+            userinfo.SAT22 = form.cleaned_data['SAT22']
+            userinfo.SAT23 = form.cleaned_data['SAT23']
+            userinfo.SAT24 = form.cleaned_data['SAT24']
+            userinfo.SAT25 = form.cleaned_data['SAT25']
+            userinfo.SAT26 = form.cleaned_data['SAT26']
+            userinfo.SAT27 = form.cleaned_data['SAT27']
+            userinfo.SAT28 = form.cleaned_data['SAT28']
+            userinfo.SAT29 = form.cleaned_data['SAT29']
+            userinfo.SAT30 = form.cleaned_data['SAT30']
+            userinfo.SAT31 = form.cleaned_data['SAT31']
+            userinfo.SAT32 = form.cleaned_data['SAT32']
+            userinfo.SAT33 = form.cleaned_data['SAT33']
+            userinfo.SAT34 = form.cleaned_data['SAT34']
+            userinfo.SAT35 = form.cleaned_data['SAT35']
+            userinfo.SAT36 = form.cleaned_data['SAT36']
+            userinfo.SAT37 = form.cleaned_data['SAT37']
+            userinfo.SAT38 = form.cleaned_data['SAT38']
+            userinfo.SAT39 = form.cleaned_data['SAT39']
+            userinfo.SAT40 = form.cleaned_data['SAT40']
+            userinfo.SAT41 = form.cleaned_data['SAT41']
+            userinfo.SAT42 = form.cleaned_data['SAT42']
+            userinfo.SAT43 = form.cleaned_data['SAT43']
+            userinfo.SAT44 = form.cleaned_data['SAT44']
+            userinfo.SATOther = form.cleaned_data['SATOther']
+            userinfo.save()
             # send user updated signal if full fields have been updated
             award_badges_signal.send(None,
                             event = 'update_user_profile',

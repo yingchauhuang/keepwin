@@ -17,7 +17,7 @@ from askbot.conf import settings as askbot_settings
 #from ckeditor.fields import HTMLField
 #from ckeditor.widgets import CKEditor
 import logging
-
+from askbot.models.user import UserInfo
 
 MODERATOR_STATUS_CHOICES = (
                                 ('a', _('approved')),
@@ -78,6 +78,83 @@ TYPE_TRANSACTION = (
     (TYPE_TRANSACTION_RECEIVE_FROM_CONTENT, _('receive the bonus from other people paid for it')),
 )
 
+
+#user status ch
+USER_STATUS_CHOICES = (
+        #in addition to these there is administrator
+        #admin status is determined by the User.is_superuser() call
+        ('m', _('moderator')), #user with moderation privilege
+        ('a', _('approved')), #regular user
+        ('w', _('watched')), #regular user placed on the moderation watch
+        ('s', _('suspended')), #suspended user who cannot post new stuff
+        ('b', _('blocked')), #blocked
+)
+DEFAULT_USER_STATUS = 'w'
+
+#user gender 
+USER_GENDER_CHOICES = (
+        ('m', _('male')), #male
+        ('f', _('female')), #female
+)
+DEFAULT_GENDER_STATUS = 'f'
+
+#user education
+USER_EDUCATION_CHOICES = (
+        ('e', _('elementary school')), #elementary school    
+        ('j', _('junior high school')), #junior high school 
+        ('h', _('high school')), #high school
+        ('c', _('college')), #college
+        ('g', _('graduate school')), #graduate school
+        ('p', _('PhD')), #PhD
+)
+DEFAULT_EDUCATION_STATUS = 'g'
+
+#user education
+USER_INCOME_CHOICES = (
+        ('1', _('~300K')), 
+        ('2', _('300K~500K')), 
+        ('3', _('500K~800K')), 
+        ('4', _('800K~1000K')), 
+        ('5', _('1000K~1500K')), 
+        ('6', _('1500k~')), 
+)
+DEFAULT_INCOME_STATUS = '6'
+
+
+#user occupational
+USER_OCCUPATIONAL_CHOICES = (
+        ('1', _('IT(Software)')), 
+        ('2', _('IT(Web)')), 
+        ('3', _('IT(Hardware)')), 
+        ('4', _('Electricity')), 
+        ('5', _('Finance')), 
+        ('6', _('Education')),
+        ('7', _('Civil Engineer')), 
+        ('8', _('Manufacture')), 
+        ('9', _('Medical')), 
+        ('10', _('Law')), 
+        ('11', _('Media')),  
+        ('12', _('Entertainment')), 
+        ('13', _('Publish')), 
+        ('14', _('Travel')),  
+        ('15', _('Transportation')), 
+        ('16', _('Resturant')), 
+        ('17', _('Department Store')),  
+        ('18', _('Agent Brokerage')),
+        ('19', _('NGO')),  
+        ('20', _('Government')),  
+        ('21', _('Military')), 
+        ('22', _('Student')), 
+        ('23', _('SOHO')), 
+        ('24', _('Others')), 
+)
+DEFAULT_OCCUPATIONAL_STATUS = '1'
+
+#user template
+USER_TEMPLATE_CHOICES = (
+        ('1', _('Left')), 
+        ('2', _('Right')), 
+)
 def cleanup_dict(dictionary, key, empty_value):
     """deletes key from dictionary if it exists
     and the corresponding value equals the empty_value
@@ -1147,6 +1224,65 @@ class EditUserForm(forms.Form):
                         required=False,
                         widget=forms.Textarea(attrs={'cols' : 60})
                     )
+    mobile = forms.CharField(max_length=12, 
+                    label=_('Mobile'),
+                    widget=forms.widgets.TextInput(
+                                            attrs={'class':'required login'}
+                                        ), 
+                    required=False
+                )
+    #age = forms.IntegerField(label = _('Age'),initial='30',required=False)
+    gender = forms.ChoiceField(label = _('Gender'),choices=USER_GENDER_CHOICES,required=False)
+    education = forms.ChoiceField(label = _('Education Background'),choices=USER_EDUCATION_CHOICES,required=False)
+    income = forms.ChoiceField(label = _('Income'),choices=USER_INCOME_CHOICES,required=False)
+    occupational = forms.ChoiceField(label = _('Occupational'),choices=USER_OCCUPATIONAL_CHOICES,required=False)
+    SAT1 = forms.BooleanField(label = _('SAT1'), required = False) 
+    SAT2 = forms.BooleanField(label = _('SAT2'), required = False) 
+    SAT3 = forms.BooleanField(label = _('SAT3'), required = False) 
+    SAT4 = forms.BooleanField(label = _('SAT4'), required = False) 
+    SAT5 = forms.BooleanField(label = _('SAT5'), required = False) 
+    SAT6 = forms.BooleanField(label = _('SAT6'), required = False) 
+    SAT7 = forms.BooleanField(label = _('SAT7'), required = False) 
+    SAT8 = forms.BooleanField(label = _('SAT8'), required = False) 
+    SAT9 = forms.BooleanField(label = _('SAT9'), required = False) 
+    SAT10= forms.BooleanField(label = _('SAT10'), required = False) 
+    SAT11= forms.BooleanField(label = _('SAT11'), required = False) 
+    SAT12= forms.BooleanField(label = _('SAT12'), required = False) 
+    SAT13= forms.BooleanField(label = _('SAT13'), required = False) 
+    SAT14= forms.BooleanField(label = _('SAT14'), required = False) 
+    SAT15= forms.BooleanField(label = _('SAT15'), required = False) 
+    SAT16= forms.BooleanField(label = _('SAT16'), required = False) 
+    SAT17= forms.BooleanField(label = _('SAT17'), required = False) 
+    SAT18= forms.BooleanField(label = _('SAT18'), required = False) 
+    SAT19= forms.BooleanField(label = _('SAT19'), required = False) 
+    SAT20= forms.BooleanField(label = _('SAT20'), required = False) 
+    SAT21= forms.BooleanField(label = _('SAT21'), required = False) 
+    SAT22= forms.BooleanField(label = _('SAT22'), required = False) 
+    SAT23= forms.BooleanField(label = _('SAT23'), required = False) 
+    SAT24= forms.BooleanField(label = _('SAT24'), required = False) 
+    SAT25= forms.BooleanField(label = _('SAT25'), required = False)
+    SAT26= forms.BooleanField(label = _('SAT26'), required = False)
+    SAT27= forms.BooleanField(label = _('SAT27'), required = False) 
+    SAT28= forms.BooleanField(label = _('SAT28'), required = False) 
+    SAT29= forms.BooleanField(label = _('SAT29'), required = False)
+    SAT30= forms.BooleanField(label = _('SAT30'), required = False) 
+    SAT31= forms.BooleanField(label = _('SAT31'), required = False) 
+    SAT32= forms.BooleanField(label = _('SAT32'), required = False) 
+    SAT33= forms.BooleanField(label = _('SAT33'), required = False) 
+    SAT34= forms.BooleanField(label = _('SAT34'), required = False) 
+    SAT35= forms.BooleanField(label = _('SAT35'), required = False) 
+    SAT36= forms.BooleanField(label = _('SAT36'), required = False) 
+    SAT37= forms.BooleanField(label = _('SAT37'), required = False) 
+    SAT38= forms.BooleanField(label = _('SAT38'), required = False) 
+    SAT39= forms.BooleanField(label = _('SAT39'), required = False)
+    SAT40= forms.BooleanField(label = _('SAT40'), required = False) 
+    SAT41= forms.BooleanField(label = _('SAT41'), required = False) 
+    SAT42= forms.BooleanField(label = _('SAT42'), required = False) 
+    SAT43= forms.BooleanField(label = _('SAT43'), required = False) 
+    SAT44= forms.BooleanField(label = _('SAT44'), required = False) 
+    SATOther=forms.CharField(max_length=20, 
+                    widget=forms.widgets.TextInput(), 
+                    required=False)
 
     def __init__(self, user, *args, **kwargs):
         super(EditUserForm, self).__init__(*args, **kwargs)
@@ -1171,7 +1307,61 @@ class EditUserForm(forms.Form):
 
         self.fields['about'].initial = user.about
         self.user = user
-
+        
+        #Add by YC
+        userinfo = UserInfo.objects.get(user=user)
+        self.fields['mobile'].initial = userinfo.mobile
+        #self.fields['age'].initial = userinfo.age
+        self.fields['gender'].initial = userinfo.gender
+        self.fields['education'].initial = userinfo.education
+        self.fields['income'].initial = userinfo.income
+        self.fields['occupational'].initial = userinfo.occupational
+        self.fields['SAT1'].initial  = userinfo.SAT1
+        self.fields['SAT2'].initial  = userinfo.SAT2
+        self.fields['SAT3'].initial  = userinfo.SAT3
+        self.fields['SAT4'].initial  = userinfo.SAT4
+        self.fields['SAT5'].initial  = userinfo.SAT5
+        self.fields['SAT6'].initial  = userinfo.SAT6
+        self.fields['SAT7'].initial  = userinfo.SAT7
+        self.fields['SAT8'].initial  = userinfo.SAT8
+        self.fields['SAT9'].initial  = userinfo.SAT9
+        self.fields['SAT10'].initial = userinfo.SAT10
+        self.fields['SAT11'].initial = userinfo.SAT11
+        self.fields['SAT12'].initial = userinfo.SAT12
+        self.fields['SAT13'].initial = userinfo.SAT13
+        self.fields['SAT14'].initial = userinfo.SAT14
+        self.fields['SAT15'].initial = userinfo.SAT15
+        self.fields['SAT16'].initial = userinfo.SAT16
+        self.fields['SAT17'].initial = userinfo.SAT17
+        self.fields['SAT18'].initial = userinfo.SAT18
+        self.fields['SAT19'].initial = userinfo.SAT19
+        self.fields['SAT20'].initial = userinfo.SAT20
+        self.fields['SAT21'].initial = userinfo.SAT21
+        self.fields['SAT22'].initial = userinfo.SAT22
+        self.fields['SAT23'].initial = userinfo.SAT23
+        self.fields['SAT24'].initial = userinfo.SAT24
+        self.fields['SAT25'].initial = userinfo.SAT25
+        self.fields['SAT26'].initial = userinfo.SAT26
+        self.fields['SAT27'].initial = userinfo.SAT27
+        self.fields['SAT28'].initial = userinfo.SAT28
+        self.fields['SAT29'].initial = userinfo.SAT29
+        self.fields['SAT30'].initial = userinfo.SAT30
+        self.fields['SAT31'].initial = userinfo.SAT31
+        self.fields['SAT32'].initial = userinfo.SAT32
+        self.fields['SAT33'].initial = userinfo.SAT33
+        self.fields['SAT34'].initial = userinfo.SAT34
+        self.fields['SAT35'].initial = userinfo.SAT35
+        self.fields['SAT36'].initial = userinfo.SAT36
+        self.fields['SAT37'].initial = userinfo.SAT37
+        self.fields['SAT38'].initial = userinfo.SAT38
+        self.fields['SAT39'].initial = userinfo.SAT39
+        self.fields['SAT40'].initial = userinfo.SAT40
+        self.fields['SAT41'].initial = userinfo.SAT41
+        self.fields['SAT42'].initial = userinfo.SAT42
+        self.fields['SAT43'].initial = userinfo.SAT43
+        self.fields['SAT44'].initial = userinfo.SAT44
+        self.fields['SATOther'].initial = userinfo.SATOther
+                
     def clean_email(self):
         """For security reason one unique email in database"""
         if self.user.email != self.cleaned_data['email']:

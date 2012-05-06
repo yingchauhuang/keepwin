@@ -968,7 +968,7 @@ def signup_with_password(request):
                     )
             userinfo = UserInfo.objects.get(user=user)
             userinfo.mobile = form.cleaned_data['mobile']
-            userinfo.age = form.cleaned_data['age']
+            #userinfo.age = form.cleaned_data['age']
             userinfo.gender = form.cleaned_data['gender']
             userinfo.education = form.cleaned_data['education']
             userinfo.income = form.cleaned_data['income']
