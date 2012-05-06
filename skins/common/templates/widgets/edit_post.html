@@ -1,6 +1,6 @@
 {% if edit_title %}
     <div class="form-item">
-        <label for="id_title" ><strong>{{ post_form.title.label_tag() }}:</strong></label> <span class="form-error"></span><br/>
+        <label for="id_title" ><h3>{{ post_form.title.label_tag() }}:</h3></label> <span class="form-error"></span><br/>
         {{ post_form.title }} {{ post_form.title.errors }}
         <div class="title-desc">
             {{ post_form.title.help_text }}
@@ -11,12 +11,16 @@
 <div id="wmd-button-bar" class="wmd-panel"></div>
 -->
 <div class="form-item">
+	<label for="text_id">
+                <h3>{% trans %}Question Text:{% endtrans %}</h3>
+                {% trans %}Edit your question here{% endtrans %}
+    </label>
     {{ post_form.text }}{# this element is resizable and will be wrapped by js #}
     <label for="editor" class="form-error">{{ post_form.text.errors }}</label>
 </div>
 <div class="form-item">
 	<label for="feature_pic">
-                <strong>{% trans %}Feature Picture:{% endtrans %},</strong>
+                <h3>{% trans %}Feature Picture:{% endtrans %}</h3>
                 {% trans %}Add a picture for your question{% endtrans %}
     </label>
 	{{ post_form.featurepic }}
@@ -26,8 +30,7 @@
     <div class="form-item">
         {% if mandatory_tags  %}
             <label for="id_tags">
-                <strong>{% trans %}tags{% endtrans %},</strong>
-                {% trans %}one of these is required{% endtrans %}
+                <h4>{% trans %}tags{% endtrans %}</h4>{% trans %}one of these is required{% endtrans %}
             </label>
             {{
                 tag_list_widget(
@@ -38,8 +41,7 @@
             }}
         {% else %}
             <label for="id_tags">
-                <strong>{% trans %}tags{% endtrans %}:</strong>
-                {% trans %}(required){% endtrans %}
+                <h3>{% trans %}tags{% endtrans %}:</h3>{% trans %}(required){% endtrans %}
             </label>
         {% endif %}
         <span class="form-error">{{ post_form.tags.errors }}</span><br/>

@@ -238,11 +238,11 @@ class TitleField(forms.CharField):
     def __init__(self, *args, **kwargs):
         super(TitleField, self).__init__(*args, **kwargs)
         self.required = True
-        self.widget = forms.TextInput(
+        self.widget = forms.widgets.TextInput(
                                 attrs={'size' : 70, 'autocomplete' : 'off'}
                             )
         self.max_length = 255
-        self.label  = _('title')
+        self.label  = _('maintitle')
         self.help_text = _('please enter a descriptive title for your question')
         self.initial = ''
 
@@ -265,7 +265,7 @@ class SubTitleField(forms.CharField):
                                 attrs={'size' : 70, 'autocomplete' : 'off'}
                             )
         self.max_length = 255
-        self.label  = _('title')
+        self.label  = _('subtitle')
         self.help_text = _('please enter a descriptive title for your question')
         self.initial = ''
 
@@ -288,7 +288,7 @@ class PassCodeField(forms.CharField):
                                 attrs={'size' : 10, 'autocomplete' : 'off'}
                             )
         self.max_length = 10
-        self.label  = _('title')
+        self.label  = _('Pass Code')
         self.help_text = _('please enter a descriptive title for your question')
         self.initial = ''
 

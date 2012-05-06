@@ -404,7 +404,19 @@ msgstr "標題"
 
 #: forms.py:105
 msgid "please enter a descriptive title for your question"
-msgstr "請輸入對看法具有描述性質的標題 - 「幫忙！緊急求助！」不是建議的提問方式。"
+msgstr "請輸入對看法具有描述性質的標題 - 可以幫助讀者更快找到您的評論。"
+
+#: forms.py:105
+msgid "maintitle"
+msgstr "主標題:"
+
+#: forms.py:105
+msgid "subtitle"
+msgstr "次標題:"
+
+#: forms.py:105
+msgid "Pass Code"
+msgstr "通行密碼:"
 
 #: forms.py:110
 msgid "title must be > 10 characters"
@@ -4247,12 +4259,20 @@ msgid "one of these is required"
 msgstr "其中之一是必需的"
 
 #: skins/common/templates/widgets/edit_post.html:21
+msgid "Question Text:"
+msgstr "評論內容:"
+
+#: skins/common/templates/widgets/edit_post.html:21
+msgid "Edit your question here"
+msgstr "(請在下面編輯您要發表的評論)"
+
+#: skins/common/templates/widgets/edit_post.html:21
 msgid "Feature Picture:"
-msgstr "文章圖示"
+msgstr "文章圖示:"
 
 #: skins/common/templates/widgets/edit_post.html:21
 msgid "Add a picture for your question"
-msgstr "請為您的評論找一個代表的圖案, 若沒輸入 系統將以您的個人圖像來代表"
+msgstr "(請為您的評論找一個代表的圖案, 若沒輸入 系統將以您的個人圖像來代表)"
 
 #: skins/common/templates/widgets/edit_post.html:33
 msgid "(required)"

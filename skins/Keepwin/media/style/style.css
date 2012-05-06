@@ -221,15 +221,15 @@ body.user-messages {
 }
 #logo img {
   padding: 5px 0px 5px 0px;
-  height: 100px;
-  width: 130px;
+  height: 150px;
+  width: 195px;
   float: left;
 }
 
 .catbar-ad{
   padding: 5px 0px 5px 0px;
-  height: 100px;
-  width: 830px;
+  height: 150px;
+  width: 765px;
   float: left;
 }
 #userToolsNav {
@@ -1368,7 +1368,17 @@ ul#related-tags li {
   color: #525252;
   font-size: 13px;
 }
-.ask-page #id_tags, .edit-question-page #id_tags {
+.ask-page #id_passcode{
+  border: #cce6ec 3px solid;
+  height: 25px;
+  padding-left: 5px;
+  width: 195px;
+  font-size: 14px;
+}
+.ask-page #id_tags, 
+.ask-page #id_title,
+.ask-page #id_subtitle,
+.edit-question-page #id_tags {
   border: #cce6ec 3px solid;
   height: 25px;
   padding-left: 5px;

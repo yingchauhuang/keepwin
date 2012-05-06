@@ -1377,6 +1377,8 @@ def user_post_question(
                     is_charged=False,
                     cost=0 ,
                     featurepic=None,
+                    subtitle=None,
+                    passcode=None,
                 ):
     """makes an assertion whether user can post the question
     then posts it and returns the question object"""
@@ -1404,6 +1406,8 @@ def user_post_question(
                                     is_charged=is_charged,
                                     cost=cost,
                                     featurepic=featurepic,
+                                    subtitle=subtitle,
+                                    passcode=passcode,
                                 )
     question = thread._question_post()
     self.NewestQ = thread

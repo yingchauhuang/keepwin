@@ -215,6 +215,8 @@ def ask(request):#view used to ask a new question
             is_charged = form.cleaned_data['is_charged']
             cost = form.cleaned_data['cost']
             featurepic = form.cleaned_data['featurepic']
+            subtitle = form.cleaned_data['subtitle']
+            passcode = form.cleaned_data['passcode']
             if is_charged == None :
                 is_charged =False
             if cost == None :
@@ -231,6 +233,8 @@ def ask(request):#view used to ask a new question
                         is_charged = is_charged,
                         cost = cost,
                         featurepic= featurepic, 
+                        subtitle = subtitle,
+                        passcode = passcode,
                     )
                     return HttpResponseRedirect(question.get_absolute_url())
                 except exceptions.PermissionDenied, e:
@@ -251,7 +255,9 @@ def ask(request):#view used to ask a new question
                     summary = summary,
                     added_at = timestamp,
                     ip_addr = request.META['REMOTE_ADDR'],
-                    featurepic= featurepic, 
+                    #featurepic= featurepic, 
+                    #subtitle = subtitle,
+                    #passcode = passcode,
                 )
                 return HttpResponseRedirect(url_utils.get_login_url())
     else:

@@ -1,5 +1,13 @@
 <!-- template header.html -->
 {% import "macros.html" as macros %}
+<div id="ContentFull">
+{% if settings.SHOW_LOGO %}
+   {% include "widgets/logo.html" %}
+{% endif %}
+{% if settings.MAIN_SHOW_AD  %}
+   {% include "advertisement/headbarAD.html" %}
+{% endif %}
+</div>
 <div 
     id="header"
     class="without-logo"

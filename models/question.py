@@ -59,10 +59,10 @@ class ThreadManager(models.Manager):
         raise NotImplementedError
     
           
-    def create_new(self, title, author, added_at, wiki, text, tagnames=None, is_anonymous=False, is_charged = False, cost = 0 ,featurepic=None):
+    def create_new(self, title, author, added_at, wiki, text, tagnames=None, is_anonymous=False, is_charged = False, cost = 0 ,featurepic=None,subtitle=None,passcode=None):
         # TODO: Some of this code will go to Post.objects.create_new
 
-        thread = super(ThreadManager, self).create(title=title, tagnames=tagnames, last_activity_at=added_at, last_activity_by=author)
+        thread = super(ThreadManager, self).create(title=title, tagnames=tagnames, last_activity_at=added_at, last_activity_by=author, subtitle=subtitle,passcode=passcode,)
         
         question = Post(
             post_type='question',
