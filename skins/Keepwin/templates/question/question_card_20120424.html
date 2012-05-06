@@ -1,0 +1,86 @@
+
+<div class="vote-buttons">
+    {# ==== BEGIN: question/question_vote_buttons.html ==== #}
+    {% include "question/question_vote_buttons.html" %}
+    {# ==== END: question/question_vote_buttons.html ==== #}
+    {# ==== BEGIN: question/share_buttons.html ==== #}
+    {% include "question/share_buttons.html" %}
+    {# ==== END: question/share_buttons.html ==== #}
+</div>
+<div class="question-content">
+
+    <h1><a href="{{ question.get_absolute_url() }}">{{ thread.get_title(question)|escape }}</a></h1>
+    {% include "question/question_tags.html" %}
+    {# ==== END: question/question_tags.html" #}
+
+    <div id="question-table" {% if question.deleted %}class="deleted"{%endif%}>
+        <div class="question-body">
+            <div class="post-update-info-container">
+                {# ==== START: "question/question_author_info.html" #}
+                {% include "question/question_author_info.html" %}
+                {# ==== END: "question/question_author_info.html" #}
+            </div>
+            {{ question.html }}
+        </div>
+        <div id="question-controls" class="post-controls">
+            {# ==== START: include "question/question_controls.html" #}
+            {% include "question/question_controls.html" %}
+            {# ==== END: include "question/question_controls.html" #}
+        </div>
+        {# ==== START: question/question_comments.html ==== #}
+        {% include "question/question_comments.html" %}
+        {# ==== END: question/question_comments.html ==== #}
+		
+	</div>
+    </div>
+
+	
+	
+<div class="clean"></div>
+<div class="social-comment-body">
+		<div class="tabBar tabBar-social-comment">
+		<ul class="tags {{css_class}} ">
+			<h2 id="social_comment_tab_0" class="current" onmouseover="javascript:switchTab('social_comment', 0, 2)" >facebook</h2>
+			<h2 id="social_comment_tab_1" class="notcurrent" onmouseover="javascript:switchTab('social_comment', 1, 2)" >DISQUES</h2>
+		</ul>
+		</div>
+		<div id="social_comment_0" class="disyshow">
+			<div id="fb-root"></div>
+			<div class="fb-comments" data-href="http://www.asali.com.tw" data-num-posts="2"></div>
+		</div>
+		<div id="social_comment_1" class="disyhidn">
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+			/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+				var disqus_shortname = 'asalifinance'; // required: replace asalifinance with your forum shortname
+
+				/* * * DON'T EDIT BELOW THIS LINE * * */
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+			
+		</div>
+</div>
+<script type="text/javascript">
+
+	function switchTab(tab_title, pst, tab_cnt)
+	{
+		for(var i=0 ; i<tab_cnt ; i++)
+		{
+			if (i == pst)
+				document.getElementById(tab_title+'_tab_'+i).className = 'current';
+			else
+				document.getElementById(tab_title+'_tab_'+i).className = 'notcurrent';
+			if (i == pst)
+				document.getElementById(tab_title+'_'+i).className = 'disyshow';
+			else
+				document.getElementById(tab_title+'_'+i).className = 'disyhidn';
+		}
+	}
+</script>
+<div class="clean"></div>

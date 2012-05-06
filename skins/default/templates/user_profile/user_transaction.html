@@ -1,0 +1,80 @@
+{% extends "user_profile/user.html" %}
+<!-- user_transaction.html -->
+{% block profilesection %}
+    {% trans %}Transaction{% endtrans %}
+{% endblock %}
+{% block usercontent %}
+        <div class="karma-summary">
+            <div id="diagram" class="karma-diagram"></div>
+            <div class="karma-details">
+				{% if confirmation %}
+					<h2>{% trans %}Purchase Article Confirmation.{% endtrans %}</h2>
+					<h3>{% trans balance=view_user.balance %}Your current  balance is {{ balance}} USD{% endtrans %}</h3>
+					<h3>{% trans %}I want to purchase{% endtrans %}{{ title}} ({{ amount}}{% trans %}Dollars{% endtrans %})</h3>
+					<form method="post">{% csrf_token %}
+						<input type="hidden" name="confirm_payment" value="Y" >
+						<input type="hidden" name="amount" value={{amount}} >
+						<input type="hidden" name="qid" value={{qid}} >
+						<input type="submit" class="submit" name="query_confirm" value="{% trans %}Confirm Purchase{% endtrans %}" />
+						<input type="button" class="submit" value="{% trans %}Cancel this confirmation{% endtrans %}" onclick="location='{% url questions %}'"/>
+					</form>
+				{% else %}
+					{% if view_user.id == user.id %}
+					<h2>{% trans %}Your Account Detail.{% endtrans %}</h2>
+					{% else %}
+					<h2>{% trans user_name=view_user.username %}{{user_name}}'s Account Detail{% endtrans %}</h2>
+					{% endif %}
+					<h2>{{ message}}</h2>
+					<form method="post">{% csrf_token %}
+						<input type="hidden" name="sort" value="transaction"/>
+						<table>
+							<tr>
+								<td><label for="id_beginDate">{% trans %}From{% endtrans %}</label></td>
+								<td>{{ query_trans_form.beginDate}}</td>
+								<td>{% if query_trans_form.beginDate.errors %}
+										<p class="error">{{query_trans_form.beginDate.errors|join(', ')}}</p>
+									{% endif %}
+								</td>
+							</tr>
+							<tr>
+								<td><label for="id_endDate">{% trans %}To{% endtrans %}</label></td>
+								<td>{{ query_trans_form.endDate}}</td>
+								<td>{% if query_trans_form.endDate.errors %}
+										<p class="error">{{query_trans_form.endDate.errors|join(', ')}}</p>
+									{% endif %}
+								</td>
+							</tr>
+							<tr>
+								<td cellspacing="3"><input type="submit" class="submit" name="query_trans" value="{% trans %}Query{% endtrans %}" /></td>
+							</td>
+						</table>
+					</form>
+					{% for transaction in transactions %}
+					<p>
+						<span class="karma-gained">{{ transaction.income }}</span>
+						<span class="karma-lost">{{ transaction.outcome }}</span>
+						{{ transaction.get_explanation_snippet() }}
+						<span class="small">({{transaction.trans_at|diff_date}})</span>
+						<div class="clean"></div>                  
+					</p>
+					{% endfor %}
+					<h3>{% trans balance=view_user.balance %}Your current  balance is {{ balance}} USD{% endtrans %}</h3>
+                {% endif %}
+            </div>
+        </div>
+{% endblock %}
+{% block userjs %}
+       <script type='text/javascript' src='{{"/js/excanvas.min.js"|media}}'></script>
+       <script type='text/javascript' src='{{"/js/jquery.flot.min.js"|media}}'></script>
+       <script type="text/javascript">
+            $().ready(function(){
+                var d = {{ trans }};
+                var placeholder = $("#diagram");
+                var plot = $.plot(placeholder, [d], {
+                    xaxis: { mode: "time" },
+                    points: { show: true },
+                    lines: { show: true }
+                });
+            });
+        </script>
+{% endblock %}<!-- end user_reputation.html -->

@@ -1,0 +1,26 @@
+{% from "macros.html" import user_country_flag, tag_list_widget, keepwin_blog_avatar,featurePIC %}
+<!-- question_summary_keepwin.html -->
+<div class="item">
+	<div class="to_keepwin_img">
+	<a title="{{thread.title|striptags}}" href="{{ question.get_absolute_url(thread=thread) }}" class="group">
+	{{ featurePIC(thread,question,60) }}
+	</a>
+		<div class="to_feed_tag">
+			{{ tag_list_widget(thread.get_tag_names(), search_state=search_state) }}
+		</div>
+	</div>
+	<a title="{{thread.title|striptags}}" href="{{ question.get_absolute_url(thread=thread) }}" class="group">
+		<h3>{{thread.get_title(question)|escape}}</h3>
+		<p>{{ question.summary|escape }}...</p>
+		{{thread.view_count|humanize_counter}}{% trans cnt=thread.view_count %}view{% pluralize %}views{% endtrans %}
+		{{thread.answer_count|humanize_counter}}{% if thread.accepted_answer_id %}{% endif %}{% trans cnt=thread.answer_count %}answer{% pluralize %}answers{% endtrans %}
+	</a>
+	{% if question.is_charged %}
+			<div class="charged">
+				<img src="/m/common/media/images/icons/payment.jpg" alt="" />{{question.cost|humanize_counter}}{% trans %}Charged{% endtrans %}
+			</div>
+	{% endif %}
+</div>
+
+
+

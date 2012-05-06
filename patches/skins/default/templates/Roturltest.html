@@ -1,0 +1,12 @@
+{% import "macros.html" as macros %}
+{% extends "one_column_body.html" %}
+{% block content%}
+<h1 align="center">歡迎至便利超商購買確認 測試頁</h1>
+
+<form method="post" action="/payment/Roturl/">{% csrf_token %}
+        <table class="form-as-table">
+        {{ smilepayform.as_table() }}
+        </table>
+        <input type="submit" class="submit" value="{% trans %}Save{% endtrans %}" />
+</form>
+{% endblock %}

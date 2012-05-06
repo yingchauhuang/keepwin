@@ -1,0 +1,20 @@
+	{% import "macros.html" as macros %}
+    <a name="votes"></a>
+    {% spaceless %}
+        <h2>{% trans cnt=total_votes %}<span class="count">{{cnt}}</span> Vote{% pluralize %}<span class="count">{{cnt}}</span> Votes {% endtrans %}</h2>
+    {% endspaceless %}
+    <div class="user-stats-table">
+        <table>
+            <tr>
+                <td width="60">
+                    <img style="cursor: default;" src="{{"/images/vote-arrow-up-on.png"|media}}" alt="{% trans %}thumb up{% endtrans %}" />
+                        <span title="{% trans %}user has voted up this many times{% endtrans %}" class="vote-count">{{up_votes}}</span>
+                </td>
+                <td width="60">
+                    <img style="cursor: default;" src="{{"/images/vote-arrow-down-on.png"|media}}" alt="{% trans %}thumb down{% endtrans %}" />
+                        <span title="{% trans %}user voted down this many times{% endtrans %}" class="vote-count">{{down_votes}}</span>
+
+                </td>
+            </tr>
+        </table>
+    </div>

@@ -1,0 +1,16 @@
+{% import "macros.html" as macros %}
+{# cache 0 "questions" questions search_tags scope sort query context.page language_code #}
+<!-- questions_loop_twmode.html -->
+<table class="uiGrid uiGridCalc" cellspacing="0" cellpadding="0">
+  <tbody>
+  {% for question in questions.object_list %}
+		<tr>
+			<td class="vTop">
+				<div class="friendListing">
+				{{ question.get_summary_twmode() }}
+				</div>
+			</td>
+		</tr>
+  {% endfor %}
+  </tbody>
+</table>

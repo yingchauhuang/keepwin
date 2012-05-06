@@ -1,0 +1,48 @@
+			{% import "macros.html" as macros %}
+<div class="user-stats-table">
+   <table class="tags">
+        <tr>
+            <td valign="top">
+            <ul id="ab-small-tags" class="tags">
+			<div class='avatar'>
+                {{ macros.gravatar(view_user, 128) }}
+                {% if request.user == view_user %}
+                    <p><a 
+                        {% if support_custom_avatars %}
+                            href="{% url avatar_change %}"
+                        {% else %}
+                            href="{% url faq %}#gravatar"
+                        {% endif %}
+                    >{% trans %}change picture{% endtrans %}</a></p>
+                    {% if support_custom_avatars %}
+                    <p><a 
+                        href="{% url avatar_delete %}"
+                        >{% trans %}remove{% endtrans %}</a>
+                    </p>
+                    {% endif %}
+                {% endif %}
+            </div>
+			</td>
+			<td valign="top">
+            <div class="scoreNumber">{{view_user.reputation|intcomma}}</div>
+            <p><b style="color:#777;">{% trans %}reputation{% endtrans %}</b></p>
+            {% if user_follow_feature_on %}
+                {{ macros.follow_user_toggle(visitor = request.user, subject = view_user) }}
+            {% endif %}
+			{% trans %}real name{% endtrans %}
+            <b>{{view_user.real_name}}</b>
+            {% if settings.USE_ASKBOT_LOGIN_SYSTEM and request.user == view_user and settings.ALLOW_ADD_REMOVE_LOGIN_METHODS %}
+                            | <a href="{{ settings.LOGIN_URL }}?next={{ settings.LOGIN_URL }}">
+                                {% trans %}manage login methods{% endtrans %}
+                            </a>
+            {% endif %}
+			</ul>
+            </td>
+        </tr>
+   </table>
+</div>
+			<div class="user-about">
+            {% if view_user.about %}
+                {{view_user.about|linebreaks}}
+            {% endif %}
+            </div>

@@ -1,0 +1,20 @@
+{% from "macros.html" import gravatar %}
+<!-- question_summary_newest.html -->
+<div class="item">
+	<div class="to_newest_img">{{ gravatar(user,68) }}</div>
+	<h3>{{ user.username }}</h3>
+	<img alt="" src={{'/images/icon_reply_s.gif'|media}} class="valignmid padding_right">
+	<span class="number">{{user.responses}}</span><br>
+	<img alt="" src={{'/images/icon_hotnumber_s.gif'|media}} class="valignmid padding_right">
+	<span class="number">{{user.views}}</span><br>
+	<img alt="" src={{'/images/point.gif'|media}} class="valignmid padding_right">
+	<span class="number">{{user.receive_points}}</span><br>
+	{% if question %}
+		<h4><a title="{{question.title|striptags}}" href="{{ question.get_absolute_url() }}" class="group">
+			<p>{{question.title|striptags}}</p>
+		</a></h4>
+	{% endif %}
+</div>
+
+
+

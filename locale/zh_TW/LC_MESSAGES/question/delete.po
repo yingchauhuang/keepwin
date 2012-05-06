@@ -1,0 +1,18 @@
+#: skins/default/templates/question/subscribe_by_email_prompt.html:7
+#: skins/default/templates/question/subscribe_by_email_prompt.html:9
+#, fuzzy
+msgid "Notify me once a day when there are any new answers"
+msgstr ""
+"<strong>每天通知我</strong> 只要有新的回答或更新 "
+
+#: skins/default/templates/question/subscribe_by_email_prompt.html:11
+#, fuzzy
+msgid "Notify me weekly when there are any new answers"
+msgstr ""
+"<strong>每週通知我</strong> 只要有新的回答或更新 "
+
+#: skins/default/templates/question/subscribe_by_email_prompt.html:13
+#, fuzzy
+msgid "Notify me immediately when there are any new answers"
+msgstr ""
+"<strong>立刻通知我</strong> 只要有新的回答或更新 "

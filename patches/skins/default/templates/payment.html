@@ -1,0 +1,29 @@
+{% import "macros.html" as macros %}
+{% extends "one_column_body.html" %}
+{% block content%}
+<h1 align="center">歡迎至便利超商購買靈龜點數</h1>
+
+<div align="center">
+<img src={{'/images/bt_711.gif'|media}} alt="7-11便利商店" width="326" height="307" hspace="20" vspace="5" border="0">
+</div>
+
+<div class="storemoney">
+<table width="850" align="center">
+
+          <tr>
+            <th>價格</th>
+            <th>$300</th>
+            <th>$500</th>
+            <th>$1000</th>
+          </tr>
+          <tr>
+            <th nowrap>會員</th>
+            <td><input type="button" value="透過iBon購買300元" onclick="location='/payment/300/confirm'"/></td>
+            <td><input type="button" value="透過iBon購買500元" onclick="location='/payment/500/confirm'"/></td>
+            <td><input type="button" value="透過iBon購買1000元" onclick="location='/payment/1000/confirm'"/></td>
+          </tr>
+  </table>
+</div>
+
+</div>
+{% endblock %}

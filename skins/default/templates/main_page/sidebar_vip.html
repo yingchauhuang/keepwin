@@ -1,0 +1,8 @@
+{% import "macros.html" as macros %}
+
+{{ settings.SIDEBAR_MAIN_HEADER }}
+<div id="contrib-users" class="box">
+  <h2 class="contributorback">對評論所做的回應</h2>
+{% include "user_profile/user_stats_answers.html" %}
+{{ settings.SIDEBAR_MAIN_FOOTER }}
+</div>

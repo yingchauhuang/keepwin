@@ -1,0 +1,54 @@
+{% from "macros.html" import user_country_flag, tag_list_widget, twmode_blog_avatar,featurePIC %}
+<!-- question_summary_twmode.html -->
+<div class="to_feed" id="question-{{question.id}}">
+    <div class="to_feed_img">
+			{# ==== START: "question/question_author_info.html" #}
+				{{ featurePIC(thread,question,200) }}		
+            {# ==== END: "question/question_author_info.html" #}        
+		<div class="to_feed_content_author">
+			{# ==== START: "question/question_author_info.html" #}
+				{{ twmode_blog_avatar(question.author,24) }}	
+            <span class="relativetime" title="{{thread.last_activity_at.replace(microsecond=0)}}">{{ thread.last_activity_at|diff_date }}{% trans %}Posted{% endtrans %}</span>	
+            {# ==== END: "question/question_author_info.html" #}          
+		</div>	
+	</div>
+    <div class="to_feed_content">
+		<div class="to_feed_content_title">
+			<h2>
+			<a title="{{thread.title|striptags}}" href="{{ question.get_absolute_url(thread=thread) }}">{{thread.get_title(question)|escape}}</a>
+			</h2>
+		</div>
+		<div class="to_feed_content_post">
+			<a title="{{question.text|striptags}}" href="{{ question.get_absolute_url(thread=thread) }}">{{ question.summary|escape }}</a>
+		</div>	
+		<div class="to_feed_satistics">
+			<li class="item-count">{{thread.view_count|humanize_counter}}{% trans cnt=thread.view_count %}view{% pluralize %}views{% endtrans %}</li>		
+			<li class="item-count">{{thread.answer_count|humanize_counter}}{% if thread.accepted_answer_id %}{% endif %}{% trans cnt=thread.answer_count %}answer{% pluralize %}answers{% endtrans %}</li>
+            <li class="item-count">{{question.score|humanize_counter}}{% trans cnt=question.score %}vote{% pluralize %}votes{% endtrans %}</li>		
+			{% if question.is_charged %}
+			<div class="charged">
+				<a href="/payment"  target="_blank"><img src="/m/common/media/images/icons/payment.jpg" alt="" />{{question.cost|humanize_counter}}{% trans %}Charged{% endtrans %}</a>
+				<li class="item-count"></li>
+			</div>
+			{% endif %}
+			
+        </div>
+		<div class="to_feed_tag">
+			{{ tag_list_widget(thread.get_tag_names(), search_state=search_state) }}
+		</div>
+		<div class="to_feed_social">
+			<div class="to_feed_social_ele">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-lang="zh-tw">推文</a>
+			</div>
+			<div class="to_feed_social_ele">
+				<div class="fb-like" data-href="{{ question.get_absolute_url(thread=thread) }}" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" font="arial"></div>
+			</div>
+			<div class="to_feed_social_ele">
+				<g:plusone size="small"></g:plusone>
+			</div>
+		</div>
+	</div>	
+   
+
+</div>
+

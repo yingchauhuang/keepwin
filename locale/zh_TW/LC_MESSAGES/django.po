@@ -17,6 +17,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n!= 1;\n"
 
+#: views/payment.html:82
+msgid "Receive the iBon payment confirmation. USD"
+msgstr "收到iBon購買確認, 金額:"
+
+#: views/payment.html:82
+msgid "Dollars"
+msgstr "點"
+
+#: views/user.py:920
+msgid " To puchase:"
+msgstr " 來購買:"
+
+#: views/user.py:920
+msgid " Puchase from:"
+msgstr " 購買者:"
+
+#: views/user.py:920
+msgid " Author:"
+msgstr " 作者:"
+
+#: views/user.py:920
+msgid "Paid"
+msgstr "付費"
+
+#: views/user.py:920
+msgid "Receive"
+msgstr "收費"
+
+#: views/payment.html:106
+msgid "You have to login first."
+msgstr "您要先登入後才能購買iBon!"
+
+#: views/payment.html:106
+msgid "Login Now"
+msgstr "立刻登入"
+
+#: views/payment.html:132
+msgid "Generate iBon Barcode, USD:"
+msgstr "產生iBon購買條碼, 金額:"
+
 #: skins/common/templates/authopenid/signin.html:4
 msgid "User login"
 msgstr "使用者登入"
@@ -32,7 +72,7 @@ msgid ""
 msgstr ""
 "\n"
 "<span class=\"strong big\">您針對 </span> <i>\"<strong>%(title)s</"
-"strong> %(summary)s...\"</i> 的回答<span class=\"strong big\">已經儲存 "
+"strong> %(summary)s...\"</i> 的回應<span class=\"strong big\">已經儲存 "
 "並會在您下次登入時貼到論壇.</span>"
 
 #: skins/common/templates/authopenid/signin.html:21
@@ -42,7 +82,7 @@ msgid ""
 "        %(title)s %(summary)s will be posted once you log in\n"
 "        "
 msgstr ""
-"<span class=\"strong big\">您所提的問題</span> <i>\"<strong>%(title)s</"
+"<span class=\"strong big\">您所提的看法</span> <i>\"<strong>%(title)s</"
 "strong> %(summary)s...\"</i> <span class=\"strong big\">已經儲存 "
 "並會在您下次登入時貼到論壇.</span>"
 
@@ -201,9 +241,21 @@ msgstr ""
 msgid "Get OpenID"
 msgstr "取得OpenID"
 
+#: skins\default\templates\question.html:140
+msgid "Post Your Answer"
+msgstr "提出您的回應"
+
+#: skins\default\templates\question.html:140
+msgid "post a comment"
+msgstr "提出評論"
+
 #: skins\default\templates\main_page.html:11
 msgid "Questions"
-msgstr "個問題"
+msgstr "個看法"
+
+#: skins\default\templates\main_page.html:11
+msgid "KeepWin"
+msgstr "靈龜穩賺網"
 
 #: skins\default\templates\main_page\tab_bar.html:14
 msgid "Sort by "
@@ -211,51 +263,99 @@ msgstr "排序方式 "
 
 #: skins\default\templates\main_page\tab_bar.html:16
 msgid "most relevant questions"
-msgstr "關聯度最高的問題"
+msgstr "關聯度最高的看法"
 
 #: skins\default\templates\main_page\tab_bar.html:17
 msgid "click to see most relevant questions"
-msgstr "點擊瀏覽關聯度最高的問題"
+msgstr "點擊瀏覽關聯度最高的看法"
 
 #: skins\default\templates\main_page\tab_bar.html:18
 msgid "relevance"
 msgstr "關聯"
 
 #: skins\default\templates\main_page\tab_bar.html:43
-msgid "by date"
-msgstr "日期"
-
-#: skins\default\templates\main_page\tab_bar.html:44
-msgid "click to see the oldest questions"
-msgstr "最早發表的問題"
+#msgid "by date"
+#msgstr "日期"
 
 #: skins\default\templates\main_page\tab_bar.html:45
-msgid "click to see the newest questions"
-msgstr "最新發表的問題"
+#msgid "click to see the oldest questions"
+#msgstr "最早發表的看法"
 
-#: skins\default\templates\main_page\tab_bar.html:51
+#: skins\default\templates\main_page\tab_bar.html:46
+#msgid "click to see the newest questions"
+#msgstr "最新發表的看法"
+
+#: skins\default\templates\main_page\tab_bar_keepwin.html:43
+msgid "by date"
+msgstr "最新"
+
+#: skins\default\templates\main_page\tab_bar_keepwin.html:45
+msgid "click to see the oldest questions"
+msgstr "點擊以觀賞最早文章"
+
+#: skins\default\templates\main_page\tab_bar_keepwin.html:46
+msgid "click to see the newest questions"
+msgstr "點擊以觀賞最新文章"
+
+#: skins\default\templates\main_page\tab_bar.html:52
+#msgid "by view"
+#msgstr "點閱"
+
+#: skins\default\templates\main_page\tab_bar.html:54
+#msgid "click to see the least viewed questions"
+#msgstr "最少人瀏覽的看法"
+
+#: skins\default\templates\main_page\tab_bar.html:55
+#msgid "click to see the most viewed questions"
+#msgstr "最多人瀏覽的看法"
+
+#: skins\default\templates\main_page\tab_bar_keepwin.html:52
+msgid "by view"
+msgstr "熱門文章"
+
+#: skins\default\templates\main_page\tab_bar_keepwin.html:54
+msgid "click to see the least viewed questions"
+msgstr "點擊以觀賞最少人點閱文章"
+
+#: skins\default\templates\main_page\tab_bar_keepwin.html:55
+msgid "click to see the most viewed questions"
+msgstr "點擊以觀賞熱門文章"
+
+#: skins\default\templates\main_page\tab_bar.html:61
 msgid "by activity"
 msgstr "更新"
 
-#: skins\default\templates\main_page\tab_bar.html:52
+#: skins\default\templates\main_page\tab_bar.html:63
 msgid "click to see the least recently updated questions"
-msgstr "最久沒更新的問題"
+msgstr "最久沒更新的看法"
 
-#: skins\default\templates\main_page\tab_bar.html:53
+#: skins\default\templates\main_page\tab_bar.html:64
 msgid "click to see the most recently updated questions"
-msgstr "最近更新的問題"
+msgstr "最近更新的看法"
 
-#: skins\default\templates\main_page\tab_bar.html:59
+#: skins\default\templates\main_page\tab_bar.html:70
+#msgid "by answers"
+#msgstr "回應"
+
+#: skins\default\templates\main_page\tab_bar.html:72
+#msgid "click to see the least answered questions"
+#msgstr "最久沒回應的看法"
+
+#: skins\default\templates\main_page\tab_bar.html:73
+#msgid "click to see the most answered questions"
+#msgstr "最近有回應的看法"
+
+#: skins\default\templates\main_page\tab_bar_keepwin.html:70
 msgid "by answers"
-msgstr "回應"
+msgstr "最新回應"
 
-#: skins\default\templates\main_page\tab_bar.html:60
+#: skins\default\templates\main_page\tab_bar_keepwin.html:72
 msgid "click to see the least answered questions"
-msgstr "最久沒回應的問題"
+msgstr "點擊以觀賞最舊回應文章"
 
-#: skins\default\templates\main_page\tab_bar.html:61
+#: skins\default\templates\main_page\tab_bar_keepwin.html:73
 msgid "click to see the most answered questions"
-msgstr "最近有回應的問題"
+msgstr "點擊以觀賞最新回應文章"
 
 #: skins\default\templates\main_page\tab_bar.html:67
 msgid "by votes"
@@ -263,12 +363,11 @@ msgstr "評分"
 
 #: skins\default\templates\main_page\tab_bar.html:68
 msgid "click to see least voted questions"
-msgstr "最少人評分的問題"
+msgstr "最少人評分的看法"
 
 #: skins\default\templates\main_page\tab_bar.html:69
 msgid "click to see most voted questions"
-msgstr "最多人評分的問題"
-
+msgstr "最多人評分的看法"
 #: exceptions.py:13
 msgid "Sorry, but anonymous visitors cannot access this function"
 msgstr "對不起, 未登入不能使用本功能"
@@ -279,11 +378,10 @@ msgstr "-"
 
 #: feed.py:26
 msgid "Individual question feed"
-msgstr "所選問題"
-
+msgstr "所選看法"
 #: feed.py:100
 msgid "latest questions"
-msgstr "最新問題"
+msgstr "最新看法"
 
 #: forms.py:74
 msgid "select country"
@@ -306,7 +404,7 @@ msgstr "標題"
 
 #: forms.py:105
 msgid "please enter a descriptive title for your question"
-msgstr "請輸入對問題具有描述性質的標題 - 「幫忙！緊急求助！」不是建議的提問方式。"
+msgstr "請輸入對看法具有描述性質的標題 - 「幫忙！緊急求助！」不是建議的提問方式。"
 
 #: forms.py:110
 msgid "title must be > 10 characters"
@@ -385,43 +483,232 @@ msgstr ""
 "輸入本次修改的簡單概述（如：修改了別字，修正了語法，改進了樣式等。非必填"
 "項。）"
 
-#: forms.py:333
+#: forms.py:369
 msgid "Enter number of points to add or subtract"
-msgstr "請輸入要增減的點數"
+msgstr "請輸入要增減的積分點數"
+
+#: forms.py:402
+msgid "Enter amount of income"
+msgstr "請輸入存入金額"
+
+#: forms.py:406
+msgid "Enter amount of outcome"
+msgstr "請輸入提出金額"
+
+#: forms.py:406
+msgid "Transaction Type"
+msgstr "請選擇交易型態"
+
+#: forms.py:365
+msgid "Enter Comment"
+msgstr "請輸入要給使用者的說明"
 
 #: forms.py:347 const/__init__.py:250
 msgid "approved"
-msgstr "同意"
+msgstr "核准發文會員"
+#: models/__init__.py:1816
+msgid "Approved User"
+msgstr "核准發文會員"
 
 #: forms.py:348 const/__init__.py:251
 msgid "watched"
-msgstr "已觀看"
+msgstr "一般會員"
+#: models/__init__.py:1814
+msgid "Watched User"
+msgstr "一般會員"
+#: models/__init__.py:1812
+msgid "Registered User"
+msgstr "一般會員"
 
 #: forms.py:349 const/__init__.py:252
 msgid "suspended"
-msgstr "擱置"
+msgstr "停權"
+#: models/__init__.py:1808
+msgid "Suspended User"
+msgstr "停權"
 
 #: forms.py:350 const/__init__.py:253
 msgid "blocked"
 msgstr "封鎖"
+#: models/__init__.py:1810
+msgid "Blocked User"
+msgstr "封鎖"
+
+#: forms.py:350
+#: const/__init__.py:258
+msgid "male"
+msgstr "男"
+
+#: forms.py:350 const
+#:__init__.py:258
+msgid "female"
+msgstr "女"
+
+#: forms.py:350 const/__init__.py:267
+msgid "elementary school"
+msgstr "國小"
+
+#: forms.py:350 const/__init__.py:267
+msgid "junior high school"
+msgstr "國中"
+
+#: forms.py:350 const/__init__.py:267
+msgid "high school"
+msgstr "高中"
+
+#: forms.py:350 const/__init__.py:268
+msgid "college"
+msgstr "大專"
+
+#: forms.py:350 const/__init__.py:269
+msgid "graduate school"
+msgstr "研究所"
+
+#: forms.py:350 const/__init__.py:270
+msgid "PhD"
+msgstr "博士"
+
+#: forms.py:350 const/__init__.py:278
+msgid "~300K"
+msgstr "30萬以下"
+
+#: forms.py:350 const/__init__.py:279
+msgid "300K~500K"
+msgstr "30萬到50萬"
+
+#: forms.py:350 const/__init__.py:280
+msgid "500K~800K"
+msgstr "50萬到80萬"
+
+#: forms.py:350 const/__init__.py:281
+msgid "800K~1000K"
+msgstr "80萬到100萬"
+
+#: forms.py:350 const/__init__.py:282
+msgid "1000K~1500K"
+msgstr "100萬到150萬"
+
+#: forms.py:350 const/__init__.py:283
+msgid "1500k~"
+msgstr "150萬以上"
+
+#: forms.py:350 const/__init__.py:288
+msgid "IT(Software)"
+msgstr "資訊業(軟體)"
+
+#: forms.py:350 const/__init__.py:288
+msgid "IT(Web)"
+msgstr "資訊業(網站相關)"
+
+#: forms.py:350 const/__init__.py:288
+msgid "IT(Hardware)"
+msgstr "資訊業(硬體)"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Electricity"
+msgstr "電子業"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Finance"
+msgstr "金融保險"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Education"
+msgstr "教育研究"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Civil Engineer"
+msgstr "土木建築"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Manufacture"
+msgstr "製造業"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Medical"
+msgstr "醫療服務"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Law"
+msgstr "法律服務"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Media"
+msgstr "傳播業"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Entertainment"
+msgstr "娛樂業"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Publish"
+msgstr "出版業"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Travel"
+msgstr "旅遊業"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Transportation"
+msgstr "運輸業"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Resturant"
+msgstr "餐飲業"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Department Store"
+msgstr "百貨業"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Agent Brokerage"
+msgstr "仲介業"
+
+#: forms.py:350 const/__init__.py:288
+msgid "NGO"
+msgstr "非營利機構"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Government"
+msgstr "政府機關"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Military"
+msgstr "軍職"
+
+#: forms.py:350 const/__init__.py:288
+#msgid "Student"
+#msgstr "學生"
+
+#: forms.py:350 const/__init__.py:288
+msgid "SOHO"
+msgstr "SOHO族"
+
+#: forms.py:350 const/__init__.py:288
+msgid "Others"
+msgstr "其他"
 
 #: forms.py:352
 msgid "administrator"
-msgstr ""
-"你好, \n"
-" 論壇管理者"
+msgstr "管理者"
+#: models/__init__.py:1804
+msgid "Site Adminstrator"
+msgstr "管理者"
 
 #: forms.py:353 const/__init__.py:249
 msgid "moderator"
-msgstr "論壇仲裁者"
+msgstr "仲裁者(版主)"
+#: models/__init__.py:1806
+msgid "Forum Moderator"
+msgstr "仲裁者(版主)"
 
 #: forms.py:373
 msgid "Change status to"
-msgstr "修改標籤"
+msgstr "修改狀態"
 
 #: forms.py:400
 msgid "which one?"
-msgstr "哪一個?"
+msgstr "請選擇狀態?"
 
 #: forms.py:421
 msgid "Cannot change own status"
@@ -488,7 +775,7 @@ msgstr "私密回應"
 
 #: forms.py:619
 msgid "if you choose community Private option, the answer is only seen by you and question owner"
-msgstr "如果您選擇私密回應, 這個回答只有您跟提出問題的人可以看到"
+msgstr "如果您選擇私密回應, 這個回應只有您跟提出看法的人可以看到"
 
 #: forms.py:617
 msgid "This message is charged only for paid user"
@@ -564,27 +851,24 @@ msgstr "該電子郵件已被注冊，請選擇另一個再試。"
 
 #: forms.py:982
 msgid "Choose email tag filter"
-msgstr "選擇 Email 標籤篩選"
+msgstr "選擇 Email 標籤篩選方式"
 
 #: forms.py:1029
 msgid "Asked by me"
-msgstr "我的詢問"
-
+msgstr "我提出的看法"
 #: forms.py:1032
 msgid "Answered by me"
-msgstr "我的回應"
-
+msgstr "我回應的看法"
 #: forms.py:1035
 msgid "Individually selected"
-msgstr "個別選定"
-
+msgstr "我所選定的看法"
 #: forms.py:1038
 msgid "Entire forum (tag filtered)"
-msgstr "整個論壇 (標籤篩選)"
+msgstr "整個論壇 (透過標籤篩選)"
 
 #: forms.py:1042
 msgid "Comments and posts mentioning me"
-msgstr ""
+msgstr "評論或張貼內容有提到我"
 
 #: forms.py:1121
 msgid "okay, let's try!"
@@ -592,7 +876,7 @@ msgstr "好, 試試看"
 
 #: forms.py:1122
 msgid "no community email please, thanks"
-msgstr "無須設群 Email 謝謝"
+msgstr "無須設群組 Email 謝謝"
 
 #: forms.py:1126
 msgid "please choose one of the options above"
@@ -664,7 +948,7 @@ msgstr ""
 #: urls.py:112 
 #: skins/default/templates/question/javascript.html:16
 msgid "vote/"
-msgstr "投票"
+msgstr "評分"
 
 #: urls.py:123
 msgid "widgets/"
@@ -742,7 +1026,7 @@ msgstr "只有註冊用戶才能參加論壇"
 #: conf/badges.py:13
 #, fuzzy
 msgid "Badge settings"
-msgstr "勳章設定"
+msgstr "徽章設定"
 
 #: conf/badges.py:23
 msgid "Disciplined: minimum upvotes for deleted post"
@@ -762,7 +1046,7 @@ msgstr "妙答: 解答最少要獲得幾次『讚』"
 
 #: conf/badges.py:59
 msgid "Good Answer: minimum upvotes for the answer"
-msgstr "好回答: 解答最少要獲得幾次『讚』"
+msgstr "好回應: 解答最少要獲得幾次『讚』"
 
 #: conf/badges.py:68
 msgid "Great Answer: minimum upvotes for the answer"
@@ -770,33 +1054,29 @@ msgstr "精闢答案: 解答最少要獲得幾次『讚』"
 
 #: conf/badges.py:77
 msgid "Nice Question: minimum upvotes for the question"
-msgstr "妙問: 問題最少要獲得幾次『讚』"
-
+msgstr "妙問: 看法最少要獲得幾次『讚』"
 #: conf/badges.py:86
 msgid "Good Question: minimum upvotes for the question"
-msgstr "好問題: 問題最少要獲得幾次『讚』"
+msgstr "好看法: 看法最少要獲得幾次『讚』"
 
 #: conf/badges.py:95
 msgid "Great Question: minimum upvotes for the question"
-msgstr "問的極好: 問題最少要獲得幾次『讚』"
+msgstr "問的極好: 看法最少要獲得幾次『讚』"
 
 #: conf/badges.py:104
 msgid "Popular Question: minimum views"
-msgstr "常見問題: 問題最少要被瀏覽幾次"
+msgstr "常見看法: 看法最少要被瀏覽幾次"
 
 #: conf/badges.py:113
 msgid "Notable Question: minimum views"
-msgstr "顯目問題: 問題最少要被瀏覽幾次"
-
+msgstr "顯目看法: 看法最少要被瀏覽幾次"
 # close.html
 #: conf/badges.py:122
 msgid "Famous Question: minimum views"
-msgstr "著名問題: 問題最少要被瀏覽幾次"
-
+msgstr "著名看法: 看法最少要被瀏覽幾次"
 #: conf/badges.py:131
 msgid "Self-Learner: minimum answer upvotes"
-msgstr "自學者: 回答自己的問題最少要獲得幾次『讚』"
-
+msgstr "自學者: 回應自己的看法最少要獲得幾次『讚』"
 #: conf/badges.py:140
 msgid "Civic Duty: minimum votes"
 msgstr "社會責任: 最少要給出的評分次數"
@@ -823,15 +1103,15 @@ msgstr "副編輯: 需要最少編輯的文章數"
 
 #: conf/badges.py:194
 msgid "Favorite Question: minimum stars"
-msgstr "值得珍藏問題: 最少被標示珍藏的數目"
+msgstr "值得珍藏看法: 最少被標示珍藏的數目"
 
 #: conf/badges.py:203
 msgid "Stellar Question: minimum stars"
-msgstr "主要的問題: 最少被標示珍藏的數目"
+msgstr "主要的看法: 最少被標示珍藏的數目"
 
 #: conf/badges.py:212
 msgid "Commentator: minimum comments"
-msgstr "時事評論家: 最少要針對別人問題及回答發表的評論次數"
+msgstr "時事評論家: 最少要針對別人看法及回應發表的評論次數"
 
 #: conf/badges.py:221
 msgid "Taxonomist: minimum tag use count"
@@ -871,10 +1151,7 @@ msgstr ""
 #: conf/email.py:62
 #, fuzzy
 msgid "Default notification frequency questions asked by the user"
-msgstr "最常問的問題通知初始設定"
-
-
-
+msgstr "最常問的看法通知初始設定"
 #: conf/email.py:64
 msgid ""
 "Option to define frequency of emailed updates for: Question asked by the "
@@ -884,35 +1161,27 @@ msgstr ""
 #: conf/email.py:76
 #, fuzzy
 msgid "Default notification frequency questions answered by the user"
-msgstr "最常問的問題通知初始設定"
-
+msgstr "最常問的看法通知初始設定"
 #: conf/email.py:78
 msgid ""
 "Option to define frequency of emailed updates for: Question answered by the "
 "user."
-msgstr "常見問題回覆狀況更新頻率設定"
-
-
-
+msgstr "常見看法回覆狀況更新頻率設定"
 #: conf/email.py:90
 msgid ""
 "Default notification frequency questions individually                        "
 "selected by the user"
-msgstr "使用者設定的常見問題"
-
+msgstr "使用者設定的常見看法"
 #: conf/email.py:93
 msgid ""
 "Option to define frequency of emailed updates for: Question individually "
 "selected by the user."
-msgstr "使用者設定的常見問題回覆狀況更新頻率設定"
-
+msgstr "使用者設定的常見看法回覆狀況更新頻率設定"
 #: conf/email.py:105
 msgid ""
 "Default notification frequency for mentions                        and "
 "comments"
 msgstr "定期通知相關回應頻率的初始設定"
-
-
 
 #: conf/email.py:108
 msgid ""
@@ -922,8 +1191,7 @@ msgstr ""
 #: conf/email.py:119
 
 msgid "Send periodic reminders about unanswered questions"
-msgstr "定期通知還未回覆問題的狀態"
-
+msgstr "定期通知還未回覆看法的狀態"
 #: conf/email.py:121
 msgid ""
 "NOTE: in order to use this feature, it is necessary to run the management "
@@ -934,23 +1202,19 @@ msgstr ""
 #: conf/email.py:134
 #, fuzzy
 msgid "Days before starting to send reminders about unanswered questions"
-msgstr "幾日後開始送出未回覆問題的通知"
-
+msgstr "幾日後開始送出未回覆看法的通知"
 #: conf/email.py:145
 msgid ""
 "How often to send unanswered question reminders (in days between the "
 "reminders sent)."
-msgstr "設定『定期通知還未回覆問題』的週期"
-
+msgstr "設定『定期通知還未回覆看法』的週期"
 #: conf/email.py:157
 msgid "Max. number of reminders to send about unanswered questions"
-msgstr "設定『定期通知還未回覆問題』通知的最多通知次數"
-
+msgstr "設定『定期通知還未回覆看法』通知的最多通知次數"
 #: conf/email.py:168
 #, fuzzy
 msgid "Send periodic reminders to accept the best answer"
-msgstr "定期送出問題解答,方便提問者確認最佳解答"
-
+msgstr "定期送出看法解答,方便提問者確認最佳解答"
 #: conf/email.py:170
 msgid ""
 "NOTE: in order to use this feature, it is necessary to run the management "
@@ -962,8 +1226,7 @@ msgstr "提示: 您必須透過執行管理命令 \"send_accept_answer_reminders
 #: conf/email.py:183
 #, fuzzy
 msgid "Days before starting to send reminders to accept an answer"
-msgstr "從開始送出『定期通知還未回覆問題』通知,已經過了幾日"
-
+msgstr "從開始送出『定期通知還未回覆看法』通知,已經過了幾日"
 #: conf/email.py:194
 msgid ""
 "How often to send accept answer reminders (in days between the reminders "
@@ -976,8 +1239,7 @@ msgstr "設定『提問者確認最佳解答』通知的最多通知次數"
 
 #: conf/email.py:218
 msgid "Require email verification before allowing to post"
-msgstr "在您具備發表問題的權限前先要通過email驗證"
-
+msgstr "在您具備發表看法的權限前先要通過email驗證"
 #: conf/email.py:219
 msgid ""
 "Active email verification is done by sending a verification key in email"
@@ -997,9 +1259,8 @@ msgid "Use this setting to control gravatar for email-less user"
 msgstr "使用這個設定來控制沒有e-mail 的使用者"
 
 #: conf/email.py:247
-#, fuzzy
 msgid "Allow posting questions by email"
-msgstr "允許通過e-mail來發表問題"
+msgstr "允許通過e-mail來發表看法"
 
 #: conf/email.py:249
 msgid ""
@@ -1216,8 +1477,7 @@ msgstr ""
 #: conf/forum_data_rules.py:73
 #, fuzzy
 msgid "Allow swapping answer with question"
-msgstr "回答問題"
-
+msgstr "回應看法"
 #: conf/forum_data_rules.py:75
 msgid ""
 "This setting will help import data from other forums such as zendesk, when "
@@ -1323,15 +1583,12 @@ msgid "Maximum number of tags per question"
 msgstr ""
 
 #: conf/forum_data_rules.py:245
-#, fuzzy
 msgid "Number of questions to list by default"
-msgstr "含有問題的數目"
-
+msgstr "一次要列出看法的數目"
 #: conf/forum_data_rules.py:255
 #, fuzzy
 msgid "What should \"unanswered question\" mean?"
-msgstr "無未解答問題"
-
+msgstr "無未解答看法"
 #: conf/license.py:13
 msgid "Content LicensContent License"
 msgstr ""
@@ -1502,7 +1759,7 @@ msgstr ""
 
 #: conf/minimum_reputation.py:12
 msgid "Karma thresholds"
-msgstr ""
+msgstr "積分門檻"
 
 #: conf/minimum_reputation.py:22
 #, fuzzy
@@ -1517,17 +1774,15 @@ msgstr "噓(-1)"
 #: conf/minimum_reputation.py:40
 #, fuzzy
 msgid "Answer own question immediately"
-msgstr "立即回答問題"
-
+msgstr "立即回應看法"
 #: conf/minimum_reputation.py:49
 #, fuzzy
 msgid "Accept own answer"
-msgstr "接受回答"
-
+msgstr "接受回應"
 #: conf/minimum_reputation.py:58
 #, fuzzy
 msgid "Flag offensive"
-msgstr "標記惡意帖"
+msgstr "標記不洽當內容"
 
 #: conf/minimum_reputation.py:67
 #, fuzzy
@@ -1536,8 +1791,7 @@ msgstr "添加評論"
 
 #: conf/minimum_reputation.py:76
 msgid "Delete comments posted by others"
-msgstr "刪除別人的問題"
-
+msgstr "刪除別人的看法"
 #: conf/minimum_reputation.py:85
 #, fuzzy
 msgid "Delete questions and answers posted by others"
@@ -1551,8 +1805,7 @@ msgstr "上傳檔案"
 #: conf/minimum_reputation.py:103
 #, fuzzy
 msgid "Close own questions"
-msgstr "結束問題"
-
+msgstr "結束看法"
 #: conf/minimum_reputation.py:112
 msgid "Retag questions posted by other people"
 msgstr ""
@@ -1560,12 +1813,11 @@ msgstr ""
 #: conf/minimum_reputation.py:121
 #, fuzzy
 msgid "Reopen own questions"
-msgstr "重啟問題"
-
+msgstr "重啟看法"
 #: conf/minimum_reputation.py:130
 #, fuzzy
 msgid "Edit community wiki posts"
-msgstr "編輯 wiki 類問題"
+msgstr "編輯 wiki 類看法"
 
 #: conf/minimum_reputation.py:139
 msgid "Edit posts authored by other people"
@@ -1574,14 +1826,13 @@ msgstr ""
 #: conf/minimum_reputation.py:148
 #, fuzzy
 msgid "View offensive flags"
-msgstr "標記垃圾帖"
+msgstr "觀看不洽當內容標示"
 
 # must have extra space after in english
 #: conf/minimum_reputation.py:157
 #, fuzzy
 msgid "Close questions asked by others"
-msgstr "查看相關問題"
-
+msgstr "查看相關看法"
 #: conf/minimum_reputation.py:166
 msgid "Lock posts"
 msgstr ""
@@ -1598,65 +1849,59 @@ msgstr ""
 
 #: conf/reputation_changes.py:13
 msgid "Karma loss and gain rules"
-msgstr ""
+msgstr "積分取得即喪失規則"
 
 #: conf/reputation_changes.py:23
 msgid "Maximum daily reputation gain per user"
-msgstr ""
+msgstr "每個使用者每天可以獲得的最多積分"
 
 #: conf/reputation_changes.py:32
 msgid "Gain for receiving an upvote"
-msgstr ""
+msgstr "取得到一個『讚』, 獲得"
 
 #: conf/reputation_changes.py:41
 msgid "Gain for the author of accepted answer"
-msgstr ""
-
+msgstr "看法的回應被接受, 獲得"
 #: conf/reputation_changes.py:50
 #, fuzzy
 msgid "Gain for accepting best answer"
-msgstr "標記最佳答案"
+msgstr "標記最佳答案, 獲得"
 
 #: conf/reputation_changes.py:59
 msgid "Gain for post owner on canceled downvote"
-msgstr ""
-
+msgstr "看法提出者取消對於您的內容的『噓』評價, 獲得"
 #: conf/reputation_changes.py:68
 msgid "Gain for voter on canceling downvote"
-msgstr ""
+msgstr "取消對於您的內容的『噓』評價, 獲得"
 
 #: conf/reputation_changes.py:78
 msgid "Loss for voter for canceling of answer acceptance"
-msgstr ""
-
+msgstr "看法提出者取消接受回應, 喪失"
 #: conf/reputation_changes.py:88
 msgid "Loss for author whose answer was \"un-accepted\""
-msgstr ""
-
+msgstr "提問者對於您的回應『不接受』, 喪失"
 #: conf/reputation_changes.py:98
 msgid "Loss for giving a downvote"
-msgstr ""
+msgstr "收到一個『噓』, 喪失"
 
 #: conf/reputation_changes.py:108
 msgid "Loss for owner of post that was flagged offensive"
-msgstr ""
+msgstr "收到不洽當內容的標記, 喪失"
 
 #: conf/reputation_changes.py:118
 msgid "Loss for owner of post that was downvoted"
-msgstr ""
-
+msgstr "收到一個看法提出者的『噓』評價, 喪失"
 #: conf/reputation_changes.py:128
 msgid "Loss for owner of post that was flagged 3 times per same revision"
-msgstr ""
+msgstr "看法提出者標註 3次相同的修正, 喪失"
 
 #: conf/reputation_changes.py:138
 msgid "Loss for owner of post that was flagged 5 times per same revision"
-msgstr ""
+msgstr "看法提出者標註 5次相同的修正, 喪失"
 
 #: conf/reputation_changes.py:148
 msgid "Loss for post owner when upvote is canceled"
-msgstr ""
-
+msgstr "看法提出者取消對於您的內容的『讚』評價, 喪失"
 #: conf/sidebar_main.py:12
 msgid "Main page sidebar"
 msgstr ""
@@ -1728,8 +1973,7 @@ msgstr "用戶資料"
 #: conf/sidebar_question.py:11
 #, fuzzy
 msgid "Question page sidebar"
-msgstr "問題標籤"
-
+msgstr "看法標籤"
 #: conf/sidebar_question.py:35
 msgid "Show tag list in sidebar"
 msgstr ""
@@ -1751,13 +1995,11 @@ msgstr ""
 #: conf/sidebar_question.py:62
 #, fuzzy
 msgid "Show related questions in sidebar"
-msgstr "相似的問題"
-
+msgstr "相似的看法"
 #: conf/sidebar_question.py:64
 #, fuzzy
 msgid "Uncheck this if you want to hide the list of related questions. "
-msgstr "點選觀看最近最少被更新的問題"
-
+msgstr "點選觀看最近最少被更新的看法"
 #: conf/site_modes.py:64
 msgid "Bootstrap mode"
 msgstr ""
@@ -1818,7 +2060,7 @@ msgstr ""
 #: conf/site_settings.py:103
 #, fuzzy
 msgid "Feedback site URL"
-msgstr "問題回饋 URL"
+msgstr "看法回饋 URL"
 
 #: conf/site_settings.py:105
 msgid "If left empty, a simple internal feedback form will be used instead"
@@ -2114,7 +2356,7 @@ msgstr ""
 
 #: conf/social_sharing.py:11
 msgid "Sharing content on social networks"
-msgstr ""
+msgstr "透過社群網站分享內容"
 
 #: conf/social_sharing.py:20
 #, fuzzy
@@ -2173,7 +2415,7 @@ msgstr "其他服務"
 
 #: conf/super_groups.py:9
 msgid "Login, Users & Communication"
-msgstr ""
+msgstr "登入, 使用者 及 通訊"
 
 #: conf/user_settings.py:12
 
@@ -2182,7 +2424,7 @@ msgstr "用戶參數的設置"
 
 #: conf/user_settings.py:21
 msgid "Allow editing user screen name"
-msgstr ""
+msgstr "允許編輯使用者的 顯示名稱"
 
 #: conf/user_settings.py:30
 
@@ -2191,15 +2433,15 @@ msgstr "修改電子郵件"
 
 #: conf/user_settings.py:39
 msgid "Allow adding and removing login methods"
-msgstr ""
+msgstr "允許新增及刪除登入方法"
 
 #: conf/user_settings.py:49
 msgid "Minimum allowed length for screen name"
-msgstr ""
+msgstr "使用者的 顯示名稱 的最少長度"
 
 #: conf/user_settings.py:59
 msgid "Default Gravatar icon type"
-msgstr ""
+msgstr "使用者的初始圖像設定"
 
 #: conf/user_settings.py:61
 msgid ""
@@ -2207,56 +2449,59 @@ msgid ""
 "without associated gravatar images.  For more information, please visit <a "
 "href=\"http://en.gravatar.com/site/implement/images/\">this page</a>."
 msgstr ""
+"這個選項是設定 那些沒有設定圖像的EMail 位址 所要使用的初始圖像設定 "
+"您可以到 <a "
+"href=\"http://en.gravatar.com/site/implement/images/\">初始圖像設定</a>.獲得更多的資訊"
 
 #: conf/user_settings.py:71
 msgid "Name for the Anonymous user"
-msgstr ""
+msgstr "匿名使用者的名字"
 
 #: conf/vote_rules.py:14
 msgid "Vote and flag limits"
-msgstr ""
+msgstr "評分及標示不洽當內容的限制"
 
 #: conf/vote_rules.py:24
 msgid "Number of votes a user can cast per day"
-msgstr ""
+msgstr "使用者每天可以評分的最多次數"
 
 #: conf/vote_rules.py:33
 msgid "Maximum number of flags per user per day"
-msgstr ""
+msgstr "使用者每天可以標示不洽當內容的最多次數"
 
 #: conf/vote_rules.py:42
 msgid "Threshold for warning about remaining daily votes"
-msgstr ""
+msgstr "開始提示使用者剩下評分次數的門檻"
 
 #: conf/vote_rules.py:51
 msgid "Number of days to allow canceling votes"
-msgstr ""
+msgstr "使用者每天可以取消評分的次數"
 
 #: conf/vote_rules.py:60
 msgid "Number of days required before answering own question"
-msgstr ""
+msgstr "使用者建立帳號幾天後才能回答問題"
 
 #: conf/vote_rules.py:69
 msgid "Number of flags required to automatically hide posts"
-msgstr ""
+msgstr "設定 超過 被標示不洽當內容的數目 後自動隱藏 的數目"
 
 #: conf/vote_rules.py:78
 msgid "Number of flags required to automatically delete posts"
-msgstr ""
+msgstr "設定 超過 被標示不洽當內容的數目 後自動刪除 的數目"
 
 #: conf/vote_rules.py:87
 msgid ""
 "Minimum days to accept an answer, if it has not been accepted by the "
 "question poster"
-msgstr ""
+msgstr "若沒有被提問者接受為正確答案, 超過幾天後自動接受為正確答案"
 
 #: conf/widgets.py:13
 msgid "Embeddable widgets"
-msgstr ""
+msgstr "可以讓其他網站鑲入的 widgets"
 
 #: conf/widgets.py:25
 msgid "Number of questions to show"
-msgstr ""
+msgstr "顯示評論的數目"
 
 #: conf/widgets.py:28
 msgid ""
@@ -2266,23 +2511,27 @@ msgid ""
 "\" height=\"300\"scrolling=\"no\"><p>Your browser does not support iframes.</"
 "p></iframe>"
 msgstr ""
+"要鑲入 widgets, 請將以下程式碼加到您的網站 (請注意要填入正確的 "
+"base url, 標籤, 及 寬和高 ):<iframe src="
+"\"{{base_url}}/widgets/questions?tags={{comma-separated-tags}}\" width=\"100%"
+"\" height=\"300\"scrolling=\"no\"><p>您的瀏覽器沒有支援 iframes.</"
+"p></iframe>"
 
 #: conf/widgets.py:73
 msgid "CSS for the questions widget"
-msgstr ""
+msgstr "評論widget 的CSS"
 
 #: conf/widgets.py:81
 msgid "Header for the questions widget"
-msgstr ""
+msgstr "評論widget 的標題"
 
 #: conf/widgets.py:90
 msgid "Footer for the questions widget"
-msgstr ""
+msgstr "評論widget 的尾標"
 
 #: const/__init__.py:10
 msgid "duplicate question"
-msgstr "完全重複的問題"
-
+msgstr "完全重複的看法"
 # chinese translation is domain specific
 #: const/__init__.py:11
 msgid "question is off-topic or not relevant"
@@ -2290,23 +2539,19 @@ msgstr "已經離題"
 
 #: const/__init__.py:12
 msgid "too subjective and argumentative"
-msgstr "太主觀性、引起爭吵的問題"
-
+msgstr "太主觀性、引起爭吵的看法"
 #: const/__init__.py:13
 msgid "not a real question"
-msgstr "無關緊要的問題"
-
+msgstr "無關緊要的看法"
 #: const/__init__.py:14
 msgid "the question is answered, right answer was accepted"
-msgstr "問題已經解決，已得到正確答案"
-
+msgstr "看法已經解決，已得到正確答案"
 #: const/__init__.py:15
 msgid "question is not relevant or outdated"
-msgstr "已經過時、或無關的問題"
-
+msgstr "已經過時、或無關的看法"
 #: const/__init__.py:16
 msgid "question contains offensive or malicious remarks"
-msgstr "惡意言論"
+msgstr "包含不洽當內容或惡意言論"
 
 #: const/__init__.py:17
 msgid "spam or advertising"
@@ -2318,48 +2563,41 @@ msgstr "太區域化"
 
 #: const/__init__.py:41
 msgid "newest"
-msgstr "最新問題"
-
+msgstr "最新看法"
 #: const/__init__.py:42
 msgid "oldest"
 msgstr "最先加入"
 
 #: const/__init__.py:43
 msgid "active"
-msgstr "熱門問題"
-
+msgstr "熱門看法"
 #: const/__init__.py:44
 msgid "inactive"
-msgstr "冷門問題"
-
+msgstr "冷門看法"
 #: const/__init__.py:45
 msgid "hottest"
-msgstr "火熱問題"
-
+msgstr "火熱看法"
 #: const/__init__.py:46
 msgid "coldest"
 msgstr "過時"
 
-# "最有價值問題"
-# "最新問題"
+# "最有價值看法"
+# "最新看法"
 #: const/__init__.py:47
 msgid "most voted"
-msgstr "最有價值的問題"
-
-# "最有價值問題"
-# "最新問題"
+msgstr "最有價值的看法"
+# "最有價值看法"
+# "最新看法"
 #: const/__init__.py:48
 msgid "least voted"
-msgstr "最不被推薦的問題"
-
+msgstr "最不被推薦的看法"
 #: const/__init__.py:57
 msgid "all"
 msgstr "全部"
 
 #: const/__init__.py:58
 msgid "unanswered"
-msgstr "尚未回答"
-
+msgstr "尚未回應"
 #: const/__init__.py:59
 msgid "favorite"
 msgstr "喜歡"
@@ -2376,43 +2614,30 @@ msgstr ""
 #: const/__init__.py:78
 #, fuzzy
 msgid "Question has no answers"
-msgstr "已回答的問題"
-
+msgstr "這個問題還沒有任何解答"
 #: const/__init__.py:79
-#, fuzzy
 msgid "Question has no accepted answers"
-msgstr "已回答的問題"
-
+msgstr "這個問題還沒有接受的答案"
 #: const/__init__.py:122
-#, fuzzy
 msgid "asked a question"
-msgstr "我要提問"
-
+msgstr "提出個問題"
 #: const/__init__.py:123
-#, fuzzy
 msgid "answered a question"
-msgstr "沒有回答的問題"
-
+msgstr "回應一個看法"
 #: const/__init__.py:124
 msgid "commented question"
-msgstr "問題問題"
-
+msgstr "對看法評論"
 #: const/__init__.py:125
 msgid "commented answer"
-msgstr "有問題回答"
-
+msgstr "對回應評論"
 #: const/__init__.py:126
 msgid "edited question"
-msgstr "修改問題"
-
+msgstr "編輯看法"
 #: const/__init__.py:127
 msgid "edited answer"
-msgstr "修改回答"
-
+msgstr "編輯回應"
 #: const/__init__.py:128
 msgid "received award"
-
-
 msgstr "獲獎"
 
 #: const/__init__.py:129
@@ -2421,27 +2646,25 @@ msgstr "標記最佳答案"
 
 #: const/__init__.py:130
 msgid "upvoted"
-msgstr "投贊成票"
+msgstr "『讚』"
 
 #: const/__init__.py:131
 msgid "downvoted"
-msgstr "投反對票"
+msgstr "『噓』"
 
 #: const/__init__.py:132
 msgid "canceled vote"
-msgstr "撤銷投票"
+msgstr "撤銷評分"
 
 #: const/__init__.py:133
 msgid "deleted question"
-msgstr "刪除問題"
-
+msgstr "刪除看法"
 #: const/__init__.py:134
 msgid "deleted answer"
-msgstr "刪除回答"
-
+msgstr "刪除回應"
 #: const/__init__.py:135
 msgid "marked offensive"
-msgstr "標記垃圾帖"
+msgstr "標記為不洽當內容"
 
 #: const/__init__.py:136
 msgid "updated tags"
@@ -2462,8 +2685,7 @@ msgstr "Email 更改已通知"
 #: const/__init__.py:142
 #, fuzzy
 msgid "reminder about unanswered questions sent"
-msgstr "沒有回答的問題"
-
+msgstr "沒有回應的看法"
 #: const/__init__.py:146
 #, fuzzy
 msgid "reminder about accepting the best answer sent"
@@ -2475,14 +2697,10 @@ msgstr ""
 
 #: const/__init__.py:199
 msgid "question_answered"
-
-
 msgstr ""
 
 #: const/__init__.py:200
 msgid "question_commented"
-
-
 msgstr ""
 
 #: const/__init__.py:201
@@ -2505,40 +2723,40 @@ msgstr "[已刪除]"
 msgid "initial version"
 msgstr "初始版本"
 
-#: const/__init__.py:209
+#: const/__init__.py:206
 msgid "retagged"
 msgstr "更新了標籤"
 
-#: const/__init__.py:217
+#: const/__init__.py:214
 msgid "off"
 msgstr "關閉標籤篩選器"
 
-#: const/__init__.py:218
+#: const/__init__.py:215
 msgid "exclude ignored"
 msgstr "排除『忽略標籤』內容"
 
-#: const/__init__.py:219
+#: const/__init__.py:216
 msgid "only selected"
 msgstr "只顯示『有興趣的標籤』內容"
 
-#: const/__init__.py:223
+#: const/__init__.py:220
 msgid "instantly"
-msgstr ""
+msgstr "立即"
 
-#: const/__init__.py:224
+#: const/__init__.py:221
 msgid "daily"
 msgstr "每天"
 
-#: const/__init__.py:225
+#: const/__init__.py:222
 msgid "weekly"
 msgstr "每星期"
 
-#: const/__init__.py:226
-#, fuzzy
+#: const/__init__.py:223
 msgid "no email"
-msgstr "更換電子郵件"
+msgstr "不要寄送Email"
 
 #: const/__init__.py:233
+#, fuzzy
 msgid "identicon"
 msgstr ""
 
@@ -2562,15 +2780,15 @@ msgstr ""
 
 #: const/__init__.py:284
 msgid "gold"
-msgstr "金牌勳章"
+msgstr "金牌徽章"
 
 #: const/__init__.py:285
 msgid "silver"
-msgstr "銀牌勳章"
+msgstr "銀牌徽章"
 
 #: const/__init__.py:286
 msgid "bronze"
-msgstr "銅牌勳章"
+msgstr "銅牌徽章"
 
 #: const/__init__.py:298
 msgid "None"
@@ -2585,68 +2803,116 @@ msgstr "個人圖像"
 msgid "Uploaded Avatar"
 msgstr "上傳個人圖像"
 
+#: const/__init__.py:316
+msgid "buy bonus online via creditcard"
+msgstr "透過線上信用卡購買"
+
+#: const/__init__.py:316
+msgid "buy bonus online via ATM"
+msgstr "透過ATM轉帳購買"
+
+#: const/__init__.py:316
+msgid "buy bonus via iBon"
+msgstr "透過便利商店iBon購買"
+
+#: const/__init__.py:387
+msgid "issue buy bonus via iBon"
+msgstr "產生便利商店iBon購買條碼"
+
+#: const/__init__.py:316
+msgid "buy bonus via Call Center Service"
+msgstr "透過客服(現場)購買"
+
+#: const/__init__.py:316
+msgid "buy bonus via Gift card"
+msgstr "透過禮券購買"
+
+#: const/__init__.py:316
+msgid "paid bonus for content"
+msgstr "購買需付費內容"
+
+#: const/__init__.py:316
+msgid "receive the bonus from other people paid for it"
+msgstr "他人購買我的內容"
+
 #: deps/django_authopenid/backends.py:88
 msgid ""
 "Welcome! Please set email address (important!) in your profile and adjust "
 "screen name, if necessary."
 msgstr ""
+"歡迎! 請設定您的 EMail 地址 (重要!) 必要的話, 也請到您的簡介設定 顯示名稱及個人資訊"
+
 
 #: deps/django_authopenid/forms.py:110 deps/django_authopenid/views.py:151
 msgid "i-names are not supported"
 msgstr "不支援 i-name "
 
+#: deps/django_authopenid/forms.py:158
+msgid "Mobile"
+msgstr "行動電話"
+
+#: deps/django_authopenid/forms.py:158
+msgid "Gender"
+msgstr "性別"
+
+#: deps/django_authopenid/forms.py:159
+msgid "Education Background"
+msgstr "教育程度"
+
+#: deps/django_authopenid/forms.py:158
+msgid "Income"
+msgstr "年收入"
+
+#: deps/django_authopenid/forms.py:158
+msgid "Occupational"
+msgstr "職業"
+
 #: deps/django_authopenid/forms.py:233
-#, fuzzy, python-format
 msgid "Please enter your %(username_token)s"
-msgstr "請幫助我們回答"
+msgstr "請輸入您的%(username_token)s"
 
 #: deps/django_authopenid/forms.py:259
-#, fuzzy
 msgid "Please, enter your user name"
-msgstr "請幫助我們回答"
+msgstr "請輸入您的使用者名稱"
 
 #: deps/django_authopenid/forms.py:263
-#, fuzzy
 msgid "Please, enter your password"
-msgstr "請輸入密碼"
+msgstr "請輸入您的密碼"
 
 #: deps/django_authopenid/forms.py:270 deps/django_authopenid/forms.py:274
-#, fuzzy
 msgid "Please, enter your new password"
-msgstr "請輸入密碼"
+msgstr "請輸入您的新密碼"
 
 #: deps/django_authopenid/forms.py:285
 msgid "Passwords did not match"
-msgstr ""
+msgstr "密碼不一致"
 
 #: deps/django_authopenid/forms.py:297
 #, python-format
 msgid "Please choose password > %(len)s characters"
-msgstr ""
+msgstr "請選擇超過 %(len)s 個字元的密碼"
 
 #: deps/django_authopenid/forms.py:335
 msgid "Current password"
-msgstr "密碼"
+msgstr "目前的密碼"
 
 #: deps/django_authopenid/forms.py:346
 msgid ""
 "Old password is incorrect.                     Please enter the correct "
 "password."
-msgstr "密碼無效, 請輸入正確 密碼"
+msgstr "原密碼輸入錯誤, 請輸入正確 密碼"
 
 #: deps/django_authopenid/forms.py:399
 msgid "Sorry, we don't have this email address in the database"
-msgstr ""
+msgstr "對不起! 我們在資料庫中找不到這個EMail"
 
 #: deps/django_authopenid/forms.py:435
 msgid "Your user name (<i>required</i>)"
-msgstr " 使用者名稱 (<i>required</i>)"
+msgstr "您的使用者名稱 (<i>required</i>)"
 
 #: deps/django_authopenid/forms.py:450
 msgid "Incorrect username."
-
-
-msgstr "選擇一個用戶名"
+msgstr "不正確的使用者名稱"
 
 #: deps/django_authopenid/urls.py:9 deps/django_authopenid/urls.py:12
 #: deps/django_authopenid/urls.py:15 setup_templates/settings.py:206
@@ -2684,29 +2950,26 @@ msgid "recover/"
 msgstr "打開"
 
 #: deps/django_authopenid/util.py:378
-#, fuzzy, python-format
 msgid "%(site)s user name and password"
-msgstr "使用帳號密碼登錄"
+msgstr "使用%(site)s帳號密碼登錄"
 
 #: deps/django_authopenid/util.py:384
-
-
+#: skins/common/templates/authopenid/signin.html:108
 msgid "Create a password-protected account"
-msgstr ""
+msgstr "立刻註冊一個安全的帳號"
 
 #: deps/django_authopenid/util.py:385
-#, fuzzy
 msgid "Change your password"
 msgstr "修改密碼"
 
 #: deps/django_authopenid/util.py:473
 msgid "Sign in with Yahoo"
-msgstr ""
+msgstr "透過Yahoo帳號來註冊"
 
 #: deps/django_authopenid/util.py:480
 #, fuzzy
 msgid "AOL screen name"
-msgstr "姓名"
+msgstr "AOL 顯示名稱"
 
 #: deps/django_authopenid/util.py:488
 #, fuzzy
@@ -2720,54 +2983,50 @@ msgid "Flickr user name"
 msgstr "不合法用戶名"
 
 #: deps/django_authopenid/util.py:525
-#, fuzzy
 msgid "Technorati user name"
-msgstr "選擇一個用戶名"
+msgstr "Technorati 的用戶名"
 
 #: deps/django_authopenid/util.py:533
 msgid "WordPress blog name"
-msgstr ""
+msgstr "WordPress 部落格名稱"
 
 #: deps/django_authopenid/util.py:541
 msgid "Blogger blog name"
-msgstr ""
+msgstr "部落格名稱"
 
 #: deps/django_authopenid/util.py:549
 msgid "LiveJournal blog name"
-msgstr ""
+msgstr "LiveJournal 部落格名稱"
 
 # translation and user name validation are language-specific
 #: deps/django_authopenid/util.py:557
-#, fuzzy
 msgid "ClaimID user name"
-msgstr "不合法用戶名"
+msgstr "ClaimID 用戶名"
 
 # translation and user name validation are language-specific
 #: deps/django_authopenid/util.py:565
-#, fuzzy
 msgid "Vidoop user name"
-msgstr "不合法用戶名"
+msgstr "Vidoop 用戶名"
 
 # translation and user name validation are language-specific
 #: deps/django_authopenid/util.py:573
-#, fuzzy
 msgid "Verisign user name"
-msgstr "不合法用戶名"
+msgstr "Verisign 用戶名"
 
 #: deps/django_authopenid/util.py:608
 #, fuzzy, python-format
 msgid "Change your %(provider)s password"
-msgstr "修改密碼"
+msgstr "修改 %(provider)s 的密碼"
 
 #: deps/django_authopenid/util.py:612
 #, python-format
 msgid "Click to see if your %(provider)s signin still works for %(site_name)s"
-msgstr ""
+msgstr "點擊試試看您的 %(site_name)s %(provider)s 登入是否能正常運作"
 
 #: deps/django_authopenid/util.py:621
 #, python-format
 msgid "Create password for %(provider)s"
-msgstr ""
+msgstr "建立 %(provider)s 的密碼"
 
 #: deps/django_authopenid/util.py:625
 #, fuzzy, python-format
@@ -2782,7 +3041,7 @@ msgstr "使用帳號密碼登錄"
 #: deps/django_authopenid/util.py:641
 #, python-format
 msgid "Sign in with your %(provider)s account"
-msgstr ""
+msgstr "登入您的 %(provider)s 帳號"
 
 #: deps/django_authopenid/views.py:158
 #, python-format
@@ -2796,6 +3055,8 @@ msgid ""
 "Unfortunately, there was some problem when connecting to %(provider)s, "
 "please try again or use another provider"
 msgstr ""
+"不幸的, 我們在連到 %(provider)s 時發生了問題, "
+"請稍後再試!"
 
 #: deps/django_authopenid/views.py:371
 #, fuzzy
@@ -2821,7 +3082,7 @@ msgstr "修改電子郵件"
 
 #: deps/django_authopenid/views.py:582
 msgid "Please add one or more login methods."
-msgstr ""
+msgstr "請新增一個或更多的登入方法"
 
 #: deps/django_authopenid/views.py:584
 msgid "If you wish, please add, remove or re-validate your login methods"
@@ -2843,7 +3104,7 @@ msgstr "登入方式%(provider_name)s不存在"
 #: deps/django_authopenid/views.py:669
 #, fuzzy
 msgid "Oops, sorry - there was some error - please try again"
-msgstr "對不起, 密碼不合, 請重新輸入"
+msgstr "對不起, 發生了問題, 請稍後再試!"
 
 #: deps/django_authopenid/views.py:760
 #, python-format
@@ -3016,13 +3277,11 @@ msgstr ""
 #: management/commands/send_accept_answer_reminders.py:62
 #, fuzzy
 msgid "Please accept the best answer for this question:"
-msgstr "這問題的第一個解答者"
-
+msgstr "這看法的第一個解答者"
 #: management/commands/send_accept_answer_reminders.py:64
 #, fuzzy
 msgid "Please accept the best answer for these questions:"
-msgstr "點選觀看最早問題"
-
+msgstr "點選觀看最早看法"
 #: management/commands/send_email_alerts.py:411
 #, python-format
 msgid "%(question_count)d updated question about %(topics)s"
@@ -3043,8 +3302,7 @@ msgstr[1] ""
 
 #: management/commands/send_email_alerts.py:438
 msgid "new question"
-msgstr "提問新問題"
-
+msgstr "提問新看法"
 #: management/commands/send_email_alerts.py:455
 #, fuzzy
 msgid""
@@ -3118,7 +3376,7 @@ msgstr "同儕壓力"
 #: models/badges.py:174
 #, python-format
 msgid "Received at least %(votes)s upvote for an answer for the first time"
-msgstr "第一次回答獲得至少 %(votes)s 次『讚』"
+msgstr "第一次回應獲得至少 %(votes)s 次『讚』"
 
 #: models/badges.py:178
 msgid "Teacher"
@@ -3150,8 +3408,7 @@ msgstr " 給出超過 %(num)s 評分 "
 
 #: models/badges.py:252
 msgid "Answered own question with at least %(num)s up votes"
-msgstr "回答至少有%(num)s個讚的問題"
-
+msgstr "回應至少有%(num)s個讚的看法"
 #: models/badges.py:256
 msgid "Self-Learner"
 msgstr "自學者"
@@ -3162,12 +3419,11 @@ msgstr "妙答"
 
 #: models/badges.py:309 models/badges.py:321 models/badges.py:333
 msgid "Answer voted up %(num)s times"
-msgstr "回答獲得超過%(num)s 次『讚』"
+msgstr "回應獲得超過%(num)s 次『讚』"
 
 #: models/badges.py:316
 msgid "Good Answer"
-msgstr "好回答"
-
+msgstr "好回應"
 #: models/badges.py:328
 msgid "Great Answer"
 msgstr "精闢答案"
@@ -3178,12 +3434,11 @@ msgstr "妙問"
 
 #: models/badges.py:345 models/badges.py:357 models/badges.py:369
 msgid "Question voted up %(num)s times"
-msgstr "問題獲得超過%(num)s 次『讚』"
+msgstr "看法獲得超過%(num)s 次『讚』"
 
 #: models/badges.py:352
 msgid "Good Question"
-msgstr "好問題"
-
+msgstr "好看法"
 #: models/badges.py:364
 msgid "Great Question"
 msgstr "問的極好"
@@ -3194,29 +3449,26 @@ msgstr "學生"
 
 #: models/badges.py:381
 msgid "Asked first question with at least one up vote"
-msgstr "詢問至少有一票的問題"
+msgstr "詢問至少有一票的看法"
 
 #: models/badges.py:414
 msgid "Popular Question"
-msgstr "常見問題"
+msgstr "常見看法"
 
 #: models/badges.py:418 models/badges.py:429 models/badges.py:441
 msgid "Asked a question with %(views)s views"
-msgstr "提問的問題被瀏覽超過 %(views)s 次"
+msgstr "提問的看法被瀏覽超過 %(views)s 次"
 
 #: models/badges.py:425
 msgid "Notable Question"
-msgstr "顯目問題"
-
+msgstr "顯目看法"
 # close.html
 #: models/badges.py:436
 msgid "Famous Question"
-msgstr "著名問題"
-
+msgstr "著名看法"
 #: models/badges.py:450
 msgid "Asked a question and accepted an answer"
-msgstr "已回答的問題"
-
+msgstr "已回應的看法"
 #: models/badges.py:453
 msgid "Scholar"
 msgstr "學者"
@@ -3241,7 +3493,7 @@ msgstr "被接受的答案而且獲得超過 %(num)s 次評分"
 msgid ""
 "Answered a question more than %(days)s days later with at least %(votes)s "
 "votes"
-msgstr "回答超過 %(days)s 天的問題並獲得至少 %(votes)s 次的評分"
+msgstr "回應超過 %(days)s 天的看法並獲得至少 %(votes)s 次的評分"
 
 #: models/badges.py:525
 msgid "Necromancer"
@@ -3305,16 +3557,14 @@ msgstr "完成個人所有資料"
 
 #: models/badges.py:663
 msgid "Question favorited by %(num)s users"
-msgstr "提出超過 %(num)s 使用者珍藏的問題"
+msgstr "提出超過 %(num)s 使用者珍藏的看法"
 
 #: models/badges.py:689
 msgid "Stellar Question"
-msgstr "主要的問題"
-
+msgstr "主要的看法"
 #: models/badges.py:698
 msgid "Favorite Question"
-msgstr "值得珍藏問題"
-
+msgstr "值得珍藏看法"
 #: models/badges.py:710
 msgid "Enthusiast"
 msgstr "熱血青年"
@@ -3347,19 +3597,50 @@ msgstr "專家"
 msgid "Very active in one tag"
 msgstr "所定義的標籤常被使用"
 
-#: models/content.py:549
+#: models/post.py:1062
 msgid "Sorry, this question has been deleted and is no longer accessible"
-msgstr "這個問題已被刪除 不再存在了"
+msgstr "這個看法已被刪除 不再存在了"
 
-#: models/content.py:565
+#: models/post.py:1173
+msgid "Sorry, you have to login first, then you can read it"
+msgstr "對不起! 您需要先登入 才能看付費文章"
+
+#: models/post.py:1062
+msgid " <a href=\"/account/signin\">login</a>"
+msgstr " <a href=\"/account/signin\">立刻登入</a>"
+
+#: models/post.py:1076
+msgid ">I want to pay now</a>"
+msgstr ">我要從我帳戶扣款來付費</a>"
+
+#: models/post.py:1078
+msgid " <a class=\"tag tag-msg\" href=\"/payment/ibon/\">I want to purchase credicts</a>"
+msgstr " <a class=\"tag tag-msg\" href=\"/payment/ibon/\">我要購買點數</a>"
+
+#: models/post.py:1062
+msgid "Sorry, you need to paid"
+msgstr "對不起! 您需要付"
+
+#: models/post.py:1062
+msgid " first, then you can read it"
+msgstr "點的費用, 才能讀以下的內容"
+
+#: models/post.py:1062
+msgid " Current Balance is "
+msgstr " 目前您的戶頭有"
+
+#: models/post.py:1062
+msgid "USD"
+msgstr "點"
+
+#: models/post.py:1084
 msgid ""
 "Sorry, the answer you are looking for is no longer available, because the "
 "parent question has been removed"
-msgstr "這個問題已被刪除 不再存在了. 因為這個問題是根據已經被刪除的問題衍生出來的"
-
-#: models/content.py:572
+msgstr "這個看法已被刪除 不再存在了. 因為這個看法是根據已經被刪除的看法衍生出來的"
+#: models/post.py:1091
 msgid "Sorry, this answer has been removed and is no longer accessible"
-msgstr "這個問題已被刪除 不再存在了"
+msgstr "這個看法已被刪除 不再存在了"
 
 #: models/meta.py:116
 msgid ""
@@ -3386,7 +3667,7 @@ msgstr "查看更多"
 #: models/question.py:806
 #, python-format
 msgid "%(author)s modified the question"
-msgstr "%(author)s 已修改這個問題"
+msgstr "%(author)s 已修改這個看法"
 
 #: models/question.py:810
 #, python-format
@@ -3396,29 +3677,34 @@ msgstr "%(people)s 張貼新答案 %(new_answer_count)s"
 #: models/question.py:815
 #, python-format
 msgid "%(people)s commented the question"
-msgstr "%(people)s 評論問題"
+msgstr "%(people)s 評論看法"
 
 #: models/question.py:820
 #, python-format
 msgid "%(people)s commented answers"
-msgstr "%(people)s 評論回答"
+msgstr "%(people)s 評論回應"
 
 #: models/question.py:822
 #, python-format
 msgid "%(people)s commented an answer"
-msgstr "%(people)s 評論回答"
+msgstr "%(people)s 評論回應"
+
+#: models/transaction
+msgid "<em>Bought the point. Reason:</em> %(reason)s"
+msgstr "<em>購買點數. 備註:</em> %(reason)s"
 
 #: models/repute.py:142
 #, python-format
 msgid "<em>Changed by moderator. Reason:</em> %(reason)s"
-msgstr ""
-
+msgstr "<em>系統管理員修正. 理由:</em> %(reason)s"
 #: models/repute.py:153
 #, python-format
 msgid ""
 "%(points)s points were added for %(username)s's contribution to question "
 "%(question_title)s"
 msgstr ""
+"%(points)s 積分已經加到 %(username)s 的帳戶 由以下的評論取得積分:"
+"%(question_title)s"
 
 #: models/repute.py:158
 #, python-format
@@ -3426,6 +3712,8 @@ msgid ""
 "%(points)s points were subtracted for %(username)s's contribution to "
 "question %(question_title)s"
 msgstr ""
+"%(points)s 積分已經從 %(username)s 的帳戶扣除 由以下的評論被扣除積分:"
+"question %(question_title)s"
 
 #: models/tag.py:151
 #, fuzzy
@@ -3442,23 +3730,21 @@ msgstr "這論壇"
 
 #: models/user.py:265
 msgid "Questions that I asked"
-msgstr "提問問題"
+msgstr "提問看法"
 
 #: models/user.py:266
 msgid "Questions that I answered"
-msgstr "已回答的問題"
-
+msgstr "已回應的看法"
 #: models/user.py:267
 msgid "Individually selected questions"
-msgstr "已選問題"
-
+msgstr "已選看法"
 #: models/user.py:268
 msgid "Mentions and comment responses"
 msgstr ""
 
 #: models/user.py:271
 msgid "Instantly"
-msgstr ""
+msgstr "立即"
 
 #: models/user.py:272
 msgid "Daily"
@@ -3474,61 +3760,59 @@ msgstr "無電子郵件"
 
 #: skins/common/templates/authopenid/authopenid_macros.html:53
 msgid "Please enter your <span>user name</span>, then sign in"
-msgstr ""
+msgstr "請輸入您的 <span>使用者名稱</span>, 然後註冊"
 
 #: skins/common/templates/authopenid/authopenid_macros.html:54
 #: skins/common/templates/authopenid/signin.html:90
 msgid "(or select another login method above)"
-msgstr ""
+msgstr "(或者 選擇列在上面的其他登入方法)"
 
 #: skins/common/templates/authopenid/authopenid_macros.html:56
 msgid "Sign in"
-msgstr ""
+msgstr "註冊"
 
 #: skins/common/templates/authopenid/changeemail.html:2
 #: skins/common/templates/authopenid/changeemail.html:8
 #: skins/common/templates/authopenid/changeemail.html:36
 msgid "Change email"
-msgstr "Change Email"
+msgstr "更換 EMail"
 
 #: skins/common/templates/authopenid/changeemail.html:10
 msgid "Save your email address"
-msgstr ""
+msgstr "儲存您的 EMail地址"
 
 #: skins/common/templates/authopenid/changeemail.html:15
 #, python-format
 msgid "change %(email)s info"
 msgstr ""
-"<span class=\"strong big\">Enter your new email into the box below</span> if "
-"you'd like to use another email for <strong>update subscriptions</strong>."
-"<br>Currently you are using <strong>%(email)s</strong>"
+"<span class=\"strong big\">請在下面填入您新的 EMail地址</span> "
+"如果您想要使用其他 EMail地址<strong>訂閱更新</strong>."
+"<br>目前您使用的 EMail地址g是 <strong>%(email)s</strong>"
 
 #: skins/common/templates/authopenid/changeemail.html:17
 #, python-format
 msgid "here is why email is required, see %(gravatar_faq_url)s"
 msgstr ""
-"<span class='strong big'>Please enter your email address in the box below.</"
-"span> Valid email address is required on this Q&amp;A forum. If you like, "
-"you can <strong>receive updates</strong> on interesting questions or entire "
-"forum via email. Also, your email is used to create a unique <a "
-"href='%(gravatar_faq_url)s'><strong>gravatar</strong></a> image for your "
-"account. Email addresses are never shown or otherwise shared with anybody "
-"else."
+"<span class='strong big'>請在下面填入您新的 EMail地址.</"
+"span> 有效的EMail地址 是本 Q&amp;A 論壇所必需的. 如果您要的話, "
+"您可以針對您有興趣的問題或論壇透過EMail <strong>收到更新</strong>"
+"而且, 您的 EMail 用來取得您獨特的<a href='%(gravatar_faq_url)s'>"
+"<strong>圖像</strong></a> 來代表您的帳號. 您的 EMail地址 不會揭露給任何人."
 
 #: skins/common/templates/authopenid/changeemail.html:29
 msgid "Your new Email"
 msgstr ""
-"<strong>Your new Email:</strong> (will <strong>not</strong> be shown to "
-"anyone, must be valid)"
+"<strong>您的EMail地址:</strong> (<strong>不會</strong> 揭露給任何人 "
+", 請提供有效的EMail地址)"
 
 #: skins/common/templates/authopenid/changeemail.html:29
 msgid "Your Email"
-msgstr ""
+msgstr "您的 Email"
 "<strong>Your Email</strong> (<i>must be valid, never shown to others</i>)"
 
 #: skins/common/templates/authopenid/changeemail.html:36
 msgid "Save Email"
-msgstr ""
+msgstr "儲存 Email"
 
 #: skins/common/templates/authopenid/changeemail.html:38
 #: skins/default/templates/answer_edit.html:25
@@ -3540,39 +3824,37 @@ msgstr ""
 #: skins/default/templates/subscribe_for_tags.html:16
 #: skins/default/templates/user_profile/user_edit.html:84
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: skins/common/templates/authopenid/changeemail.html:45
 msgid "Validate email"
-msgstr ""
+msgstr "驗證 Email"
 
 #: skins/common/templates/authopenid/changeemail.html:48
 #, python-format
 msgid "validate %(email)s info or go to %(change_email_url)s"
 msgstr ""
-"<span class=\"strong big\">An email with a validation link has been sent to "
-"%(email)s.</span> Please <strong>follow the emailed link</strong> with your "
-"web browser. Email validation is necessary to help insure the proper use of "
-"email on <span class=\"orange\">Q&amp;A</span>. If you would like to use "
-"<strong>another email</strong>, please <a "
-"href='%(change_email_url)s'><strong>change it again</strong></a>."
+"<span class=\"strong big\">一封有驗證連結的信件已經送到您的信箱 "
+"%(email)s.</span> 請透過瀏覽器<strong>開啟驗證連結</strong>"
+"Email 驗證是本系統維持 <span class=\"orange\">論壇</span>的必要措施."
+"若您要使用<strong>其他信箱</strong>, 請到 <a "
+"href='%(change_email_url)s'><strong>更改信箱</strong></a>進行變更."
 
 #: skins/common/templates/authopenid/changeemail.html:52
 msgid "Email not changed"
-msgstr ""
+msgstr "Email沒有變更"
 
 #: skins/common/templates/authopenid/changeemail.html:55
 #, python-format
 msgid "old %(email)s kept, if you like go to %(change_email_url)s"
 msgstr ""
-"<span class=\"strong big\">Your email address %(email)s has not been changed."
-"</span> If you decide to change it later - you can always do it by editing "
-"it in your user profile or by using the <a "
-"href='%(change_email_url)s'><strong>previous form</strong></a> again."
+"<span class=\"strong big\">您的 Email %(email)s 並沒有變更."
+"</span> 如果您要稍後更改 - 您可以到 簡介 透過 <a "
+"href='%(change_email_url)s'><strong>更改信箱</strong></a>進行變更."
 
 #: skins/common/templates/authopenid/changeemail.html:59
 msgid "Email changed"
-msgstr ""
+msgstr "Email已變更"
 
 #: skins/common/templates/authopenid/changeemail.html:62
 #, python-format
@@ -3611,19 +3893,18 @@ msgstr ""
 
 #: skins/common/templates/authopenid/complete.html:21
 #: skins/common/templates/authopenid/complete.html:23
-msgid "Registration"
-msgstr ""
+msgid "User registration"
+msgstr "帳號註冊"
 
 #: skins/common/templates/authopenid/complete.html:27
 #, python-format
 msgid "register new %(provider)s account info, see %(gravatar_faq_url)s"
 msgstr ""
-"<p><span class=\"big strong\">You are here for the first time with your "
-"%(provider)s login.</span> Please create your <strong>screen name</strong> "
-"and save your <strong>email</strong> address. Saved email address will let "
-"you <strong>subscribe for the updates</strong> on the most interesting "
-"questions and will be used to create and retrieve your unique avatar image - "
-"<a href='%(gravatar_faq_url)s'><strong>gravatar</strong></a>.</p>"
+"<p><span class=\"big strong\">因為是您第一次以 %(provider)s 進行登入 </span>"
+"請輸入您所要呈現的 <strong>顯示名稱</strong> 並儲存"
+"<strong>EMail</strong> 地址. 儲存 EMail 地址可以讓您"
+"<strong>訂閱更新</strong> 任何您有興趣的文章 並且我們將透過您的 EMail 來取得您的 圖像 - "
+"<a href='%(gravatar_faq_url)s'><strong>圖像</strong></a>.</p>"
 
 #: skins/common/templates/authopenid/complete.html:30
 #, python-format
@@ -3633,76 +3914,74 @@ msgid ""
 "%(gravatar_faq_url)s\n"
 "                        "
 msgstr ""
-"<p><span class='strong big'>Oops... looks like screen name %(username)s is "
-"already used in another account.</span></p><p>Please choose another screen "
-"name to use with your %(provider)s login. Also, a valid email address is "
-"required on the <span class='orange'>Q&amp;A</span> forum. Your email is "
-"used to create a unique <a href='%(gravatar_faq_url)s'><strong>gravatar</"
-"strong></a> image for your account. If you like, you can <strong>receive "
-"updates</strong> on the interesting questions or entire forum by email. "
-"Email addresses are never shown or otherwise shared with anybody else.</p>"
+"<p><span class='strong big'>看起來您指定的 %(username)s 顯示名稱 已經被其他人使用了. "
+"</span></p><p>請針對您的 %(provider)s 帳號再 輸入一次您要的 顯示名稱"
+"並且, 一個有效的 EMail 地址是本<span class='orange'>Q&amp;A</span>論壇不可或缺的要件."
+"您的 EMail 用來連結您專屬的 <a href='%(gravatar_faq_url)s'><strong>圖像</"
+"strong></a>. 而且您可以透過 <strong>EMail 訂閱設定</strong> 來訂閱您整個論壇及您有興趣"
+"的文章. EMail 地址將不會顯示給其他人, 除非您設定成願意分享給別人.</p>"
 
 #: skins/common/templates/authopenid/complete.html:34
 #, python-format
 msgid ""
 "register new external %(provider)s account info, see %(gravatar_faq_url)s"
 msgstr ""
-"<p><span class=\"big strong\">You are here for the first time with your "
-"%(provider)s login.</span></p><p>You can either keep your <strong>screen "
-"name</strong> the same as your %(provider)s login name  or choose some other "
-"nickname.</p><p>Also, please save a valid <strong>email</strong> address. "
-"With the email you can <strong>subscribe for the updates</strong> on the "
-"most interesting questions. Email address is also used to create and "
-"retrieve your unique avatar image - <a "
-"href='%(gravatar_faq_url)s'><strong>gravatar</strong></a>.</p>"
+"<p><span class=\"big strong\">因為是您第一次以 <strong>外部帳號</strong> %(provider)s 進行登入 </span>"
+"請輸入您所要呈現的 <strong>顯示名稱</strong> 並儲存"
+"<strong>EMail</strong> 地址. 儲存 EMail 地址可以讓您"
+"<strong>訂閱更新</strong> 任何您有興趣的文章 並且我們將透過您的 EMail 來取得您的 圖像 - "
+"<a href='%(gravatar_faq_url)s'><strong>圖像</strong></a>.</p>"
 
 #: skins/common/templates/authopenid/complete.html:37
 #, python-format
 msgid "register new Facebook connect account info, see %(gravatar_faq_url)s"
 msgstr ""
-"<p><span class=\"big strong\">You are here for the first time with your "
-"Facebook login.</span> Please create your <strong>screen name</strong> and "
-"save your <strong>email</strong> address. Saved email address will let you "
-"<strong>subscribe for the updates</strong> on the most interesting questions "
-"and will be used to create and retrieve your unique avatar image - <a "
-"href='%(gravatar_faq_url)s'><strong>gravatar</strong></a>.</p>"
+"<p><span class=\"big strong\">因為是您第一次以 <strong>Facebook帳號</strong> </span>"
+"請輸入您所要呈現的 <strong>顯示名稱</strong> 並儲存"
+"<strong>EMail</strong> 地址. 儲存 EMail 地址可以讓您"
+"<strong>訂閱更新</strong> 任何您有興趣的文章 並且我們將透過您的 EMail 來取得您的 圖像 - "
+"<a href='%(gravatar_faq_url)s'><strong>圖像</strong></a>.</p>"
 
 #: skins/common/templates/authopenid/complete.html:40
 msgid "This account already exists, please use another."
 msgstr ""
+"<p><span class='strong big'>看起來您指定的帳號 已經被其他人使用了. "
+"</span></p><p>請選擇其他帳號"
 
 #: skins/common/templates/authopenid/complete.html:59
-msgid "Screen name label"
-msgstr "<strong>Screen Name</strong> (<i>will be shown to others</i>)"
+msgid "<strong>Screen Name</strong> (<i>will be shown to others</i>)"
+msgstr "<strong>顯示名稱</strong> (<i>別人將會看到這個名稱</i>)"
 
 #: skins/common/templates/authopenid/complete.html:66
-msgid "Email address label"
+msgid "<strong>Email Address</strong> (<i>will <strong>not</strong> be shared with anyone, must be valid</i>)"
 msgstr ""
-"<strong>Email Address</strong> (<i>will <strong>not</strong> be shared with "
-"anyone, must be valid</i>)"
+"<strong>Email 地址</strong> (<i>將<strong>不會</strong> 分享給任何人,"
+"一定要輸入有效地址</i>)"
 
 #: skins/common/templates/authopenid/complete.html:72
 #: skins/common/templates/authopenid/signup_with_password.html:36
 msgid "receive updates motivational blurb"
 msgstr ""
-"<strong>Receive forum updates by email</strong> - this will help our "
-"community grow and become more useful.<br/>By default <span "
-"class='orange'>Q&amp;A</span> forum sends up to <strong>one email digest per "
-"week</strong>  - only when there is anything new.<br/>If you like, please "
-"adjust this now or any time later from your user account."
+"<strong>透過EMail收到論壇更新</strong> - 這會幫助我們論壇成長茁壯."
+"<br/>我們初始設定<span class='orange'>Q&amp;A</span> 論壇 若有更新時 <strong>每周送出摘要 "
+"</strong>.<br/>當然您可以隨時透過您帳號設定去調整更新頻率."
 
-#: skins/common/templates/authopenid/complete.html:76
+#: skins/common/templates/authopenid/complete.html:78
+msgid "<strong>Receive forum updates by email</strong>"
+msgstr "<strong>透過EMail收到論壇更新</strong>"
+
+#: skins/common/templates/authopenid/complete.html:82
 #: skins/common/templates/authopenid/signup_with_password.html:40
 msgid "please select one of the options above"
-msgstr ""
+msgstr "請從上面選項選擇一個您要的設定"
 
 #: skins/common/templates/authopenid/complete.html:79
 msgid "Tag filter tool will be your right panel, once you log in."
-msgstr ""
+msgstr "當您登入時, 標籤篩選器將會顯示在您的右邊"
 
 #: skins/common/templates/authopenid/complete.html:80
 msgid "create account"
-msgstr "Signup"
+msgstr "建立帳號"
 
 #: skins/common/templates/authopenid/confirm_email.txt:1
 #: skins/old/templates/authopenid/confirm_email.txt:1
@@ -3738,7 +4017,6 @@ msgid ""
 "Sincerely,\n"
 "Forum Administrator"
 msgstr ""
-
 "你好, \n"
 " 論壇管理者"
 
@@ -3758,52 +4036,61 @@ msgid "Following the link above will help us verify your email address."
 msgstr "請依上列指引認證電子郵件地址"
 
 #: skins/common/templates/authopenid/email_validation.txt:9
-#, fuzzy
 msgid ""
 "If you beleive that this message was sent in mistake - \n"
 "no further action is needed. Just ingore this email, we apologize\n"
 "for any inconvenience"
-msgstr "如你肯定這訊息被誤送, 不需做任何動作, 並忽略此信, 非常抱歉 \n"
+msgstr "如你肯定這訊息被誤送, 不需做任何動作, 並忽略此信, 非常抱歉! "
 
 #: skins/common/templates/authopenid/logout.html:3
 msgid "Logout"
-msgstr "Sign out"
+msgstr "登出"
 
 #: skins/common/templates/authopenid/logout.html:5
 msgid "You have successfully logged out"
-msgstr ""
+msgstr "您已經成功的登出"
 
 #: skins/common/templates/authopenid/logout.html:7
 msgid ""
 "However, you still may be logged in to your OpenID provider. Please logout "
 "of your provider if you wish to do so."
 msgstr ""
+"不過,您也許還未從您的OpenID提供者處登出. 若您也想從OpenID提供者處登出,請不要忘記前往OpenID提供者處登出 "
 
 #: skins/common/templates/authopenid/signup_with_password.html:4
 msgid "Signup"
-
-msgstr ""
+msgstr " 註冊"
 
 #: skins/common/templates/authopenid/signup_with_password.html:10
+msgid "In order to offer better personalization service. Please fill up these items."
+msgstr "為提供您更好的個人化服務，請您務必填寫以下資料。"
+
+#: skins/common/templates/authopenid/signup_with_password.html:10
+msgid "Would you like to receive these investment informations ? (Multiple Choice)"
+msgstr "您希望且同意獲得以下投資理財資訊?(可複選)"
+
+#: skins/common/templates/authopenid/signup_with_password.html:10
+msgid "Please check these items carefully. It will be very helpful to your wealth."
+msgstr " - 建議您耐心勾選，可能對您人生財富累積有意想不到結果。"
+#: skins/common/templates/authopenid/signup_with_password.html:10
 msgid "Please register by clicking on any of the icons below"
-msgstr ""
+msgstr "請透過點擊下面的圖示來進行註冊"
 
 #: skins/common/templates/authopenid/signup_with_password.html:23
 msgid "or create a new user name and password here"
-msgstr ""
+msgstr "或者, 建立一個新的使用者帳號及密碼"
 
 #: skins/common/templates/authopenid/signup_with_password.html:25
 msgid "Create login name and password"
-msgstr ""
+msgstr "建立一個新的使用者帳號及密碼"
 
 #: skins/common/templates/authopenid/signup_with_password.html:26
 msgid "Traditional signup info"
 msgstr ""
-"<span class='strong big'>If you prefer, create your forum login name and "
-"password here. However</span>, please keep in mind that we also support "
-"<strong>OpenID</strong> login method. With <strong>OpenID</strong> you can "
-"simply reuse your external login (e.g. Gmail or AOL) without ever sharing "
-"your login details with anyone and having to remember yet another password."
+"<span class='strong big'>如果您要的話, 請在這裡建立您的論壇登入帳號及密碼. "
+"不過</span>, 請瞭解我們也支援 <strong>OpenID</strong> 登入方式. 透過<strong>OpenID</strong> 您可以"
+"透過您的其他帳號 (e.g. Gmail 或 Facebook) 不需要提供您的帳號明細或記新的帳號密碼"
+"就可以完成登入."
 
 #: skins/common/templates/authopenid/signup_with_password.html:44
 msgid ""
@@ -3813,15 +4100,15 @@ msgstr ""
 
 #: skins/common/templates/authopenid/signup_with_password.html:47
 msgid "Create Account"
-msgstr "Signup"
+msgstr "建立帳號"
 
 #: skins/common/templates/authopenid/signup_with_password.html:49
 msgid "or"
-msgstr ""
+msgstr "或"
 
 #: skins/common/templates/authopenid/signup_with_password.html:50
 msgid "return to OpenID login"
-msgstr ""
+msgstr "回到 OpenID 登入"
 
 #: skins/common/templates/avatar/add.html:3
 msgid "add avatar"
@@ -3891,7 +4178,7 @@ msgstr "link"
 #: skins/default/templates/macros.html:289
 #: skins/default/templates/revisions.html:37
 msgid "edit"
-msgstr ""
+msgstr "編輯"
 
 #: skins/common/templates/question/answer_controls.html:14
 #: skins/common/templates/question/answer_controls.html:23
@@ -3899,12 +4186,12 @@ msgstr ""
 #: skins/common/templates/question/question_controls.html:31
 msgid ""
 "report as offensive (i.e containing spam, advertising, malicious text, etc.)"
-msgstr ""
+msgstr "回報不洽當內容(如: 垃圾文, 廣告, 惡意文字等等)"
 
 #: skins/common/templates/question/answer_controls.html:15
 #: skins/common/templates/question/question_controls.html:23
 msgid "flag offensive"
-msgstr ""
+msgstr "標示為不洽當內容"
 
 #: skins/common/templates/question/answer_controls.html:24
 #: skins/common/templates/question/question_controls.html:32
@@ -3949,15 +4236,23 @@ msgstr "重新標籤"
 
 #: skins/common/templates/question/question_controls.html:13
 msgid "reopen"
-msgstr ""
+msgstr "重新開啟"
 
 #: skins/common/templates/question/question_controls.html:17
 msgid "close"
-msgstr ""
+msgstr "關閉"
 
 #: skins/common/templates/widgets/edit_post.html:21
 msgid "one of these is required"
-msgstr ""
+msgstr "其中之一是必需的"
+
+#: skins/common/templates/widgets/edit_post.html:21
+msgid "Feature Picture:"
+msgstr "文章圖示"
+
+#: skins/common/templates/widgets/edit_post.html:21
+msgid "Add a picture for your question"
+msgstr "請為您的評論找一個代表的圖案, 若沒輸入 系統將以您的個人圖像來代表"
 
 #: skins/common/templates/widgets/edit_post.html:33
 msgid "(required)"
@@ -3965,7 +4260,7 @@ msgstr "(必須欄位)"
 
 #: skins/common/templates/widgets/edit_post.html:56
 msgid "Toggle the real time Markdown editor preview"
-msgstr ""
+msgstr "即時編輯預視(Preview)開關"
 
 #: skins/common/templates/widgets/edit_post.html:58
 #: skins/default/templates/answer_edit.html:61
@@ -4014,8 +4309,7 @@ msgstr "這個狀況可能是以下情況造成的:"
 
 #: skins/default/templates/404.jinja.html:17
 msgid "this question or answer has been deleted;"
-msgstr "這個問題或回答已經被刪除"
-
+msgstr "這個看法或回應已經被刪除"
 #: skins/default/templates/404.jinja.html:18
 msgid "url has error - please check it;"
 msgstr "連結錯誤 - 請在檢查看看!"
@@ -4031,15 +4325,14 @@ msgstr ""
 #: skins/default/templates/404.jinja.html:19
 #: skins/default/templates/widgets/footer.html:39
 msgid "faq"
-msgstr "常見問題"
-
+msgstr "常見看法"
 #: skins/default/templates/404.jinja.html:20
 msgid "if you believe this error 404 should not have occured, please"
 msgstr "如果您確信這個 404 錯誤不應該發生, 請見"
 
 #: skins/default/templates/404.jinja.html:21
 msgid "report this problem"
-msgstr "回報此問題"
+msgstr "回報此看法"
 
 #: skins/default/templates/404.jinja.html:30
 #: skins/default/templates/500.jinja.html:11
@@ -4049,8 +4342,7 @@ msgstr "回到上一個網頁"
 #: skins/default/templates/404.jinja.html:31
 #: skins/default/templates/widgets/scope_nav.html:3
 msgid "see all questions"
-msgstr "瀏覽所有問題"
-
+msgstr "瀏覽所有看法"
 #: skins/default/templates/404.jinja.html:32
 msgid "see all tags"
 msgstr "瀏覽所有標籤"
@@ -4070,8 +4362,7 @@ msgstr "請將本錯誤回報給系統管理員"
 
 #: skins/default/templates/500.jinja.html:12
 msgid "see latest questions"
-msgstr "瀏覽最近的問題"
-
+msgstr "瀏覽最近的看法"
 #: skins/default/templates/500.jinja.html:13
 msgid "see tags"
 msgstr "瀏覽標籤"
@@ -4116,8 +4407,7 @@ msgstr "顯示預覽"
 
 #: skins/default/templates/ask.html:4
 msgid "Ask a question"
-msgstr "提出您的問題"
-
+msgstr "提出您的看法"
 #: skins/default/templates/badge.html:5 skins/default/templates/badge.html:9
 #: skins/default/templates/user_profile/user_recent.html:16
 #: skins/default/templates/user_profile/user_stats.html:110
@@ -4127,12 +4417,12 @@ msgstr ""
 
 #: skins/default/templates/badge.html:5
 msgid "Badge"
-msgstr "勳章"
+msgstr "徽章"
 
 #: skins/default/templates/badge.html:7
 #, python-format
 msgid "Badge \"%(name)s\""
-msgstr "勳章 \"%(name)s\""
+msgstr "徽章 \"%(name)s\""
 
 #: skins/default/templates/badge.html:9
 #: skins/default/templates/user_profile/user_recent.html:16
@@ -4144,21 +4434,20 @@ msgstr ""
 #: skins/default/templates/badge.html:14
 msgid "user received this badge:"
 msgid_plural "users received this badge:"
-msgstr[0] "用戶收到的勳章:"
+msgstr[0] "用戶收到的徽章:"
 msgstr[1] ""
 
 #: skins/default/templates/badges.html:3
 msgid "Badges summary"
-msgstr "勳章總覽"
+msgstr "徽章總覽"
 
 #: skins/default/templates/badges.html:5
 msgid "Badges"
-msgstr "勳章"
+msgstr "徽章"
 
 #: skins/default/templates/badges.html:7
 msgid "Community gives you awards for your questions, answers and votes."
-msgstr "本論壇根據您的『問題』、『回應』、『評分』授予勳章"
-
+msgstr "本論壇根據您的『看法』、『回應』、『評分』授予徽章"
 #: skins/default/templates/badges.html:8
 #, python-format
 msgid ""
@@ -4166,49 +4455,47 @@ msgid ""
 "of times each type of badge has been awarded. Give us feedback at "
 "%(feedback_faq_url)s.\n"
 msgstr ""
-"以下列出所有的勳章及其頒發的條件 \n"
-"有頒給新勳章的任何建議嗎? "
+"以下列出所有的徽章及其頒發的條件 \n"
+"有頒給新徽章的任何建議嗎? "
 "請不吝給我們<a href='%(feedback_faq_url)s'>回饋</a>\n"
 #: skins/default/templates/badges.html:35
 msgid "Community badges"
-msgstr "論壇勳章"
+msgstr "論壇徽章"
 
 #: skins/default/templates/badges.html:37
 msgid "gold badge: the highest honor and is very rare"
-msgstr "金牌勳章: 非常罕見的最高榮譽"
+msgstr "金牌徽章: 非常罕見的最高榮譽"
 
 #: skins/default/templates/badges.html:40
 msgid "gold badge description"
 msgstr ""
-"金牌勳章是本論壇的最高榮譽. 除了要有專業的知識及解決問題的能力 "
+"金牌徽章是本論壇的最高榮譽. 除了要有專業的知識及解決看法的能力 "
 "更要活躍的參與各項活動."
 
 #: skins/default/templates/badges.html:45
 msgid ""
 "silver badge: occasionally awarded for the very high quality contributions"
-msgstr "銀牌勳章: 針對罕見高水準的貢獻及解答所頒發的勳章"
+msgstr "銀牌徽章: 針對罕見高水準的貢獻及解答所頒發的徽章"
 
 #: skins/default/templates/badges.html:49
 msgid "silver badge description"
 msgstr ""
-"銀牌勳章: 針對罕見高水準的貢獻及解答所頒發的勳章"
+"銀牌徽章: 針對罕見高水準的貢獻及解答所頒發的徽章"
 
 #: skins/default/templates/badges.html:52
 msgid "bronze badge: often given as a special honor"
-msgstr "銀牌勳章: 針對特殊事件所頒發的榮譽勳章"
+msgstr "銀牌徽章: 針對特殊事件所頒發的榮譽徽章"
 
 #: skins/default/templates/badges.html:56
 msgid "bronze badge description"
-msgstr "銀牌勳章: 通常只針對特殊事件進行頒發"
+msgstr "銀牌徽章: 通常只針對特殊事件進行頒發"
 
 #: skins/default/templates/close.html:3 skins/default/templates/close.html:5
 msgid "Close question"
-msgstr "問題關閉"
-
+msgstr "看法關閉"
 #: skins/default/templates/close.html:6
 msgid "Close the question"
-msgstr "關閉問題"
-
+msgstr "關閉看法"
 #: skins/default/templates/close.html:11
 msgid "Reasons"
 msgstr ""
@@ -4289,79 +4576,72 @@ msgid ""
 "The reputation system allows users earn the authorization to perform a "
 "variety of moderation tasks."
 msgstr ""
-"Karma system allows users to earn rights to perform a variety of moderation "
-"tasks"
+"積分機制允許使用者透過各種操作來取得系統某些權限"
 
 #: skins/default/templates/faq_static.html:20
 msgid "How does reputation system work?"
-msgstr "How does karma system work?"
+msgstr "積分機制如何運作?"
 
 #: skins/default/templates/faq_static.html:21
 msgid "Rep system summary"
 msgstr ""
-"When a question or answer is upvoted, the user who posted them will gain "
-"some points, which are called \"karma points\". These points serve as a "
-"rough measure of the community trust to him/her. Various moderation tasks "
-"are gradually assigned to the users based on those points."
+"當某個看法或回應收到『讚』的評價, 使用者會增加積分 "
+"我們透過這些積分機制來衡量論壇對使用者的信任及評價 "
+"您在論壇中的各種操作將會影響您的積分 "
 
 #: skins/default/templates/faq_static.html:22
 #, python-format
 msgid ""
-"For example, if you ask an interesting question or give a helpful answer, "
-"your input will be upvoted. On the other hand if the answer is misleading - "
-"it will be downvoted. Each vote in favor will generate <strong>"
-"%(REP_GAIN_FOR_RECEIVING_UPVOTE)s</strong> points, each vote against will "
-"subtract <strong>%(REP_LOSS_FOR_RECEIVING_DOWNVOTE)s</strong> points. There "
-"is a limit of <strong>%(MAX_REP_GAIN_PER_USER_PER_DAY)s</strong> points that "
-"can be accumulated for a question or answer per day. The table below "
-"explains reputation point requirements for each type of moderation task."
+"例如, 您問了一個很好的看法或者有一個好回應, 您將會收到『讚』的評價 "
+"反過來說, 您的回應是誤導他人, 您將會收到『噓』的評價 "
+"每個『讚』會收到 <strong>"
+"%(REP_GAIN_FOR_RECEIVING_UPVOTE)s</strong> 積分, 每個『讚』會扣除"
+"<strong>%(REP_LOSS_FOR_RECEIVING_DOWNVOTE)s</strong> 積分. 每天您"
+"最多可以得到 <strong>%(MAX_REP_GAIN_PER_USER_PER_DAY)s</strong> 積分 "
+"以下表格說明每個操作所帶來的積分影響."
 msgstr ""
 
 #: skins/default/templates/faq_static.html:32
 #: skins/default/templates/user_profile/user_votes.html:13
 msgid "upvote"
-msgstr ""
+msgstr "『讚』"
 
 #: skins/default/templates/faq_static.html:37
 msgid "use tags"
-msgstr ""
+msgstr "使用標籤"
 
 #: skins/default/templates/faq_static.html:42
 msgid "add comments"
-msgstr ""
+msgstr "給評論"
 
 #: skins/default/templates/faq_static.html:46
 #: skins/default/templates/user_profile/user_votes.html:15
 msgid "downvote"
-msgstr ""
+msgstr "『噓』"
 
 #: skins/default/templates/faq_static.html:49
 msgid " accept own answer to own questions"
-msgstr ""
-
+msgstr " 接受自己的回應"
 #: skins/default/templates/faq_static.html:53
 msgid "open and close own questions"
-msgstr ""
-
+msgstr "提出或關閉一個看法"
 #: skins/default/templates/faq_static.html:57
 msgid "retag other's questions"
-msgstr ""
-
+msgstr "重新標籤別人的看法"
 #: skins/default/templates/faq_static.html:62
 msgid "edit community wiki questions"
-msgstr ""
+msgstr "編輯精華區Wiki的看法"
 
 #: skins/default/templates/faq_static.html:67
 msgid "\"edit any answer"
-msgstr ""
-
+msgstr "\"編輯任何回應"
 #: skins/default/templates/faq_static.html:71
 msgid "\"delete any comment"
-msgstr ""
+msgstr "\"刪除任何評論"
 
 #: skins/default/templates/faq_static.html:74
 msgid "what is gravatar"
-msgstr "How to change my picture (gravatar) and what is gravatar?"
+msgstr "如何更改我的圖像(gravatar) and what is gravatar?"
 
 #: skins/default/templates/faq_static.html:75
 msgid "gravatar faq info"
@@ -4536,6 +4816,9 @@ msgid ""
 "<p>%(update_author_name)s answered a question \n"
 "<a href=\"%(post_url)s\">%(origin_post_title)s</a></p>\n"
 msgstr ""
+"\n"
+"<p>%(update_author_name)s 回應看法 \n"
+"<a href=\"%(post_url)s\">%(origin_post_title)s</a></p>\n"
 
 #: skins/default/templates/instant_notification.html:19
 #, python-format
@@ -4544,6 +4827,9 @@ msgid ""
 "<p>%(update_author_name)s posted a new question \n"
 "<a href=\"%(post_url)s\">%(origin_post_title)s</a></p>\n"
 msgstr ""
+"\n"
+"<p>%(update_author_name)s 提出看法 \n"
+"<a href=\"%(post_url)s\">%(origin_post_title)s</a></p>\n"
 
 #: skins/default/templates/instant_notification.html:25
 #, python-format
@@ -4552,6 +4838,9 @@ msgid ""
 "<p>%(update_author_name)s updated an answer to the question\n"
 "<a href=\"%(post_url)s\">%(origin_post_title)s</a></p>\n"
 msgstr ""
+"\n"
+"<p>%(update_author_name)s 更新對看法的回應\n"
+"<a href=\"%(post_url)s\">%(origin_post_title)s</a></p>\n"
 
 #: skins/default/templates/instant_notification.html:31
 #, python-format
@@ -4560,6 +4849,9 @@ msgid ""
 "<p>%(update_author_name)s updated a question \n"
 "<a href=\"%(post_url)s\">%(origin_post_title)s</a></p>\n"
 msgstr ""
+"\n"
+"<p>%(update_author_name)s 更新看法 \n"
+"<a href=\"%(post_url)s\">%(origin_post_title)s</a></p>\n"
 
 #: skins/default/templates/instant_notification.html:37
 #, python-format
@@ -4571,106 +4863,108 @@ msgid ""
 "how often you receive these notifications or unsubscribe. Thank you for your "
 "interest in our forum!</p>\n"
 msgstr ""
+"\n"
+"<div>%(content_preview)s</div>\n"
+"<p>請注意 - 您可以透過 <a href=\"%(user_subscriptions_url)s"
+"\">變更</a>\n"
+"來更改收到通知的頻率及訂閱設定. 謝謝您對本論壇的支持及興趣 "
+"!</p>\n"
 
 #: skins/default/templates/instant_notification.html:42
 msgid "<p>Sincerely,<br/>Forum Administrator</p>"
-msgstr ""
+msgstr "<p>此致,<br/>論壇系統管理員</p>"
 
 #: skins/default/templates/macros.html:3
 #, python-format
 msgid "Share this question on %(site)s"
-msgstr ""
+msgstr "將這個看法分享到 %(site)s"
 
 #: skins/default/templates/macros.html:14
 #: skins/default/templates/macros.html:470
 #, python-format
 msgid "follow %(alias)s"
-msgstr ""
+msgstr "關注 %(alias)s"
 
 #: skins/default/templates/macros.html:17
 #: skins/default/templates/macros.html:473
 #, python-format
 msgid "unfollow %(alias)s"
-msgstr ""
+msgstr "取消關注 %(alias)s"
 
 #: skins/default/templates/macros.html:18
 #: skins/default/templates/macros.html:474
 #, python-format
 msgid "following %(alias)s"
-msgstr ""
+msgstr "關注 %(alias)s"
 
 #: skins/default/templates/macros.html:29
 msgid "i like this question (click again to cancel)"
-msgstr ""
-
+msgstr "我要對這個看法說『讚』(再點擊一次取消)"
 #: skins/default/templates/macros.html:31
 msgid "i like this answer (click again to cancel)"
-msgstr ""
-
+msgstr "我要對這個看法說『讚』(再點擊一次取消)"
 #: skins/default/templates/macros.html:37
 msgid "current number of votes"
-msgstr ""
+msgstr "目前評分次數"
 
 #: skins/default/templates/macros.html:43
 msgid "i dont like this question (click again to cancel)"
-msgstr ""
-
+msgstr "我要對這個看法說『噓』(再點擊一次取消)"
 #: skins/default/templates/macros.html:45
 msgid "i dont like this answer (click again to cancel)"
-msgstr ""
-
+msgstr "我要對這個看法說『噓』(再點擊一次取消)"
 #: skins/default/templates/macros.html:52
 msgid "anonymous user"
-msgstr ""
+msgstr "匿名使用者"
 
 #: skins/default/templates/macros.html:80
 msgid "this post is marked as community wiki"
-msgstr ""
+msgstr "這份內容標示成精華區(wiki)"
 
 #: skins/default/templates/macros.html:83
 #, python-format
 msgid ""
 "This post is a wiki.\n"
 "        Anyone with karma &gt;%(wiki_min_rep)s is welcome to improve it."
-msgstr ""
+msgstr "任何擁有大於 &gt;%(wiki_min_rep)s 積分的人都歡迎來改進他."
 
 #: skins/default/templates/macros.html:89
 msgid "asked"
-msgstr ""
+msgstr "提問"
 
 #: skins/default/templates/macros.html:91
 msgid "answered"
-msgstr ""
+msgstr "回應"
 
 #: skins/default/templates/macros.html:93
 msgid "posted"
-msgstr ""
+msgstr "張貼"
 
 #: skins/default/templates/macros.html:123
 msgid "updated"
-msgstr ""
+msgstr "更新"
 
 #: skins/default/templates/macros.html:221
 #, python-format
 msgid "see questions tagged '%(tag)s'"
-msgstr ""
+msgstr "瀏覽 '%(tag)s' 的看法"
 
 #: skins/default/templates/macros.html:278
 msgid "delete this comment"
-msgstr ""
+msgstr "刪除這個評論"
 
 #: skins/default/templates/macros.html:307
 #: skins/default/templates/macros.html:315
 #: skins/default/templates/question/javascript.html:24
 msgid "add comment"
-msgstr "post a comment"
+msgstr "發表評論"
 
 #: skins/default/templates/macros.html:308
 #, python-format
 msgid "see <strong>%(counter)s</strong> more"
 msgid_plural "see <strong>%(counter)s</strong> more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "看更多 <strong>%(counter)s</strong> "
+msgstr[1] "看更多 <strong>%(counter)s</strong> "
 
 #: skins/default/templates/macros.html:310
 #, python-format
@@ -4678,37 +4972,39 @@ msgid "see <strong>%(counter)s</strong> more comment"
 msgid_plural ""
 "see <strong>%(counter)s</strong> more comments\n"
 "            "
-msgstr[0] ""
+msgstr[0] "看更多評論 <strong>%(counter)s</strong>"
 msgstr[1] ""
+"看更多評論 <strong>%(counter)s</strong> \n"
+"            "
 
 #: skins/default/templates/macros.html:541 templatetags/extra_tags.py:43
 #, python-format
 msgid "%(username)s gravatar image"
-msgstr ""
+msgstr "%(username)s 的圖像"
 
 #: skins/default/templates/macros.html:550
 #, python-format
 msgid "%(username)s's website is %(url)s"
-msgstr ""
+msgstr "%(username)s 的網站是 %(url)s"
 
 #: skins/default/templates/macros.html:565
 #: skins/default/templates/macros.html:566
 msgid "previous"
-msgstr ""
+msgstr "上一頁"
 
 #: skins/default/templates/macros.html:577
 msgid "current page"
-msgstr ""
+msgstr "當前頁"
 
 #: skins/default/templates/macros.html:579
 #: skins/default/templates/macros.html:586
 #, python-format
 msgid "page number %(num)s"
-msgstr "page %(num)s"
+msgstr "頁碼 %(num)s"
 
 #: skins/default/templates/macros.html:590
 msgid "next page"
-msgstr ""
+msgstr "下一頁"
 
 #: skins/default/templates/macros.html:601
 msgid "posts per page"
@@ -4717,79 +5013,79 @@ msgstr ""
 #: skins/default/templates/macros.html:628
 #, python-format
 msgid "responses for %(username)s"
-msgstr ""
+msgstr "對 %(username)s 的回應"
 
 #: skins/default/templates/macros.html:631
 #, python-format
 msgid "you have a new response"
 msgid_plural "you have %(response_count)s new responses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "您有一個新回應"
+msgstr[1] "您有 %(response_count)s 個新回應"
 
 #: skins/default/templates/macros.html:634
 msgid "no new responses yet"
-msgstr ""
+msgstr "尚未有任何回應"
 
 #: skins/default/templates/macros.html:649
 #: skins/default/templates/macros.html:650
 #, python-format
 msgid "%(new)s new flagged posts and %(seen)s previous"
-msgstr ""
+msgstr "有 %(new)s 個新標示為不洽當內容 其中 %(seen)s 個已經看過"
 
 #: skins/default/templates/macros.html:652
 #: skins/default/templates/macros.html:653
 #, python-format
 msgid "%(new)s new flagged posts"
-msgstr ""
+msgstr "有 %(new)s 個新標示為不洽當內容"
 
 #: skins/default/templates/macros.html:658
 #: skins/default/templates/macros.html:659
 #, python-format
 msgid "%(seen)s flagged posts"
-msgstr ""
+msgstr "%(seen)s 個已經看過"
 
 #: skins/default/templates/privacy.html:3
 #: skins/default/templates/privacy.html:5
 msgid "Privacy policy"
-msgstr ""
+msgstr "私密規則"
 
 #: skins/default/templates/question_edit.html:4
 #: skins/default/templates/question_edit.html:9
 msgid "Edit question"
-msgstr ""
+msgstr "編輯評論"
 
 #: skins/default/templates/question_retag.html:3
 #: skins/default/templates/question_retag.html:5
 msgid "Change tags"
-msgstr "Retag question"
+msgstr "重新標記評論"
 
 #: skins/default/templates/question_retag.html:21
 msgid "Retag"
-msgstr ""
+msgstr "重新標記標籤"
 
 #: skins/default/templates/question_retag.html:28
 msgid "Why use and modify tags?"
-msgstr ""
+msgstr "為什麼要重新標記標籤 ?"
 
 #: skins/default/templates/question_retag.html:30
 msgid "Tags help to keep the content better organized and searchable"
-msgstr ""
+msgstr "標籤可以協助內容更有組織及搜尋更精準"
 
 #: skins/default/templates/question_retag.html:32
 msgid "tag editors receive special awards from the community"
-msgstr ""
+msgstr "協助標籤的使用者論壇會頒給特別的勳章"
 
 #: skins/default/templates/question_retag.html:59
 msgid "up to 5 tags, less than 20 characters each"
-msgstr ""
+msgstr "最多五個標籤 每個標籤不大於20個字"
 
 #: skins/default/templates/reopen.html:3 skins/default/templates/reopen.html:5
 msgid "Reopen question"
-msgstr ""
+msgstr "重新開啟評論"
 
 #: skins/default/templates/reopen.html:6
 msgid "Title"
-msgstr ""
+msgstr "標題"
 
 #: skins/default/templates/reopen.html:11
 #, python-format
@@ -4797,58 +5093,59 @@ msgid ""
 "This question has been closed by \n"
 "    <a href=\"%(closed_by_profile_url)s\">%(closed_by_username)s</a>\n"
 msgstr ""
+"這個評論已經被 <a href=\"%(closed_by_profile_url)s\">%(closed_by_username)s</a>關閉\n"
 
 #: skins/default/templates/reopen.html:16
 msgid "Close reason:"
-msgstr ""
+msgstr "關閉理由"
 
 #: skins/default/templates/reopen.html:19
 msgid "When:"
-msgstr ""
+msgstr "何時"
 
 #: skins/default/templates/reopen.html:22
 msgid "Reopen this question?"
-msgstr ""
+msgstr "要重新開啟評論?"
 
 #: skins/default/templates/reopen.html:26
 msgid "Reopen this question"
-msgstr ""
+msgstr "重新開啟這個評論"
 
 #: skins/default/templates/revisions.html:4
 #: skins/default/templates/revisions.html:7
 msgid "Revision history"
-msgstr ""
+msgstr "修訂歷史紀錄"
 
 #: skins/default/templates/revisions.html:23
 msgid "click to hide/show revision"
-msgstr ""
+msgstr "點擊已 隱藏/顯示 修訂"
 
 #: skins/default/templates/revisions.html:29
 #, python-format
 msgid "revision %(number)s"
-msgstr ""
+msgstr "修訂 %(number)s"
 
 #: skins/default/templates/subscribe_for_tags.html:3
 #: skins/default/templates/subscribe_for_tags.html:5
 msgid "Subscribe for tags"
-msgstr ""
+msgstr "訂閱標籤"
 
 #: skins/default/templates/subscribe_for_tags.html:6
 msgid "Please, subscribe for the following tags:"
-msgstr ""
+msgstr "請訂閱以下關注的標籤:"
 
 #: skins/default/templates/subscribe_for_tags.html:15
 msgid "Subscribe"
-msgstr ""
+msgstr "訂閱"
 
 #: skins/default/templates/tags.html:4 skins/default/templates/tags.html:10
 msgid "Tag list"
-msgstr "Tags"
+msgstr "標籤列表"
 
 #: skins/default/templates/tags.html:8
 #, python-format
 msgid "Tags, matching \"%(stag)s\""
-msgstr ""
+msgstr "符合 \"%(stag)s\" 的標籤"
 
 #: skins/default/templates/tags.html:14 skins/default/templates/users.html:9
 #: skins/default/templates/main_page/tab_bar.html:14
@@ -4921,7 +5218,7 @@ msgstr "找不到任何使用者"
 #, python-format
 msgid "%(q_num)s question"
 msgid_plural "%(q_num)s questions"
-msgstr[0] "%(q_num)s 問題"
+msgstr[0] "%(q_num)s 看法"
 msgstr[1] ""
 
 #: skins/default/templates/main_page/headline.html:6
@@ -4967,16 +5264,13 @@ msgstr "透過設定標籤讓您的搜尋結果更『聚焦』"
 
 #: skins/default/templates/main_page/nothing_found.html:4
 msgid "There are no unanswered questions here"
-msgstr "沒有未回應的問題"
-
+msgstr "沒有未回應的看法"
 #: skins/default/templates/main_page/nothing_found.html:7
 msgid "No questions here. "
-msgstr "找不到問題"
-
+msgstr "找不到看法"
 #: skins/default/templates/main_page/nothing_found.html:8
 msgid "Please follow some questions or follow some users."
-msgstr "請設定關注問題或用戶"
-
+msgstr "請設定關注看法或用戶"
 #: skins/default/templates/main_page/nothing_found.html:13
 msgid "You can expand your search by "
 msgstr "您可以透過以下方式拓展您的搜尋"
@@ -4996,7 +5290,7 @@ msgstr "開始"
 
 #: skins/default/templates/main_page/nothing_found.html:30
 msgid "Please always feel free to ask your question!"
-msgstr "不要客氣! 您隨時可以提出問題!"
+msgstr "不要客氣! 您隨時可以提出看法!"
 
 #: skins/default/templates/main_page/questions_loop.html:12
 msgid "Did not find what you were looking for?"
@@ -5004,12 +5298,10 @@ msgstr "找不到您要找的結果嗎?"
 
 #: skins/default/templates/main_page/questions_loop.html:13
 msgid "Please, post your question!"
-msgstr "請張貼您的問題"
-
+msgstr "請張貼您的看法"
 #: skins/default/templates/main_page/tab_bar.html:9
 msgid "subscribe to the questions feed"
-msgstr "訂閱這個問題的相關資訊"
-
+msgstr "訂閱這個看法的相關資訊"
 #: skins/default/templates/main_page/tab_bar.html:10
 msgid "RSS"
 msgstr ""
@@ -5091,8 +5383,7 @@ msgstr "最熱門"
 #: skins/default/templates/question/content.html:20
 #: skins/default/templates/question/new_answer_form.html:46
 msgid "Answer Your Own Question"
-msgstr "回答您提出的問題"
-
+msgstr "回應您提出的看法"
 #: skins/default/templates/question/new_answer_form.html:14
 msgid "Login/Signup to Answer"
 msgstr "登入以便回應"
@@ -5103,37 +5394,35 @@ msgstr "您的回應"
 
 #: skins/default/templates/question/new_answer_form.html:24
 msgid "Be the first one to answer this question!"
-msgstr "當第一個回應此問題的人"
-
+msgstr "當第一個回應此看法的人"
 #: skins/default/templates/question/new_answer_form.html:30
-msgid "you can answer anonymously and then login"
+msgid "<span class='strong big'>Please start posting your answer anonymously</span> - your answer will be saved within the current session and published after you log in or create a new account. Please try to give a <strong>substantial answer</strong>, for discussions, <strong>please use comments</strong> and <strong>please do remember to vote</strong> (after you log in)!"
 msgstr ""
-"<span class=\"strong big\">您可以在沒有登入狀態下提出問題</span>"
+"<span class=\"strong big\">您可以在沒有登入狀態下提出看法</span>"
 "您張貼的內容會被保存, 然後在登入後才會被張貼"
 "當您註冊或登入本系統. 您只需幾秒鐘就可以"
 "完成 (初次登入需要比較多的時間). 請接續給出 <strong>實際 "
-"的回答</strong>, 您可以給出評論 <strong>評論</strong>來促進討論"
+"的回應</strong>, 您可以給出評論 <strong>評論</strong>來促進討論"
 "<strong>不要忘了給出評分</strong> (在您登入後)!"
 
 #: skins/default/templates/question/new_answer_form.html:34
-msgid "answer your own question only to give an answer"
+msgid "<span class='big strong'>You are welcome to answer your own question</span>, but please make sure to give an <strong>answer</strong>. Remember that you can always <strong>revise your original question</strong>. Please <strong>use comments for discussions</strong>  and <strong>please don't forget to vote :)</strong> for the answers that you liked (or perhaps did not like)!"
 msgstr ""
-"<span class='big strong'>您也可以回答自己提出的問題</span>, "
+"<span class='big strong'>您也可以回應自己提出的看法</span>, "
 "但是請真正給出 <strong>解答</strong>. 當然您可以 "
-"隨時 <strong>修正您的問題</strong>. 修正時請給出 "
+"隨時 <strong>修正您的看法</strong>. 修正時請給出 "
 "<strong>評論來幫助討論</strong>  並 不要忘記針對您欣賞的解答"
 "(或者不喜歡的解答)<strong>給出評分 :) </strong> ! "
 
 
 #: skins/default/templates/question/new_answer_form.html:36
-msgid "please only give an answer, no discussions"
+msgid "<span class='big strong'>Please try to give a substantial answer</span>. If you wanted to comment on the question or answer, just <strong>use the commenting tool</strong>. Please remember that you can always <strong>revise your answers</strong> - no need to answer the same question twice. Also, please <strong>don't forget to vote</strong> - it really helps to select the best questions and answers!"
 msgstr ""
-"<span class='big strong'>Please try to give a substantial answer</span>. If "
-"you wanted to comment on the question or answer, just <strong>use the "
-"commenting tool</strong>. Please remember that you can always <strong>revise "
-"your answers</strong> - no need to answer the same question twice. Also, "
-"please <strong>don't forget to vote</strong> - it really helps to select the "
-"best questions and answers!"
+"<span class='big strong'>請針對您的評論及討論提出接續的回應</span>."
+"若您要針對某個評論或討論發表評論, 只要使用 <strong>張貼評論</strong>"
+"功能. 而且,請不要忘了<strong>給出您的評分</strong> "
+"- 這方便大家快速找到最佳問題及解答! "
+
 
 #: skins/default/templates/question/new_answer_form.html:43
 msgid "Login/Signup to Post Your Answer"
@@ -5141,18 +5430,17 @@ msgstr "請 註冊或登入本系統 以便張貼"
 
 #: skins/default/templates/question/new_answer_form.html:48
 msgid "Answer the question"
-msgstr "回答問題"
-
+msgstr "回應看法"
 #: skins/default/templates/question/sharing_prompt_phrase.html:2
 #, python-format
 msgid ""
 "Know someone who can answer?  Share a <a href=\"%(question_url)s\">link</a> "
 "to this question via"
-msgstr ""
+msgstr "知道誰可以回應嗎? 透過分享以下連結 <a href=\"%(question_url)s\">link</a> 到"
 
 #: skins/default/templates/question/sharing_prompt_phrase.html:8
 msgid " or"
-msgstr ""
+msgstr " 或"
 
 #: skins/default/templates/question/sharing_prompt_phrase.html:10
 msgid "email"
@@ -5160,171 +5448,171 @@ msgstr ""
 
 #: skins/default/templates/question/sidebar.html:4
 msgid "Question tools"
-msgstr ""
+msgstr "關注小工具"
 
 #: skins/default/templates/question/sidebar.html:7
 msgid "click to unfollow this question"
-msgstr ""
-
+msgstr "點擊以取消關注此看法"
 #: skins/default/templates/question/sidebar.html:8
 msgid "Following"
-msgstr ""
-
+msgstr "關注此看法"
 #: skins/default/templates/question/sidebar.html:9
 msgid "Unfollow"
-msgstr ""
+msgstr "取相關注"
 
 #: skins/default/templates/question/sidebar.html:13
 msgid "click to follow this question"
-msgstr ""
-
+msgstr "點擊以關注此看法"
 #: skins/default/templates/question/sidebar.html:14
 msgid "Follow"
-msgstr ""
+msgstr "關注"
 
 #: skins/default/templates/question/sidebar.html:21
 #, python-format
 msgid "%(count)s follower"
 msgid_plural "%(count)s followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s 個人關注"
+msgstr[1] "%(count)s 個人關注"
 
 #: skins/default/templates/question/sidebar.html:27
 msgid "email the updates"
-msgstr ""
+msgstr "若有更新請email通知我"
 
 #: skins/default/templates/question/sidebar.html:30
 msgid ""
 "<strong>Here</strong> (once you log in) you will be able to sign up for the "
 "periodic email updates about this question."
 msgstr ""
-
+"<strong>這裡</strong> (當您登入後)您可以訂閱定期的這個看法回應通知 !"
 #: skins/default/templates/question/sidebar.html:35
 msgid "subscribe to this question rss feed"
-msgstr ""
+msgstr "訂閱這個看法的RSS feed"
 
 #: skins/default/templates/question/sidebar.html:36
 msgid "subscribe to rss feed"
-msgstr ""
+msgstr "訂閱RSS feed"
 
-#: skins/default/templates/question/sidebar.html:46
+#: skins/default/templates/question/sidebar.html:45
 msgid "Stats"
-msgstr ""
+msgstr "統計"
 
 #: skins/default/templates/question/sidebar.html:48
-msgid "question asked"
-msgstr "Asked"
-
+msgid "Asked"
+msgstr "看法提出時間"
 #: skins/default/templates/question/sidebar.html:51
-msgid "question was seen"
-msgstr "Seen"
-
+msgid "Seen"
+msgstr "看法被看次數"
 #: skins/default/templates/question/sidebar.html:51
 msgid "times"
-msgstr ""
+msgstr "次"
 
 #: skins/default/templates/question/sidebar.html:54
-msgid "last updated"
-msgstr "Last updated"
+msgid "Last updated"
+msgstr "上次更新"
 
 #: skins/default/templates/question/sidebar.html:63
 msgid "Related questions"
-msgstr ""
-
+msgstr "相關聯看法"
 #: skins/default/templates/question/subscribe_by_email_prompt.html:7
 #: skins/default/templates/question/subscribe_by_email_prompt.html:9
+#, fuzzy
 msgid "Notify me once a day when there are any new answers"
 msgstr ""
-"<strong>Notify me</strong> once a day by email when there are any new "
-"answers or updates"
+"<strong>每天通知我</strong> 只要有新的回應或更新 "
 
 #: skins/default/templates/question/subscribe_by_email_prompt.html:11
+#, fuzzy
 msgid "Notify me weekly when there are any new answers"
 msgstr ""
-"<strong>Notify me</strong> weekly when there are any new answers or updates"
+"<strong>每週通知我</strong> 只要有新的回應或更新 "
 
 #: skins/default/templates/question/subscribe_by_email_prompt.html:13
+#, fuzzy
 msgid "Notify me immediately when there are any new answers"
 msgstr ""
-"<strong>Notify me</strong> immediately when there are any new answers or "
-"updates"
+"<strong>立刻通知我</strong> 只要有新的回應或更新 "
 
 #: skins/default/templates/question/subscribe_by_email_prompt.html:16
 #, python-format
 msgid ""
 "You can always adjust frequency of email updates from your %(profile_url)s"
 msgstr ""
-"(note: you can always <strong><a href='%(profile_url)s?"
-"sort=email_subscriptions'>change</a></strong> how often you receive updates)"
+"(提示: 您可以透過 <strong><a href='%(profile_url)s?"
+"sort=email_subscriptions'>變更</a></strong> 來調整通知頻率)"
 
-#: skins/default/templates/question/subscribe_by_email_prompt.html:21
+#: skins/default/templates/question/subscribe_by_email_prompt.html:5
+msgid "Email me when there are any new answers"
+msgstr ""
+"當這個問題有任何回答時 請Email通知我 !"
+
+#: skins/default/templates/question/subscribe_by_email_prompt.html:11
 msgid "once you sign in you will be able to subscribe for any updates here"
 msgstr ""
-"<span class='strong'>Here</span> (once you log in) you will be able to sign "
-"up for the periodic email updates about this question."
-
+"<strong>這裡</strong> (當您登入後)您可以訂閱定期的這個看法回應通知 !"
 #: skins/default/templates/user_profile/user.html:12
 #, python-format
 msgid "%(username)s's profile"
-msgstr ""
+msgstr "%(username)s的簡介"
 
 #: skins/default/templates/user_profile/user_edit.html:4
 msgid "Edit user profile"
-msgstr ""
+msgstr "編輯簡介"
 
 #: skins/default/templates/user_profile/user_edit.html:7
 msgid "edit profile"
-msgstr ""
+msgstr "編輯簡介"
 
 #: skins/default/templates/user_profile/user_edit.html:17
 #: skins/default/templates/user_profile/user_info.html:15
 msgid "change picture"
-msgstr ""
+msgstr "更改圖示"
 
 #: skins/default/templates/user_profile/user_edit.html:20
 msgid "Registered user"
-msgstr ""
+msgstr "註冊用戶"
 
 #: skins/default/templates/user_profile/user_edit.html:27
 msgid "Screen Name"
-msgstr ""
+msgstr "暱稱"
 
 #: skins/default/templates/user_profile/user_edit.html:83
 #: skins/default/templates/user_profile/user_email_subscriptions.html:21
 msgid "Update"
-msgstr ""
+msgstr "更新"
 
 #: skins/default/templates/user_profile/user_email_subscriptions.html:4
 #: skins/default/templates/user_profile/user_tabs.html:42
 msgid "subscriptions"
-msgstr ""
+msgstr "訂閱"
 
 #: skins/default/templates/user_profile/user_email_subscriptions.html:7
 msgid "Email subscription settings"
-msgstr ""
+msgstr "Email 訂閱設定"
 
 #: skins/default/templates/user_profile/user_email_subscriptions.html:8
 msgid "email subscription settings info"
+msgstr "Email 訂閱設定資訊"
+
+#: skins/default/templates/user_profile/user_email_subscriptions.html:8
+msgid "<span class='big strong'>Adjust frequency of email updates.</span> Receive updates on interesting questions by email, <strong><br/>help the community</strong> by answering questions of your colleagues. If you do not wish to receive emails - select 'no email' on all items below.<br/>Updates are only sent when there is any new activity on selected items."
 msgstr ""
-"<span class='big strong'>Adjust frequency of email updates.</span> Receive "
-"updates on interesting questions by email, <strong><br/>help the community</"
-"strong> by answering questions of your colleagues. If you do not wish to "
-"receive emails - select 'no email' on all items below.<br/>Updates are only "
-"sent when there is any new activity on selected items."
+"<span class='big strong'>調整Email頻率.</span> 透過Email收到我所感興趣的看法更新 "
+", 透過回應同伴的看法來<strong><br/>幫助論壇</strong>."
+"如果您不要收到任何Email, 在所有的選項中選擇 '不要寄送Email' .<br/>"
+"只有在您選擇的項目中有更新才會通知您."
 
 #: skins/default/templates/user_profile/user_email_subscriptions.html:22
-msgid "Stop sending email"
-msgstr "Stop Email"
+msgid "Stop Email"
+msgstr "停止 Email"
 
 #: skins/default/templates/user_profile/user_favorites.html:4
 #: skins/default/templates/user_profile/user_tabs.html:27
 msgid "followed questions"
-msgstr ""
-
+msgstr "關注看法"
 #: skins/default/templates/user_profile/user_inbox.html:18
 #: skins/default/templates/user_profile/user_tabs.html:12
 msgid "inbox"
-msgstr ""
+msgstr "信箱"
 
 #: skins/default/templates/user_profile/user_inbox.html:34
 msgid "Sections:"
@@ -5333,102 +5621,102 @@ msgstr ""
 #: skins/default/templates/user_profile/user_inbox.html:38
 #, python-format
 msgid "forum responses (%(re_count)s)"
-msgstr ""
+msgstr "論壇回覆(%(re_count)s) 次"
 
 #: skins/default/templates/user_profile/user_inbox.html:43
 #, python-format
 msgid "flagged items (%(flag_count)s)"
-msgstr ""
+msgstr "標記項目 (%(flag_count)s) 次"
 
 #: skins/default/templates/user_profile/user_inbox.html:49
 msgid "select:"
-msgstr ""
+msgstr "選項:"
 
 #: skins/default/templates/user_profile/user_inbox.html:51
 msgid "seen"
-msgstr ""
+msgstr "已看過"
 
 #: skins/default/templates/user_profile/user_inbox.html:52
 msgid "new"
-msgstr ""
+msgstr "新內容"
 
 #: skins/default/templates/user_profile/user_inbox.html:53
 msgid "none"
-msgstr ""
+msgstr "無"
 
 #: skins/default/templates/user_profile/user_inbox.html:54
 msgid "mark as seen"
-msgstr ""
+msgstr "標記為已讀"
 
 #: skins/default/templates/user_profile/user_inbox.html:55
 msgid "mark as new"
-msgstr ""
+msgstr "標記為新內容"
 
 #: skins/default/templates/user_profile/user_inbox.html:56
 msgid "dismiss"
-msgstr ""
+msgstr "忽略"
 
 #: skins/default/templates/user_profile/user_info.html:19
 msgid "remove"
-msgstr ""
+msgstr "移除"
 
 #: skins/default/templates/user_profile/user_info.html:36
 msgid "update profile"
-msgstr ""
+msgstr "更新簡介"
 
 #: skins/default/templates/user_profile/user_info.html:40
 msgid "manage login methods"
-msgstr ""
+msgstr "調整登入方法"
 
 #: skins/default/templates/user_profile/user_info.html:53
 msgid "real name"
-msgstr ""
+msgstr "真實姓名"
 
 #: skins/default/templates/user_profile/user_info.html:58
 msgid "member for"
-msgstr "member since"
+msgstr "會員起始"
 
 #: skins/default/templates/user_profile/user_info.html:63
 msgid "last seen"
-msgstr ""
+msgstr "上次使用"
 
 #: skins/default/templates/user_profile/user_info.html:69
 msgid "user website"
-msgstr "website"
+msgstr "使用者網站"
 
 #: skins/default/templates/user_profile/user_info.html:75
 msgid "location"
-msgstr ""
+msgstr "地區"
 
 #: skins/default/templates/user_profile/user_info.html:82
 msgid "age"
-msgstr ""
+msgstr "年齡"
 
 #: skins/default/templates/user_profile/user_info.html:83
 msgid "age unit"
-msgstr "years old"
+msgstr "歲"
 
 #: skins/default/templates/user_profile/user_info.html:88
 msgid "todays unused votes"
-msgstr ""
+msgstr "今日還可以評分次數"
 
 #: skins/default/templates/user_profile/user_info.html:89
 msgid "votes left"
-msgstr ""
+msgstr "還可以評分次數"
 
 #: skins/default/templates/user_profile/user_moderate.html:4
 #: skins/default/templates/user_profile/user_tabs.html:48
 msgid "moderation"
-msgstr ""
+msgstr "調整"
 
 #: skins/default/templates/user_profile/user_moderate.html:8
 #, python-format
 msgid "%(username)s's current status is \"%(status)s\""
-msgstr ""
+msgstr "%(username)s'的目前狀態是 \"%(status)s\""
 
 #: skins/default/templates/user_profile/user_moderate.html:11
 msgid "User status changed"
-msgstr "使用者狀態變更"
+msgstr "變更為其他狀態"
 
 #: skins/default/templates/user_profile/user_moderate.html:20
 msgid "Save"
@@ -5437,109 +5725,134 @@ msgstr "儲存"
 #: skins/default/templates/user_profile/user_moderate.html:25
 #, python-format
 msgid "Your current reputation is %(reputation)s points"
-msgstr "您目前的聲望是%(reputation)s 分"
+msgstr "您目前的積分是%(reputation)s 分"
 
 #: skins/default/templates/user_profile/user_moderate.html:27
 #, python-format
 msgid "User's current reputation is %(reputation)s points"
-msgstr "用戶目前的聲望是%(reputation)s 分"
+msgstr "用戶目前的積分是%(reputation)s 分"
+
+#: skins/default/templates/user_profile/user_add_transaction.html:9
+#, python-format
+msgid "Your current  balance is %(balance)s USD"
+msgstr "您目前的帳戶餘額是%(balance)s 點"
+
+#: skins/default/templates/user_profile/user_add_transaction.html:11
+#, python-format
+msgid "User's current  balance is %(balance)s points"
+msgstr "用戶目前的帳戶餘額是是%(balance)s 點"
+
+#: skins/default/templates/user_profile/user_add_transaction.html:11
+#, python-format
+msgid "Add User transaction to change balance"
+msgstr "新增交易來改變帳戶餘額"
+
+#: skins/default/templates/user_profile/user_add_transaction.html:22
+#, python-format
+msgid "Add Transaction"
+msgstr "新增交易"
 
 #: skins/default/templates/user_profile/user_moderate.html:31
 msgid "User reputation changed"
-msgstr "用戶的聲望變更"
+msgstr "用戶的積分變更"
 
 #: skins/default/templates/user_profile/user_moderate.html:38
 msgid "Subtract"
-msgstr ""
+msgstr "減少"
 
 #: skins/default/templates/user_profile/user_moderate.html:39
 msgid "Add"
-msgstr ""
+msgstr "增加"
 
 #: skins/default/templates/user_profile/user_moderate.html:43
 #, python-format
 msgid "Send message to %(username)s"
-msgstr ""
+msgstr "送出訊息給%(username)s"
 
 #: skins/default/templates/user_profile/user_moderate.html:44
 msgid ""
 "An email will be sent to the user with 'reply-to' field set to your email "
 "address. Please make sure that your address is entered correctly."
-msgstr ""
+msgstr "這封信將使用您的Email當作回信位址('reply-to')."
+"請確認您的Email位址是正確."
 
 #: skins/default/templates/user_profile/user_moderate.html:46
 msgid "Message sent"
-msgstr ""
+msgstr "郵件送出"
 
 #: skins/default/templates/user_profile/user_moderate.html:64
 msgid "Send message"
-msgstr ""
+msgstr "送出郵件"
 
 #: skins/default/templates/user_profile/user_moderate.html:74
 msgid ""
 "Administrators have privileges of normal users, but in addition they can "
 "assign/revoke any status to any user, and are exempt from the reputation "
 "limits."
-msgstr ""
+msgstr "『管理者』有超出一般使用者的權限. 他可以設定任何人的權限及調整積分"
 
 #: skins/default/templates/user_profile/user_moderate.html:77
 msgid ""
 "Moderators have the same privileges as administrators, but cannot add or "
 "remove user status of 'moderator' or 'administrator'."
-msgstr ""
+msgstr "仲裁者(版主)有跟管理者一樣的權限.除了無法新增或更改『管理者』或『仲裁者(版主)』的狀態"
 
 #: skins/default/templates/user_profile/user_moderate.html:80
 msgid "'Approved' status means the same as regular user."
-msgstr ""
+msgstr "『已核准』表示這個使用者有正常的使用權限"
 
 #: skins/default/templates/user_profile/user_moderate.html:83
-msgid "Suspended users can only edit or delete their own posts."
-msgstr ""
+msgid "Watched -moderators and admins to easily see what those users are doing."
+msgstr "『注視』表示管理員在觀察這個使用者的活動 也有正常的使用權限(目前無作用 功能跟『已核准』一致)"
 
 #: skins/default/templates/user_profile/user_moderate.html:86
+msgid "Suspended users can only edit or delete their own posts."
+msgstr "『停權』表示這個使用者只能編輯或刪除他自己張貼的內容"
+
+#: skins/default/templates/user_profile/user_moderate.html:89
 msgid ""
 "Blocked users can only login and send feedback to the site administrators."
-msgstr ""
+msgstr "『封鎖』表示這個使用者只能送回饋給『管理者』"
 
 #: skins/default/templates/user_profile/user_network.html:5
 #: skins/default/templates/user_profile/user_tabs.html:18
 msgid "network"
-msgstr ""
+msgstr "社交圈"
 
 #: skins/default/templates/user_profile/user_network.html:10
 #, python-format
 msgid "Followed by %(count)s person"
 msgid_plural "Followed by %(count)s people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "有 %(count)s 個人關注"
+msgstr[1] "有 %(count)s 個人關注"
 
 #: skins/default/templates/user_profile/user_network.html:14
 #, python-format
 msgid "Following %(count)s person"
 msgid_plural "Following %(count)s people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "關注 %(count)s 個人"
+msgstr[1] "關注 %(count)s 個人"
 
 #: skins/default/templates/user_profile/user_network.html:19
 msgid ""
 "Your network is empty. Would you like to follow someone? - Just visit their "
 "profiles and click \"follow\""
-msgstr ""
+msgstr "您的社交圈目前是空的. 您想要『關注』其他人嗎? 請到他的『簡介』然後按下『關注』"
 
 #: skins/default/templates/user_profile/user_network.html:21
 #, python-format
 msgid "%(username)s's network is empty"
-msgstr ""
+msgstr "%(username)s的社交圈目前是空的"
 
 #: skins/default/templates/user_profile/user_recent.html:4
 #: skins/default/templates/user_profile/user_tabs.html:31
 msgid "activity"
-msgstr ""
+msgstr "活動"
 
 #: skins/default/templates/user_profile/user_recent.html:21
 #: skins/default/templates/user_profile/user_recent.html:28
 msgid "source"
-msgstr ""
+msgstr "來源"
 
 #: skins/default/templates/user_profile/user_reputation.html:4
 msgid "karma"
@@ -5554,6 +5867,56 @@ msgstr "您的積分變動紀錄"
 msgid "%(user_name)s's karma change log"
 msgstr "%(user_name)s 的積分變動紀錄"
 
+#: skins/default/templates/user_profile/user_transaction.html:11
+#, python-format
+msgid "Your Account Detail."
+msgstr "您的帳戶交易紀錄"
+
+#: skins/default/templates/user_profile/user_transaction.html:4
+#, python-format
+msgid "Transaction"
+msgstr "交易"
+
+#: skins/default/templates/user_profile/user_transaction.html:13
+#, python-format
+msgid "%(user_name)s's Account Detail"
+msgstr "%(user_name)s 的帳戶交易紀錄"
+
+#: skins/default/templates/user_profile/user_transaction.html:19
+#, python-format
+msgid "From"
+msgstr "開始日期"
+
+#: skins/default/templates/user_profile/user_transaction.html:27
+#, python-format
+msgid "To"
+msgstr "結束日期"
+
+#: skins/default/templates/user_profile/user_transaction.html:35
+#, python-format
+msgid "Query"
+msgstr "查詢"
+
+#: skins/default/templates/user_profile/user_transaction.html:35
+#, python-format
+msgid "Confirm Purchase"
+msgstr "確認購買"
+
+#: skins/default/templates/user_profile/user_transaction.html:35
+#, python-format
+msgid "Cancel this confirmation"
+msgstr "取消購買"
+
+#: skins/default/templates/user_profile/user_transaction.html:35
+#, python-format
+msgid "Purchase Article Confirmation."
+msgstr "購買交易確認"
+
+#: skins/default/templates/user_profile/user_transaction.html:35
+#, python-format
+msgid "I want to purchase"
+msgstr "我要購買這篇文章 "
+
 #: skins/default/templates/user_profile/user_stats.html:5
 #: skins/default/templates/user_profile/user_tabs.html:7
 msgid "overview"
@@ -5563,68 +5926,67 @@ msgstr "總覽"
 #, python-format
 msgid "<span class=\"count\">%(counter)s</span> Question"
 msgid_plural "<span class=\"count\">%(counter)s</span> Questions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span class=\"count\">%(counter)s</span> 看法"
+msgstr[1] "<span class=\"count\">%(counter)s</span> 看法..."
 
 #: skins/default/templates/user_profile/user_stats.html:16
 #, python-format
 msgid "<span class=\"count\">%(counter)s</span> Answer"
 msgid_plural "<span class=\"count\">%(counter)s</span> Answers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span class=\"count\">%(counter)s</span> 回應"
+msgstr[1] "<span class=\"count\">%(counter)s</span> 回應..."
 
 #: skins/default/templates/user_profile/user_stats.html:24
 #, python-format
 msgid "the answer has been voted for %(answer_score)s times"
-msgstr ""
+msgstr "這個回應被評分了 %(answer_score)s 次"
 
 #: skins/default/templates/user_profile/user_stats.html:24
 msgid "this answer has been selected as correct"
-msgstr ""
-
+msgstr "這個回應被標示為正確"
 #: skins/default/templates/user_profile/user_stats.html:34
 #, python-format
 msgid "(%(comment_count)s comment)"
 msgid_plural "the answer has been commented %(comment_count)s times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "(%(comment_count)s 個評論)"
+msgstr[1] "這個回應被評論 %(comment_count)s 次"
 
 #: skins/default/templates/user_profile/user_stats.html:44
 #, python-format
 msgid "<span class=\"count\">%(cnt)s</span> Vote"
 msgid_plural "<span class=\"count\">%(cnt)s</span> Votes "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span class=\"count\">%(cnt)s</span> 評分"
+msgstr[1]  "<span class=\"count\">%(cnt)s</span> 評分..."
 
 #: skins/default/templates/user_profile/user_stats.html:50
 msgid "thumb up"
-msgstr ""
+msgstr "豎大拇指 『讚』"
 
 #: skins/default/templates/user_profile/user_stats.html:51
 msgid "user has voted up this many times"
-msgstr ""
+msgstr "使用者已經說『讚』 許多次"
 
 #: skins/default/templates/user_profile/user_stats.html:54
 msgid "thumb down"
-msgstr ""
+msgstr "倒大拇指 『噓』"
 
 #: skins/default/templates/user_profile/user_stats.html:55
 msgid "user voted down this many times"
-msgstr ""
+msgstr "使用者已經說『噓』 許多次"
 
 #: skins/default/templates/user_profile/user_stats.html:63
 #, python-format
 msgid "<span class=\"count\">%(counter)s</span> Tag"
 msgid_plural "<span class=\"count\">%(counter)s</span> Tags"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span class=\"count\">%(counter)s</span> 標籤"
+msgstr[1] "<span class=\"count\">%(counter)s</span> 標籤..."
 
 #: skins/default/templates/user_profile/user_stats.html:99
 #, python-format
 msgid "<span class=\"count\">%(counter)s</span> Badge"
 msgid_plural "<span class=\"count\">%(counter)s</span> Badges"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span class=\"count\">%(counter)s</span> 徽章"
+msgstr[1] "<span class=\"count\">%(counter)s</span> 徽章..."
 
 #: skins/default/templates/user_profile/user_stats.html:122
 msgid "Answer to:"
@@ -5632,68 +5994,79 @@ msgstr ""
 
 #: skins/default/templates/user_profile/user_tabs.html:5
 msgid "User profile"
-msgstr ""
+msgstr "使用者簡介"
 
 #: skins/default/templates/user_profile/user_tabs.html:10 views/users.py:785
 msgid "comments and answers to others questions"
-msgstr ""
-
+msgstr "評論看法及回應"
 #: skins/default/templates/user_profile/user_tabs.html:16
 msgid "followers and followed users"
-msgstr ""
+msgstr "我所關注的及關注我的"
 
 #: skins/default/templates/user_profile/user_tabs.html:21
 msgid "graph of user reputation"
-msgstr "Graph of user karma"
+msgstr "使用者積分圖"
 
 #: skins/default/templates/user_profile/user_tabs.html:23
 msgid "reputation history"
-msgstr "karma"
+msgstr "積分紀錄"
 
 #: skins/default/templates/user_profile/user_tabs.html:25
-msgid "questions that user is following"
-msgstr ""
+msgid "graph of user balance"
+msgstr "使用者帳戶餘額圖"
+
+#: skins/default/templates/user_profile/user_tabs.html:27
+msgid "balance history"
+msgstr "帳戶紀錄"
 
 #: skins/default/templates/user_profile/user_tabs.html:29
+msgid "questions that user is following"
+msgstr "使用者所關注的看法..."
+#: skins/default/templates/user_profile/user_tabs.html:33
 msgid "recent activity"
-msgstr "activity"
+msgstr "最近活動"
 
-#: skins/default/templates/user_profile/user_tabs.html:34 views/users.py:860
+#: skins/default/templates/user_profile/user_tabs.html:38 views/users.py:860
 msgid "user vote record"
-msgstr ""
+msgstr "使用者評分紀錄"
 
 #: skins/default/templates/user_profile/user_tabs.html:36
 msgid "casted votes"
-msgstr "votes"
+msgstr "評分"
 
 #: skins/default/templates/user_profile/user_tabs.html:40 views/users.py:973
 msgid "email subscription settings"
-msgstr ""
+msgstr "Email 訂閱設定"
 
 #: skins/default/templates/user_profile/user_tabs.html:46 views/users.py:211
 msgid "moderate this user"
-msgstr ""
+msgstr "調整這位使用者"
+
+#: skins/default/templates/user_profile/user_tabs.html:56
+msgid "add transaction to change this user balance"
+msgstr "新增加交易已改變使用者帳戶餘額"
+
+#: skins/default/templates/user_profile/user_tabs.html:58
+msgid "add transaction"
+msgstr "調整使用者帳戶餘額"
 
 #: skins/default/templates/user_profile/user_votes.html:4
 msgid "votes"
-msgstr ""
+msgstr "評分"
 
 #: skins/default/templates/widgets/answer_edit_tips.html:3
 msgid "answer tips"
-msgstr "Tips"
-
+msgstr "回應小技巧"
 #: skins/default/templates/widgets/answer_edit_tips.html:6
 msgid "please make your answer relevant to this community"
-msgstr "ask a question interesting to this community"
+msgstr "問看法時請思考 本論壇所關注的議題 儘量與議題相關"
 
 #: skins/default/templates/widgets/answer_edit_tips.html:9
 msgid "try to give an answer, rather than engage into a discussion"
-msgstr ""
-
+msgstr "請直接回應看法, 儘量不要根據看法再提出看法"
 #: skins/default/templates/widgets/answer_edit_tips.html:12
 msgid "please try to provide details"
-msgstr "provide enough details"
-
+msgstr "請提供足夠的看法細節"
 #: skins/default/templates/widgets/answer_edit_tips.html:15
 #: skins/default/templates/widgets/question_edit_tips.html:11
 msgid "be clear and concise"
@@ -5702,8 +6075,7 @@ msgstr "請簡潔及清楚的陳述"
 #: skins/default/templates/widgets/answer_edit_tips.html:20
 #: skins/default/templates/widgets/question_edit_tips.html:16
 msgid "see frequently asked questions"
-msgstr "請見常見問題"
-
+msgstr "請見常見看法"
 #: skins/default/templates/widgets/answer_edit_tips.html:27
 #: skins/default/templates/widgets/question_edit_tips.html:22
 msgid "Markdown tips"
@@ -5762,24 +6134,22 @@ msgid "learn more about Markdown"
 msgstr "學習更多小技巧"
 
 #: skins/default/templates/widgets/ask_button.html:2
-msgid "ask a question"
-msgstr "提出問題"
-
+msgid "Ask Your Question"
+msgstr "提出看法"
 #: skins/default/templates/widgets/ask_form.html:6
 msgid "login to post question info"
 msgstr ""
-"<span class=\"strong big\">您在沒有登入狀態下提出問題</span>"
-"    當您選擇送出問題, 您將會被轉至登入畫面 "
+"<span class=\"strong big\">您在沒有登入狀態下提出看法</span>"
+"    當您選擇送出看法, 您將會被轉至登入畫面 "
 "您張貼的內容會被保存, 然後在登入後才會被張貼"
 "本系統註冊及登入非常簡單. 您只需幾秒鐘就可以"
 "完成 (初次登入需要比較多的時間)."
 
 #: skins/default/templates/widgets/ask_form.html:10
 #, python-format
-msgid ""
-"must have valid %(email)s to post, \n"
-"                            see %(email_validation_faq_url)s\n"
-"                            "
+msgid "<span class='strong big'>Looks like your email address, %(email)s has not yet been validated.</span> "
+"To post messages you must verify your email, please see <a href='%(email_validation_faq_url)s'>more details here</a>."
+"<br>You can submit your question now and validate email after that. Your question will saved as pending meanwhile."
 msgstr ""
 "<span class='strong big'>您的email, %(email)s 還沒有通過驗證. "
 "</span> 您的email必需通過驗證才能發表訊息. "
@@ -5793,11 +6163,18 @@ msgstr "請進行登入以便發表"
 
 #: skins/default/templates/widgets/ask_form.html:44
 msgid "Ask your question"
-msgstr "提出您的問題"
+msgstr "提出您的看法"
+#: skins/default/templates/widgets/ask_form.html:44
+msgid "Charge Amount"
+msgstr "收費金額:"
+
+#: skins/default/templates/widgets/ask_form.html:44
+msgid "You set this is paid content, please imput the amount of cost"
+msgstr "當您選擇本訊息為付費訊息時 必須輸入收費金額"
 
 #: skins/default/templates/widgets/contributors.html:3
 msgid "Contributors"
-msgstr ""
+msgstr "提供文章成員"
 
 #: skins/default/templates/widgets/footer.html:33
 #, python-format
@@ -5831,7 +6208,7 @@ msgstr "使用者"
 
 #: skins/default/templates/widgets/meta_nav.html:15
 msgid "badges"
-msgstr "勳章"
+msgstr "徽章"
 
 #: skins/default/templates/widgets/question_edit_tips.html:3
 msgid "question tips"
@@ -5839,12 +6216,14 @@ msgstr "提問小秘訣"
 
 #: skins/default/templates/widgets/question_edit_tips.html:5
 msgid "please ask a relevant question"
-msgstr "請提出與本論壇有關的問題"
-
+msgstr "請提出與本論壇有關的看法"
 #: skins/default/templates/widgets/question_edit_tips.html:8
 msgid "please try provide enough details"
-msgstr "請儘量地清楚描述您的問題"
+msgstr "請儘量地清楚描述您的看法"
 
+#: skins/default/templates/widgets/question_summary.html:11
+msgid "Posted"
+msgstr "發佈"
 #: skins/default/templates/widgets/question_summary.html:12
 msgid "view"
 msgid_plural "views"
@@ -5854,7 +6233,7 @@ msgstr[1] ""
 #: skins/default/templates/widgets/question_summary.html:29
 msgid "answer"
 msgid_plural "answers"
-msgstr[0] "回答"
+msgstr[0] "回應"
 msgstr[1] ""
 
 #: skins/default/templates/widgets/question_summary.html:40
@@ -5863,37 +6242,37 @@ msgid_plural "votes"
 msgstr[0] "評分"
 msgstr[1] ""
 
+#: skins/default/templates/widgets/question_summary.html:57
+msgid "Charged"
+msgstr "需付費"
+
 #: skins/default/templates/widgets/scope_nav.html:3
 msgid "ALL"
 msgstr "全部"
 
 #: skins/default/templates/widgets/scope_nav.html:5
 msgid "see unanswered questions"
-msgstr "未回答問題"
-
+msgstr "未回應看法"
 #: skins/default/templates/widgets/scope_nav.html:5
 msgid "UNANSWERED"
-msgstr "未回答"
-
+msgstr "未回應"
 #: skins/default/templates/widgets/scope_nav.html:8
 msgid "see your followed questions"
-msgstr "關注的問題"
-
+msgstr "關注的看法"
 #: skins/default/templates/widgets/scope_nav.html:8
 msgid "FOLLOWED"
 msgstr "關注"
 
 #: skins/default/templates/widgets/scope_nav.html:11
 msgid "Please ask your question here"
-msgstr "請在這裡提出您的問題"
-
+msgstr "請在這裡提出您的看法"
 #: skins/default/templates/widgets/user_long_score_and_badge_summary.html:3
 msgid "karma:"
 msgstr "積分:"
 
 #: skins/default/templates/widgets/user_long_score_and_badge_summary.html:7
 msgid "badges:"
-msgstr "勳章:"
+msgstr "徽章:"
 
 #: skins/default/templates/widgets/user_navigation.html:8
 msgid "logout"
@@ -6123,95 +6502,61 @@ msgstr ""
 
 #: views/users.py:212
 msgid "moderate user"
-msgstr ""
+msgstr "版主"
 
 #: views/users.py:386
 msgid "user profile"
-msgstr ""
+msgstr "使用者簡介"
 
 #: views/users.py:387
 msgid "user profile overview"
-msgstr ""
+msgstr "使用者總覽"
 
 #: views/users.py:698
 msgid "recent user activity"
-msgstr ""
+msgstr "使用者最近活動"
 
 #: views/users.py:699
 msgid "profile - recent activity"
-msgstr ""
+msgstr "簡介 - 最近活動"
 
 #: views/users.py:786
 msgid "profile - responses"
-msgstr ""
+msgstr "簡介 - 回應"
 
 #: views/users.py:861
 msgid "profile - votes"
-msgstr ""
+msgstr "簡介 - 評分"
 
 #: views/users.py:896
 msgid "user reputation in the community"
-msgstr "user karma"
+msgstr "使用者積分"
 
 #: views/users.py:897
 msgid "profile - user reputation"
-msgstr "Profile - User's Karma"
+msgstr "簡介 - 使用者積分"
 
 #: views/users.py:924
 msgid "users favorite questions"
-msgstr ""
-
-
-
-
-
-
+msgstr "使用珍藏看法"
 #: views/users.py:925
 msgid "profile - favorite questions"
-msgstr "珍藏問題"
-
-
-
-
-
+msgstr "珍藏看法"
 #: views/users.py:945 views/users.py:949
 msgid "changes saved"
-msgstr ""
-
-
+msgstr "變更已儲存"
 
 #: views/users.py:955
 msgid "email updates canceled"
 msgstr ""
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 #: views/users.py:974
-
 msgid "profile - email subscriptions"
 msgstr ""
 
-
-
-
 #: views/writers.py:58
-
 msgid "Sorry, anonymous users cannot upload files"
-msgstr ""
-
-
-
+msgstr "對不起! 匿名使用者不能上傳檔案"
 
 #: views/writers.py:68
 #, python-format
@@ -6223,33 +6568,16 @@ msgstr ""
 msgid "maximum upload file size is %(file_size)sK"
 msgstr ""
 
-
-
-
-
-
-
-
-
-
-
-
-
 #: views/writers.py:99
 
 msgid "Error uploading file. Please contact the site administrator. Thank you."
 msgstr ""
-
-
-
-
-
 #: views/writers.py:191
 
 msgid "Please log in to ask questions"
 msgstr ""
-"<span class=\"strong big\">您在沒有登入狀態下提出問題</span>"
-"    當您選擇送出問題, 您將會被轉至登入畫面 "
+"<span class=\"strong big\">您在沒有登入狀態下提出看法</span>"
+"    當您選擇送出看法, 您將會被轉至登入畫面 "
 "您張貼的內容會被保存, 然後在登入後才會被張貼"
 "本系統註冊及登入非常簡單. 您只需幾秒鐘就可以"
 "完成 (初次登入需要比較多的時間)."
@@ -6315,3 +6643,179 @@ msgstr "對不起, 我們好像遇到了一些技術問題"
 #~ "strong></a> personal image.</p>"
 #~ msgid "reputation points"
 #~ msgstr "karma"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT1"
+msgstr "免費取得語言程度分析課程"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT2"
+msgstr "台股"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT3"
+msgstr "台指期權"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT4"
+msgstr "未上市"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT5"
+msgstr "聯名廠商行銷活動"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT6"
+msgstr "港股"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT7"
+msgstr "紅籌&國企股"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT8"
+msgstr "滬深股"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT9"
+msgstr "日韓星泰國際股"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT10"
+msgstr "國內基金"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT11"
+msgstr "海外基金"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT12"
+msgstr "中國A股基金"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT13"
+msgstr "REITs"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT14"
+msgstr "美股"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT15"
+msgstr "美股選擇權"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT16"
+msgstr "ETFs"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT17"
+msgstr "ADRs"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT18"
+msgstr "外匯"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT19"
+msgstr "黃金"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT20"
+msgstr "商品期貨"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT21"
+msgstr "外幣存款"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT22"
+msgstr "保險"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT23"
+msgstr "信託"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT24"
+msgstr "債券"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT25"
+msgstr "多元保本型商品"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT26"
+msgstr "房地產"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT27"
+msgstr "私募基金"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT28"
+msgstr "IPO新股認購"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT29"
+msgstr "創投"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT30"
+msgstr "財富管理"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT31"
+msgstr "美容保養"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT32"
+msgstr "時尚彩妝"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT33"
+msgstr "造型美髮"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT34"
+msgstr "纖體塑身"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT35"
+msgstr "流行服飾"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT36"
+msgstr "鞋包配件"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT37"
+msgstr "生活居家"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT38"
+msgstr "親子教育"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT39"
+msgstr "美食保健"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT40"
+msgstr "戶外休閒"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT41"
+msgstr "3C數位"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT42"
+msgstr "大小家電"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT43"
+msgstr "特惠活動"
+
+#: deps/django_authopenid/forms.py:158
+msgid "SAT44"
+msgstr "以上皆是,其他"

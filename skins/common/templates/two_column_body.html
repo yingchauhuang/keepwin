@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block body_class %}two-col{% endblock %}
 {% block body %}
+<div id="ContentFull">
+{% if settings.SHOW_LOGO %}
+   {% include "widgets/logo.html" %}
+{% endif %}
+{% if settings.MAIN_SHOW_AD  %}
+   {% include "advertisement/headbarAD.html" %}
+{% endif %}
+</div>
 <div id="ContentLeft">
     {% block content%}
     {% endblock%}

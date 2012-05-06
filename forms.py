@@ -1,4 +1,6 @@
 import re
+import datetime
+from datetime import datetime as Cdatetime
 from django import forms
 from askbot import models
 from askbot import const
@@ -12,7 +14,69 @@ from askbot.utils.forms import NextUrlField, UserNameField
 from askbot.utils.mail import extract_first_email_address
 from recaptcha_works.fields import RecaptchaField
 from askbot.conf import settings as askbot_settings
+#from ckeditor.fields import HTMLField
+#from ckeditor.widgets import CKEditor
 import logging
+
+
+MODERATOR_STATUS_CHOICES = (
+                                ('a', _('approved')),
+                                ('w', _('watched')),
+                                ('s', _('suspended')),
+                                ('b', _('blocked')),
+                           )
+ADMINISTRATOR_STATUS_CHOICES = (('d', _('administrator')),
+                               ('m', _('moderator')), ) \
+                               + MODERATOR_STATUS_CHOICES
+                               
+#Add by YC for payment and transaction
+#TYPE_TRANSACTION_BUY_CREDICTCARD  = 1
+#TYPE_TRANSACTION_BUY_ATM = 2
+TYPE_TRANSACTION_BUY_IBON = 3
+TYPE_TRANSACTION_BUY_IBON_ISSUE = 30
+TYPE_TRANSACTION_BUY_CTI  = 4
+#TYPE_TRANSACTION_BUY_GIFT  = 5
+TYPE_TRANSACTION_PAID_FOR_CONTENT = 10
+TYPE_TRANSACTION_RECEIVE_FROM_CONTENT  = 20
+
+#TYPE_ACTIVITY_EDIT_ANSWER = 18
+
+#todo: rename this to TYPE_TRANSACTION_CHOICES
+TYPE_TRANSACTION = (
+#    (TYPE_TRANSACTION_BUY_CREDICTCARD, _('buy bonus online via creditcard')),
+#    (TYPE_TRANSACTION_BUY_ATM, _('buy bonus online via ATM')),
+    (TYPE_TRANSACTION_BUY_IBON, _('buy bonus via iBon')),
+    (TYPE_TRANSACTION_BUY_IBON_ISSUE, _('issue buy bonus via iBon')),
+    (TYPE_TRANSACTION_BUY_CTI, _('buy bonus via Call Center Service')),
+#    (TYPE_TRANSACTION_BUY_GIFT, _('buy bonus via Gift card')),
+    (TYPE_TRANSACTION_PAID_FOR_CONTENT, _('paid bonus for content')),
+    (TYPE_TRANSACTION_RECEIVE_FROM_CONTENT, _('receive the bonus from other people paid for it')),
+)
+                               
+                               
+#Add by YC for payment and transaction
+#TYPE_TRANSACTION_BUY_CREDICTCARD  = 1
+#TYPE_TRANSACTION_BUY_ATM = 2
+TYPE_TRANSACTION_BUY_IBON = 3
+TYPE_TRANSACTION_BUY_IBON_ISSUE = 30
+TYPE_TRANSACTION_BUY_CTI  = 4
+#TYPE_TRANSACTION_BUY_GIFT  = 5
+TYPE_TRANSACTION_PAID_FOR_CONTENT = 10
+TYPE_TRANSACTION_RECEIVE_FROM_CONTENT  = 20
+
+#TYPE_ACTIVITY_EDIT_ANSWER = 18
+
+#todo: rename this to TYPE_TRANSACTION_CHOICES
+TYPE_TRANSACTION = (
+#    (TYPE_TRANSACTION_BUY_CREDICTCARD, _('buy bonus online via creditcard')),
+#    (TYPE_TRANSACTION_BUY_ATM, _('buy bonus online via ATM')),
+    (TYPE_TRANSACTION_BUY_IBON, _('buy bonus via iBon')),
+    (TYPE_TRANSACTION_BUY_IBON_ISSUE, _('issue buy bonus via iBon')),
+    (TYPE_TRANSACTION_BUY_CTI, _('buy bonus via Call Center Service')),
+#    (TYPE_TRANSACTION_BUY_GIFT, _('buy bonus via Gift card')),
+    (TYPE_TRANSACTION_PAID_FOR_CONTENT, _('paid bonus for content')),
+    (TYPE_TRANSACTION_RECEIVE_FROM_CONTENT, _('receive the bonus from other people paid for it')),
+)
 
 def cleanup_dict(dictionary, key, empty_value):
     """deletes key from dictionary if it exists
@@ -116,7 +180,44 @@ class TitleField(forms.CharField):
 
         return value.strip() # TODO: test me
 
+class SubTitleField(forms.CharField):
+    def __init__(self, *args, **kwargs):
+        super(SubTitleField, self).__init__(*args, **kwargs)
+        self.required = True
+        self.widget = forms.TextInput(
+                                attrs={'size' : 70, 'autocomplete' : 'off'}
+                            )
+        self.max_length = 255
+        self.label  = _('title')
+        self.help_text = _('please enter a descriptive title for your question')
+        self.initial = ''
+
+    def clean(self, value):
+        if len(value) < askbot_settings.MIN_TITLE_LENGTH:
+            msg = ungettext_lazy(
+                'title must be > %d character',
+                'title must be > %d characters',
+                askbot_settings.MIN_TITLE_LENGTH
+            ) % askbot_settings.MIN_TITLE_LENGTH
+            raise forms.ValidationError(msg)
+
+        return value.strip() # TODO: test me
+
+class PassCodeField(forms.CharField):
+    def __init__(self, *args, **kwargs):
+        super(TitleField, self).__init__(*args, **kwargs)
+        self.required = True
+        self.widget = forms.TextInput(
+                                attrs={'size' : 10, 'autocomplete' : 'off'}
+                            )
+        self.max_length = 10
+        self.label  = _('title')
+        self.help_text = _('please enter a descriptive title for your question')
+        self.initial = ''
+
+
 class EditorField(forms.CharField):
+#class EditorFiled(CKEditor):
     """EditorField is subclassed by the 
     :class:`QuestionEditorField` and :class:`AnswerEditorField`
     """
@@ -128,6 +229,7 @@ class EditorField(forms.CharField):
         super(EditorField, self).__init__(*args, **kwargs)
         self.required = True
         self.widget = forms.Textarea(attrs={'id':'editor'})
+        #self.widget = CKEditor();
         self.label  = _('content')
         self.help_text = u''
         self.initial = ''
@@ -143,6 +245,7 @@ class EditorField(forms.CharField):
         return value
 
 class QuestionEditorField(EditorField):
+#class QuestionEditorField(CKEditor):
     def __init__(self, *args, **kwargs):
         super(QuestionEditorField, self).__init__(*args, **kwargs)
         self.length_error_template_singular = 'question body must be > %d character'
@@ -150,6 +253,7 @@ class QuestionEditorField(EditorField):
         self.min_length = askbot_settings.MIN_QUESTION_BODY_LENGTH
 
 class AnswerEditorField(EditorField):
+#class AnswerEditorField(CKEditor):
     def __init__(self, *args, **kwargs):
         super(AnswerEditorField, self).__init__(*args, **kwargs)
         self.length_error_template_singular = 'answer must be > %d character'
@@ -288,6 +392,15 @@ class SummaryField(forms.CharField):
         self.label  = _('update summary:')
         self.help_text = _('enter a brief summary of your revision (e.g. fixed spelling, grammar, improved style, this field is optional)')
 
+class FeaturePicField(EditorField):
+    def __init__(self, *args, **kwargs):
+        super(FeaturePicField, self).__init__(*args, **kwargs)
+        self.required = False
+        self.widget = forms.Textarea(attrs={'id':'featurepic'})
+        self.max_length = 300
+        self.label  = _('Feature Picture:')
+        self.help_text = _('Add a picture for your question')
+
 
 class DumpUploadForm(forms.Form):
     """This form handles importing
@@ -362,7 +475,7 @@ class ChangeUserReputationForm(forms.Form):
                                     min_value = 1,
                                     label = _('Enter number of points to add or subtract')
                                 )
-    comment = forms.CharField(max_length = 128)
+    comment = forms.CharField(max_length = 128,label = _('Enter Comment'))
 
     def clean_comment(self):
         if 'comment' in  self.cleaned_data:
@@ -373,17 +486,132 @@ class ChangeUserReputationForm(forms.Form):
             self.cleaned_data['comment'] = comment
             return comment
 
-MODERATOR_STATUS_CHOICES = (
-                                ('a', _('approved')),
-                                ('w', _('watched')),
-                                ('s', _('suspended')),
-                                ('b', _('blocked')),
-                           )
-ADMINISTRATOR_STATUS_CHOICES = (('d', _('administrator')),
-                               ('m', _('moderator')), ) \
-                               + MODERATOR_STATUS_CHOICES
+class AddUserTransactionForm(forms.Form):
+    """Form that allows moderators and site administrators
+    to adjust balance of users by add transaction.
 
+    this form internally verifies that user who claims to
+    be a moderator acually is
+    """
 
+    user_income = forms.IntegerField(
+                                    min_value = 0,
+                                    label = _('Enter amount of income')
+                                )
+    user_outcome = forms.IntegerField(
+                                    min_value = 0,
+                                    label = _('Enter amount of outcome')
+                                )
+    transaction_type = forms.ChoiceField(
+                            label = _('Transaction Type'),
+                        )
+    comment = forms.CharField(max_length = 128,label = _('Enter Comment'))
+
+    def clean_comment(self):
+        if 'comment' in  self.cleaned_data:
+            comment = self.cleaned_data['comment'].strip()
+            if comment == '':
+                del self.cleaned_data['comment']
+                raise forms.ValidationError('Please enter non-empty comment')
+            self.cleaned_data['comment'] = comment
+            return comment
+
+    def __init__(self, *arg, **kwarg):
+
+        super(AddUserTransactionForm, self).__init__(*arg, **kwarg)
+        self.fields['transaction_type'].choices = TYPE_TRANSACTION
+        
+class SmilePayForm(forms.Form):
+    """SmilePay Roturl return form
+        Please check http://ssl.smse.com.tw/pay_gr/pay_help_paydc_roturl.ASP for format detail
+    """
+
+    Dcvc = forms.CharField(max_length=4,required=True)
+    Rvg2c = forms.CharField(max_length=2,required=True)
+    Classif = forms.CharField(max_length=2,required=True)
+    Od_sob= forms.CharField(required=False)
+    Data_id= forms.CharField(required=True)
+    Process_date= forms.CharField(required=False)
+    Process_time= forms.CharField(required=False)
+    Response_id= forms.CharField(required=False)
+    Auth_code= forms.CharField(required=False)
+    LastPan= forms.CharField(required=False)
+    Moneytype= forms.CharField(required=False)
+    Purchamt= forms.CharField(required=True)
+    Amount= forms.CharField(required=True)
+    Errdesc= forms.CharField(required=False)
+    Pur_name= forms.CharField(required=False)
+    Tel_number= forms.CharField(required=False)
+    Mobile_number= forms.CharField(required=False)
+    Address= forms.CharField(required=False)
+    Email= forms.CharField(required=False)
+    Invoice_num= forms.CharField(required=False)
+    Remark= forms.CharField(required=False)
+    Smseid= forms.CharField(required=False)
+
+    def __init__(self, *arg, **kwarg):
+        super(SmilePayForm, self).__init__(*arg, **kwarg)
+        
+class TransactionConfirmForm(forms.Form):
+    confirm_payment = forms.CharField(label = _('Payment Confirmation'),max_length=2,required=True)
+    amount = forms.IntegerField(required=True)
+    qid = forms.IntegerField(required=True)
+    def __init__(self, *arg, **kwarg):
+            super(TransactionConfirmForm, self).__init__(*arg, **kwarg)
+            
+class QueryTransactionForm(forms.Form):
+    """Query User transaction record by submitting this form
+    """
+
+    beginDate = forms.DateField(
+                                    label=_('Begin Date'),
+                                    help_text=_('for the transaction query begin date, format: DD/MM/YYYY'),
+                                    input_formats=['%Y/%m/%d',],
+                                    required=False,
+                                    initial= (datetime.date.today( ) - datetime.timedelta(days=120)),
+                                    widget=forms.DateInput(format='%Y/%m/%d')
+                                )
+    endDate = forms.DateField(
+                                    label=_('End Date'),
+                                    help_text=_('for the transaction query end date, format: DD/MM/YYYY'),
+                                    input_formats=['%Y/%m/%d',],
+                                    required=False,
+                                    initial=datetime.date.today,
+                                    widget=forms.DateInput(format='%Y/%m/%d')
+                                )
+
+    """   def clean_beginDate(self):
+        if 'beginDate' in  self.cleaned_data:
+            try:
+                beginDate = self.cleaned_data['beginDate'].strftime('%Y/%m/%d')
+                if beginDate == '':
+                    self.cleaned_data['beginDate']=(datetime.date.today( ) - datetime.timedelta(days=120)).strftime('%Y/%m/%d')
+                else:
+                    self.cleaned_data['beginDate'] = beginDate
+                return beginDate 
+            except:
+                del self.cleaned_data['beginDate']
+                raise forms.ValidationError('Please enter correct format begin date, format: MM/DD/YYYY')
+            
+    def clean_endDate(self):
+        if 'endDate' in  self.cleaned_data:
+            try:
+                endDate = self.cleaned_data['endDate'].strftime('%Y/%m/%d')
+                beginDate = self.cleaned_data['beginDate'].strftime('%Y/%m/%d')
+                if endDate == '':
+                    self.cleaned_data['endDate']=datetime.date.today( ).strftime('%Y/%m/%d')
+                elif Cdatetime.strptime(beginDate, "%Y/%m/%d") > Cdatetime.strptime(endDate, "%Y/%m/%d"):
+                    self.cleaned_data['endDate'] = beginDate
+                else:
+                    self.cleaned_data['endDate'] = endDate
+                return endDate 
+            except:
+                del self.cleaned_data['endDate']
+                raise forms.ValidationError('Please enter correct format end date, format: MM/DD/YYYY')
+    """
+    def __init__(self, *arg, **kwarg):
+            super(QueryTransactionForm, self).__init__(*arg, **kwarg)
+        
 class ChangeUserStatusForm(forms.Form):
     """form that allows moderators to change user's status
 
@@ -569,9 +797,12 @@ class AskForm(forms.Form, FormWithHideableFields):
     settings forbids anonymous asking
     """
     title  = TitleField()
+    subtitle  = SubTitleField()
+    passcode  = PassCodeField()
     text   = QuestionEditorField()
     tags   = TagNamesField()
     wiki = WikiField()
+    featurepic = FeaturePicField()
     ask_anonymously = forms.BooleanField(
         label = _('ask anonymously'),
         help_text = _(
@@ -586,7 +817,7 @@ class AskForm(forms.Form, FormWithHideableFields):
         ),
         required = False,
     ) 
-    cost = forms.IntegerField();
+    cost = forms.IntegerField(required = False,initial=20);
     openid = forms.CharField(required=False, max_length=255, widget=forms.TextInput(attrs={'size' : 40, 'class':'openid-input'}))
     user   = forms.CharField(required=False, max_length=255, widget=forms.TextInput(attrs={'size' : 35}))
     email  = forms.CharField(required=False, max_length=255, widget=forms.TextInput(attrs={'size' : 35}))
@@ -734,7 +965,7 @@ class RevisionForm(forms.Form):
     def __init__(self, post, latest_revision, *args, **kwargs):
         super(RevisionForm, self).__init__(*args, **kwargs)
         revisions = post.revisions.values_list(
-            'revision', 'author__username', 'revised_at', 'summary')
+            'revision', 'author__username', 'revised_at', 'summary', 'featurepic')
         date_format = '%c'
         self.fields['revision'].choices = [
             (r[0], u'%s - %s (%s) %s' % (r[0], r[1], r[2].strftime(date_format), r[3]))
@@ -746,6 +977,7 @@ class EditQuestionForm(forms.Form, FormWithHideableFields):
     text   = QuestionEditorField()
     tags   = TagNamesField()
     summary = SummaryField()
+    featurepic = FeaturePicField()
     wiki = WikiField()
     reveal_identity = forms.BooleanField(
         help_text = _(
@@ -756,7 +988,13 @@ class EditQuestionForm(forms.Form, FormWithHideableFields):
         label = _('reveal identity'),
         required = False,
     )
-
+    is_charged = forms.BooleanField(
+        label = _('This message is charged only for paid user'),
+        help_text = _(
+            'This option is set, the only paid user can see it'
+        ),
+        required = False,
+    ) 
     #todo: this is odd that this form takes question as an argument
     def __init__(self, *args, **kwargs):
         """populate EditQuestionForm with initial data"""
@@ -768,6 +1006,8 @@ class EditQuestionForm(forms.Form, FormWithHideableFields):
         self.fields['text'].initial = revision.text
         self.fields['tags'].initial = revision.tagnames
         self.fields['wiki'].initial = self.question.wiki
+        if self.question.featurepic != None:
+            self.fields['featurepic'].initial = '<img alt="" src="'+self.question.featurepic+'" />'
         #hide the reveal identity field
         if not self.can_stay_anonymous():
             self.hide_field('reveal_identity')

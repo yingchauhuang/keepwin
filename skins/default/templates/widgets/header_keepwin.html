@@ -1,0 +1,21 @@
+<!-- template header.html -->
+{% import "macros.html" as macros %}
+<div 
+    id="header"
+    class="without-logo"
+>
+    <div class="content-wrapper">
+		<a id="homeButton" href="{% url questions %}"></a>
+        <div id="userToolsNav">
+            {% include "widgets/user_navigation.html" %}
+        </div>
+        <div id="metaNav">
+            {% include "widgets/meta_nav_keepwin.html" %}
+        </div>
+		{% if request.user.is_authenticated() and request.user.can_post_user() %}
+			{% include "widgets/ask_button.html" %} 
+		{% endif %}
+        <div class="clean"></div>
+    </div>
+</div>
+<!-- end template header.html -->

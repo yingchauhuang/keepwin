@@ -416,7 +416,7 @@ def test_csrf_cookie_domain():
             'without the http(s):// prefix and without the port number.\n'
             'Examples: \n'
             "    CSRF_COOKIE_DOMAIN = '127.0.0.1'\n"
-            "    CSRF_COOKIE_DOMAIN = 'example.com'\n"
+            "    CSRF_COOKIE_DOMAIN = 'keepwin.com.tw'\n"
         )
     if csrf_cookie_domain == 'localhost':
         raise AskbotConfigError(

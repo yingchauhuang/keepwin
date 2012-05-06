@@ -1,0 +1,17 @@
+{% cache 600 "bloggers" contributors search_tags scope sort query context.page language_code %}
+<div id="index-category" class="group">
+		<div class="category">
+			<div class="row group">
+			  <h2 class="contributorback">{% trans %}Contributors{% endtrans %}</h2>
+			  {% spaceless %}
+			  {% for person in contributors %}
+				<div class="blogger">
+					{{ macros.gravatar(person,48) }} 
+					<h2>{{person.username|escape }}</h2>
+				</div>
+			  {% endfor %}
+			  {% endspaceless %}
+			</div>
+        </div>
+</div>
+{% endcache %}

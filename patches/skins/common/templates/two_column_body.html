@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body_class %}two-col{% endblock %}
+{% block body %}
+{% if settings.MAIN_SHOW_AD  %}
+   {% include "advertisement/headbarAD.html" %}
+{% endif %}
+<div id="ContentLeft">
+    {% block content%}
+    {% endblock%}
+</div>
+<div id="ContentRight">
+    {% block sidebar%}
+    {% endblock%}
+</div>
+{% endblock %}

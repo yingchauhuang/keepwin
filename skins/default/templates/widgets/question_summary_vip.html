@@ -1,0 +1,17 @@
+<!-- question_summary_twmode.html -->
+	<div class="title">
+		<a title="{{question.summary|striptags}}" href="{{ question.get_absolute_url() }}">{{question.get_question_title()|escape}}</a>
+	</div>
+	
+    <div class="userinfo">
+            <span class="item-count">{{question.score|humanize_counter}}</span>
+			{% trans cnt=question.score %}vote{% pluralize %}votes{% endtrans %}
+			{% if question.is_charged %}
+			<div class="charged">
+				<span class="item-charged">{{question.cost|humanize_counter}}</span>
+				{% trans %}Charged{% endtrans %}			
+			</div>
+			{% endif %}			
+    </div>  
+
+

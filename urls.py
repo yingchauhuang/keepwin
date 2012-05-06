@@ -70,7 +70,22 @@ urlpatterns = patterns('',
         views.readers.questions, 
         name='questions'
     ),
+                       
+     url(
+        # Note that all parameters, even if optional, are provided to the view. Non-present ones have None value.
+        (r'^%s' % _('questions_snapshot') +
+            r'(%s)?' % r'/scope:(?P<scope>\w+)' +
+            r'(%s)?' % r'/sort:(?P<sort>[\w\-]+)' +
+            r'(%s)?' % r'/query:(?P<query>[^/]+)' +  # INFO: question string cannot contain slash (/), which is a section terminator
+            r'(%s)?' % r'/tags:(?P<tags>[\w+.#,-]+)' + # Should match: const.TAG_CHARS + ','; TODO: Is `#` char decoded by the time URLs are processed ??
+            r'(%s)?' % r'/author:(?P<author>\d+)' +
+            r'(%s)?' % r'/page:(?P<page>\d+)' +
+        r'/$'),
 
+        views.readers.questions_snapshot, 
+        name='questions_snapshot'
+    ),
+                       
     # END main page urls
     
     url(
@@ -78,6 +93,26 @@ urlpatterns = patterns('',
         views.commands.api_get_questions,
         name = 'api_get_questions'
     ),
+    url(
+        r'^%s%s$' % (_('payment/'), _('Roturl/')), 
+        views.payment.Roturl, 
+        name='Payment_Roturl'
+    ),
+    url(
+        r'^%s%s$' % (_('payment/'), _('Roturltest/')), 
+        views.payment.Roturltest, 
+        name='Payment_Roturltest'
+    ),  
+    url(
+        r'^%s%s$' % (_('payment/'), _('ibon/')), 
+        views.payment.ibon, 
+        name='Payment_ibon'
+    ),       
+    url(
+        r'^%s(?P<amount>\d+)/%s$' % (_('payment/'), _('confirm/')), 
+        views.payment.confirm, 
+        name='Payment_confirm'
+    ),                 
     url(
         r'^%s%s$' % (_('questions/'), _('ask/')), 
         views.writers.ask, 

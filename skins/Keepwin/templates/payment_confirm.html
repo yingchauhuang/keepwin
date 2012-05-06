@@ -1,0 +1,211 @@
+{% import "macros.html" as macros %}
+{% extends "one_column_body.html" %}
+{% block content%}
+<script> 
+function check_A(sb){
+	var ch=true
+	if(!f1.Od_sob.value.length){
+		alert("請輸入消費項目!")
+		ch=false
+	}
+	else{
+		if(!f1.Amount.value.length){
+			alert("請輸入金額!")
+			ch=false
+		}
+		else{
+			if(!f1.Pur_Name.value.length){
+				alert("請輸入購買人姓名!")
+				ch=false
+			}
+			else{
+				if(!f1.Mobile_Number.value.length){
+					alert("請輸入行動電話!")
+					ch=false
+				}
+				else{
+					if(!f1.Tel_Number.value.length){
+						alert("請輸入聯絡電話!")
+						ch=false
+					}
+					else{
+						if(!f1.Address.value.length){
+						alert("請輸入送貨地址!")
+						ch=false
+						}
+						else{
+							if(!f1.Email.value.length){
+								alert("請輸入電子信箱!")
+								ch=false
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	if(ch){
+		f1.action="https://ssl.smse.com.tw/ezpos_test/mtmk_utf.asp?Pay_zg="+sb
+		f1.submit()
+	}
+} 
+
+function check_B(sb){
+	var ch=true
+	if(!f1.Shop_id.value.length){
+		alert("請輸入LifeET機碼!")
+		ch=false
+	}
+	else{
+		if(!f1.Od_sob.value.length){
+			alert("請輸入消費項目!")
+			ch=false
+		}
+		else{
+			if(!f1.Amount.value.length){
+				alert("請輸入金額!")
+				ch=false
+			}
+			else{
+				if(!f1.Pur_Name.value.length){
+					alert("請輸入購買人姓名!")
+					ch=false
+				}
+				else{
+					if(!f1.Mobile_Number.value.length){
+						alert("請輸入行動電話!")
+						ch=false
+					}
+					else{
+						if(!f1.Tel_Number.value.length){
+							alert("請輸入聯絡電話!")
+							ch=false
+						}
+						else{
+							if(!f1.Address.value.length){
+								alert("請輸入送貨地址!")
+								ch=false
+							}
+							else{
+								if(!f1.Email.value.length){
+									alert("請輸入電子信箱!")
+									ch=false
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	if(ch){
+		f1.action="/ezpos/MTMK.asp?Pay_zg="+sb
+		f1.submit()
+		}
+} 
+
+</script> 
+<form id="f1" method="POST" action="#" name="FrontPage_Form1">
+<table border="1" width="100%" bgcolor="#FFFFFF" cellspacing="0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bordercolor="#FFFFFF" height="319">
+<tr>
+  <td width="100%" colspan="2" height="15">
+	<p align="center"><font size="2" color="#FF0000">※ ※ ※&nbsp; 綠色區域為必填項目&nbsp;&nbsp;※ ※ ※</font></td>                                                                                                                                                                                      
+</tr>                                                                                                                                                                                      
+<tr>                                                                                                                                                                                      
+  <td width="28%" BGCOLOR="#CCFFCC" height="23">                                                                                                                                                                                      
+	<p align="right"><font size="2">消費項目：</font></td>                                                                                                                                                                                    
+  <td width="72%" BGCOLOR="#CCFFCC" height="23">                                            
+											  
+  <input  type="text" name="Od_sob" size="47" value="購買靈龜點數" maxlength="20"></td>                                                              
+</tr>                                                              
+<tr>                                                              
+  <td width="28%" BGCOLOR="#CCFFCC" height="23">                                                              
+	<p align="right"><font size="2">金額：</font></td>                                                         
+														   
+								 
+  <td width="72%" BGCOLOR="#CCFFCC" height="23">                                            
+											  
+  <input  type="text" name="Amount" size="17" value={{amount}}><font size="2">元                                                                                                                                                                                        
+	/ 台幣 ( 只能用數字 )</font></td>                                                                                                                                                                                       
+</tr>                                                                                                                                                                                       
+<tr>                                                                                                                                                                                       
+  <td width="28%" BGCOLOR="#CCFFCC" height="23">                                                                                                                                                                                       
+	<p align="right"><font size="2">購買人姓名：</font></td>                                                                                                                                                                                       
+  <td width="72%" BGCOLOR="#CCFFCC" height="23">                                              
+												
+  <input  type="text" name="Pur_Name" size="17" value={{user.username}} maxlength="20"></td>                                                      
+</tr>                                                      
+<tr>                                                      
+  <td width="28%" align="right" BGCOLOR="#CCFFCC" height="23">                                                      
+	<p align="right"><font size="2">行動電話：</font></td>                                                      
+  <td width="72%" BGCOLOR="#CCFFCC" height="23">                                              
+												
+  <input  type="text" name="Mobile_Number" size="17" value={{user.mobile}}>        
+		  
+  <font size="2">(如填寫錯誤將無法通過『防詐騙LifeET』的驗證)</font>        
+		  
+  </td>                                                     
+</tr>                                               
+												  
+<tr style="">                                                     
+  <td width="28%" align="right" align="right" BGCOLOR="#CCFFCC" height="23"><font size="2">聯絡電話：</font></td>                                                     
+  <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Tel_Number" size="17" value={{user.mobile}}></td>                                                     
+</tr>                                                
+													
+<tr style="">                                                     
+  <td width="28%" align="right" align="right" BGCOLOR="#CCFFCC" height="23"><font size="2">送貨地址：</font></td>                                                     
+  <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Address" size="47" value={{user.address}}></td>                                                    
+</tr>                                             
+													
+<tr style="">                                                    
+  <td width="28%" align="right" align="right" BGCOLOR="#CCFFCC" height="23"><font size="2">電子信箱：</font></td>                                                    
+  <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Email" size="47" value={{user.email}}></td>                                                    
+</tr>                                             
+													
+<tr style="">                                                    
+  <td width="28%" align="right" align="right" height="23"><font size="2">發票抬頭：</font></td>                                                    
+  <td width="72%" height="23"><input  type="text" name="Invoice_Name" size="31" value=""></td>                                                    
+</tr>                                             
+													 
+<tr style="">                                                                               
+  <td width="28%" align="right" align="right" height="23"><font size="2">統一編號：</font></td>                                                    
+  <td width="72%" height="23"><input  type="text" name="Invoice_Num" size="31" value=""></td>                                                    
+</tr>                                             
+													   
+<tr>                                                    
+  <td width="28%" align="right" valign="top" height="62"><font size="2">備註：</font></td>                                                    
+  <td width="72%" height="62"><textarea  rows="3" name="Remark" cols="48"></textarea></td>                                                    
+</tr>                                              
+												   
+<tr style="">                 
+  <td width="28%"  BGCOLOR="#CCFFCC" align="right" valign="top" height="13"><font size="2">LifeET 機碼：</font></td>                                                     
+  <td width="72%"  BGCOLOR="#CCFFCC" height="13"><input  type="text" name="Shop_id" size="17" value=""><font size="2">(如使用『防詐騙LifeET』                 
+	為必填)</font></td>                                                    
+</tr>                 
+<tr>                                                    
+  <td width="100%" align="right" colspan="2" height="1">                                                    
+	<p align="center">                                              
+	<input type="button" value="便利超商付費" name="B1"  onclick=check_A("3")>                                                
+	<input type="reset" value="重新輸入" name="B3">                                                   
+</td>                                                   
+</tr>                                                                                                   
+<tr>                                                     
+  <td width="100%" align="right" colspan="2" height="13">                                                           
+	<p align="center"><font size="2">您目前的 IP                                                          
+	位置：<b><font color="#FF0000">{{ip}}</font></b></font></td>                                                                         
+</tr>                                                         
+</table>                                                      
+<input type="hidden" name="Roturl" value="{{Roturl}}">                                                          
+<input type="hidden" name="Data_id" value="{{Data_id}}">                                                          
+<input type="hidden" name="Rvg2c" value="1">                                                          
+<input type="hidden" name="Dcvc" value="2644">                                                          
+<input type="hidden" name="Mobile_rvg" value="">                                                       
+<input type="hidden" name="Sms_rvg" value="">                                                          
+<input type="hidden" name="Mobile_pur" value="">                                                          
+<input type="hidden" name="Sms_pur" value="">                                                          
+<input type="hidden" name="Paytime" value="">                                              
+<input type="hidden" name="Deadline_date" value="">                                              
+<input type="hidden" name="Deadline_time" value="">                                                     
+<input type="hidden" name="Payzg" value="A">                                                         
+</form>           
+{% endblock %}

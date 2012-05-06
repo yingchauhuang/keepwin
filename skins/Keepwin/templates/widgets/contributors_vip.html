@@ -1,0 +1,23 @@
+{% cache 20 "contributors" contributors search_tags scope sort query context.page language_code %}
+{% from "macros.html" import twmode_blog_avatar %}
+  <div id="contrib-users" class="box">
+  <h2 class="contributorback">{% trans %}Contributors{% endtrans %}</h2>
+  {% spaceless %}
+  <table class="uiGrid uiGridCalc" cellspacing="0" cellpadding="0">
+  <tbody>
+	{% for person in contributors %}
+		<tr>
+			<td class="vTop">
+				{{ twmode_blog_avatar(person,64) }}
+			</td>
+			<td class="vTop">
+				{{ person.get_summary_html() }}
+			</td>
+		</tr>
+		</tr>
+   {% endfor %}
+  </tbody>
+  </table>
+  {% endspaceless %}
+  </div>
+{% endcache %}

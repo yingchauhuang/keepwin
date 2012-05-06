@@ -1,0 +1,29 @@
+	{% import "macros.html" as macros %}
+	<a name="tags"></a>
+	<div class="user-stats-table">
+        <table class="tags">
+            <tr>
+                <td valign="top">
+                    <ul id="ab-small-tags" class="tags">
+                    {% for tag in user_tags %}
+                        <li class="smalltag">
+                        {{ macros.tag_widget_vip(
+                            tag.name,
+                            html_tag = 'div',
+                            search_state = search_state,
+                            extra_content = ''
+                           )
+                        }}
+                        </li>
+                        {#
+                        {% if loop.index is divisibleby 10 %}
+                            </td>
+                            <td width="60"  valign="top">
+                        {% endif %}
+                        #}
+                    {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>

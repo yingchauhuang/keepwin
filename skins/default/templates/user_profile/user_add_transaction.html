@@ -1,0 +1,79 @@
+{% extends "user_profile/user.html" %}
+<!-- user_moderate.html -->
+{% block profilesection %}
+    {% trans %}Add Transaction{% endtrans %}
+{% endblock %}
+{% block usercontent %}
+<h3>
+{% if request.user == view_user %}
+    {% trans balance=view_user.balance %}Your current  balance is {{ balance}} USD{% endtrans %}
+{% else %}
+    {% trans  balance=view_user.balance %}User's current  balance is {{ balance}} USD{% endtrans %}
+{% endif %}
+</h3>
+{% if user_transaction_added %}
+    <p class="action-status"><span>{% trans %}Add User transaction to change balance{% endtrans %}</span></p>
+{% endif %}
+<form method="post">{% csrf_token %}
+    <input type="hidden" name="sort" value="moderate"/>
+    <table class="form-as-table">
+    {{ add_user_transaction_form.as_table() }}
+    </table>
+    <input type="submit" class="submit" name="add_transaction" value="{% trans %}Add Transaction{% endtrans %}" />
+</form>
+{% if request.user != view_user %}
+<hr/>
+<h3>{% trans username=view_user.username %}Send message to {{username}}{% endtrans %}</h3>
+<p>{% trans %}An email will be sent to the user with 'reply-to' field set to your email address. Please make sure that your address is entered correctly.{% endtrans %}</p>
+    {% if message_sent %}
+        <p class="action-status"><span>{% trans %}Message sent{% endtrans %}</span></p>
+    {% endif %}
+<form method="post">{% csrf_token %}
+    <input type="hidden" name="sort" value="moderate"/>
+    <div class="form-row-vertical">
+    <label for="id_subject_line">{{ send_message_form.subject_line.label}}</label>
+    {% if send_message_form.subject_line.errors %}
+        <p class="error">{{send_message_form.subject_line.errors|join(', ')}}</p>
+    {% endif %}
+    {{ send_message_form.subject_line}}
+    </div>
+    <div class="form-row-vertical">
+    <label for="id_body_text">{{ send_message_form.body_text.label}}</label>
+    {% if send_message_form.body_text.errors %}
+        <p class="error">{{send_message_form.body_text.errors|join(', ')}}</p>
+    {% endif %}
+    {{ send_message_form.body_text}}
+    </div>
+    <input type="submit" class="submit" name="send_message" value="{% trans %}Send message{% endtrans %}" />
+</form>
+{% endif %}
+{% endblock %}
+{% block endjs %}
+    <script type="text/javascript" >
+        $("#id_user_status_info").hide();
+        $("#id_user_status").change(function () {
+            var optionValue = $(this).attr('value');
+            if (optionValue == "d") {
+                $('#id_user_status_info').html("{% trans %}Administrators have privileges of normal users, but in addition they can assign/revoke any status to any user, and are exempt from the reputation limits.{% endtrans %}");
+                $('#id_user_status_info').show('slow');
+            } else if (optionValue == "m"){
+                $('#id_user_status_info').html("{% trans %}Moderators have the same privileges as administrators, but cannot add or remove user status of 'moderator' or 'administrator'.{% endtrans %}");
+                $('#id_user_status_info').show('slow');
+            } else if (optionValue == "a"){
+                $('#id_user_status_info').html("{% trans %}'Approved' status means the same as regular user.{% endtrans %}");
+                $('#id_user_status_info').show('slow');
+			} else if (optionValue == "w"){
+                $('#id_user_status_info').html("{% trans %}Watched -moderators and admins to easily see what those users are doing.{% endtrans %}");
+                $('#id_user_status_info').show('slow');
+            } else if (optionValue == "s"){
+                $('#id_user_status_info').html("{% trans %}Suspended users can only edit or delete their own posts.{% endtrans %}");
+                $('#id_user_status_info').show('slow');
+            } else if (optionValue == "b"){
+                $('#id_user_status_info').html("{% trans %}Blocked users can only login and send feedback to the site administrators.{% endtrans %}");
+                $('#id_user_status_info').show('slow');
+            } else {
+                $('#id_user_status_info').hide('slow');
+            }
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,40 @@
+	{% import "macros.html" as macros %}
+	<a name="badges"></a>
+    {% spaceless %}
+    <h2>{% trans counter=total_badges %}<span class="count">{{counter}}</span> Badge{% pluralize %}<span class="count">{{counter}}</span> Badges{% endtrans %}</h2>
+    {% endspaceless %}
+    <div class="user-stats-table badges">
+        <table>
+            <tr>
+                <td style="line-height:35px">
+                    {% for badge, badge_user_awards in badges %}
+                        <a
+                            href="{{badge.get_absolute_url()}}"
+                            title="{% trans description=badge.description %}{{description}}{% endtrans %}"
+                            class="medal"
+                        ><span class="{{ badge.css_class }}">&#9679;</span>&nbsp;{% trans name=badge.name %}{{name}}{% endtrans %}
+                        </a>&nbsp;
+                        <span class="tag-number">&#215;
+                            <span class="badge-context-toggle">{{ badge_user_awards|length|intcomma }}</span>
+                        </span>
+                        <ul id="badge-context-{{ badge.id }}" class="badge-context-list" style="display:none">
+                            {% for award in badge_user_awards %}
+                                {% if award.content_object_is_post %}
+                                <li>
+                                    <a
+                                        title="{{ award.content_object.get_snippet()|collapse }}"
+                                        href="{{ award.content_object.get_absolute_url() }}"
+                                    >{% if award.content_type.post_type == 'answer' %}{% trans %}Answer to:{% endtrans %}{% endif %} {{ award.content_object.thread.title }}</a>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        {% if loop.index is divisibleby 3 %}
+                            </td></tr>
+                            <tr><td style="line-height:35px">
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    </div>

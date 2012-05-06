@@ -1,0 +1,12 @@
+{% import "macros.html" as macros %}
+{# cache 0 "newest" questions query context.page language_code #}
+
+<!-- newest_keepwin.html -->
+<div id="wrap">
+  <ul id="mycarousel" class="jcarousel-skin-tango">
+    {% for person in contributors %}
+		<li>{{ person.user_summary_html() }}</li>
+	{% endfor %}
+  </ul>
+
+</div>
