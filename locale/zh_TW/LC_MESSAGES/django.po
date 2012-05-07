@@ -5541,13 +5541,11 @@ msgstr ""
 "<strong>每天通知我</strong> 只要有新的回應或更新 "
 
 #: skins/default/templates/question/subscribe_by_email_prompt.html:11
-#, fuzzy
 msgid "Notify me weekly when there are any new answers"
 msgstr ""
 "<strong>每週通知我</strong> 只要有新的回應或更新 "
 
 #: skins/default/templates/question/subscribe_by_email_prompt.html:13
-#, fuzzy
 msgid "Notify me immediately when there are any new answers"
 msgstr ""
 "<strong>立刻通知我</strong> 只要有新的回應或更新 "
@@ -6298,6 +6296,22 @@ msgstr "徽章:"
 msgid "logout"
 msgstr "登出"
 
+#: skins/default/templates/widgets/header.html:8
+msgid "Register"
+msgstr "會員註冊"
+
+#: skins/default/templates/widgets/header.html:8
+msgid "Announce"
+msgstr "公告欄"
+
+#: skins/default/templates/widgets/header.html:8
+msgid "Advertise"
+msgstr "我要刊登廣告"
+
+#: skins/default/templates/widgets/header.html:8
+msgid "Editor Post"
+msgstr "版主發文"
+
 #: skins/default/templates/widgets/user_navigation.html:10
 msgid "login"
 msgstr "登入"
@@ -6498,6 +6512,11 @@ msgstr ""
 #: views/meta.py:94
 msgid "We look forward to hearing your feedback! Please, give it next time :)"
 msgstr ""
+
+#: views/readers.py:577
+#, python-format
+msgid "This is a private answer"
+msgstr "這是私密留言, 只有版主跟回應的作者才看到 !!!!"
 
 #: views/readers.py:152
 #, python-format

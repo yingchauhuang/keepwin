@@ -1,0 +1,103 @@
+{% if edit_title %}
+    <div class="form-item">
+        <label for="id_title" ><h3>{{ post_form.title.label_tag() }}:</h3></label> <span class="form-error"></span><br/>
+        {{ post_form.title }} {{ post_form.title.errors }}
+        <div class="title-desc">
+            {{ post_form.title.help_text }}
+        </div>
+    </div>
+{% endif %}
+<!--
+<div id="wmd-button-bar" class="wmd-panel"></div>
+-->
+<div class="form-item">
+	<label for="text_id">
+                <h3>{% trans %}Question Text:{% endtrans %}</h3>
+                {% trans %}Edit your question here{% endtrans %}
+    </label>
+    {{ post_form.text }}{# this element is resizable and will be wrapped by js #}
+    <label for="editor" class="form-error">{{ post_form.text.errors }}</label>
+</div>
+<div class="form-item">
+	<label for="feature_pic">
+                <h3>{% trans %}Feature Picture:{% endtrans %}</h3>
+                {% trans %}Add a picture for your question{% endtrans %}
+    </label>
+	{{ post_form.featurepic }}
+</div>
+{# need label element for resizable input, b/c form validation won't find span #}
+{% if post_type == 'question' %}
+    <div class="form-item">
+        {% if mandatory_tags  %}
+            <label for="id_tags">
+                <h4>{% trans %}tags{% endtrans %}</h4>{% trans %}one of these is required{% endtrans %}
+            </label>
+            {{
+                tag_list_widget(
+                    mandatory_tags,
+                    make_links = False,
+                    css_class = 'clearfix'
+                )
+            }}
+        {% else %}
+            <label for="id_tags">
+                <h3>{% trans %}tags{% endtrans %}:</h3>{% trans %}(required){% endtrans %}
+            </label>
+        {% endif %}
+        <span class="form-error">{{ post_form.tags.errors }}</span><br/>
+        {{ post_form.tags }}
+        <div class="title-desc">
+            {{ post_form.tags.help_text }}
+        </div>
+    </div>
+{% endif %}
+<!--
+{% if 'summary' in post_form['fields'] %}
+    <div class="form-item">
+        <strong>{{ post_form.summary.label_tag() }}</strong> <br/>
+        {{ post_form.summary }}
+        <div class="title-desc">
+            {{ post_form.summary.help_text }}
+        </div>
+        <div class="form-error" >{{ post_form.summary.errors }}</div>
+    </div>
+{% endif %}
+<div class="preview-toggle">
+    <span 
+        id="pre-collapse" 
+        title="{% trans %}Toggle the real time Markdown editor preview{% endtrans %}"
+    >
+        [{% trans %}hide preview{% endtrans %}]
+    </span>
+</div>
+<div id="previewer" class="wmd-preview"></div>
+-->
+<script type='text/javascript' src='{{"/ckeditor/ckeditor/ckeditor.js"|media}}'></script>
+<script>
+function initCKEDITOR()
+{
+	var editor = CKEDITOR.replace( 'editor' ,{skin:'v2',language:'zh',filebrowserBrowseUrl: '/m/common/media/filemanager/index.html',});
+	//var editor1 = CKEDITOR.replace( 'featurepic', { skin:'v2',language:'zh',filebrowserBrowseUrl: '/m/common/media/filemanager/index.html',} );
+	var editor1 = CKEDITOR.replace( 'featurepic', { skin:'v2',language:'zh',filebrowserBrowseUrl: '/m/common/media/filemanager/index.html',toolbar :[[ 'Image','Flash'],[ 'UIColor' ]],} );
+}
+/* for Mozilla/Opera9 */
+if (document.addEventListener) {
+  document.addEventListener("DOMContentLoaded", initCKEDITOR, false);
+}
+else
+{
+	if (/WebKit/i.test(navigator.userAgent)) { // sniff
+	  var _timer = setInterval(function() {
+		if (/loaded|complete/.test(document.readyState)) {
+		  initCKEDITOR(); // call the onload handler
+		}
+	  }, 10);
+	}
+	else
+	{
+		/* for other browsers */
+		window.onload = initCKEDITOR;
+	}
+}
+
+</script>

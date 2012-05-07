@@ -988,8 +988,8 @@ def user_transaction(request, user, context):
                         #re-direct to the question which user paid for   
                         #add the transaction to author
                         author = question.author
-                        receive = int(amount * askbot_settings.PERCENT_FOR_AUTHOR/100)
-                        toforum = int(amount * askbot_settings.PERCENT_FOR_FORUM/100)
+                        receive = decimal(amount * askbot_settings.PERCENT_FOR_AUTHOR/100)
+                        toforum = decimal(amount * askbot_settings.PERCENT_FOR_FORUM/100)
                         comment = _('Receive')+unicode(receive)+_('Dollars')+_(' Puchase from:')+user.username
                         user.add_user_transaction(
                                         user = author,

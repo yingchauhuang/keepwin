@@ -53,11 +53,11 @@ class Transaction(models.Model):
     We keep some history data for user transaction
     """
     user = models.ForeignKey(User)
-    income = models.SmallIntegerField(default=0)
-    outcome = models.SmallIntegerField(default=0)
+    income = models.DecimalField(default=0,max_digits=6, decimal_places=2)
+    outcome = models.DecimalField(default=0,max_digits=6, decimal_places=2)
     transaction_type = models.SmallIntegerField(choices = twmodeconst.TYPE_TRANSACTION)
     trans_at = models.DateTimeField(default=datetime.datetime.now)
-    balance=models.PositiveIntegerField(default=0)
+    balance=models.DecimalField(default=0,max_digits=8, decimal_places=2)
     #todo: remove this denorm question field when Post model is set up
     question = models.ForeignKey('Post', null=True)
     #amount = models.SmallIntegerField(default=0)

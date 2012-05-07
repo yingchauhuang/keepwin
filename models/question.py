@@ -288,7 +288,7 @@ class ThreadManager(models.Manager):
         # INFO: Evaluate this query to avoid subquery in the subsequent query below (At least MySQL can be awfully slow on subqueries)
         from askbot.conf import settings as askbot_settings
         avatar_limit = askbot_settings.SIDEBAR_MAIN_AVATAR_LIMIT
-        contributors = User.objects.all().order_by('-views')[:avatar_limit]
+        contributors = User.objects.filter(status__in=['d','m']).order_by('-views')[:avatar_limit]
 
         # Get the user latest post question
                          
@@ -448,8 +448,13 @@ class Thread(models.Model):
             if user.is_administrator() or user.is_moderator():
                 return self.posts.get_answers()
             else:
-                question = self.posts.get_questions()[0]
-                question_user = question.author_id
+                #question = self.posts.get_questions()[0]
+                #question_user = question.author_id
+                return self.posts.get_answers().filter(
+                               ( models.Q(deleted = False) | models.Q(author = user) \
+                                | models.Q(deleted_by = user))
+                            )
+                """        
                 if (question_user == user.id):
                     return self.posts.get_answers().filter(
                                ( models.Q(deleted = False) | models.Q(author = user) \
@@ -460,6 +465,7 @@ class Thread(models.Model):
                                ( models.Q(deleted = False) | models.Q(author = user) \
                                 | models.Q(deleted_by = user))
                             )
+                """
 
     def get_similarity(self, other_thread = None):
         """return number of tags in the other question
