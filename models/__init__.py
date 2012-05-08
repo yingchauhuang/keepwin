@@ -1441,6 +1441,9 @@ def user_edit_question(
                     force=False, #if True - bypass the assert
                     featurepic=None,
                     is_charged=False,
+                    cost=0,
+                    subtitle=None,
+                    passcode=None,
                 ):
     if force == False:
         self.assert_can_edit_question(question)
@@ -1459,6 +1462,9 @@ def user_edit_question(
         #cost = cost, 
         featurepic=featurepic,
         is_charged=is_charged,
+        cost=cost,
+        subtitle=subtitle,
+        passcode=passcode,
     )
     award_badges_signal.send(None,
         event='edit_question',

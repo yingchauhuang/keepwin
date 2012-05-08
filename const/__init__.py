@@ -71,6 +71,14 @@ PAGE_SIZE_CHOICES = (('6','6'),('9','9'),('10', '10',), ('30', '30',), ('50', '5
 ANSWERS_PAGE_SIZE = 10
 QUESTIONS_PER_PAGE_USER_CHOICES = ((10, u'10'), (30, u'30'), (50, u'50'),)
 
+
+CONTENT_PRENSENTAION_STYLE_TEXT = 1
+CONTENT_PRENSENTAION_STYLE_HTML = 2
+CONTENT_PRENSENTAION_STYLE = (
+    (CONTENT_PRENSENTAION_STYLE_TEXT, _('Original Content User Post')),
+    (CONTENT_PRENSENTAION_STYLE_HTML, _('The content after filter some error tags and wordings')),
+)
+
 UNANSWERED_QUESTION_MEANING_CHOICES = (
     ('NO_ANSWERS', _('Question has no answers')),
     ('NO_ACCEPTED_ANSWERS', _('Question has no accepted answers')),

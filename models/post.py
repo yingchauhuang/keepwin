@@ -1292,7 +1292,8 @@ class Post(models.Model):
 
     def _question__apply_edit(self, edited_at=None, edited_by=None, title=None,\
                               text=None, comment=None, tags=None, wiki=False,\
-                              edit_anonymously = False, featurepic=None, is_charged=False, ):
+                              edit_anonymously = False, featurepic=None, is_charged=False,\
+                              cost=0, subtitle=None,passcode=None,):
 
         latest_revision = self.get_latest_revision()
         #a hack to allow partial edits - important for SE loader
@@ -1314,6 +1315,7 @@ class Post(models.Model):
         self.last_edited_by = edited_by
         self.featurepic = featurepic
         self.is_charged = is_charged
+        self.cost = cost
         self.text = text
         self.is_anonymous = edit_anonymously
         self.featurepic = self._check_and_reset_featurepic(featurepic)
@@ -1326,6 +1328,8 @@ class Post(models.Model):
             self.thread.update_tags(tagnames = tags, user = edited_by, timestamp = edited_at)
 
         self.thread.title = title
+        self.thread.subtitle = subtitle
+        self.thread.passcode = passcode
         self.thread.tagnames = tags
         self.thread.save()
 

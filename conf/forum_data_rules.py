@@ -298,6 +298,21 @@ settings.register(
 )
 
 settings.register(
+    livesettings.BooleanValue(
+        FORUM_DATA_RULES,
+        'PRESENT_ORIGINAL_POST',
+        default=False,
+        description=_('Post user original post. That is, there is no filter about post content'),
+        help_text=_(
+            'Check to disable the "filter" behavior of the content. '
+            'This may be useful if you want to present the user original post '
+            'The default vaue is False. That is, user post will be filter.'
+            'All the bad word and dangerous will be removed.'
+        )
+    )
+)
+
+settings.register(
     livesettings.StringValue(
         FORUM_DATA_RULES,
         'UNANSWERED_QUESTION_MEANING',

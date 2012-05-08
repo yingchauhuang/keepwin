@@ -20,7 +20,11 @@
                 {% include "question/question_author_info.html" %}
                 {# ==== END: "question/question_author_info.html" #}
             </div>
-            {{ question.html }}
+			{% if settings.PRESENT_ORIGINAL_POST %}
+				{{ question.text }}
+			{% else %}
+				{{ question.html }}
+			{% endif %}
         </div>
         <div id="question-controls" class="post-controls">
             {# ==== START: include "question/question_controls.html" #}

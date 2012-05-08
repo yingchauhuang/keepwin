@@ -27,7 +27,7 @@ from django.conf import settings
 import askbot
 from askbot import exceptions
 from askbot.utils.diff import textDiff as htmldiff
-from askbot.forms import AnswerForm, ShowQuestionForm
+from askbot.forms import AnswerForm, ShowQuestionForm,PassCodeForm
 from askbot import models
 from askbot import schedules
 from askbot.models.badges import award_badges_signal
@@ -40,7 +40,7 @@ from askbot.templatetags import extra_tags
 import askbot.conf
 from askbot.conf import settings as askbot_settings
 from askbot.skins.loaders import render_into_skin, get_template #jinja2 template loading enviroment
-
+from django.forms.util import ErrorList
 # used in index page
 #todo: - take these out of const or settings
 from askbot.models import Post, Vote
@@ -461,7 +461,7 @@ def question(request, id):#refactor - long subroutine. display question body, an
     show_comment = form.cleaned_data['show_comment']
     show_page = form.cleaned_data['show_page']
     answer_sort_method = form.cleaned_data['answer_sort_method']
-
+    
     # Handle URL mapping - from old Q/A/C/ URLs to the new one
     if not models.Post.objects.get_questions().filter(id=id).exists() and models.Post.objects.get_questions().filter(old_question_id=id).exists():
         old_question = models.Post.objects.get_questions().get(old_question_id=id)
@@ -668,6 +668,20 @@ def question(request, id):#refactor - long subroutine. display question body, an
             user_question_vote = int(votes[0])
         except IndexError:
             user_question_vote = 0
+    #add by YC
+    passcode_form =PassCodeForm() 
+    if (thread.passcode != ''):
+        if request.method == 'POST':
+            passcode_form = PassCodeForm(request.POST)
+            if passcode_form.is_valid():
+                passcode=passcode_form.cleaned_data['passcode'] 
+                if (thread.passcode == passcode):
+                    thread.passcode = '' 
+                else:
+                    passcode_form._errors['passcode'] =  ErrorList([_("error pass code here")])
+        else:
+            if (question_post.author_id == request.user.id):
+                thread.passcode = '' 
 
     data = {
         'page_class': 'question-page',
@@ -688,6 +702,7 @@ def question(request, id):#refactor - long subroutine. display question body, an
         'show_post': show_post,
         'show_comment': show_comment,
         'show_comment_position': show_comment_position,
+        'form': passcode_form
     }
 
     return render_into_skin('question.html', data, request)

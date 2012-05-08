@@ -391,6 +391,9 @@ def edit_question(request, id):
                             edit_anonymously = is_anon_edit,
                             featurepic = form.cleaned_data['featurepic'],
                             is_charged = form.cleaned_data['is_charged'],
+                            cost = form.cleaned_data['cost'],
+                            subtitle = form.cleaned_data['subtitle'],
+                            passcode = form.cleaned_data['passcode'],
                         )
                     return HttpResponseRedirect(question.get_absolute_url())
         else:

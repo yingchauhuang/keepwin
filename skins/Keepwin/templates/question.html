@@ -7,7 +7,6 @@
 {% block keywords %}{{thread.tagname_meta_generator()}}{% endblock %}
 {% block forestyle %}
     <link rel="canonical" href="{{settings.APP_URL}}{{question.get_absolute_url()}}" />
-    <link rel="stylesheet" type="text/css" href="{{'/js/wmd/wmd.css'|media}}" />
 {% endblock %}
 {% block forejs %}
     <script type="text/javascript">
@@ -156,13 +155,20 @@
     </script>
 {% endblock %}
 {% block content %}
-    {% if is_cacheable %}
-        {% cache long_time "thread-content-html" thread.id %}
-            {% include "question/content.html" %}
-        {% endcache %}
-    {% else %}
-        {% include "question/content.html" %}
-    {% endif %}
+	{% if thread.passcode == '' %}
+		{% if is_cacheable %}
+			{% cache long_time "thread-content-html" thread.id %}
+				{% include "question/content.html" %}
+			{% endcache %}
+		{% else %}
+			{% include "question/content.html" %}
+		{% endif %}
+	{% else %}
+		<form id="fmanswer" method="post" >{% csrf_token %}
+			<label for="passcode_id"><h3>{{form.passcode.label}}<span class="form-error">{{form.passcode.errors}}</span></h3></label><BR>{{form.passcode}}<BR>
+			<input type="submit" value="{% trans %}Submit Pass Code{% endtrans %}" class="submit after-editor" style="float:left"/>
+		</form>
+	{% endif %}
 {% endblock %}
 {% block sidebar %}
     {% include "question/sidebar.html" %}

@@ -7,6 +7,10 @@
         </div>
     </div>
 {% endif %}
+{% if post_type == 'question' %}			
+	<label for="subtitle_id"><h3>{{post_form.subtitle.label}}</h3></label><span class="form-error">{{post_form.subtitle.errors}}</span><BR>{{post_form.subtitle}}<BR><BR>
+	<label for="passcode_id"><h3>{{post_form.passcode.label}}</h3></label><span class="form-error">{{post_form.passcode.errors}}</span><BR>{{post_form.passcode}}<BR>
+{% endif %}
 <!--
 <div id="wmd-button-bar" class="wmd-panel"></div>
 -->

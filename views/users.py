@@ -13,7 +13,7 @@ import datetime
 from datetime import datetime as Cdatetime
 import logging
 import operator
-
+from decimal import *
 from django.db.models import Count, Q
 from django.conf import settings as django_settings
 from django.contrib.auth.decorators import login_required
@@ -988,8 +988,10 @@ def user_transaction(request, user, context):
                         #re-direct to the question which user paid for   
                         #add the transaction to author
                         author = question.author
-                        receive = decimal(amount * askbot_settings.PERCENT_FOR_AUTHOR/100)
-                        toforum = decimal(amount * askbot_settings.PERCENT_FOR_FORUM/100)
+                        per_author = Decimal(askbot_settings.PERCENT_FOR_AUTHOR)
+                        per_forum = Decimal(askbot_settings.PERCENT_FOR_FORUM)
+                        receive = Decimal(amount) * per_author/100
+                        toforum = Decimal(amount) * per_forum/100
                         comment = _('Receive')+unicode(receive)+_('Dollars')+_(' Puchase from:')+user.username
                         user.add_user_transaction(
                                         user = author,

@@ -33,6 +33,7 @@
             {% endif %}
 			{% if settings.ENABLE_CHARGED_CONTENT %}
 				{{ macros.checkbox_in_div(form.is_charged) }}
+				{{ macros.Integer_in_div(form.cost) }}
 			{% endif %}
         </div>
         <input type="submit" value="{% trans %}Save edit{% endtrans %}" class="submit" />&nbsp;

@@ -246,6 +246,14 @@ msgid "Post Your Answer"
 msgstr "提出您的回應"
 
 #: skins\default\templates\question.html:140
+msgid "Submit Pass Code"
+msgstr "請輸入正確的通行密碼, 您才可以閱讀以下文章!!!"
+
+#: skins\default\templates\question.html:140
+msgid "error pass code here"
+msgstr "您輸入的通行碼不正確 !!!"
+
+#: skins\default\templates\question.html:140
 msgid "post a comment"
 msgstr "提出評論"
 
@@ -1050,19 +1058,19 @@ msgstr "同儕壓力: 自己刪除掉的內容也至少獲得幾次『噓』 "
 
 #: conf/badges.py:41
 msgid "Teacher: minimum upvotes for the answer"
-msgstr "老師: 解答最少要獲得幾次『讚』"
+msgstr "老師: 回應最少要獲得幾次『讚』"
 
 #: conf/badges.py:50
 msgid "Nice Answer: minimum upvotes for the answer"
-msgstr "妙答: 解答最少要獲得幾次『讚』"
+msgstr "妙答: 回應最少要獲得幾次『讚』"
 
 #: conf/badges.py:59
 msgid "Good Answer: minimum upvotes for the answer"
-msgstr "好回應: 解答最少要獲得幾次『讚』"
+msgstr "好回應: 回應最少要獲得幾次『讚』"
 
 #: conf/badges.py:68
 msgid "Great Answer: minimum upvotes for the answer"
-msgstr "精闢答案: 解答最少要獲得幾次『讚』"
+msgstr "精闢答案: 回應最少要獲得幾次『讚』"
 
 #: conf/badges.py:77
 msgid "Nice Question: minimum upvotes for the question"
@@ -1226,7 +1234,7 @@ msgstr "設定『定期通知還未回覆看法』通知的最多通知次數"
 #: conf/email.py:168
 #, fuzzy
 msgid "Send periodic reminders to accept the best answer"
-msgstr "定期送出看法解答,方便提問者確認最佳解答"
+msgstr "定期送出看法回應,方便發表者確認最佳回應"
 #: conf/email.py:170
 msgid ""
 "NOTE: in order to use this feature, it is necessary to run the management "
@@ -1243,11 +1251,11 @@ msgstr "從開始送出『定期通知還未回覆看法』通知,已經過了�
 msgid ""
 "How often to send accept answer reminders (in days between the reminders "
 "sent)."
-msgstr "設定送出『提問者確認最佳解答』提醒的頻率(每個通知空幾日?)"
+msgstr "設定送出『發表者確認最佳回應』提醒的頻率(每個通知空幾日?)"
 
 #: conf/email.py:206
 msgid "Max. number of reminders to send to accept the best answer"
-msgstr "設定『提問者確認最佳解答』通知的最多通知次數"
+msgstr "設定『發表者確認最佳回應』通知的最多通知次數"
 
 #: conf/email.py:218
 msgid "Require email verification before allowing to post"
@@ -1600,7 +1608,7 @@ msgstr "一次要列出看法的數目"
 #: conf/forum_data_rules.py:255
 #, fuzzy
 msgid "What should \"unanswered question\" mean?"
-msgstr "無未解答看法"
+msgstr "無未回應看法"
 #: conf/license.py:13
 msgid "Content LicensContent License"
 msgstr ""
@@ -1891,7 +1899,7 @@ msgid "Loss for voter for canceling of answer acceptance"
 msgstr "看法提出者取消接受回應, 喪失"
 #: conf/reputation_changes.py:88
 msgid "Loss for author whose answer was \"un-accepted\""
-msgstr "提問者對於您的回應『不接受』, 喪失"
+msgstr "發表者對於您的回應『不接受』, 喪失"
 #: conf/reputation_changes.py:98
 msgid "Loss for giving a downvote"
 msgstr "收到一個『噓』, 喪失"
@@ -2373,7 +2381,7 @@ msgstr "透過社群網站分享內容"
 #: conf/social_sharing.py:20
 #, fuzzy
 msgid "Check to enable sharing of questions on Twitter"
-msgstr "發佈我的提問到我的 Twitter "
+msgstr "發佈我的發表到我的 Twitter "
 
 #: conf/social_sharing.py:29
 msgid "Check to enable sharing of questions on Facebook"
@@ -2505,7 +2513,7 @@ msgstr "設定 超過 被標示不洽當內容的數目 後自動刪除 的數�
 msgid ""
 "Minimum days to accept an answer, if it has not been accepted by the "
 "question poster"
-msgstr "若沒有被提問者接受為正確答案, 超過幾天後自動接受為正確答案"
+msgstr "若沒有被發表者接受為正確答案, 超過幾天後自動接受為正確答案"
 
 #: conf/widgets.py:13
 msgid "Embeddable widgets"
@@ -2626,7 +2634,7 @@ msgstr ""
 #: const/__init__.py:78
 #, fuzzy
 msgid "Question has no answers"
-msgstr "這個問題還沒有任何解答"
+msgstr "這個問題還沒有任何回應"
 #: const/__init__.py:79
 msgid "Question has no accepted answers"
 msgstr "這個問題還沒有接受的答案"
@@ -3289,7 +3297,7 @@ msgstr ""
 #: management/commands/send_accept_answer_reminders.py:62
 #, fuzzy
 msgid "Please accept the best answer for this question:"
-msgstr "這看法的第一個解答者"
+msgstr "這看法的第一個回應者"
 #: management/commands/send_accept_answer_reminders.py:64
 #, fuzzy
 msgid "Please accept the best answer for these questions:"
@@ -3314,14 +3322,14 @@ msgstr[1] ""
 
 #: management/commands/send_email_alerts.py:438
 msgid "new question"
-msgstr "提問新看法"
+msgstr "發表新看法"
 #: management/commands/send_email_alerts.py:455
 #, fuzzy
 msgid""
 "Please visit the askbot and see what's new! Could you spread the word about "
 "it - can somebody you know help answering those questions or benefit from "
 "posting one?"
-msgstr " 請參觀論壇, 觀看新功能介紹! 並廣為宣傳 - 能否解答或從中獲益?"
+msgstr " 請參觀論壇, 觀看新功能介紹! 並廣為宣傳 - 能否回應或從中獲益?"
 
 #: management/commands/send_email_alerts.py:465
 #, fuzzy
@@ -3366,7 +3374,7 @@ msgstr[1] ""
 #: middleware/forum_mode.py:31
 #, fuzzy, python-format
 msgid "Please log in to use %s"
-msgstr "請登入 以進行提問! "
+msgstr "請登入 以進行發表! "
 
 
 #: models/badges.py:129
@@ -3469,7 +3477,7 @@ msgstr "常見看法"
 
 #: models/badges.py:418 models/badges.py:429 models/badges.py:441
 msgid "Asked a question with %(views)s views"
-msgstr "提問的看法被瀏覽超過 %(views)s 次"
+msgstr "發表的看法被瀏覽超過 %(views)s 次"
 
 #: models/badges.py:425
 msgid "Notable Question"
@@ -3742,7 +3750,7 @@ msgstr "這論壇"
 
 #: models/user.py:265
 msgid "Questions that I asked"
-msgstr "提問看法"
+msgstr "發表看法"
 
 #: models/user.py:266
 msgid "Questions that I answered"
@@ -4495,12 +4503,12 @@ msgstr ""
 #: skins/default/templates/badges.html:45
 msgid ""
 "silver badge: occasionally awarded for the very high quality contributions"
-msgstr "銀牌徽章: 針對罕見高水準的貢獻及解答所頒發的徽章"
+msgstr "銀牌徽章: 針對罕見高水準的貢獻及回應所頒發的徽章"
 
 #: skins/default/templates/badges.html:49
 msgid "silver badge description"
 msgstr ""
-"銀牌徽章: 針對罕見高水準的貢獻及解答所頒發的徽章"
+"銀牌徽章: 針對罕見高水準的貢獻及回應所頒發的徽章"
 
 #: skins/default/templates/badges.html:52
 msgid "bronze badge: often given as a special honor"
@@ -4950,7 +4958,7 @@ msgstr "任何擁有大於 &gt;%(wiki_min_rep)s 積分的人都歡迎來改進�
 
 #: skins/default/templates/macros.html:89
 msgid "asked"
-msgstr "提問"
+msgstr "發表"
 
 #: skins/default/templates/macros.html:91
 msgid "answered"
@@ -5429,10 +5437,10 @@ msgstr ""
 msgid "<span class='big strong'>You are welcome to answer your own question</span>, but please make sure to give an <strong>answer</strong>. Remember that you can always <strong>revise your original question</strong>. Please <strong>use comments for discussions</strong>  and <strong>please don't forget to vote :)</strong> for the answers that you liked (or perhaps did not like)!"
 msgstr ""
 "<span class='big strong'>您也可以回應自己提出的看法</span>, "
-"但是請真正給出 <strong>解答</strong>. 當然您可以 "
+"但是請真正給出 <strong>回應</strong>. 當然您可以 "
 "隨時 <strong>修正您的看法</strong>. 修正時請給出 "
-"<strong>評論來幫助討論</strong>  並 不要忘記針對您欣賞的解答"
-"(或者不喜歡的解答)<strong>給出評分 :) </strong> ! "
+"<strong>評論來幫助討論</strong>  並 不要忘記針對您欣賞的回應"
+"(或者不喜歡的回應)<strong>給出評分 :) </strong> ! "
 
 
 #: skins/default/templates/question/new_answer_form.html:36
@@ -5441,7 +5449,7 @@ msgstr ""
 "<span class='big strong'>請針對您的評論及討論提出接續的回應</span>."
 "若您要針對某個評論或討論發表評論, 只要使用 <strong>張貼評論</strong>"
 "功能. 而且,請不要忘了<strong>給出您的評分</strong> "
-"- 這方便大家快速找到最佳問題及解答! "
+"- 這方便大家快速找到最佳問題及回應! "
 
 
 #: skins/default/templates/question/new_answer_form.html:43
@@ -6230,7 +6238,7 @@ msgstr "徽章"
 
 #: skins/default/templates/widgets/question_edit_tips.html:3
 msgid "question tips"
-msgstr "提問小秘訣"
+msgstr "發表小秘訣"
 
 #: skins/default/templates/widgets/question_edit_tips.html:5
 msgid "please ask a relevant question"

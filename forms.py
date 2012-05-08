@@ -283,7 +283,7 @@ class SubTitleField(forms.CharField):
 class PassCodeField(forms.CharField):
     def __init__(self, *args, **kwargs):
         super(PassCodeField, self).__init__(*args, **kwargs)
-        self.required = True
+        self.required = False
         self.widget = forms.TextInput(
                                 attrs={'size' : 10, 'autocomplete' : 'off'}
                             )
@@ -486,6 +486,9 @@ class DumpUploadForm(forms.Form):
     """
     dump_file = forms.FileField()
 
+class PassCodeForm(forms.Form):    
+    passcode  = PassCodeField()
+
 class ShowQuestionForm(forms.Form):
     """Cleans data necessary to access answers and comments
     by the respective comment or answer id - necessary
@@ -497,7 +500,7 @@ class ShowQuestionForm(forms.Form):
     comment = forms.IntegerField(required = False)
     page = forms.IntegerField(required = False)
     sort = forms.CharField(required = False)
-
+    
     def __init__(self, data, default_sort_method):
         super(ShowQuestionForm, self).__init__(data)
         self.default_sort_method = default_sort_method
@@ -864,7 +867,7 @@ class FormWithHideableFields(object):
         """
         if name in self.__hidden_fields:
             self.fields[name] = self.__hidden_fields.pop(name)
-
+   
 class AskForm(forms.Form, FormWithHideableFields):
     """the form used to askbot questions
     field ask_anonymously is shown to the user if the
@@ -993,6 +996,7 @@ class AnswerForm(forms.Form):
     user   = forms.CharField(required=False, max_length=255, widget=forms.TextInput(attrs={'size' : 35}))
     email  = forms.CharField(required=False, max_length=255, widget=forms.TextInput(attrs={'size' : 35}))
     email_notify = EmailNotifyField()
+    
     def __init__(self, question, user, *args, **kwargs):
         super(AnswerForm, self).__init__(*args, **kwargs)
         self.fields['email_notify'].widget.attrs['id'] = 'question-subscribe-updates'
@@ -1051,6 +1055,8 @@ class RevisionForm(forms.Form):
 
 class EditQuestionForm(forms.Form, FormWithHideableFields):
     title  = TitleField()
+    subtitle  = SubTitleField()
+    passcode  = PassCodeField()
     text   = QuestionEditorField()
     tags   = TagNamesField()
     summary = SummaryField()
@@ -1072,6 +1078,7 @@ class EditQuestionForm(forms.Form, FormWithHideableFields):
         ),
         required = False,
     ) 
+    cost = forms.IntegerField(required = False,initial=20);
     #todo: this is odd that this form takes question as an argument
     def __init__(self, *args, **kwargs):
         """populate EditQuestionForm with initial data"""
@@ -1083,6 +1090,10 @@ class EditQuestionForm(forms.Form, FormWithHideableFields):
         self.fields['text'].initial = revision.text
         self.fields['tags'].initial = revision.tagnames
         self.fields['wiki'].initial = self.question.wiki
+        self.fields['is_charged'].initial = self.question.is_charged
+        self.fields['cost'].initial = self.question.cost
+        self.fields['subtitle'].initial = self.question.thread.subtitle
+        self.fields['passcode'].initial = self.question.thread.passcode
         if self.question.featurepic != None:
             self.fields['featurepic'].initial = '<img alt="" src="'+self.question.featurepic+'" />'
         #hide the reveal identity field
