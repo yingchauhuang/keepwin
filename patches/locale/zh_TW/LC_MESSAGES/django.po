@@ -839,7 +839,11 @@ msgstr "無須設群組 Email 謝謝"
 
 #: forms.py:1126
 msgid "please choose one of the options above"
-msgstr "請選上述選項之一"
+msgstr "以上是必選選項,請選上述選項之一"
+
+#: django_authopenid/views.py:1126
+msgid "Your register form, have some errors. Please re-fill the data carefully"
+msgstr "您所填的註冊內容有些錯誤及不完整的地方. 請參考紅色的錯誤訊息,再重新填寫!"
 
 # footer.html
 #: urls.py:57

@@ -900,8 +900,12 @@ msgstr "無須設群組 Email 謝謝"
 
 #: forms.py:1126
 msgid "please choose one of the options above"
-msgstr "請選上述選項之一"
 
+msgstr "以上是必選選項,請選上述選項之一"
+
+#: django_authopenid/views.py:1126
+msgid "Your register form, have some errors. Please re-fill the data carefully"
+msgstr "您所填的註冊內容有些錯誤及不完整的地方. 請參考紅色的錯誤訊息,再重新填寫!"
 # footer.html
 #: urls.py:57
 #, fuzzy
@@ -6449,77 +6453,77 @@ msgstr "您已經上傳一個新"
 
 #: views/avatar_views.py:140
 msgid "Successfully updated your avatar."
-msgstr ""
+msgstr "您已經成功更新您的圖像 !"
 
 #: views/avatar_views.py:180
 msgid "Successfully deleted the requested avatars."
-msgstr ""
+msgstr "您已經成功的刪除您所選擇的圖像 !"
 
 #: views/commands.py:39
 msgid "anonymous users cannot vote"
-msgstr "Sorry, anonymous users cannot vote"
+msgstr "對不起! 您要登入後才能評分!"
 
 #: views/commands.py:59
 msgid "Sorry you ran out of votes for today"
-msgstr ""
+msgstr "對不起! 您已經使用完您今天能評分的額度"
 
 #: views/commands.py:65
 #, python-format
 
 msgid "You have %(votes_left)s votes left for today"
-msgstr ""
+msgstr "您今天還可以有 %(votes_left)s 評分的機會!"
 
 #: views/commands.py:122
 
 msgid "Sorry, but anonymous users cannot access the inbox"
-msgstr ""
+msgstr "對不起! 您要登入後才能查看信箱!"
 
 #: views/commands.py:192
 msgid "Sorry, something is not right here..."
-msgstr ""
+msgstr "對不起! 有些錯誤發生, 麻煩回報給管理員!"
 
 #: views/commands.py:207
 msgid "Sorry, but anonymous users cannot accept answers"
-msgstr ""
+msgstr "對不起! 您要登入後才能接受回應!"
 
 #: views/commands.py:301
 #, python-format
 msgid "subscription saved, %(email)s needs validation, see %(details_url)s"
 msgstr ""
-"Your subscription is saved, but email address %(email)s needs to be "
-"validated, please see <a href='%(details_url)s'>more details here</a>"
+"您所訂閱的內容我們已經儲存, 但是請記得您的郵件%(email)s必須通過認證."
+"請到 <a href='%(details_url)s'>閱讀更多說明</a>"
 
 #: views/commands.py:308
 msgid "email update frequency has been set to daily"
-msgstr ""
+msgstr "EMail 更新頻率已經改成每日更新!"
 
 #: views/commands.py:413
 #, python-format
 
 msgid "Tag subscription was canceled (<a href=\"%(url)s\">undo</a>)."
-msgstr ""
+msgstr "標籤訂閱已經取消 (<a href=\"%(url)s\">undo(取消以上動作)</a>)."
 
 #: views/commands.py:422
 #, python-format
 msgid "Please sign in to subscribe for: %(tags)s"
-msgstr ""
+msgstr "請先登入 以便訂閱: %(tags)s"
 
 #: views/commands.py:555
 
 msgid "Please sign in to vote"
-msgstr ""
+msgstr "先登入 以便評分!"
 
 #: views/meta.py:84
 msgid "Q&A forum feedback"
-msgstr ""
+msgstr "麻煩給我們任何意見及建議 "
 
 #: views/meta.py:85
 msgid "Thanks for the feedback!"
-msgstr ""
+msgstr "謝謝您的意見及建議"
 
 #: views/meta.py:94
 msgid "We look forward to hearing your feedback! Please, give it next time :)"
-msgstr ""
+msgstr "我們期待聽到您的意見及建議! 如果可能的話, 請下次不吝指教!"
 
 #: views/readers.py:577
 #, python-format
@@ -6530,8 +6534,8 @@ msgstr "這是私密留言, 只有版主跟回應的作者才看到 !!!!"
 #, python-format
 msgid "%(q_num)s question, tagged"
 msgid_plural "%(q_num)s questions, tagged"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(q_num)s 個評論, 已經加上標籤"
+msgstr[1] "%(q_num)s 個評論, 已經加上標籤"
 
 #: views/readers.py:200
 

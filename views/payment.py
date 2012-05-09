@@ -24,7 +24,7 @@ from askbot.forms import SmilePayForm
 from askbot.twmode import twmode as twmodeconst
 from askbot.skins.loaders import render_into_skin, get_template
 from askbot.models.transaction import Transaction
-
+import logging
 #jinja2 template loading enviroment
 
 # used in index page
@@ -48,53 +48,86 @@ def Roturl(request, **kwargs):
     """
     if request.method == 'POST':
         smilepayform = SmilePayForm(request.POST)
-        if smilepayform.is_valid():
-            Classif= smilepayform.cleaned_data['Classif'] 
-            Od_sob= smilepayform.cleaned_data['Od_sob'] 
-            Data_id= smilepayform.cleaned_data['Data_id'] 
-            Process_date= smilepayform.cleaned_data['Process_date'] 
-            Process_time= smilepayform.cleaned_data['Process_time'] 
-            Response_id= smilepayform.cleaned_data['Response_id'] 
-            Auth_code= smilepayform.cleaned_data['Auth_code'] 
-            LastPan= smilepayform.cleaned_data['LastPan'] 
-            Moneytype= smilepayform.cleaned_data['Moneytype']
-            Purchamt= smilepayform.cleaned_data['Purchamt'] 
-            Amount= smilepayform.cleaned_data['Amount'] 
-            Errdesc= smilepayform.cleaned_data['Errdesc'] 
-            Pur_name= smilepayform.cleaned_data['Pur_name'] 
-            Tel_number= smilepayform.cleaned_data['Tel_number'] 
-            Mobile_number= smilepayform.cleaned_data['Mobile_number'] 
-            Address= smilepayform.cleaned_data['Address'] 
-            Email= smilepayform.cleaned_data['Email'] 
-            Invoice_num= smilepayform.cleaned_data['Invoice_num'] 
-            Remark= smilepayform.cleaned_data['Remark'] 
-            Smseid= smilepayform.cleaned_data['Smseid']
-            uid=Transaction.objects.get_user_by_transactionID(Data_id)
-            user= User.objects.get(pk=uid)
-            new_balance = user.balance + int(Amount)
-            if new_balance < 0:
-                new_balance = 0 
         
-
-            user.balance = new_balance
-            user.save()
-
-            comment = _('Receive the iBon payment confirmation. ')+unicode(Amount)+_('Dollars')
-            transaction = Transaction(
-                        user=user,
-                        income=Amount,
-                        outcome=0,
-                        comment=comment,
-                        #question = fake_question,
-                        trans_at=datetime.datetime.now(),
-                        transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON, #todo: fix magic number
-                        balance=user.balance,
-                        question_id=None
-                    )
-
-            transaction.save()
-            return HttpResponse("Success!", content_type="text/plain")
-       
+        if smilepayform.is_valid():
+            logging.info('smilepayform is valid !')
+            Classif= smilepayform.cleaned_data['Classif']
+            logging.debug('smilepayform Classif: %s' % (Classif)) 
+            Od_sob= smilepayform.cleaned_data['Od_sob'] 
+            logging.debug('smilepayform Od_sob: %s' % (Od_sob)) 
+            Data_id= smilepayform.cleaned_data['Data_id'] 
+            logging.debug('smilepayform Data_id: %s' % (Data_id)) 
+            Process_date= smilepayform.cleaned_data['Process_date'] 
+            logging.debug('smilepayform Process_date: %s' % (Process_date)) 
+            Process_time= smilepayform.cleaned_data['Process_time']
+            logging.debug('smilepayform Process_time: %s' % (Process_time))  
+            Response_id= smilepayform.cleaned_data['Response_id'] 
+            logging.debug('smilepayform Response_id: %s' % (Response_id)) 
+            Auth_code= smilepayform.cleaned_data['Auth_code'] 
+            logging.debug('smilepayform Auth_code: %s' % (Auth_code)) 
+            LastPan= smilepayform.cleaned_data['LastPan'] 
+            logging.debug('smilepayform LastPan: %s' % (LastPan)) 
+            Moneytype= smilepayform.cleaned_data['Moneytype']
+            logging.debug('smilepayform Moneytype: %s' % (Moneytype)) 
+            Purchamt= smilepayform.cleaned_data['Purchamt'] 
+            logging.debug('smilepayform Purchamt: %s' % (Purchamt)) 
+            Amount= smilepayform.cleaned_data['Amount'] 
+            logging.debug('smilepayform Amount: %s' % (Amount)) 
+            Errdesc= smilepayform.cleaned_data['Errdesc'] 
+            logging.debug('smilepayform Errdesc: %s' % (Errdesc)) 
+            Pur_name= smilepayform.cleaned_data['Pur_name'] 
+            logging.debug('smilepayform Pur_name: %s' % (Pur_name)) 
+            Tel_number= smilepayform.cleaned_data['Tel_number'] 
+            logging.debug('smilepayform Tel_number: %s' % (Tel_number)) 
+            Mobile_number= smilepayform.cleaned_data['Mobile_number']
+            logging.debug('smilepayform Mobile_number: %s' % (Mobile_number))  
+            Address= smilepayform.cleaned_data['Address'] 
+            logging.debug('smilepayform Address: %s' % (Address)) 
+            Email= smilepayform.cleaned_data['Email'] 
+            logging.debug('smilepayform Email: %s' % (Email)) 
+            Invoice_num= smilepayform.cleaned_data['Invoice_num'] 
+            logging.debug('smilepayform Invoice_num: %s' % (Invoice_num)) 
+            Remark= smilepayform.cleaned_data['Remark'] 
+            logging.debug('smilepayform Remark: %s' % (Remark)) 
+            Smseid= smilepayform.cleaned_data['Smseid']
+            logging.debug('smilepayform Smseid: %s' % (Smseid)) 
+            uid=Transaction.objects.get_user_by_transactionID(Data_id)
+            logging.debug('smilepayform Data_id: %s' % (Data_id)) 
+            
+            issue = Transaction.objects.get(id=Data_id)
+            if ((issue!=None)and(issue.transaction_type==twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE)):
+                user= User.objects.get(pk=uid)
+                new_balance = user.balance + int(Amount)
+                if new_balance < 0:
+                    new_balance = 0 
+            
+    
+                user.balance = new_balance
+                user.save()
+    
+                comment = _('Receive the iBon payment confirmation. ')+unicode(Amount)+_('Dollars')
+                transaction = Transaction(
+                            user=user,
+                            income=Amount,
+                            outcome=0,
+                            comment=comment,
+                            #question = fake_question,
+                            trans_at=datetime.datetime.now(),
+                            transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON, #todo: fix magic number
+                            balance=user.balance,
+                            question_id=None
+                        )
+    
+                transaction.save()
+                issue.transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM 
+                issue.save()
+                return HttpResponse("Success!", content_type="text/plain")
+            else:
+                logging.warning('smilepayform warning error Date_id:%s Roturl : %s' % (Data_id,request.POST))
+        else:
+            logging.debug(smilepayform.errors)
+            logging.debug(request.REQUEST)
+    logging.debug('smilepayform error : %s' % (request.POST))
     return HttpResponse("Post Data Error.", content_type="text/plain")
 
 def ibon(request, **kwargs):

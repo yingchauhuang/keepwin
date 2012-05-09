@@ -34,6 +34,8 @@ ADMINISTRATOR_STATUS_CHOICES = (('d', _('administrator')),
 #TYPE_TRANSACTION_BUY_ATM = 2
 TYPE_TRANSACTION_BUY_IBON = 3
 TYPE_TRANSACTION_BUY_IBON_ISSUE = 30
+TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM = 31
+TYPE_TRANSACTION_BUY_IBON_ISSUE_ERROR = 32
 TYPE_TRANSACTION_BUY_CTI  = 4
 #TYPE_TRANSACTION_BUY_GIFT  = 5
 TYPE_TRANSACTION_PAID_FOR_CONTENT = 10
@@ -606,8 +608,8 @@ class SmilePayForm(forms.Form):
         Please check http://ssl.smse.com.tw/pay_gr/pay_help_paydc_roturl.ASP for format detail
     """
 
-    Dcvc = forms.CharField(max_length=4,required=True)
-    Rvg2c = forms.CharField(max_length=2,required=True)
+    #Dcvc = forms.CharField(max_length=4,required=True)
+    #Rvg2c = forms.CharField(max_length=2,required=True)
     Classif = forms.CharField(max_length=2,required=True)
     Od_sob= forms.CharField(required=False)
     Data_id= forms.CharField(required=True)

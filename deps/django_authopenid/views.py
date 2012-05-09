@@ -1045,6 +1045,8 @@ def signup_with_password(request):
             #todo: this can be solved with a decorator, maybe
             form.initial['login_provider'] = provider_name
             logging.debug('create classic account forms were invalid')
+            request.user.message_set.create(message = _('Your register form, have some errors. Please re-fill the data carefully'))
+            #return HttpResponseRedirect(reverse('question', kwargs = {'id': id}))
     else:
         #todo: here we have duplication of get_password_login_provider...
         form = RegisterForm(

@@ -17,6 +17,7 @@ body {
   color: #000;
   font-family: Arial;
 }
+.member_notice {font-size: 16px;} 
 .main_wrap
 {
 background: #F0F6F9;
@@ -2738,6 +2739,7 @@ span.form-error {
 }
 ul.errorlist {
   margin-bottom: 0;
+  color: darkred;
 }
 p.form-item {
   margin: 0px;
