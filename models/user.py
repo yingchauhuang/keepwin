@@ -406,7 +406,7 @@ class UserInfo(models.Model):
     SATOther=models.CharField(max_length=20)
 
     def __unicode__(self):
-        return u'[%s] was active at %s' % (self.user.username, self.active_at)
+        return u'[%s]  Info' % (self.user.username)
 
     class Meta:
         app_label = 'askbot'

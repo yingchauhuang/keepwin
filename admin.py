@@ -34,6 +34,17 @@ class ReputeAdmin(admin.ModelAdmin):
 class ActivityAdmin(admin.ModelAdmin):
     """  admin class"""
     
+class TransactionAdmin(admin.ModelAdmin):
+    """  admin class"""
+    #list_filter = ['trans_at']
+    list_display = ('user', 'trans_at', 'transaction_type','income','outcome','balance','comment')
+    date_hierarchy = 'trans_at'
+    
+class UserInforAdmin(admin.ModelAdmin):
+    """  admin class"""
+    #list_filter = ['trans_at']
+    list_display = ('gender','education','income','occupational','template','mobile','mobile_verified','address')
+    list_filter = ('user',)
 admin.site.register(models.Post)
 admin.site.register(models.Tag, TagAdmin)
 admin.site.register(models.Vote, VoteAdmin)
@@ -42,3 +53,5 @@ admin.site.register(models.PostRevision, PostRevisionAdmin)
 admin.site.register(models.Award, AwardAdmin)
 admin.site.register(models.Repute, ReputeAdmin)
 admin.site.register(models.Activity, ActivityAdmin)
+admin.site.register(models.Transaction, TransactionAdmin)
+admin.site.register(models.UserInfo, UserInforAdmin)

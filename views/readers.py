@@ -571,11 +571,6 @@ def question(request, id):#refactor - long subroutine. display question body, an
     answers = answers.order_by({"latest":"-added_at", "oldest":"added_at", "votes":"-score" }[answer_sort_method])
     answers = list(answers)
     
-    if (question_post.author_id != request.user.id):
-        for answer in answers:
-            if ((answer.is_private) and (answer.author != request.user)):
-                answer.html=_('This is a private answer');
-
     # TODO: Add unit test to catch the bug where precache_comments() is called above (before) reordering the accepted answer to the top
     #Post.objects.precache_comments(for_posts=[question_post] + answers, visitor=request.user)
 
@@ -669,6 +664,11 @@ def question(request, id):#refactor - long subroutine. display question body, an
         except IndexError:
             user_question_vote = 0
     #add by YC
+    if (question_post.author_id != request.user.id):
+        for answer in answers:
+            if ((answer.is_private) and (answer.author != request.user)):
+                answer.html=_('This is a private answer');
+                answer.text=_('This is a private answer');
     passcode_form =PassCodeForm() 
     if (thread.passcode != ''):
         if request.method == 'POST':

@@ -1,18 +1,20 @@
 <!-- template header.html -->
 {% import "macros.html" as macros %}
-<div id="ContentFull">
+<div 
+    id="header"
+    class="without-logo"
+>
 {% if settings.SHOW_LOGO %}
    {% include "widgets/logo.html" %}
 {% endif %}
 {% if settings.MAIN_SHOW_AD  %}
    {% include "advertisement/headbarAD.html" %}
 {% endif %}
-</div>
-<div 
+
+    <div 
     id="header"
-    class="without-logo"
->
-    <div class="content-wrapper">
+    class="sub-header"
+	>
         <div id="metaNav">
 			<a id="home" href="{% url questions %}">{% trans %}Home{% endtrans %}</a>
 			{% if request.user.is_authenticated() %}
@@ -27,9 +29,9 @@
 			{% elif settings.USE_ASKBOT_LOGIN_SYSTEM %}
 				<a id="login" href="{{ settings.LOGIN_URL }}?next={{request.path|clean_login_url}}">{% trans %}login{% endtrans %}</a>
 			{% endif %}
-            <a id="register" href="/account/member_notice/" class="on">{% trans %}Register{% endtrans %}</a>
-			<a id="announce" href="{% url users %}" class="on">{% trans %}Announce{% endtrans %}</a>
-			<a id="advertise" href="{% url users %}" class="on">{% trans %}Advertise{% endtrans %}</a>
+            <a id="register" href="/account/member_notice/" >{% trans %}Register{% endtrans %}</a>
+			<a id="announce" href="{% url users %}" >{% trans %}Announce{% endtrans %}</a>
+			<a id="advertise" href="{% url users %}" >{% trans %}Advertise{% endtrans %}</a>
         
 			{% if request.user.is_authenticated() and request.user.can_post_user() %}
 				<a id="post" href="{% url ask %}">{% trans %}Editor Post{% endtrans %}</a>

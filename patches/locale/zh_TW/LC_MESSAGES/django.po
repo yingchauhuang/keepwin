@@ -2404,7 +2404,7 @@ msgstr "使用者的 顯示名稱 的最少長度"
 
 #: conf/user_settings.py:59
 msgid "Default Gravatar icon type"
-msgstr "使用者的初始圖像設定"
+msgstr "使用者的初始個人圖像設定"
 
 #: conf/user_settings.py:61
 msgid ""
@@ -2412,9 +2412,9 @@ msgid ""
 "without associated gravatar images.  For more information, please visit <a "
 "href=\"http://en.gravatar.com/site/implement/images/\">this page</a>."
 msgstr ""
-"這個選項是設定 那些沒有設定圖像的EMail 位址 所要使用的初始圖像設定 "
+"這個選項是設定 那些沒有設定個人圖像的EMail 位址 所要使用的初始個人圖像設定 "
 "您可以到 <a "
-"href=\"http://en.gravatar.com/site/implement/images/\">初始圖像設定</a>.獲得更多的資訊"
+"href=\"http://en.gravatar.com/site/implement/images/\">初始個人圖像設定</a>.獲得更多的資訊"
 
 #: conf/user_settings.py:71
 msgid "Name for the Anonymous user"
@@ -2735,7 +2735,7 @@ msgstr ""
 #: const/__init__.py:236
 #, fuzzy
 msgid "wavatar"
-msgstr "個人圖像"
+msgstr "個人個人圖像"
 
 #: const/__init__.py:237
 msgid "retro"
@@ -2758,7 +2758,6 @@ msgid "None"
 msgstr ""
 
 #: const/__init__.py:299
-#, fuzzy
 msgid "Gravatar"
 msgstr "個人圖像"
 
@@ -3756,7 +3755,7 @@ msgstr ""
 "span> 有效的EMail地址 是本 Q&amp;A 論壇所必需的. 如果您要的話, "
 "您可以針對您有興趣的問題或論壇透過EMail <strong>收到更新</strong>"
 "而且, 您的 EMail 用來取得您獨特的<a href='%(gravatar_faq_url)s'>"
-"<strong>圖像</strong></a> 來代表您的帳號. 您的 EMail地址 不會揭露給任何人."
+"<strong>個人圖像</strong></a> 來代表您的帳號. 您的 EMail地址 不會揭露給任何人."
 
 #: skins/common/templates/authopenid/changeemail.html:29
 msgid "Your new Email"
@@ -3862,8 +3861,8 @@ msgstr ""
 "<p><span class=\"big strong\">因為是您第一次以 %(provider)s 進行登入 </span>"
 "請輸入您所要呈現的 <strong>顯示名稱</strong> 並儲存"
 "<strong>EMail</strong> 地址. 儲存 EMail 地址可以讓您"
-"<strong>訂閱更新</strong> 任何您有興趣的文章 並且我們將透過您的 EMail 來取得您的 圖像 - "
-"<a href='%(gravatar_faq_url)s'><strong>圖像</strong></a>.</p>"
+"<strong>訂閱更新</strong> 任何您有興趣的文章 並且我們將透過您的 EMail 來取得您的 個人圖像 - "
+"<a href='%(gravatar_faq_url)s'><strong>個人圖像</strong></a>.</p>"
 
 #: skins/common/templates/authopenid/complete.html:30
 #, python-format
@@ -3876,7 +3875,7 @@ msgstr ""
 "<p><span class='strong big'>看起來您指定的 %(username)s 顯示名稱 已經被其他人使用了. "
 "</span></p><p>請針對您的 %(provider)s 帳號再 輸入一次您要的 顯示名稱"
 "並且, 一個有效的 EMail 地址是本<span class='orange'>Q&amp;A</span>論壇不可或缺的要件."
-"您的 EMail 用來連結您專屬的 <a href='%(gravatar_faq_url)s'><strong>圖像</"
+"您的 EMail 用來連結您專屬的 <a href='%(gravatar_faq_url)s'><strong>個人圖像</"
 "strong></a>. 而且您可以透過 <strong>EMail 訂閱設定</strong> 來訂閱您整個論壇及您有興趣"
 "的文章. EMail 地址將不會顯示給其他人, 除非您設定成願意分享給別人.</p>"
 
@@ -3888,8 +3887,8 @@ msgstr ""
 "<p><span class=\"big strong\">因為是您第一次以 <strong>外部帳號</strong> %(provider)s 進行登入 </span>"
 "請輸入您所要呈現的 <strong>顯示名稱</strong> 並儲存"
 "<strong>EMail</strong> 地址. 儲存 EMail 地址可以讓您"
-"<strong>訂閱更新</strong> 任何您有興趣的文章 並且我們將透過您的 EMail 來取得您的 圖像 - "
-"<a href='%(gravatar_faq_url)s'><strong>圖像</strong></a>.</p>"
+"<strong>訂閱更新</strong> 任何您有興趣的文章 並且我們將透過您的 EMail 來取得您的 個人圖像 - "
+"<a href='%(gravatar_faq_url)s'><strong>個人圖像</strong></a>.</p>"
 
 #: skins/common/templates/authopenid/complete.html:37
 #, python-format
@@ -3898,8 +3897,8 @@ msgstr ""
 "<p><span class=\"big strong\">因為是您第一次以 <strong>Facebook帳號</strong> </span>"
 "請輸入您所要呈現的 <strong>顯示名稱</strong> 並儲存"
 "<strong>EMail</strong> 地址. 儲存 EMail 地址可以讓您"
-"<strong>訂閱更新</strong> 任何您有興趣的文章 並且我們將透過您的 EMail 來取得您的 圖像 - "
-"<a href='%(gravatar_faq_url)s'><strong>圖像</strong></a>.</p>"
+"<strong>訂閱更新</strong> 任何您有興趣的文章 並且我們將透過您的 EMail 來取得您的 個人圖像 - "
+"<a href='%(gravatar_faq_url)s'><strong>個人圖像</strong></a>.</p>"
 
 #: skins/common/templates/authopenid/complete.html:40
 msgid "This account already exists, please use another."
@@ -6323,7 +6322,7 @@ msgstr[1] ""
 
 #: views/avatar_views.py:99
 msgid "Successfully uploaded a new avatar."
-msgstr "您已經上傳一個新"
+msgstr "您已經上傳一個新個人圖像!!!"
 
 #: views/avatar_views.py:140
 msgid "Successfully updated your avatar."

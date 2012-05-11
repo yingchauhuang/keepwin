@@ -17,7 +17,7 @@ body {
   color: #000;
   font-family: Arial;
 }
-.member_notice {font-size: 16px;} 
+.member_notice {font-size: 16px;line-height: 24px;} 
 .main_wrap
 {
 background: #F0F6F9;
@@ -229,7 +229,7 @@ body.user-messages {
 
 .catbar-ad{
   padding: 5px 0px 5px 0px;
-  height: 150px;
+  height: 100px;
   width: 765px;
   float: left;
 }
@@ -273,7 +273,7 @@ body.user-messages {
 }
 #metaNav a {
   color: #e2e2ae;
-  padding: 0px 0px 0px 45px;
+  padding: 0px 0px 0px 5px;
   height: 25px;
   line-height: 30px;
   margin: 5px 0px 0px 10px;
@@ -347,17 +347,17 @@ body.user-messages {
 #header #logout
 {
   height: 40px;
-  width: 50px;
+  
   padding: 0px 0px 0px 0px;
   display: block;
   float: left;
 }
-#header #home {  width: 40px; background: url(../images/home.png) no-repeat;}
+/* #header #home {  width: 40px; background: url(../images/home.png) no-repeat;}
 #header #login {    width: 60px; background: url(../images/login.png) no-repeat;}
 #header #register {  width: 75px; background: url(../images/register.png) no-repeat;}
 #header #announce {  width: 60px; background: url(../images/announce.gif) no-repeat;}
 #header #advertise {  width: 110px;background: url(../images/advertise.gif) no-repeat;}
-#header #post {  width: 75px; background: url(../images/post.gif) no-repeat;}
+#header #post {  width: 75px; background: url(../images/post.gif) no-repeat;} */
 #secondaryHeader {
   /* Div containing Home button, scope navigation, search form and ask button, check blocks/secondary_header.html */
 
