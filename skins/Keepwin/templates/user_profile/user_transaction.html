@@ -64,6 +64,38 @@
         </div>
 {% endblock %}
 {% block userjs %}
+	<!-- Begin datepicker Javascript -->
+	<script src="{{"/js/jquery.ui.core.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.widget.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.datepicker.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.datepicker-zh-TW.js"|media}}"></script>
+	<link href="{{"/style/jquery.ui.datepicker.css"|media }}" rel="stylesheet" type="text/css" />
+	<link href="{{"/style/jquery.ui.theme.css"|media }}" rel="stylesheet" type="text/css" />
+	<link href="{{"/style/datepicker.css"|media }}" rel="stylesheet" type="text/css" />
+	<script>
+	$().ready(init);
+	function init()
+	{
+		$( "input#id_beginDate, input#id_endDate" ).datepicker( "option", "zh-TW");
+		$( "input#id_beginDate, input#id_endDate" ).datepicker( "option", "dateFormat", "YYYY/mm/dd" );
+		var dates = $( "input#id_beginDate, input#id_endDate" ).datepicker({
+			defaultDate: "+1w",
+			changeMonth: true,
+			showButtonPanel: true,
+			numberOfMonths: 1,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "id_beginDate" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+	}
+	</script>
+	<!-- End datepicker Javascript -->
        <script type='text/javascript' src='{{"/js/excanvas.min.js"|media}}'></script>
        <script type='text/javascript' src='{{"/js/jquery.flot.min.js"|media}}'></script>
        <script type="text/javascript">

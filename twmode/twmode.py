@@ -42,7 +42,14 @@ TYPE_TRANSACTION = (
     (TYPE_TRANSACTION_RECEIVE_FROM_CONTENT, _('receive the bonus from other people paid for it')),
 )
 
-
+TYPE_LAYOUT_WIDGET = 1
+TYPE_LAYOUT_HTML = 2
+TYPE_LAYOUT = (
+#    (TYPE_TRANSACTION_BUY_CREDICTCARD, _('buy bonus online via creditcard')),
+#    (TYPE_TRANSACTION_BUY_ATM, _('buy bonus online via ATM')),
+    (TYPE_LAYOUT_WIDGET, _('Use Widget for Layout')),
+    (TYPE_LAYOUT_HTML, _('User HTML content for Layout')),
+)
 #user gender 
 USER_GENDER_CHOICES = (
         ('m', _('male')), #male

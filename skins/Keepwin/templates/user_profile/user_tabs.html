@@ -5,6 +5,12 @@
             title="{% trans %}User profile{% endtrans %}" 
             href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=stats"
         ><span>{% trans %}overview{% endtrans %}</span></a>
+        {% if request.user == view_user %}
+        <a id="inbox" {% if tab_name=="layout" %}class="on"{% endif %} 
+            title="{% trans %}change user default page layout{% endtrans %}" 
+            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=layout"
+        ><span>{% trans %}layout{% endtrans %}</span></a>
+		{% endif %}
         {% if request.user == view_user or request.user|can_moderate_user(view_user) %}
         <a id="inbox" {% if tab_name=="inbox" %}class="on"{% endif %} 
             title="{% trans %}comments and answers to others questions{% endtrans %}" 

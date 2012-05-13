@@ -790,6 +790,15 @@ class ChangeUserStatusForm(forms.Form):
 
         return self.cleaned_data
 
+class UserLayoutForm(forms.Form):
+    layout = forms.CharField(
+                             label = _('userlayout'),
+                            max_length = 64,
+                            widget = forms.TextInput(
+                                            attrs = {'size':64},
+                                        )
+                        )
+    
 class SendMessageForm(forms.Form):
     subject_line = forms.CharField(
                             label = _('Subject line'),

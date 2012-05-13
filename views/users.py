@@ -218,6 +218,34 @@ def user_moderate(request, subject, context):
     return render_into_skin('user_profile/user_moderate.html', context, request)
 
 @csrf.csrf_protect
+def user_layout(request, subject, context):
+    """user layout
+    """
+
+
+    user_layout_form = forms.UserLayoutForm()
+    if request.method == 'POST':
+            user_layout_form = forms.UserLayoutForm(request.POST)
+            if user_layout_form.is_valid():
+                user_layout = user_layout_form.cleaned_data['layout']
+
+
+    #need to re-initialize the form even if it was posted, because
+    #initial values will most likely be different from the previous
+
+    data = {
+        'active_tab': 'users',
+        'page_class': 'user-profile-page',
+        'tab_name': 'addtransaction',
+        'tab_description': _('add transaction to modify user balance'),
+        'page_title': _('add transaction'),
+        'user_layout_form': user_layout_form,
+
+    }
+    context.update(data)
+    return render_into_skin('user_profile/user_layout.html', context, request)
+
+@csrf.csrf_protect
 def user_add_transaction(request, subject, context):
     """user subview for moderation
     """
@@ -1150,6 +1178,7 @@ USER_VIEW_CALL_TABLE = {
     'email_subscriptions': user_email_subscriptions,
     'moderation': user_moderate,
     'addtransaction': user_add_transaction,
+    'layout': user_layout,
 }
 #todo: rename this function - variable named user is everywhere
 def user(request, id, slug=None, tab_name=None):

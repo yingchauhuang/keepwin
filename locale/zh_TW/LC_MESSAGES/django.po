@@ -5876,6 +5876,11 @@ msgstr "%(username)s的社交圈目前是空的"
 
 #: skins/default/templates/user_profile/user_recent.html:4
 #: skins/default/templates/user_profile/user_tabs.html:31
+msgid "layout"
+msgstr "佈景主題"
+
+#: skins/default/templates/user_profile/user_recent.html:4
+#: skins/default/templates/user_profile/user_tabs.html:31
 msgid "activity"
 msgstr "活動"
 
