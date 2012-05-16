@@ -8,15 +8,28 @@
 /* Library of predifined less functions styles */
 /* ----- General HTML Styles----- */
 *{ font-family: "微軟正黑體",Arial;}
+
 body {
-  background: yellow;
-  font-size: 14px;
-  line-height: 150%;
-  margin: 0;
-  padding: 0;
-  color: #000;
-  font-family: Arial;
+  /*background: yellow;*/
+	font-size: 14px;
+	line-height: 150%;
+	margin: 0;
+	padding: 0;
+	color: #000;
+	font-family: "微軟正黑體",Arial;
+	background: #F1CF00;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#F1CF00), to(#FFFFFF));
+	background: -webkit-linear-gradient(#F1CF00, #FFFFFF);
+	background: -moz-linear-gradient(#F1CF00, #FFFFFF);
+	background: -ms-linear-gradient(#F1CF00, #FFFFFF);
+	background: -o-linear-gradient(#F1CF00, #FFFFFF);
+	background: linear-gradient(#F1CF00, #FFFFFF);
+	/* For Internet Explorer 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F1CF00, endColorstr=#FFFFFFFF);
+	/* For Internet Explorer 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#F1CF00, endColorstr=#FFFFFFFF)";
 }
+.header-wrapper {background:url('images/header_bar.jpg')}
 .member_notice {font-size: 16px;line-height: 24px;} 
 .main_wrap
 {
@@ -210,7 +223,7 @@ body.user-messages {
 /* ----- Header, check blocks/header.html ----- */
 #header {
   margin-top: 0px;
-  background: #16160f;
+  background: #463E41;
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 .content-wrapper {
@@ -221,16 +234,16 @@ body.user-messages {
   position: relative;
 }
 #logo img {
-  padding: 5px 0px 5px 0px;
+  padding: 0px 0px 0px 0px;
   height: 150px;
-  width: 195px;
+  width: 232px;
   float: left;
 }
 
 .catbar-ad{
-  padding: 5px 0px 5px 0px;
-  height: 100px;
-  width: 765px;
+  padding: 0px 0px 0px 0px;
+  height: 90px;
+  width: 728px;
   float: left;
 }
 #userToolsNav {
@@ -273,7 +286,7 @@ body.user-messages {
 }
 #metaNav a {
   color: #e2e2ae;
-  padding: 0px 0px 0px 5px;
+  padding: 15px 0px 0px 5px;
   height: 25px;
   line-height: 30px;
   margin: 5px 0px 0px 10px;
@@ -348,7 +361,7 @@ body.user-messages {
 {
   height: 40px;
   
-  padding: 0px 0px 0px 0px;
+  padding: 15px 0px 0px 0px;
   display: block;
   float: left;
 }
@@ -3888,13 +3901,13 @@ margin-left: 4px;
   color: #d84040;
 }
 body.anon #searchBar_keepwin {
-  width: 300px;
+  width: 200px;
 }
 body.anon #searchBar_keepwin .searchInput {
-  width: 240px;
+  width: 170px;
 }
 body.anon #searchBar_keepwin .searchInputCancelable {
-  width: 205px;
+  width: 135px;
 }
 
 

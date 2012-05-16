@@ -1213,6 +1213,8 @@ def user(request, id, slug=None, tab_name=None):
     }
     return user_view_func(request, profile_owner, context)
 
+
+
 @csrf.csrf_exempt
 def update_has_custom_avatar(request):
     """updates current avatar type data for the user

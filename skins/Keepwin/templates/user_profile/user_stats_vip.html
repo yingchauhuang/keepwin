@@ -10,19 +10,39 @@
 <!-- questions.html -->
 {% block title %}{% spaceless %}{% trans %}Questions{% endtrans %}{% endspaceless %}{% endblock %}
 {% block content %}
-	{% include "user_profile/user_stats_tags.html" %}
-	{% include "user_profile/user_info_brief.html" %}
-    {# ==== BEGIN: main_page/content.html === #}
-	{% include "user_profile/users_questions.html" %}
-    <div id="question-list">
-        {% include "main_page/questions_loop_vip.html" %}
-    </div>
+	<div class="portlet">
+		<div class="portlet-header">User Profile</div>
+		<div class="portlet-content">{% include "user_profile/user_info_brief.html" %}</div>
+	</div>
+
+	<div class="portlet">
+		<div class="portlet-header">User Tages</div>
+		<div class="portlet-content">{% include "user_profile/user_stats_tags.html" %}</div>
+	</div>
+	
+	<div class="portlet">
+		<div class="portlet-header">Feeds</div>
+		<div class="portlet-content">{% include "main_page/questions_loop_vip.html" %}</div>
+	</div>
     {# ==== END: main_page/content.html === #}
 {% endblock %}
 {% block sidebar %}
-    {% include "main_page/sidebar_vip.html" %}
+	<div class="portlet">
+		<div class="portlet-header">Side Bar VIP</div>
+		<div class="portlet-content">{% include "main_page/sidebar_vip.html" %}</div>
+	</div>
 {% endblock %}
 {% block endjs %}
+	<link href="{{"/style/jquery.ui.theme.css"|media }}" rel="stylesheet" type="text/css" />
+	<style>
+	.column { width: 340px; float: left; padding-bottom: 100px; }
+	.portlet { margin: 0 1em 1em 0; }
+	.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+	.portlet-header .ui-icon { float: right; }
+	.portlet-content { padding: 0.4em; }
+	.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+	.ui-sortable-placeholder * { visibility: hidden; }
+	</style>
     {% include "main_page/javascript.html" %}
 	    <script type="text/javascript">
         $(document).ready(function(){

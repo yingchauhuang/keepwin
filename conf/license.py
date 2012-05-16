@@ -10,7 +10,7 @@ from django.conf import settings as django_settings
 
 LICENSE_SETTINGS = livesettings.ConfigurationGroup(
                         'LICENSE_SETTINGS',
-                        _('Content LicensContent License'),
+                        _('Content License'),
                         super_group = CONTENT_AND_UI
                     )
 
@@ -19,7 +19,7 @@ settings.register(
         LICENSE_SETTINGS,
         'USE_LICENSE',
         description = _('Show license clause in the site footer'),
-        default = True
+        default = False
     )
 )
 
@@ -46,7 +46,7 @@ settings.register(
         LICENSE_SETTINGS,
         'LICENSE_USE_URL',
         description = _('Add link to the license page'),
-        default = True
+        default = False
     )
 )
 
@@ -67,7 +67,7 @@ settings.register(
         LICENSE_SETTINGS,
         'LICENSE_USE_LOGO',
         description = _('Use license logo'),
-        default = True
+        default = False
     )
 )
 

@@ -41,7 +41,8 @@
 <!-- History.js --> 
 <script type='text/javascript' src="{{"/js/jquery.history.js"|media }}"></script>
 <script type='text/javascript' src="{{"/js/utils.js"|media }}"></script>
-<script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
+<script type='text/javascript' src="{% url django.views.i18n.javascript_catalog %}"></script>
+<script type='text/javascript' src="{{"/js/css_browser_selector.js"|media }}" type="text/javascript"></script>
 {% if settings.ENABLE_MATHJAX %}
     <script type='text/javascript' src="{{settings.MATHJAX_BASE_URL}}/MathJax.js">
         MathJax.Hub.Config({

@@ -13,19 +13,29 @@ class ProfileLayout(models.Model):
     """
     The block in each user layout
     """
-    user = models.ForeignKey(User)
     title = models.CharField(max_length=30)
     layout_type = models.SmallIntegerField(choices = twmodeconst.TYPE_TRANSACTION)
-    content = models.TextField(blank=True)
-
-    objects = TransactionManager()
-
+    html = models.TextField(blank=True)
 
     def __unicode__(self):
-        return u'[%s] add ProfileLayout text %s' % (self.user.username, self.content)
+        return u'[%s] add ProfileLayout text %s' % (self.user.username, self.html)
 
     class Meta:
         app_label = 'askbot'
         db_table = u'profilelayout'
 
+class UserProfileLayout(models.Model):
+    """
+    The block in each user layout
+    """
+    user = models.ForeignKey(User)
+    profilelayout = models.ForeignKey(ProfileLayout)
+    content = models.TextField(blank=True)
+
+    def __unicode__(self):
+        return u'[%s] add UserProfileLayout text %s' % (self.user.username, self.content)
+
+    class Meta:
+        app_label = 'askbot'
+        db_table = u'userprofilelayout'
 #    

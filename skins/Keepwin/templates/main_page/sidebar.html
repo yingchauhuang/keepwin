@@ -18,8 +18,20 @@
    {% include "widgets/tag_selector.html" %}
 {% endif %}
 
-{% if contributors and settings.SIDEBAR_MAIN_SHOW_AD %}
-   {% include "widgets/advertisment.html" %}
+{% if settings.SIDEBAR_MAIN_SHOW_AD1 %}
+   {% include "advertisement/sidebarAD1.html" %}
+{% endif %}
+
+{% if settings.SIDEBAR_MAIN_SHOW_AD2 %}
+   {% include "advertisement/sidebarAD2.html" %}
+{% endif %}
+
+{% if settings.SIDEBAR_MAIN_SHOW_AD3 %}
+   {% include "advertisement/sidebarAD3.html" %}
+{% endif %}
+
+{% if settings.SIDEBAR_MAIN_SHOW_AD4 %}
+   {% include "advertisement/sidebarAD4.html" %}
 {% endif %}
 
 {% if tags and settings.SIDEBAR_MAIN_SHOW_TAGS %}

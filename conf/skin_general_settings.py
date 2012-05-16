@@ -88,6 +88,7 @@ settings.register(
     )
 )
 
+'''
 settings.register(
     values.StringValue(
         GENERAL_SKIN_SETTINGS,
@@ -96,11 +97,11 @@ settings.register(
         choices=const.MAINPAGE_TEMPLATE_CHOICES,
         description = _('Select the main template block in main area'),
         help_text = _(
-                    'Uncheck this if you want to hide the advertisement '
-                    'block from the mainarea' 
+                    'The template of main page' 
                     )
     )
 )
+'''
 
 settings.register(
     values.BooleanValue(

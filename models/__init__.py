@@ -105,6 +105,8 @@ User.add_to_class('show_country', models.BooleanField(default=False))
 User.add_to_class('date_of_birth', models.DateField(null=True, blank=True))
 User.add_to_class('about', models.TextField(blank=True))
 #interesting tags and ignored tags are to store wildcard tag selections only
+User.add_to_class('main_template', models.TextField(blank=True))
+User.add_to_class('sidebar_template', models.TextField(blank=True))
 User.add_to_class('interesting_tags', models.TextField(blank=True))
 User.add_to_class('ignored_tags', models.TextField(blank=True))
 User.add_to_class(
@@ -1967,7 +1969,7 @@ def get_profile_url(self):
             )
 
 def user_get_absolute_url(self):
-    return self.get_profile_url()
+    return self.get_profile_url();
 
 def get_profile_link(self):
     profile_link = u'<a href="%s">%s</a>' \

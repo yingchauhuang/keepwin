@@ -6,7 +6,7 @@
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-30309791-1']);
+  _gaq.push(['_setAccount', 'UA-31742535-1']);
   _gaq.push(['_trackPageview']);
 
   (function() {
@@ -42,10 +42,12 @@
             {{ settings.LEADING_SIDEBAR }}
         </div>
         {% endif %}
-        <div class="content-wrapper">
+        <div class="header-wrapper">
+			<div class="content-wrapper">
 			{% include "widgets/header_keepwin.html" %} {# Logo, user tool navigation and meta navitation #}
             {% block body %}
             {% endblock %}
+			</div>
         </div>
         {% if settings.FOOTER_MODE == 'default' %}
             {% include "widgets/footer.html" %}

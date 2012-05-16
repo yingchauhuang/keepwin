@@ -58,10 +58,10 @@ settings.register(
 settings.register(
     values.BooleanValue(
         SIDEBAR_MAIN,
-        'SIDEBAR_MAIN_SHOW_AD',
-        description = _('Show advertisement block in sidebar'),
+        'SIDEBAR_MAIN_SHOW_AD1',
+        description = _('Show advertisement 1 block in sidebar'),
         help_text = _(
-                    'Uncheck this if you want to hide the advertisement '
+                    'Uncheck this if you want to hide the advertisement'
                     'block from the sidebar ' 
                     ),
         default = True
@@ -71,9 +71,96 @@ settings.register(
 settings.register(
     values.LongStringValue(
         SIDEBAR_MAIN,
-        'SIDEBAR_MAIN_AD_CONTENT',
+        'SIDEBAR_MAIN_AD_CONTENT1',
         default = '',
-        description = _('Custom portion of the HTML in SIDEBAR AD Bar'),
+        description = _('Custom portion of the advertisement 1 in sidebar'),
+        help_text = _(
+                    '<strong>To use this option</strong>, '
+                    'check "Show advertisement block in SIDEBAR area;" '
+                    'above. Contents of this box will be inserted '
+                    'into the &lt;SIDEBAR__AD&gt; portion of the HTML '
+                    'output.'
+                    )
+    )
+)
+
+settings.register(
+    values.BooleanValue(
+        SIDEBAR_MAIN,
+        'SIDEBAR_MAIN_SHOW_AD2',
+        description = _('Show advertisement 2 block in sidebar'),
+        help_text = _(
+                    'Uncheck this if you want to hide the advertisement'
+                    'block from the sidebar ' 
+                    ),
+        default = True
+    )
+)
+
+settings.register(
+    values.LongStringValue(
+        SIDEBAR_MAIN,
+        'SIDEBAR_MAIN_AD_CONTENT2',
+        default = '',
+        description = _('Custom portion of the advertisement 2 in sidebar'),
+        help_text = _(
+                    '<strong>To use this option</strong>, '
+                    'check "Show advertisement block in SIDEBAR area;" '
+                    'above. Contents of this box will be inserted '
+                    'into the &lt;SIDEBAR__AD&gt; portion of the HTML '
+                    'output.'
+                    )
+    )
+)
+
+settings.register(
+    values.BooleanValue(
+        SIDEBAR_MAIN,
+        'SIDEBAR_MAIN_SHOW_AD3',
+        description = _('Show advertisement 3 block in sidebar'),
+        help_text = _(
+                    'Uncheck this if you want to hide the advertisement'
+                    'block from the sidebar ' 
+                    ),
+        default = True
+    )
+)
+
+settings.register(
+    values.LongStringValue(
+        SIDEBAR_MAIN,
+        'SIDEBAR_MAIN_AD_CONTENT3',
+        default = '',
+        description = _('Custom portion of the advertisement 3 in sidebar'),
+        help_text = _(
+                    '<strong>To use this option</strong>, '
+                    'check "Show advertisement block in SIDEBAR area;" '
+                    'above. Contents of this box will be inserted '
+                    'into the &lt;SIDEBAR__AD&gt; portion of the HTML '
+                    'output.'
+                    )
+    )
+)
+
+settings.register(
+    values.BooleanValue(
+        SIDEBAR_MAIN,
+        'SIDEBAR_MAIN_SHOW_AD4',
+        description = _('Show advertisement 4 block in sidebar'),
+        help_text = _(
+                    'Uncheck this if you want to hide the advertisement'
+                    'block from the sidebar ' 
+                    ),
+        default = True
+    )
+)
+
+settings.register(
+    values.LongStringValue(
+        SIDEBAR_MAIN,
+        'SIDEBAR_MAIN_AD_CONTENT4',
+        default = '',
+        description = _('Custom portion of the advertisement 4 in sidebar'),
         help_text = _(
                     '<strong>To use this option</strong>, '
                     'check "Show advertisement block in SIDEBAR area;" '

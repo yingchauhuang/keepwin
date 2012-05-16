@@ -132,7 +132,7 @@ msgstr "請檢查您的電子郵件, 然後點擊上面的連結來重新啟動�
 
 #: skins/common/templates/authopenid/signin.html:87
 msgid "Please enter your <span>user name and password</span>, then sign in"
-msgstr "請輸入您的<span>帳號及密碼</span>來登入"
+msgstr "請輸入您的帳號及密碼來登入"
 
 #: skins/common/templates/authopenid/signin.html:93
 msgid "Login failed, please try again"
@@ -861,7 +861,6 @@ msgid "Profile"
 msgstr "簡介"
 
 #: forms.py:943
-#, fuzzy
 msgid "Screen name"
 msgstr "顯示名稱"
 
@@ -1008,14 +1007,17 @@ msgid "badges/"
 msgstr ""
 
 #: urls.py:246
+#, fuzzy
 msgid "messages/"
 msgstr ""
 
 #: urls.py:246
+#, fuzzy
 msgid "markread/"
 msgstr ""
 
 #: urls.py:262
+#, fuzzy
 msgid "upload/"
 msgstr ""
 
@@ -1037,7 +1039,6 @@ msgid "account/"
 msgstr ""
 
 #: conf/access_control.py:8
-#, fuzzy
 msgid "Access control settings"
 msgstr "權限控制"
 
@@ -1048,7 +1049,6 @@ msgstr "只有註冊用戶才能參加論壇"
 
 
 #: conf/badges.py:13
-#, fuzzy
 msgid "Badge settings"
 msgstr "徽章設定"
 
@@ -1173,7 +1173,6 @@ msgstr ""
 
 # must have extra space after in english
 #: conf/email.py:62
-#, fuzzy
 msgid "Default notification frequency questions asked by the user"
 msgstr "最常問的看法通知初始設定"
 #: conf/email.py:64
@@ -1183,7 +1182,6 @@ msgid ""
 msgstr ""
 
 #: conf/email.py:76
-#, fuzzy
 msgid "Default notification frequency questions answered by the user"
 msgstr "最常問的看法通知初始設定"
 #: conf/email.py:78
@@ -1224,7 +1222,6 @@ msgid ""
 msgstr ""
 
 #: conf/email.py:134
-#, fuzzy
 msgid "Days before starting to send reminders about unanswered questions"
 msgstr "幾日後開始送出未回覆看法的通知"
 #: conf/email.py:145
@@ -1236,7 +1233,6 @@ msgstr "設定『定期通知還未回覆看法』的週期"
 msgid "Max. number of reminders to send about unanswered questions"
 msgstr "設定『定期通知還未回覆看法』通知的最多通知次數"
 #: conf/email.py:168
-#, fuzzy
 msgid "Send periodic reminders to accept the best answer"
 msgstr "定期送出看法回應,方便發表者確認最佳回應"
 #: conf/email.py:170
@@ -1248,7 +1244,6 @@ msgstr "提示: 您必須透過執行管理命令 \"send_accept_answer_reminders
 "(例如: 透過 cron job - with) "
 
 #: conf/email.py:183
-#, fuzzy
 msgid "Days before starting to send reminders to accept an answer"
 msgstr "從開始送出『定期通知還未回覆看法』通知,已經過了幾日"
 #: conf/email.py:194
@@ -1270,7 +1265,6 @@ msgid ""
 msgstr "email驗證的驗證碼已經送到您的信箱"
 
 #: conf/email.py:228
-#, fuzzy
 msgid "Allow only one account per email address"
 msgstr "一個電子郵件只能連結到一個帳號"
 
@@ -1304,7 +1298,7 @@ msgstr ""
 
 #: conf/external_keys.py:11
 msgid "Keys for external services"
-msgstr ""
+msgstr "外部服務所需要的Key 值"
 
 #: conf/external_keys.py:19
 msgid "Google site verification key"
@@ -1316,6 +1310,8 @@ msgid ""
 "This key helps google index your site please obtain is at <a href=\"%(url)s?"
 "hl=%(lang)s\">google webmasters tools site</a>"
 msgstr ""
+"這個協助Google取的您網站的索引, 產生位址<a href=\"%(url)s?"
+"hl=%(lang)s\">google webmasters tools site</a>"
 
 #: conf/external_keys.py:36
 msgid "Google Analytics key"
@@ -1327,6 +1323,7 @@ msgid ""
 "Obtain is at <a href=\"%(url)s\">Google Analytics</a> site, if you wish to "
 "use Google Analytics to monitor your site"
 msgstr ""
+"使用Google Analytics 來監控網站,產生位址 <a href=\"%(url)s\">Google Analytics</a> site"
 
 #: conf/external_keys.py:51
 msgid "Enable recaptcha (keys below are required)"
@@ -1347,6 +1344,9 @@ msgid ""
 "robots. Please get this and a public key at the <a href=\"%(url)s\">%(url)s</"
 "a>"
 msgstr ""
+"Recaptcha 是一個確認是真人註冊的工具. 可以防止他人使用機器人灌水 "
+"請到以下網址產生公鑰<a href=\"%(url)s\">%(url)s</"
+"a>"
 
 #: conf/external_keys.py:82
 msgid "Facebook public API key"
@@ -1359,6 +1359,9 @@ msgid ""
 "method at your site. Please obtain these keys at <a href=\"%(url)s"
 "\">facebook create app</a> site"
 msgstr ""
+"使用Facebook API key 及 Facebook secret 來啟動Facebook 登入 "
+"請到以下網址取得 <a href=\"%(url)s"
+"\">facebook create app</a> site"
 
 #: conf/external_keys.py:97
 msgid "Facebook secret key"
@@ -1375,6 +1378,8 @@ msgid ""
 "Please register your forum at <a href=\"%(url)s\">twitter applications site</"
 "a>"
 msgstr ""
+"請到 <a href=\"%(url)s\">twitter applications site</"
+"a> 註冊您的論壇"
 
 #: conf/external_keys.py:118
 msgid "Twitter consumer secret"
@@ -1389,6 +1394,7 @@ msgstr ""
 msgid ""
 "Please register your forum at <a href=\"%(url)s\">LinkedIn developer site</a>"
 msgstr ""
+"請到 <a href=\"%(url)s\">LinkedIn developer site</a>註冊您的論壇"
 
 #: conf/external_keys.py:139
 msgid "LinkedIn consumer secret"
@@ -1405,6 +1411,8 @@ msgid ""
 "Please register your forum at <a href=\"%(url)s\">Identi.ca applications "
 "site</a>"
 msgstr ""
+"請到 <a href=\"%(url)s\">Identi.ca applications "
+"site</a>註冊您的論壇"
 
 #: conf/external_keys.py:160
 msgid "ident.ca consumer secret"
@@ -1423,47 +1431,52 @@ msgid "URL for the LDAP service"
 msgstr ""
 
 #: conf/external_keys.py:193
-
 msgid "Explain how to change LDAP password"
-msgstr ""
+msgstr "解釋如何更換 LDAP 密碼"
 
 #: conf/flatpages.py:11
 msgid "Flatpages - about, privacy policy, etc."
-msgstr ""
+msgstr "預設網頁 - 關於, 隱私權, Q&A 等等"
 
 #: conf/flatpages.py:19
 msgid "Text of the Q&A forum About page (html format)"
-msgstr ""
+msgstr "關於本論壇的說明頁(html 格式)"
 
 #: conf/flatpages.py:22
 msgid ""
 "Save, then <a href=\"http://validator.w3.org/\">use HTML validator</a> on "
 "the \"about\" page to check your input."
 msgstr ""
+"儲存後請使用 <a href=\"http://validator.w3.org/\">HTML 驗證</a> 來驗證 "
+" \"說明頁\" 網頁的正確性."
 
 #: conf/flatpages.py:32
 msgid "Text of the Q&A forum FAQ page (html format)"
-msgstr ""
+msgstr "關於本論壇的問題與回答(html 格式)"
 
 #: conf/flatpages.py:35
 msgid ""
 "Save, then <a href=\"http://validator.w3.org/\">use HTML validator</a> on "
 "the \"faq\" page to check your input."
 msgstr ""
+"儲存後請使用 <a href=\"http://validator.w3.org/\">HTML 驗證</a> 來驗證 "
+" \"問題與回答\" 網頁的正確性."
 
 #: conf/flatpages.py:46
 msgid "Text of the Q&A forum Privacy Policy (html format)"
-msgstr ""
+msgstr "關於本論壇的隱私權政策(html 格式)"
 
 #: conf/flatpages.py:49
 msgid ""
 "Save, then <a href=\"http://validator.w3.org/\">use HTML validator</a> on "
 "the \"privacy\" page to check your input."
 msgstr ""
+"儲存後請使用 <a href=\"http://validator.w3.org/\">HTML 驗證</a> 來驗證 "
+" \"隱私權政策\" 網頁的正確性."
 
 #: conf/forum_data_rules.py:12
 msgid "Data entry and display rules"
-msgstr ""
+msgstr "資料輸入及呈現設定"
 
 #: conf/forum_data_rules.py:22
 #, python-format
@@ -1471,24 +1484,32 @@ msgid ""
 "Enable embedding videos. <em>Note: please read <a href=\"%(url)s>read this</"
 "a> first.</em>"
 msgstr ""
+"開啟內嵌視訊功能. <em>注意: 請先閱讀 <a href=\"%(url)s>讀我</"
+"a> 說明文件.</em>"
+
+#: conf/forum_data_rules.py:33
+msgid "Enable content charged mechanism. "
+msgstr "開啟收費機制"
 
 #: conf/forum_data_rules.py:33
 msgid "Check to enable community wiki feature"
-msgstr ""
+msgstr "開啟 社群wiki 編輯功能"
 
 #: conf/forum_data_rules.py:42
 msgid "Allow asking questions anonymously"
-msgstr ""
+msgstr "允許匿名 提出看法"
 
 #: conf/forum_data_rules.py:44
 msgid ""
 "Users do not accrue reputation for anonymous questions and their identity is "
 "not revealed until they change their mind"
 msgstr ""
+"使用者針對匿名看法的活動無法獲得任何積分, 另外在匿名看法上的 "
+"所有活動不會顯示使用者姓名, 除非 他改變設定"
 
 #: conf/forum_data_rules.py:56
 msgid "Allow posting before logging in"
-msgstr ""
+msgstr "允許登入前發文"
 
 #: conf/forum_data_rules.py:58
 msgid ""
@@ -1497,23 +1518,27 @@ msgid ""
 "to check for pending posts every time the user logs in. The builtin Askbot "
 "login system supports this feature."
 msgstr ""
+"勾選以上選項. 表示您允許在未登入前發表看法及回應"
+"這個功能需要使用者登入系統支援 在每次登入時檢查有無未登入的發文"
+"系統預設登入  支援此項功能"
+
 
 #: conf/forum_data_rules.py:73
-#, fuzzy
 msgid "Allow swapping answer with question"
-msgstr "回應看法"
+msgstr "允許更換回應看法"
+
 #: conf/forum_data_rules.py:75
 msgid ""
 "This setting will help import data from other forums such as zendesk, when "
 "automatic data import fails to detect the original question correctly."
 msgstr ""
+"此設定允許從其他論壇匯入資料 如: zendesk, 當自動匯入時 會偵測原始資料是否正確 "
 
 #: conf/forum_data_rules.py:87
 msgid "Maximum length of tag (number of characters)"
-msgstr ""
+msgstr "標籤最大的長度(字元數目)"
 
 #: conf/forum_data_rules.py:95
-#, fuzzy
 msgid "Mandatory tags"
 msgstr "更新標籤"
 
@@ -1522,10 +1547,12 @@ msgid ""
 "At least one of these tags will be required for any new or newly edited "
 "question. A mandatory tag may be wildcard, if the wildcard tags are active."
 msgstr ""
+"在發表看法時最少要輸入一個標籤"
+"再輸入標籤查詢命令時. 可以使用萬用字元如果萬用標籤功能有啟動的話"
 
 #: conf/forum_data_rules.py:110
 msgid "Force lowercase the tags"
-msgstr ""
+msgstr "強迫標籤轉為小寫字元"
 
 #: conf/forum_data_rules.py:112
 msgid ""
@@ -1533,18 +1560,21 @@ msgid ""
 "management command: <code>python manage.py fix_question_tags</code> to "
 "globally rename the tags"
 msgstr ""
+"請注意: 若選擇本功能, 請先備份資料庫. 然後執行以下管理命令: "
+"<code>python manage.py fix_question_tags</code> 來完整的更改標籤 "
+
 
 #: conf/forum_data_rules.py:126
 msgid "Format of tag list"
-msgstr ""
+msgstr "標籤呈現的形式"
 
 #: conf/forum_data_rules.py:128
 msgid ""
 "Select the format to show tags in, either as a simple list, or as a tag cloud"
 msgstr ""
+"選擇標籤呈現的形式, simple list 或者 a tag cloud"
 
 #: conf/forum_data_rules.py:140
-#, fuzzy
 msgid "Use wildcard tags"
 msgstr "使用萬用標籤"
 
@@ -1553,81 +1583,84 @@ msgid ""
 "Wildcard tags can be used to follow or ignore many tags at once, a valid "
 "wildcard tag has a single wildcard at the very end"
 msgstr ""
+"使用萬用標籤 可以用來追隨或過濾符合條件的標籤, 有效的萬用標籤 "
+"通常是以萬用字元原來結尾"
 
 #: conf/forum_data_rules.py:155
 msgid "Default max number of comments to display under posts"
-msgstr ""
+msgstr "一個看法最多能張貼評論數目的初始設定"
 
 #: conf/forum_data_rules.py:166
 #, python-format
 msgid "Maximum comment length, must be < %(max_len)s"
-msgstr ""
+msgstr "最大的評論長度, 必須小於 %(max_len)s"
 
 #: conf/forum_data_rules.py:176
 msgid "Limit time to edit comments"
-msgstr ""
+msgstr "最多能編輯評論的次數"
 
 #: conf/forum_data_rules.py:178
 msgid "If unchecked, there will be no time limit to edit the comments"
-msgstr ""
+msgstr "如果不勾選本選項, 編輯評論將沒有時間限制"
 
 #: conf/forum_data_rules.py:189
 msgid "Minutes allowed to edit a comment"
-msgstr ""
+msgstr "幾分鐘後才能編輯評論"
 
 #: conf/forum_data_rules.py:190
 msgid "To enable this setting, check the previous one"
-msgstr ""
+msgstr "本功能若要發生作用, 前一項選項務必要勾選"
 
 #: conf/forum_data_rules.py:199
 msgid "Save comment by pressing <Enter> key"
-msgstr ""
+msgstr "透過按下 <Enter> 鍵來儲存評論"
 
 #: conf/forum_data_rules.py:208
 msgid "Minimum length of search term for Ajax search"
-msgstr ""
+msgstr "搜尋文章所需輸入的最小長度"
 
 #: conf/forum_data_rules.py:209
 msgid "Must match the corresponding database backend setting"
-msgstr ""
+msgstr "要與資料庫相對應設定配合"
 
 #: conf/forum_data_rules.py:218
 msgid "Do not make text query sticky in search"
-msgstr ""
+msgstr "不要使用立即搜尋"
 
 #: conf/forum_data_rules.py:220
 msgid ""
 "Check to disable the \"sticky\" behavior of the search query. This may be "
 "useful if you want to move the search bar away from the default position or "
 "do not like the default sticky behavior of the text search query."
-msgstr ""
+msgstr "當您要將搜尋Bar 移到其他地方, 關閉 立即搜尋 是一個不錯的選擇"
 
 #: conf/forum_data_rules.py:233
 msgid "Maximum number of tags per question"
-msgstr ""
+msgstr "每個看法能夠輸入的最多標籤數"
 
 #: conf/forum_data_rules.py:245
 msgid "Number of questions to list by default"
 msgstr "一次要列出看法的數目"
+
 #: conf/forum_data_rules.py:255
-#, fuzzy
 msgid "What should \"unanswered question\" mean?"
-msgstr "無未回應看法"
+msgstr "\"未回應看法\"的意思是甚麼?"
+
 #: conf/license.py:13
-msgid "Content LicensContent License"
-msgstr ""
+msgid "Content License"
+msgstr "內容版權聲明"
 
 #: conf/license.py:21
 msgid "Show license clause in the site footer"
-msgstr ""
+msgstr "在頁腳顯示內容版權聲明"
 
 #: conf/license.py:30
 msgid "Short name for the license"
-msgstr ""
+msgstr "版權範圍 簡稱"
 
 #: conf/license.py:39
 msgid "Full name of the license"
-msgstr ""
+msgstr "版權的完整名稱"
 
 #: conf/license.py:40
 msgid "Creative Commons Attribution Share Alike 3.0"
@@ -1635,69 +1668,71 @@ msgstr ""
 
 #: conf/license.py:48
 msgid "Add link to the license page"
-msgstr ""
+msgstr "增加連結到版權說明網頁"
 
 #: conf/license.py:57
-#, fuzzy
 msgid "License homepage"
 msgstr "智慧財產權首頁"
 
 #: conf/license.py:59
 msgid "URL of the official page with all the license legal clauses"
-msgstr ""
+msgstr "連結 到正式智慧財產權相關條款說明"
 
 #: conf/license.py:69
-#, fuzzy
 msgid "Use license logo"
-msgstr "智慧財產權Logo"
+msgstr "使用智慧財產權Logo"
 
 #: conf/license.py:78
 msgid "License logo image"
-msgstr ""
+msgstr "智慧財產權Logo圖像"
 
 #: conf/login_providers.py:13
 msgid "Login provider setings"
-msgstr ""
+msgstr "登入論壇方法設定"
 
 #: conf/login_providers.py:22
 msgid ""
 "Show alternative login provider buttons on the password \"Sign Up\" page"
-msgstr ""
+msgstr "在 \"登入\" 網頁顯示所有可以透過其他系統登入的方法"
 
 #: conf/login_providers.py:31
 msgid "Always display local login form and hide \"Askbot\" button."
-msgstr ""
+msgstr "顯示本系統直接登入的方法 並隱藏 \"Askbot\" 按鈕"
 
 #: conf/login_providers.py:40
 msgid "Activate to allow login with self-hosted wordpress site"
-msgstr ""
+msgstr "勾選以便允許 透過自己安裝的 wordpress 網站進行登入 "
 
 #: conf/login_providers.py:41
 msgid ""
 "to activate this feature you must fill out the wordpress xml-rpc setting "
 "bellow"
 msgstr ""
+"要讓這個功能起作用, 您必需填入以下填入 xml-rpc 設定"
 
 #: conf/login_providers.py:50
 msgid ""
 "Fill it with the wordpress url to the xml-rpc, normally http://mysite.com/"
 "xmlrpc.php"
 msgstr ""
+"填上您的 wordpress xml-rpc 網址, 通常是以http://mysite.com/xmlrpc.php 呈現"
 
 #: conf/login_providers.py:51
 msgid ""
 "To enable, go to Settings->Writing->Remote Publishing and check the box for "
 "XML-RPC"
 msgstr ""
+"設定您的 wordpress XML_RPC, 請到 \"Settings->Writing->Remote Publishing\""
+"然後勾選 XML_RPC"
 
 #: conf/login_providers.py:62
 msgid "Upload your icon"
-msgstr ""
+msgstr "上傳您的icon"
 
 #: conf/login_providers.py:92
 #, python-format
 msgid "Activate %(provider)s login"
-msgstr ""
+msgstr "啟動  %(provider)s 登入"
 
 #: conf/login_providers.py:97
 #, python-format
@@ -1705,14 +1740,16 @@ msgid ""
 "Note: to really enable %(provider)s login some additional parameters will "
 "need to be set in the \"External keys\" section"
 msgstr ""
+"注意: 要真正啟動 %(provider)s 登入, 可能需要一些額外的參數"
+"您必須在以下的 \"External keys\" 部分進行設定"
 
 #: conf/markup.py:15
 msgid "Markup in posts"
-msgstr ""
+msgstr "張貼文章內容過濾機制"
 
 #: conf/markup.py:41
 msgid "Enable code-friendly Markdown"
-msgstr ""
+msgstr "開啟 \"易讀易寫\" 功能 "
 
 #: conf/markup.py:43
 msgid ""
@@ -1786,77 +1823,70 @@ msgid "Karma thresholds"
 msgstr "積分門檻"
 
 #: conf/minimum_reputation.py:22
-#, fuzzy
 msgid "Upvote"
 msgstr "讚(+1)"
 
 #: conf/minimum_reputation.py:31
-#, fuzzy
 msgid "Downvote"
 msgstr "噓(-1)"
 
 #: conf/minimum_reputation.py:40
-#, fuzzy
 msgid "Answer own question immediately"
 msgstr "立即回應看法"
+
 #: conf/minimum_reputation.py:49
-#, fuzzy
 msgid "Accept own answer"
-msgstr "接受回應"
+msgstr "接受自己的回應"
+
 #: conf/minimum_reputation.py:58
-#, fuzzy
 msgid "Flag offensive"
 msgstr "標記不洽當內容"
 
 #: conf/minimum_reputation.py:67
-#, fuzzy
 msgid "Leave comments"
-msgstr "添加評論"
+msgstr "留下評論"
 
 #: conf/minimum_reputation.py:76
 msgid "Delete comments posted by others"
 msgstr "刪除別人的看法"
+
 #: conf/minimum_reputation.py:85
-#, fuzzy
 msgid "Delete questions and answers posted by others"
-msgstr "刪除別人的回應"
+msgstr "刪除這個評論及有關的回應"
 
 #: conf/minimum_reputation.py:94
-#, fuzzy
 msgid "Upload files"
 msgstr "上傳檔案"
 
 #: conf/minimum_reputation.py:103
-#, fuzzy
 msgid "Close own questions"
 msgstr "結束看法"
+
 #: conf/minimum_reputation.py:112
 msgid "Retag questions posted by other people"
 msgstr ""
 
 #: conf/minimum_reputation.py:121
-#, fuzzy
 msgid "Reopen own questions"
 msgstr "重啟看法"
+
 #: conf/minimum_reputation.py:130
-#, fuzzy
 msgid "Edit community wiki posts"
-msgstr "編輯 wiki 類看法"
+msgstr "編輯 wiki 看法"
 
 #: conf/minimum_reputation.py:139
 msgid "Edit posts authored by other people"
 msgstr ""
 
 #: conf/minimum_reputation.py:148
-#, fuzzy
 msgid "View offensive flags"
 msgstr "觀看不洽當內容標示"
 
 # must have extra space after in english
 #: conf/minimum_reputation.py:157
-#, fuzzy
 msgid "Close questions asked by others"
-msgstr "查看相關看法"
+msgstr "關閉別人的看法"
+
 #: conf/minimum_reputation.py:166
 msgid "Lock posts"
 msgstr ""
@@ -1887,9 +1917,8 @@ msgstr "取得到一個『讚』, 獲得"
 msgid "Gain for the author of accepted answer"
 msgstr "看法的回應被接受, 獲得"
 #: conf/reputation_changes.py:50
-#, fuzzy
 msgid "Gain for accepting best answer"
-msgstr "標記最佳答案, 獲得"
+msgstr "最佳答案標記, 獲得"
 
 #: conf/reputation_changes.py:59
 msgid "Gain for post owner on canceled downvote"
@@ -1926,14 +1955,15 @@ msgstr "看法提出者標註 5次相同的修正, 喪失"
 #: conf/reputation_changes.py:148
 msgid "Loss for post owner when upvote is canceled"
 msgstr "看法提出者取消對於您的內容的『讚』評價, 喪失"
+
 #: conf/sidebar_main.py:12
 msgid "Main page sidebar"
-msgstr ""
+msgstr "主網頁的邊欄設定"
 
 #: conf/sidebar_main.py:20 conf/sidebar_profile.py:20
 #: conf/sidebar_question.py:19
 msgid "Custom sidebar header"
-msgstr ""
+msgstr "客製化 邊欄標題"
 
 #: conf/sidebar_main.py:23 conf/sidebar_profile.py:23
 #: conf/sidebar_question.py:22
@@ -1943,42 +1973,113 @@ msgid ""
 "validation service to make sure that your input is valid and works well in "
 "all browsers."
 msgstr ""
+"在這個地方您可以編輯 邊欄標題.   "
+
+#: conf/sidebar_main.py:36
+msgid "Show Search block in sidebar"
+msgstr "顯示搜尋區塊"
+
+#: conf/sidebar_main.py:38
+msgid ""
+"Uncheck this if you want to hide the Search "
+"block from the sidebar "
+msgstr "若您不想 顯示搜尋區塊 請不要勾選本選項"
+
+#: conf/sidebar_main.py:36
+msgid "Show Payment block in sidebar"
+msgstr "顯示付款區塊"
+
+#: conf/sidebar_main.py:38
+msgid ""
+"Uncheck this if you want to hide the payment "
+"block from the sidebar "
+msgstr "若您不想 顯示付款區塊 請不要勾選本選項"
+
+#: conf/sidebar_main.py:36
+msgid "Show advertisement 1 block in sidebar"
+msgstr "顯示 \"廣告I\" 區塊"
+
+#: conf/sidebar_main.py:36
+msgid "Show advertisement 2 block in sidebar"
+msgstr "顯示 \"廣告II\" 區塊"
+
+#: conf/sidebar_main.py:36
+msgid "Show advertisement 3 block in sidebar"
+msgstr "顯示 \"廣告III\" 區塊"
+
+#: conf/sidebar_main.py:36
+msgid "Show advertisement 4 block in sidebar"
+msgstr "顯示 \"廣告IV\" 區塊"
+
+#: conf/sidebar_main.py:36
+msgid "Custom portion of the advertisement 1 in sidebar"
+msgstr "客製 \"廣告I\" 區塊內容"
+
+#: conf/sidebar_main.py:36
+msgid "Custom portion of the advertisement 2 in sidebar"
+msgstr "客製 \"廣告II\" 區塊內容"
+
+#: conf/sidebar_main.py:36
+msgid "Custom portion of the advertisement 3 in sidebar"
+msgstr "客製 \"廣告III\" 區塊內容"
+
+#: conf/sidebar_main.py:36
+msgid "Custom portion of the advertisement 4 in sidebar"
+msgstr "客製 \"廣告IV\" 區塊內容"
+
+#: conf/sidebar_main.py:36
+msgid ""
+"<strong>To use this option</strong>, "
+"check \"Show advertisement block in SIDEBAR area;\" "
+"above. Contents of this box will be inserted "
+"into the &lt;SIDEBAR__AD&gt; portion of the HTML "
+"output."
+msgstr ""
+"<strong>如何使用自訂廣告</strong>, "
+"先勾選 顯示 \"廣告\" 區塊選項 "
+"然後您輸入的內容將會呈現在廣告區塊上 "
+
+#: conf/sidebar_main.py:38
+msgid ""
+"Uncheck this if you want to hide the advertisement"
+"block from the sidebar "
+msgstr "若您不想 顯示廣告區塊 請不要勾選本選項"
 
 #: conf/sidebar_main.py:36
 msgid "Show avatar block in sidebar"
-msgstr ""
+msgstr "顯示使用者圖像區塊"
 
 #: conf/sidebar_main.py:38
 msgid "Uncheck this if you want to hide the avatar block from the sidebar "
-msgstr ""
+msgstr "若您不想 顯示使用者圖像區塊 請不要勾選本選項"
 
 #: conf/sidebar_main.py:49
 msgid "Limit how many avatars will be displayed on the sidebar"
-msgstr ""
+msgstr "設定最多能顯示的 使用者圖像 數目"
 
 #: conf/sidebar_main.py:59
 msgid "Show tag selector in sidebar"
-msgstr ""
+msgstr "在邊欄顯示標籤過濾功能"
 
 #: conf/sidebar_main.py:61
 msgid ""
 "Uncheck this if you want to hide the options for choosing interesting and "
 "ignored tags "
-msgstr ""
+msgstr "若您不想 顯示標籤過濾功能 請不要勾選本選項"
 
 #: conf/sidebar_main.py:72
 msgid "Show tag list/cloud in sidebar"
-msgstr ""
+msgstr "顯示 相關標籤"
 
 #: conf/sidebar_main.py:74
 msgid ""
 "Uncheck this if you want to hide the tag cloud or tag list from the sidebar "
-msgstr ""
+msgstr "若您不想 顯示相關標籤 請不要勾選本選項"
 
 #: conf/sidebar_main.py:85 conf/sidebar_profile.py:36
 #: conf/sidebar_question.py:75
 msgid "Custom sidebar footer"
-msgstr ""
+msgstr "客製您邊欄的頁腳"
 
 #: conf/sidebar_main.py:88 conf/sidebar_profile.py:39
 #: conf/sidebar_question.py:78
@@ -1988,49 +2089,48 @@ msgid ""
 "validation service to make sure that your input is valid and works well in "
 "all browsers."
 msgstr ""
+"在這裡輸入您要顯示的 邊欄頁腳內容(以HTML格式)"
 
 #: conf/sidebar_profile.py:12
-#, fuzzy
 msgid "User profile sidebar"
-msgstr "用戶資料"
+msgstr "邊欄呈現用戶資料"
 
 #: conf/sidebar_question.py:11
-#, fuzzy
 msgid "Question page sidebar"
-msgstr "看法標籤"
+msgstr "邊欄呈現看法"
+
 #: conf/sidebar_question.py:35
 msgid "Show tag list in sidebar"
-msgstr ""
+msgstr "邊欄呈現標籤"
 
 #: conf/sidebar_question.py:37
 msgid "Uncheck this if you want to hide the tag list from the sidebar "
-msgstr ""
+msgstr "如果您不要邊欄呈現標籤, 請不要勾選這個項目!"
 
 #: conf/sidebar_question.py:48
 msgid "Show meta information in sidebar"
-msgstr ""
+msgstr "邊欄呈現張貼看法的資訊"
 
 #: conf/sidebar_question.py:50
 msgid ""
 "Uncheck this if you want to hide the meta information about the question "
 "(post date, views, last updated). "
-msgstr ""
+msgstr "如果您不要邊欄呈現的資訊(如: 張貼日期,點閱人數,更新時間等等), 請不要勾選這個項目!"
 
 #: conf/sidebar_question.py:62
-#, fuzzy
 msgid "Show related questions in sidebar"
-msgstr "相似的看法"
+msgstr "列出相關的看法"
+
 #: conf/sidebar_question.py:64
-#, fuzzy
 msgid "Uncheck this if you want to hide the list of related questions. "
-msgstr "點選觀看最近最少被更新的看法"
+msgstr "如果您不要邊欄呈現相關的看法, 請不要勾選這個項目!"
 #: conf/site_modes.py:64
 msgid "Bootstrap mode"
-msgstr ""
+msgstr "初始模式"
 
 #: conf/site_modes.py:74
 msgid "Activate a \"Bootstrap\" mode"
-msgstr ""
+msgstr "開啟 初始模式"
 
 #: conf/site_modes.py:76
 msgid ""
@@ -2038,69 +2138,89 @@ msgid ""
 "more suitable for the smaller communities, <strong>WARNING:</strong> your "
 "current value for Minimum reputation, Bagde Settings and Vote Rules will be "
 "changed after you modify this setting."
-msgstr ""
+msgstr "初始模式是針對 比較小的及剛起步的 論壇, 給予比較少的積分及勳章. "
+	   "<strong>注意:</strong> 您對於積分及勳章設定等規則,會因為您更更選"
+	   "這個項目而改變設定"
+
+#: conf/site_settings.py:12
+msgid "Keepwin"
+msgstr "靈龜穩賺網"
+
+#: conf/site_settings.py:12
+msgid "Keepwin,Stock,Investment,Taiwan Stock,CNPROG,forum,community"
+msgstr "靈龜穩賺網,股票,投資,台股,論壇"
+
+#: conf/site_settings.py:12
+msgid "Keepwin copyright, 2012-2016."
+msgstr "靈龜穩賺網 版權所有, 2012-2016."
+
+#: conf/site_settings.py:12
+msgid "Taiwan Stock Forum exchange investment"
+msgstr "台灣股市 論壇 股市 投資"
+
+#: conf/site_settings.py:12
+msgid "Welcome you to Keepwin Forum !!!"
+msgstr "歡迎您來到「靈龜穩賺網」 !!!"
 
 #: conf/site_settings.py:12
 msgid "URLS, keywords & greetings"
-msgstr ""
+msgstr "連結, 關鍵字 及 歡迎訊息"
 
 #: conf/site_settings.py:21
-#, fuzzy
 msgid "Site title for the Q&A forum"
-msgstr "論壇歡迎列"
+msgstr "論壇歡迎標題"
 
 #: conf/site_settings.py:30
 msgid "Comma separated list of Q&A site keywords"
-msgstr ""
+msgstr "請用逗號來隔開 論壇關鍵字"
 
 #: conf/site_settings.py:39
 msgid "Copyright message to show in the footer"
-msgstr ""
+msgstr "在頁尾要顯示的版權訊息"
 
 #: conf/site_settings.py:49
 msgid "Site description for the search engines"
-msgstr ""
+msgstr "方便搜索引擎搜尋的論壇描述"
 
 #: conf/site_settings.py:58
 msgid "Short name for your Q&A forum"
-msgstr ""
+msgstr "論壇簡稱"
 
 #: conf/site_settings.py:68
 msgid "Base URL for your Q&A forum, must start with http or https"
-msgstr ""
+msgstr "論壇的首頁網址, 必須用http 或 https 當作開頭"
 
 #: conf/site_settings.py:79
 msgid "Check to enable greeting for anonymous user"
-msgstr ""
+msgstr "開啟針對 未登入會員 的歡迎詞"
 
 #: conf/site_settings.py:90
 msgid "Text shown in the greeting message shown to the anonymous user"
-msgstr ""
+msgstr "以下文字將會顯示在 給未登入的使用者的歡迎詞!"
 
 #: conf/site_settings.py:94
 msgid "Use HTML to format the message "
-msgstr ""
+msgstr "使用HTML來讓訊息更格式化!"
 
 #: conf/site_settings.py:103
-#, fuzzy
 msgid "Feedback site URL"
-msgstr "看法回饋 URL"
+msgstr "回饋與建議 的連結"
 
 #: conf/site_settings.py:105
 msgid "If left empty, a simple internal feedback form will be used instead"
-msgstr ""
+msgstr "如果您留下空白, 將會以傳送簡單的內部回饋與建議來取代!"
 
 #: conf/skin_counter_settings.py:11
 msgid "Skin: view, vote and answer counters"
-msgstr ""
+msgstr "外觀: 瀏覽, 評分 與回應的計數器"
 
 #: conf/skin_counter_settings.py:19
 msgid "Vote counter value to give \"full color\""
-msgstr ""
+msgstr "設定評分計數器的值 將以\"完整色\"呈現"
 
 #: conf/skin_counter_settings.py:29
 msgid "Background color for votes = 0"
-msgstr ""
+msgstr "評分計數器為0時 的\"背景色\""
 
 #: conf/skin_counter_settings.py:30 conf/skin_counter_settings.py:41
 #: conf/skin_counter_settings.py:52 conf/skin_counter_settings.py:62
@@ -2113,118 +2233,152 @@ msgstr ""
 #: conf/skin_counter_settings.py:228 conf/skin_counter_settings.py:239
 #: conf/skin_counter_settings.py:252 conf/skin_counter_settings.py:262
 msgid "HTML color name or hex value"
-msgstr ""
+msgstr "HTML 的顏色名稱 或 16進位顏色數值"
 
 #: conf/skin_counter_settings.py:40
 msgid "Foreground color for votes = 0"
-msgstr ""
+msgstr "評分計數器為0時 的\"前景色\""
 
 #: conf/skin_counter_settings.py:51
 msgid "Background color for votes"
-msgstr ""
+msgstr "評分 的\"背景色\""
 
 #: conf/skin_counter_settings.py:61
 msgid "Foreground color for votes"
-msgstr ""
+msgstr "評分 的\"前景色\""
 
 #: conf/skin_counter_settings.py:71
 msgid "Background color for votes = MAX"
-msgstr ""
+msgstr "評分計數器為最大值時 的\"背景色\""
 
 #: conf/skin_counter_settings.py:84
 msgid "Foreground color for votes = MAX"
-msgstr ""
+msgstr "評分計數器為最大值時 的\"前景色\""
 
 #: conf/skin_counter_settings.py:95
 msgid "View counter value to give \"full color\""
-msgstr ""
+msgstr "設定觀看次數的值 將以\"完整色\"呈現"
 
 #: conf/skin_counter_settings.py:105
 msgid "Background color for views = 0"
-msgstr ""
+msgstr "觀看次數為0時 的\"背景色\""
 
 #: conf/skin_counter_settings.py:116
 msgid "Foreground color for views = 0"
-msgstr ""
+msgstr "觀看次數為0時 的\"前景色\""
 
 #: conf/skin_counter_settings.py:127
 msgid "Background color for views"
-msgstr ""
+msgstr "觀看次數的\"背景色\""
 
 #: conf/skin_counter_settings.py:137
 msgid "Foreground color for views"
-msgstr ""
+msgstr "觀看次數的\"前景色\""
 
 #: conf/skin_counter_settings.py:147
 msgid "Background color for views = MAX"
-msgstr ""
+msgstr "觀看次數為最大值時 的\"背景色\""
 
 #: conf/skin_counter_settings.py:162
 msgid "Foreground color for views = MAX"
-msgstr ""
+msgstr "觀看次數為最大值時 的\"前景色\""
 
 #: conf/skin_counter_settings.py:173
 msgid "Answer counter value to give \"full color\""
-msgstr ""
+msgstr "設定回應次數的值 將以\"完整色\"呈現"
 
 #: conf/skin_counter_settings.py:185
 msgid "Background color for answers = 0"
-msgstr ""
+msgstr "回應次數為0時 的\"背景色\""
 
 #: conf/skin_counter_settings.py:195
 msgid "Foreground color for answers = 0"
-msgstr ""
+msgstr "回應次數為0時 的\"前景色\""
 
 #: conf/skin_counter_settings.py:205
 msgid "Background color for answers"
-msgstr ""
+msgstr "回應次數的\"背景色\""
 
 #: conf/skin_counter_settings.py:215
 msgid "Foreground color for answers"
-msgstr ""
+msgstr "回應次數的\"前景色\""
 
 #: conf/skin_counter_settings.py:227
 msgid "Background color for answers = MAX"
-msgstr ""
+msgstr "回應次數為最大值時 的\"背景色\""
 
 #: conf/skin_counter_settings.py:238
 msgid "Foreground color for answers = MAX"
-msgstr ""
+msgstr "回應次數為最大值時 的\"前景色\""
 
 #: conf/skin_counter_settings.py:251
 msgid "Background color for accepted"
-msgstr ""
+msgstr "接受回應的\"背景色\""
 
 #: conf/skin_counter_settings.py:261
 msgid "Foreground color for accepted answer"
-msgstr ""
+msgstr "接受回應的\"前景色\""
 
 #: conf/skin_general_settings.py:15
 msgid "Logos and HTML <head> parts"
-msgstr ""
+msgstr "Logo 跟 網頁標題的部分"
 
 #: conf/skin_general_settings.py:23
-#, fuzzy
 msgid "Q&A site logo"
 msgstr "論壇Logo"
 
+#: conf/skin_general_settings.py:23
+msgid "Show advertisement block in main area"
+msgstr "顯示廣告區塊"
+
+#: conf/skin_general_settings.py:23
+msgid ""
+"Uncheck this if you want to hide the advertisement "
+"block from the mainarea" 
+msgstr ""
+"若您不要在主要區域顯示廣告區塊, 請不要勾選本選項!"
+
 #: conf/skin_general_settings.py:25
 msgid "To change the logo, select new file, then submit this whole form."
+msgstr "若您要更改Logo,請選擇檔案後,然後送至Server"
+
+#: conf/skin_general_settings.py:25
+msgid "Custom portion of the HTML in Main AD Bar"
+msgstr "主要區域廣告區塊 客製部分"
+
+#: conf/skin_general_settings.py:25
+msgid ""
+"<strong>To use this option</strong>, "
+"check \"Show advertisement block in main area;\" "
+"above. Contents of this box will be inserted "
+"into the &lt;MAIN_AD_BAR&gt; portion of the HTML "
+"output."
 msgstr ""
+"<strong>若您要使用本客製部分</strong>, 先勾選前一項 \"主要區域廣告區塊 客製部分\" "
+"廣告內容將會根據您填入的HTML呈現. <strong>注意:</strong> 如果您使用本項設定, "
+"請先使用 W3C HTML validator 測試是否您的內容合法."
+
+#: conf/skin_general_settings.py:25
+#msgid "Select the main template block in main area"
+#msgstr "選擇主區域的顯示模板"
+
+#: conf/skin_general_settings.py:25
+#msgid "The template of main page"
+#msgstr "首頁的模板選項"C
 
 #: conf/skin_general_settings.py:39
 msgid "Show logo"
-msgstr ""
+msgstr "顯示Logo"
 
 #: conf/skin_general_settings.py:41
 msgid ""
 "Check if you want to show logo in the forum header or uncheck in the case "
 "you do not want the logo to appear in the default location"
-msgstr ""
+msgstr "若您要在論壇標題顯示Logo,請將本選項打勾. "
 
 #: conf/skin_general_settings.py:53
 msgid "Site favicon"
-msgstr ""
+msgstr "網站小圖示"
 
 #: conf/skin_general_settings.py:55
 #, python-format
@@ -2232,41 +2386,42 @@ msgid ""
 "A small 16x16 or 32x32 pixel icon image used to distinguish your site in the "
 "browser user interface. Please find more information about favicon at <a "
 "href=\"%(favicon_info_url)s\">this page</a>."
-msgstr ""
+msgstr "一個小小的 16x16 or 32x32 小圖示, 是瀏覽器用來呈現您的網址的圖示"
+"您可以到 href=\"%(favicon_info_url)s\">小圖示連結</a>. 取得更多訊息"
 
 #: conf/skin_general_settings.py:73
 msgid "Password login button"
-msgstr ""
+msgstr "密碼登入按鈕"
 
 #: conf/skin_general_settings.py:75
 msgid ""
 "An 88x38 pixel image that is used on the login screen for the password login "
 "button."
-msgstr ""
+msgstr "一個 88*38 的圖像將會被用來 登入畫面上, 作為密碼登入的入口"
 
 #: conf/skin_general_settings.py:90
 msgid "Show all UI functions to all users"
-msgstr ""
+msgstr "將所有論壇的功能, 都開放給使用者使用"
 
 #: conf/skin_general_settings.py:92
 msgid ""
 "If checked, all forum functions will be shown to users, regardless of their "
 "reputation. However to use those functions, moderation rules, reputation and "
 "other limits will still apply."
-msgstr ""
+msgstr "如果您選了這個選項, 不管他們的積分如何 使用者將會看到這個論壇的所有功能.  "
+"不過系統使用權限設定在這裡仍然有效"
 
 #: conf/skin_general_settings.py:107
-#, fuzzy
 msgid "Select skin"
 msgstr "選擇外觀版本"
 
 #: conf/skin_general_settings.py:118
 msgid "Customize HTML <HEAD>"
-msgstr ""
+msgstr "客製化您的 網頁標題 <HEAD>"
 
 #: conf/skin_general_settings.py:127
 msgid "Custom portion of the HTML <HEAD>"
-msgstr ""
+msgstr "網頁標題 <HEAD> 客製部分"
 
 #: conf/skin_general_settings.py:129
 msgid ""
@@ -2278,11 +2433,16 @@ msgid ""
 "pages. Instead, it will be more efficient to place links to the javascript "
 "files into the footer. <strong>Note:</strong> if you do use this setting, "
 "please test the site with the W3C HTML validator service."
-msgstr ""
+msgstr "<strong>若您要使用本客製部分</strong>, 先勾選前一項 \"客製化您的 網頁標題 &lt;HEAD&gt;\" "
+"您所輸入的內容將會新增到 網頁標題 &lt;HEAD&gt; 當內容輸出時 像是 &lt;script&gt;, &lt;link&gt;, &lt;"
+"meta&gt; 等標籤會加入到內容. 請注意並留心 外部連結的 Javascript 不建議加到 "
+"&lt;HEAD&gt; 因為這樣會讓網頁下載速度變慢. 我們建議將 外部連結的 Javascript "
+"加到頁底  footer 標籤. 這樣會加快速度. <strong>注意:</strong> 如果您使用本項設定, "
+"請先使用 W3C HTML validator 測試是否您的內容合法."
 
 #: conf/skin_general_settings.py:151
 msgid "Custom header additions"
-msgstr ""
+msgstr "客製您的標題選單"
 
 #: conf/skin_general_settings.py:153
 msgid ""
@@ -2291,21 +2451,25 @@ msgid ""
 "headerin the HTML format.   When customizing the site header (as well as "
 "footer and the HTML &lt;HEAD&gt;), use the HTML validation service to make "
 "sure that your input is valid and works well in all browsers."
-msgstr ""
+msgstr "標題選單是呈現在每頁上方的選單, 他包含使用者資訊跟相關連結"
+"使用本項設定請務必輸入 HTML 格式. 當使用本項設定, "
+"請先使用 W3C HTML validator 測試是否您的內容合法."
 
 #: conf/skin_general_settings.py:168
 msgid "Site footer mode"
-msgstr ""
+msgstr "網頁置底模式"
 
 #: conf/skin_general_settings.py:170
 msgid ""
 "Footer is the bottom portion of the content, which is common to all pages. "
 "You can disable, customize, or use the default footer."
 msgstr ""
+"網頁置底訊息是指顯示在每個網頁頁腳部分的內容. "
+"您可以取消 客製 或使用系統預設內容."
 
 #: conf/skin_general_settings.py:187
 msgid "Custom footer (HTML format)"
-msgstr ""
+msgstr "客製網頁置底訊息"
 
 #: conf/skin_general_settings.py:189
 msgid ""
@@ -2315,16 +2479,19 @@ msgid ""
 "header and HTML &lt;HEAD&gt;), use the HTML validation service to make sure "
 "that your input is valid and works well in all browsers."
 msgstr ""
+"<strong>若您要使用本客製部分</strong>, 先在  \"網頁置底模式\" 選擇'customize' "
+"並在右方輸入 您要客製的內容. 當您客製網頁置底訊息時(就跟\"客製化您的 網頁標題 &lt;HEAD&gt;\""
+"一樣), 請先使用 W3C HTML validator 測試是否您的內容合法."
 
 #: conf/skin_general_settings.py:204
 msgid "Apply custom style sheet (CSS)"
-msgstr ""
+msgstr "使用自訂的 custom style sheet (CSS)"
 
 #: conf/skin_general_settings.py:206
 msgid ""
 "Check if you want to change appearance of your form by adding custom style "
 "sheet rules (please see the next item)"
-msgstr ""
+msgstr "如果您要透過使用自訂的 custom style sheet (CSS)更改您的網站外觀 請勾選本選項"
 
 #: conf/skin_general_settings.py:218
 msgid "Custom style sheet (CSS)"
@@ -2338,18 +2505,22 @@ msgid ""
 "at url \"&lt;forum url&gt;/custom.css\", where the \"&lt;forum url&gt; part "
 "depends (default is empty string) on the url configuration in your urls.py."
 msgstr ""
+"<strong>若您要使用本客製部分</strong>, 先勾選前一項 \"使用自訂的 custom style sheet (CSS)\" "
+"這裡設定的 CSS 會在系統預設的 CSS 下載完  下載"
+"自訂的 custom style sheet (CSS) 的連結位址是 \"&lt;forum url&gt;/custom.css\""
+" \"&lt;forum url&gt; 的位址在 urls.py 設定. 預設值為空白 "
 
 #: conf/skin_general_settings.py:236
 msgid "Add custom javascript"
-msgstr ""
+msgstr "新增 自訂的 JavaScript"
 
 #: conf/skin_general_settings.py:239
 msgid "Check to enable javascript that you can enter in the next field"
-msgstr ""
+msgstr "若您要在下個欄位新增您自訂的Javascript 請在這個選項打勾"
 
 #: conf/skin_general_settings.py:249
 msgid "Custom javascript"
-msgstr ""
+msgstr "自訂的 JavaScript"
 
 #: conf/skin_general_settings.py:251
 msgid ""
@@ -2361,22 +2532,26 @@ msgid ""
 "enable your custom code</strong>, check \"Add custom javascript\" option "
 "above)."
 msgstr ""
+"輸入或貼上您要在本站執行的Javascript. 連結到外部的Javascript  "
+"將會新增到網頁的頁腳, 以 \"&lt;forum url&gt;/custom.js\" 形式呈現"
+"請慎重注意您的Javascript 很有可能會影響網站的運作, 而且在不同瀏覽器有不同的結果"
+"(<strong>若您要使用自訂的 JavaScript</strong>, 先勾選前一項 \"新增 自訂的 JavaScript\" "
 
 #: conf/skin_general_settings.py:269
 msgid "Skin media revision number"
-msgstr ""
+msgstr "外觀(Skin Media)修正版本編號"
 
 #: conf/skin_general_settings.py:271
 msgid "Will be set automatically but you can modify it if necessary."
-msgstr ""
+msgstr "系統會自動設定, 或者您要直接修改"
 
 #: conf/skin_general_settings.py:282
 msgid "Hash to update the media revision number automatically."
-msgstr ""
+msgstr "Hash 以自動產生 外觀(Skin Media)修正版本編號"
 
 #: conf/skin_general_settings.py:286
 msgid "Will be set automatically, it is not necesary to modify manually."
-msgstr ""
+msgstr "系統會自動設定, 或者您要手動修改"
 
 #: conf/social_sharing.py:11
 msgid "Sharing content on social networks"
@@ -2405,32 +2580,32 @@ msgstr ""
 
 #: conf/spam_and_moderation.py:10
 msgid "Akismet spam protection"
-msgstr ""
+msgstr "Akismet 垃圾評論過濾"
 
 #: conf/spam_and_moderation.py:18
 msgid "Enable Akismet spam detection(keys below are required)"
-msgstr ""
+msgstr "開啟 Akismet 垃圾評論偵測(以下keys 為必需的)"
 
 #: conf/spam_and_moderation.py:21
 #, python-format
 msgid "To get an Akismet key please visit <a href=\"%(url)s\">Akismet site</a>"
-msgstr ""
+msgstr "請到以下地方 <a href=\"%(url)s\">Akismet site</a> 取得 Akismet key "
 
 #: conf/spam_and_moderation.py:31
 msgid "Akismet key for spam detection"
-msgstr ""
+msgstr "Akismet 垃圾評論偵測 key"
 
 #: conf/super_groups.py:5
 msgid "Reputation, Badges, Votes & Flags"
-msgstr ""
+msgstr "積分, 勳章, 評價 及 標記"
 
 #: conf/super_groups.py:6
 msgid "Static Content, URLS & UI"
-msgstr ""
+msgstr "靜態網頁 網址 及 介面"
 
 #: conf/super_groups.py:7
 msgid "Data rules & Formatting"
-msgstr ""
+msgstr "資料規則及格式"
 
 #: conf/super_groups.py:8
 
@@ -3038,7 +3213,6 @@ msgid "Verisign user name"
 msgstr "Verisign 用戶名"
 
 #: deps/django_authopenid/util.py:608
-#, fuzzy, python-format
 msgid "Change your %(provider)s password"
 msgstr "修改 %(provider)s 的密碼"
 
@@ -3053,14 +3227,13 @@ msgid "Create password for %(provider)s"
 msgstr "建立 %(provider)s 的密碼"
 
 #: deps/django_authopenid/util.py:625
-#, fuzzy, python-format
 msgid "Connect your %(provider)s account to %(site_name)s"
-msgstr "綁定 OpenID 帳號"
+msgstr "將您的 %(provider)s 帳號跟 %(site_name)s連結在一起"
 
 #: deps/django_authopenid/util.py:634
 #, fuzzy, python-format
 msgid "Signin with %(provider)s user name and password"
-msgstr "使用帳號密碼登錄"
+msgstr "請使用%(provider)s 的帳號密碼登錄"
 
 #: deps/django_authopenid/util.py:641
 #, python-format
@@ -3083,9 +3256,8 @@ msgstr ""
 "請稍後再試!"
 
 #: deps/django_authopenid/views.py:371
-#, fuzzy
 msgid "Your new password saved"
-msgstr "密碼已更改"
+msgstr "您的密碼已更改"
 
 #: deps/django_authopenid/views.py:475
 msgid "The login password combination was not correct"
@@ -3100,9 +3272,8 @@ msgstr "請透過點擊以下圖示以進行登入"
 
 
 #: deps/django_authopenid/views.py:581
-#, fuzzy
 msgid "Account recovery email sent"
-msgstr "修改電子郵件"
+msgstr "重啟帳號EMail 已經寄出"
 
 #: deps/django_authopenid/views.py:582
 msgid "Please add one or more login methods."
@@ -3126,7 +3297,6 @@ msgid "Login method %(provider_name)s does not exist"
 msgstr "登入方式%(provider_name)s不存在"
 
 #: deps/django_authopenid/views.py:669
-#, fuzzy
 msgid "Oops, sorry - there was some error - please try again"
 msgstr "對不起, 發生了問題, 請稍後再試!"
 
@@ -3141,16 +3311,14 @@ msgid "your email needs to be validated see %(details_url)s"
 msgstr "email 須經認證, 參考 %(details_url)s"
 
 #: deps/django_authopenid/views.py:1098
-#, fuzzy, python-format
 msgid "Recover your %(site)s account"
-msgstr "請設新密碼"
+msgstr "重設您的 %(site)s 帳號密碼"
 
 #: deps/django_authopenid/views.py:1168
 msgid "Please check your email and visit the enclosed link."
 msgstr "請透過以下連結檢查您的email 是否正確"
 
 #: deps/livesettings/models.py:101 deps/livesettings/models.py:140
-#, fuzzy
 msgid "Site"
 msgstr "論壇"
 
@@ -3159,7 +3327,6 @@ msgid "Main"
 msgstr "主板"
 
 #: deps/livesettings/values.py:127
-#, fuzzy
 msgid "Base Settings"
 msgstr "基本設置"
 
@@ -3178,9 +3345,8 @@ msgstr "初始設定: %s"
 
 # todo take these out of settings
 #: deps/livesettings/values.py:622
-#, fuzzy, python-format
 msgid "Allowed image file types are %(types)s"
-msgstr "只允許上傳 '%(file_types)s' 類型的文件！"
+msgstr "只允許上傳 '%(types)s' 類型的文件！"
 
 #: deps/livesettings/templates/livesettings/_admin_site_views.html:4
 msgid "Sites"
@@ -3299,11 +3465,9 @@ msgid "Accept the best answer for %(question_count)d of your questions"
 msgstr ""
 
 #: management/commands/send_accept_answer_reminders.py:62
-#, fuzzy
 msgid "Please accept the best answer for this question:"
 msgstr "這看法的第一個回應者"
 #: management/commands/send_accept_answer_reminders.py:64
-#, fuzzy
 msgid "Please accept the best answer for these questions:"
 msgstr "點選觀看最早看法"
 #: management/commands/send_email_alerts.py:411
@@ -3328,7 +3492,6 @@ msgstr[1] ""
 msgid "new question"
 msgstr "發表新看法"
 #: management/commands/send_email_alerts.py:455
-#, fuzzy
 msgid""
 "Please visit the askbot and see what's new! Could you spread the word about "
 "it - can somebody you know help answering those questions or benefit from "
@@ -3336,7 +3499,6 @@ msgid""
 msgstr " 請參觀論壇, 觀看新功能介紹! 並廣為宣傳 - 能否回應或從中獲益?"
 
 #: management/commands/send_email_alerts.py:465
-#, fuzzy
 msgid ""
 "Your most frequent subscription setting is 'daily' on selected questions. If "
 "you are receiving more than one email per dayplease tell about this issue to "
@@ -3344,7 +3506,6 @@ msgid ""
 msgstr "你設定訂閱每日查詢, 如果每天收到信件超夠一封, 請告知管理者."
 
 #: management/commands/send_email_alerts.py:471
-#, fuzzy
 msgid ""
 "Your most frequent subscription setting is 'weekly' if you are receiving "
 "this email more than once a week please report this issue to the askbot "
@@ -3358,7 +3519,6 @@ msgid ""
 msgstr "你有可能收到之前看過的連結, 我們將持續改進相關檢查技術."
 
 #: management/commands/send_email_alerts.py:490
-#, fuzzy, python-format
 msgid ""
 "go to %(email_settings_link)s to change frequency of email updates or "
 "%(admin_email)s administrator"
@@ -3376,9 +3536,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: middleware/forum_mode.py:31
-#, fuzzy, python-format
 msgid "Please log in to use %s"
-msgstr "請登入 以進行發表! "
+msgstr "請登入 立刻使用%s ! "
 
 
 #: models/badges.py:129
@@ -3684,7 +3843,6 @@ msgid "\" and \"%s\""
 msgstr ""
 
 #: models/question.py:66
-#, fuzzy
 msgid "\" and more"
 msgstr "查看更多"
 
@@ -3740,7 +3898,6 @@ msgstr ""
 "question %(question_title)s"
 
 #: models/tag.py:151
-#, fuzzy
 msgid "interesting"
 msgstr "有趣"
 
@@ -4019,7 +4176,6 @@ msgstr "帳號詳細: "
 
 #: skins/common/templates/authopenid/confirm_email.txt:5
 #: skins/old/templates/authopenid/confirm_email.txt:5
-#, fuzzy
 msgid "Username:"
 msgstr "您的大名"
 
@@ -4120,7 +4276,7 @@ msgstr ""
 msgid ""
 "Please read and type in the two words below to help us prevent automated "
 "account creation."
-msgstr ""
+msgstr "為了認證您是真人註冊, 請讀取以下兩個字並輸入"
 
 #: skins/common/templates/authopenid/signup_with_password.html:47
 msgid "Create Account"
@@ -5547,20 +5703,19 @@ msgid "Related questions"
 msgstr "相關聯看法"
 #: skins/default/templates/question/subscribe_by_email_prompt.html:7
 #: skins/default/templates/question/subscribe_by_email_prompt.html:9
-#, fuzzy
 msgid "Notify me once a day when there are any new answers"
 msgstr ""
-"<strong>每天通知我</strong> 只要有新的回應或更新 "
+"只要有新的回應或更新,就 <strong>每天通知我</strong>  "
 
 #: skins/default/templates/question/subscribe_by_email_prompt.html:11
 msgid "Notify me weekly when there are any new answers"
 msgstr ""
-"<strong>每週通知我</strong> 只要有新的回應或更新 "
+"只要有新的回應或更新,就 <strong>每週通知我</strong>"
 
 #: skins/default/templates/question/subscribe_by_email_prompt.html:13
 msgid "Notify me immediately when there are any new answers"
 msgstr ""
-"<strong>立刻通知我</strong> 只要有新的回應或更新 "
+"只要有新的回應或更新,就 <strong>立刻通知我</strong>"
 
 #: skins/default/templates/question/subscribe_by_email_prompt.html:16
 #, python-format
@@ -5696,7 +5851,7 @@ msgstr "更新簡介"
 
 #: skins/default/templates/user_profile/user_info.html:40
 msgid "manage login methods"
-msgstr "調整登入方法"
+msgstr "更改密碼"
 
 #: skins/default/templates/user_profile/user_info.html:53
 msgid "real name"
@@ -6451,6 +6606,27 @@ msgid "%(min)d min ago"
 msgid_plural "%(min)d mins ago"
 msgstr[0] "%(min)d 分鐘以前"
 msgstr[1] ""
+
+#: conf/leading_sidebar.py:12
+msgid "Common left sidebar"
+msgstr "左邊邊欄說明"
+
+#: conf/leading_sidebar.py:12
+msgid "Enable left sidebar"
+msgstr "啟動左邊邊欄"
+
+#: conf/leading_sidebar.py:12
+msgid "HTML for the left sidebar"
+msgstr "左邊邊欄的HTML"
+
+#: conf/leading_sidebar.py:12
+msgid ""
+"Use this area to enter content at the LEFT sidebar"
+"in HTML format.  When using this option, please "
+"use the HTML validation service to make sure that "
+"your input is valid and works well in all browsers."
+msgstr ""
+"在這裡輸入HTML格式的左邊邊欄說明"
 
 #: views/avatar_views.py:99
 msgid "Successfully uploaded a new avatar."
