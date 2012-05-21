@@ -1,0 +1,19 @@
+{% if not settings.KEEPWIN_ANSWER_MODE %}
+{{ macros.post_vote_buttons(post = answer, visitor_vote = user_answer_votes[answer.id]) }}
+<img id="answer-img-accept-{{ answer.id }}" class="answer-img-accept"
+        {% if answer.accepted() %}
+     src="{{'/images/vote-accepted-on.png'|media}}"
+        {% else %}
+     src="{{'/images/vote-accepted.png'|media}}"
+        {% endif %}
+        {% if request.user == question.author or (request.user.is_authenticated() and (request.user.is_moderator() or request.user.is_administrator())) %}
+     alt="{% trans %}mark this answer as correct (click again to undo){% endtrans %}"
+     title="{% trans %}mark this answer as correct (click again to undo){% endtrans %}"
+        {% else %}
+     alt="{% trans question_author=question.author.username %}{{question_author}} has selected this answer as correct{% endtrans %}"
+     title="{% trans question_author=question.author.username%}{{question_author}} has selected this answer as correct{% endtrans %}"
+        {% endif %}
+        />
+{% else %}
+{{ macros.post_vote_buttons_keepwin(post = answer, visitor_vote = user_answer_votes[answer.id]) }}
+{% endif %}

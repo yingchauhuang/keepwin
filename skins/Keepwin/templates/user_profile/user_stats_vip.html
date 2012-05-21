@@ -15,11 +15,13 @@
 	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" id="{{main_template.id}}">
 		<div class="portlet-header ui-widget-header ui-corner-all">
 			<span class="ui-icon ui-icon-minusthick" tempid="{{main_template.id}}"></span>
-			{{main_template.profilelayout.title}}
-		</div>
 		{% if main_template.profilelayout.is_system_layout() %}
+				{{main_template.profilelayout.title}}
+			</div>
 			<div class="portlet-content">{% include main_template.profilelayout.html %}</div>
 		{% else %}
+				{{main_template.title}}
+			</div>
 			<div class="portlet-content">{{main_template.content}}</div>
 		{% endif %}
 	</div>
@@ -31,11 +33,13 @@
 	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" id="{{sidebar_template.id}}">
 		<div class="portlet-header ui-widget-header ui-corner-all">
 			<span class="ui-icon ui-icon-minusthick" tempid="{{sidebar_template.id}}"></span>
-			{{sidebar_template.profilelayout.title}}
-		</div>
 		{% if sidebar_template.profilelayout.is_system_layout() %}
+				{{sidebar_template.profilelayout.title}}
+			</div>
 			<div class="portlet-content">{% include sidebar_template.profilelayout.html %}</div>
 		{% else %}
+				{{sidebar_template.title}}
+			</div>
 			<div class="portlet-content">{{sidebar_template.content}}</div>
 		{% endif %}
 	</div>

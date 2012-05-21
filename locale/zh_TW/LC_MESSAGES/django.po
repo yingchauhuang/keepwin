@@ -2013,6 +2013,10 @@ msgid "Show advertisement 4 block in sidebar"
 msgstr "顯示 \"廣告IV\" 區塊"
 
 #: conf/sidebar_main.py:36
+msgid "Show question advertisement block in sidebar"
+msgstr "顯示 \"文章區廣告\" 區塊"
+
+#: conf/sidebar_main.py:36
 msgid "Custom portion of the advertisement 1 in sidebar"
 msgstr "客製 \"廣告I\" 區塊內容"
 
@@ -2027,6 +2031,10 @@ msgstr "客製 \"廣告III\" 區塊內容"
 #: conf/sidebar_main.py:36
 msgid "Custom portion of the advertisement 4 in sidebar"
 msgstr "客製 \"廣告IV\" 區塊內容"
+
+#: conf/sidebar_main.py:36
+msgid "Custom portion of the question advertisement in sidebar"
+msgstr "客製 \"文章區廣告\" 區塊內容"
 
 #: conf/sidebar_main.py:36
 msgid ""
@@ -5376,6 +5384,10 @@ msgstr "用戶"
 #: skins/default/templates/user_layout.html:14
 msgid "Edit User define Content"
 msgstr "編輯使用者自訂內容"
+
+#: skins/default/templates/user_layout.html:14
+msgid "User Define Title"
+msgstr "請輸入您自定義的標題"
 
 #: skins/default/templates/user_layout.html:14
 msgid "User Define Content"

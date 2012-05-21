@@ -40,10 +40,12 @@ class UserProfileLayoutManager(models.Manager):
                         self,
                         userprofilelayoutid,
                         content='',
+                        title='',
                     ):
         try:
             userprofilelayout=UserProfileLayout.objects.get(id=userprofilelayoutid)
             userprofilelayout.content=content
+            userprofilelayout.title=title
             userprofilelayout.save()
             return True
         except django_exceptions.ObjectDoesNotExist:
@@ -56,6 +58,7 @@ class UserProfileLayout(models.Model):
     """
     user = models.ForeignKey(User)
     profilelayout = models.ForeignKey(ProfileLayout)
+    title = models.CharField(max_length=40, null=True)
     content = models.TextField(null=True)
     
     objects = UserProfileLayoutManager()

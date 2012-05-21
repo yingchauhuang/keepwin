@@ -8,15 +8,38 @@
     {# ==== END: question/share_buttons.html ==== #}
 </div>
 <div class="question-content">
-
+	<table>
+	<tr>
+	<td>
+	<div class="question-title">
     <h1><a href="{{ question.get_absolute_url() }}">{{ thread.get_title(question)|escape }}</a></h1>
+
     {% include "question/question_tags.html" %}
     {# ==== END: question/question_tags.html" #}
+	{% if settings.ENABLE_SHARING_LIKE_LINK %}
+		<div class="to_feed_social">
+			<div class="to_feed_social_ele">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-lang="zh-tw">推文</a>
+			</div>
+			<div class="to_feed_social_ele">
+				<div class="fb-like" data-href="{{ question.get_absolute_url(thread=thread) }}" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" font="arial"></div>
+			</div>
+			<div class="to_feed_social_ele">
+				<g:plusone size="small"></g:plusone>
+			</div>
+		</div>
+	{% endif %}
+	</div>
+	</td>
+	<td>
 	<div class="post-update-info-container">
 		{# ==== START: "question/question_author_info.html" #}
 		{% include "question/question_author_info.html" %}
 		{# ==== END: "question/question_author_info.html" #}
 	</div>
+	</td>
+	</tr>
+	</table>
     <div id="question-table" {% if question.deleted %}class="deleted"{%endif%}>
         <div class="question-body">
 
@@ -25,6 +48,7 @@
 			{% else %}
 				{{ question.html }}
 			{% endif %}
+			
         </div>
         <div id="question-controls" class="post-controls">
             {# ==== START: include "question/question_controls.html" #}

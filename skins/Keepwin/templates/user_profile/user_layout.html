@@ -9,6 +9,8 @@
 	<form>
 	<fieldset>
 		<input type="hidden" id="ID" />
+		<label for="Title">{% trans %}User Define Title{% endtrans %}</label>
+		<input type="text" id="Title" value="" class="text ui-widget-content ui-corner-all"></input>
 		<label for="Content">{% trans %}User Define Content{% endtrans %}</label>
 		<textarea rows="4" id="Content" value="" class="text ui-widget-content ui-corner-all"></textarea>
 	</fieldset>
@@ -23,11 +25,13 @@
 			{% if main_template.profilelayout.layout_type == -1%}
 				<span class="ui-icon ui-icon-wrench" tempid="{{main_template.id}}"></span>
 			{% endif %}
+			<div class="title">
 			{% if main_template.profilelayout.comment %}
 				{{main_template.profilelayout.title}}({{main_template.profilelayout.comment}})
 			{% else %}
 				{{main_template.profilelayout.title}}
 			{% endif %}
+			</div>
 		</div>
 		{% if main_template.profilelayout.layout_type == -1%}
 			<div class="portlet-content" id="{{main_template.id}}">{{main_template.content}}</div>
@@ -48,12 +52,13 @@
 			{% if sidebar_template.profilelayout.layout_type == -1%}
 				<span class="ui-icon ui-icon-wrench" tempid="{{sidebar_template.id}}"></span>
 			{% endif %}
+			<div class="title">
 			{% if sidebar_template.profilelayout.comment %}
 				{{sidebar_template.profilelayout.title}}({{sidebar_template.profilelayout.comment}})
 			{% else %}
 				{{sidebar_template.profilelayout.title}}
 			{% endif %}
-
+			</div>
 		</div>
 		{% if sidebar_template.profilelayout.layout_type == -1%}
 			<div class="portlet-content" id="{{sidebar_template.id}}">{{sidebar_template.content}}</div>
@@ -173,8 +178,10 @@
 		{
 			if (data.success)
 			{
-				$("#"+data.id+" div.portlet-content").remove();
-				$("#"+data.id).append('<div class="portlet-content">'+data.content+'</div>');
+				$("#"+data.id+" div.portlet-content").html(data.content)
+				$("#"+data.id+" div.title").html(data.title)
+				//$("#"+data.id+" div.portlet-content").remove();
+				//$("#"+data.id).append('<div class="portlet-content">'+data.content+'</div>');
 				sortTable();
 			}
 			else
@@ -212,7 +219,7 @@
 				{% trans %}Update Content{% endtrans %}: function() {
 					var bValid = true;
 					allFields.removeClass( "ui-state-error" );
-					$.post("/update_template/",{id:$("#dialog-form #ID").val(), content:$("#dialog-form #Content").val()},finishupdateBlock,"json")
+					$.post("/update_template/",{id:$("#dialog-form #ID").val(),title:$("#dialog-form #Title").val(), content:$("#dialog-form #Content").val()},finishupdateBlock,"json")
 					$( this ).dialog( "close" );
 				},
 				{% trans %}Cancel{% endtrans %}: function() {

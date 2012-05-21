@@ -321,3 +321,16 @@ settings.register(
         description=_('What should "unanswered question" mean?')
     )
 )
+
+settings.register(
+    livesettings.BooleanValue(
+        FORUM_DATA_RULES,
+        'KEEPWIN_ANSWER_MODE',
+        default=True,
+        description=_('Turn Keepwin answer mode'),
+        help_text=_(
+            'Keepwin answer mode turn off accpdeted answer. '
+            'Keepwin answer mode turn off down vite.'
+        )
+    )
+)

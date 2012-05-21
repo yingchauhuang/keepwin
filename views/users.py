@@ -308,10 +308,12 @@ def update_template_content(request):
         try:
             template_id = request.POST['id']
             content = request.POST['content']
-            if (UserProfileLayout.objects.update_template(userprofilelayoutid=template_id,content=content)):
+            title = request.POST['title']
+            if (UserProfileLayout.objects.update_template(userprofilelayoutid=template_id,content=content,title=title)):
                 data = simplejson.dumps({
                     'message': _('successful update template content'),
                     'id': template_id,
+                    'title': title,
                     'content': content,
                     'success': True,
                 })
@@ -319,6 +321,7 @@ def update_template_content(request):
                 data = simplejson.dumps({
                     'message': _('update template content failure.'),
                     'id': template_id,
+                    'title': title,
                     'content': content,
                     'success': False,
                 })
@@ -327,6 +330,7 @@ def update_template_content(request):
             data = simplejson.dumps({
                 'message': _('update template content failure.')+sys.exc_info()[0],
                 'id': template_id,
+                'title': title,
                 'content': content,
                 'success': False,
             })

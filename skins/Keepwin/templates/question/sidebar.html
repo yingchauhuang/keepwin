@@ -2,6 +2,9 @@
 <div class="box">
     {{ settings.SIDEBAR_QUESTION_HEADER }}
 </div>
+{% if settings.SIDEBAR_QUESTION_SHOW_AD %}
+   {% include "advertisement/question_sidebarAD.html" %}
+{% endif %}
 <div class="box vote-buttons">
     <h2 >{% trans %}Question tools{% endtrans %}</h2>
     {% if favorited %}

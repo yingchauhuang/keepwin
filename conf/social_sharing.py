@@ -84,3 +84,12 @@ settings.register(
         description=_('Check to enable the social sharing post link')
     )
 )
+
+settings.register(
+    BooleanValue(
+        SOCIAL_SHARING,
+        'ENABLE_SHARING_LIKE_LINK',
+        default=True,
+        description=_('Check to enable the social sharing "like" "plus" link')
+    )
+)
