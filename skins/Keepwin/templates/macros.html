@@ -189,6 +189,18 @@ poor design of the data or methods on data objects #}
 {%- endmacro -%}
 
 {# todo: remove the extra content argument to make its usage more explicit #}
+{%- macro tag_menu(
+            tag,
+            search_state = None
+        )
+-%}
+  {% spaceless %}
+	<a href="{{ search_state.add_tag(tag).full_url() }}" title="{% trans %}see questions tagged '{{ tag }}'{% endtrans %}" class="menutitle ">{{ tag|replace('*', '&#10045;')|truncate(20,True)}}</a>
+ 
+  {% endspaceless %}
+{%- endmacro -%}
+
+{# todo: remove the extra content argument to make its usage more explicit #}
 {%- macro tag_widget(
             tag,
             deletable = False,
@@ -286,6 +298,11 @@ poor design of the data or methods on data objects #}
 {%- macro question_summary_twmode(thread, question, extra_class=None, search_state=None) -%}
 <!-- question_summary_twmode -->
 {%include "widgets/question_summary_twmode.html" %}
+{%- endmacro -%}
+
+{%- macro question_summary_cnyes(thread, question, extra_class=None, search_state=None) -%}
+<!-- question_summary_twmode -->
+{%include "widgets/question_summary_cnyes.html" %}
 {%- endmacro -%}
 
 {# Warning! Any changes to the comment markup here must be duplicated in post.js
@@ -555,11 +572,28 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 {% include "widgets/user_list.html"%}
 {%- endmacro -%}
 
+{%- macro user_list_admin(users, profile_section = None) -%}
+{% include "widgets/user_list_admin.html"%}
+{%- endmacro -%}
+
 {#todo: rename this to avatar #}
 {%- macro gravatar(user, size) -%}
 {% spaceless %}
 <a style="text-decoration:none"
     href="{{ user.get_absolute_url() }}?sort=vip"
+><img class="gravatar" 
+    width="{{size}}" height="{{size}}"
+    src="{{ user.get_avatar_url(size) }}"
+    title="{{user.username}}" 
+    alt="{% trans username=user.username %}{{username}} gravatar image{% endtrans %}" 
+/></a>
+{% endspaceless %}
+{%- endmacro -%}
+
+{%- macro gravatar_admin(user, size) -%}
+{% spaceless %}
+<a style="text-decoration:none"
+    href="{{ user.get_absolute_url() }}"
 ><img class="gravatar" 
     width="{{size}}" height="{{size}}"
     src="{{ user.get_avatar_url(size) }}"

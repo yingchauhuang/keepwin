@@ -30,6 +30,7 @@ from askbot.models.tag import Tag, MarkedTag
 from askbot.models.meta import Vote
 from askbot.models.user import EmailFeedSetting, ActivityAuditStatus, Activity, UserInfo
 from askbot.models.transaction import Transaction
+from askbot.models.profilelayout import UserProfileLayout,ProfileLayout
 from askbot.models.post import Post, PostRevision
 from askbot.models import signals
 from askbot.models.badges import award_badges_signal, get_badge, BadgeData
@@ -41,7 +42,7 @@ from askbot.utils.diff import textDiff as htmldiff
 from askbot.utils import mail
 from django.core import cache  # import cache, not from cache import cache, to be able to monkey-patch cache.cache in test cases
 from askbot.skins.loaders import get_template
-
+from askbot.twmode import twmode as twmodeconst
 
 def get_model(model_name):
     return models.get_model('askbot', model_name)
@@ -1240,6 +1241,33 @@ def user_delete_comment(
                 ):
     self.assert_can_delete_comment(comment=comment)
     comment.delete()
+    
+def user_delete_template(
+                    self,
+                    profilelayoutid,
+                ):
+    UserProfileLayout.objects.filter(user=self,profilelayout=profilelayoutid).delete()
+
+def user_add_template(
+                    self,
+                    profilelayoutid,
+                    content='',
+                ):
+    profilelayout=ProfileLayout.objects.get(id=profilelayoutid)
+    if (profilelayout.layout_type==twmodeconst.TYPE_LAYOUT_SYSTEM):
+        try:
+            userprofilelayout=UserProfileLayout.objects.get(user=self,profilelayout=profilelayout)
+            userprofilelayout.content=content
+            userprofilelayout.save()
+            return userprofilelayout,False
+        except django_exceptions.ObjectDoesNotExist:
+            userprofilelayout=UserProfileLayout(user=self,profilelayout=profilelayout,content=content)
+            userprofilelayout.save()
+            return userprofilelayout,True            
+    userprofilelayout=UserProfileLayout(user=self,profilelayout=profilelayout,content=content)
+    userprofilelayout.save()
+    return userprofilelayout,True
+
 
 @auto_now_timestamp
 def user_delete_answer(
@@ -2376,6 +2404,8 @@ User.add_to_class('get_status_display', user_get_status_display)
 User.add_to_class('get_old_vote_for_post', user_get_old_vote_for_post)
 User.add_to_class('get_unused_votes_today', user_get_unused_votes_today)
 User.add_to_class('delete_comment', user_delete_comment)
+User.add_to_class('add_template', user_add_template)
+User.add_to_class('delete_template', user_delete_template)
 User.add_to_class('delete_question', user_delete_question)
 User.add_to_class('delete_answer', user_delete_answer)
 User.add_to_class('restore_post', user_restore_post)
@@ -2942,6 +2972,7 @@ __all__ = [
         'EmailFeedSetting',
         'Transaction',
         'User',
-
+        'ProfileLayout',
+        'UserProfileLayout',
         'get_model'
 ]

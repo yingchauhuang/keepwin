@@ -72,7 +72,7 @@ settings.register(
     values.LongStringValue(
         SIDEBAR_MAIN,
         'SIDEBAR_MAIN_AD_CONTENT1',
-        default = '',
+        default = '<embed src="http://msntest.serving-sys.com/BurstingRes///Site-23294/Type-2/05a3bd80-6f2a-47ca-b460-f1edaa0684a5.swf" style="width:200px;height:166px" play="true" id="ebStdBanner0" name="ebStdBanner0" quality="high" wmode="opaque" menu="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" allowscriptaccess="always" title="">',
         description = _('Custom portion of the advertisement 1 in sidebar'),
         help_text = _(
                     '<strong>To use this option</strong>, '
@@ -101,7 +101,7 @@ settings.register(
     values.LongStringValue(
         SIDEBAR_MAIN,
         'SIDEBAR_MAIN_AD_CONTENT2',
-        default = '',
+        default = '<embed src="http://msntest.serving-sys.com/BurstingRes///Site-23294/Type-2/05a3bd80-6f2a-47ca-b460-f1edaa0684a5.swf" style="width:200px;height:166px" play="true" id="ebStdBanner0" name="ebStdBanner0" quality="high" wmode="opaque" menu="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" allowscriptaccess="always" title="">',
         description = _('Custom portion of the advertisement 2 in sidebar'),
         help_text = _(
                     '<strong>To use this option</strong>, '
@@ -130,7 +130,7 @@ settings.register(
     values.LongStringValue(
         SIDEBAR_MAIN,
         'SIDEBAR_MAIN_AD_CONTENT3',
-        default = '',
+        default = '<embed src="http://msntest.serving-sys.com/BurstingRes///Site-23294/Type-2/05a3bd80-6f2a-47ca-b460-f1edaa0684a5.swf" style="width:200px;height:166px" play="true" id="ebStdBanner0" name="ebStdBanner0" quality="high" wmode="opaque" menu="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" allowscriptaccess="always" title="">',
         description = _('Custom portion of the advertisement 3 in sidebar'),
         help_text = _(
                     '<strong>To use this option</strong>, '
@@ -159,7 +159,7 @@ settings.register(
     values.LongStringValue(
         SIDEBAR_MAIN,
         'SIDEBAR_MAIN_AD_CONTENT4',
-        default = '',
+        default = '<embed src="http://msntest.serving-sys.com/BurstingRes///Site-23294/Type-2/05a3bd80-6f2a-47ca-b460-f1edaa0684a5.swf" style="width:200px;height:166px" play="true" id="ebStdBanner0" name="ebStdBanner0" quality="high" wmode="opaque" menu="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" allowscriptaccess="always" title="">',
         description = _('Custom portion of the advertisement 4 in sidebar'),
         help_text = _(
                     '<strong>To use this option</strong>, '
@@ -180,7 +180,7 @@ settings.register(
                     'Uncheck this if you want to hide the avatar '
                     'block from the sidebar ' 
                     ),
-        default = True
+        default = False
     )
 )
 
@@ -203,7 +203,7 @@ settings.register(
                     'Uncheck this if you want to hide the options '
                     'for choosing interesting and ignored tags ' 
                     ),
-        default = True
+        default = False
     )
 )
 
@@ -216,7 +216,7 @@ settings.register(
                     'Uncheck this if you want to hide the tag '
                     'cloud or tag list from the sidebar ' 
                     ),
-        default = True
+        default = False
     )
 )
 

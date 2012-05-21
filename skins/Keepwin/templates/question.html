@@ -9,6 +9,7 @@
     <link rel="canonical" href="{{settings.APP_URL}}{{question.get_absolute_url()}}" />
 {% endblock %}
 {% block forejs %}
+	{% if thread.passcode == '' %}
     <script type="text/javascript">
         //below is pure cross-browser javascript, no jQuery
         (function(){
@@ -153,6 +154,7 @@
             askbot['functions']['renderAddAnswerButton'] = render_add_answer_button;
         })();
     </script>
+	{% endif %}
 {% endblock %}
 {% block content %}
 	{% if thread.passcode == '' %}
@@ -166,31 +168,32 @@
 	{% else %}
 		<form id="fmanswer" method="post" >{% csrf_token %}
 			<label for="passcode_id"><h3>{{form.passcode.label}}<span class="form-error">{{form.passcode.errors}}</span></h3></label><BR>{{form.passcode}}<BR>
-			<input type="submit" value="{% trans %}Submit Pass Code{% endtrans %}" class="submit after-editor" style="float:left"/>
+			<input type="submit" value="{% trans %}Submit Pass Code{% endtrans %}" class="submit" style="float:left"/>
 		</form>
 	{% endif %}
 {% endblock %}
-{% block sidebar %}
-    {% include "question/sidebar.html" %}
-{% endblock %}
-{% block endjs %}
-    {% include "question/javascript.html" %}
-    {#
-    <script type="text/javascript">
-        var messages = askbot['messages'];
-        messages['upvote_question'] = gettext(
-            'I like this question (click again to cancel)'
-        );
-        messages['upvote_answer'] = gettext(
-            'I like this answer (click again to cancel)'
-        );
-        messages['downvote_question'] = gettext(
-            "I don't like this question (click again to cancel)"
-        );
-        messages['downvote_answer'] = gettext(
-            "I don't like this answer (click again to cancel)"
-        );
-    </script>
-    #}
-{% endblock %}
-
+{% if thread.passcode == '' %}
+	{% block sidebar %}
+		{% include "question/sidebar.html" %}
+	{% endblock %}
+	{% block endjs %}
+		{% include "question/javascript.html" %}
+		{#
+		<script type="text/javascript">
+			var messages = askbot['messages'];
+			messages['upvote_question'] = gettext(
+				'I like this question (click again to cancel)'
+			);
+			messages['upvote_answer'] = gettext(
+				'I like this answer (click again to cancel)'
+			);
+			messages['downvote_question'] = gettext(
+				"I don't like this question (click again to cancel)"
+			);
+			messages['downvote_answer'] = gettext(
+				"I don't like this answer (click again to cancel)"
+			);
+		</script>
+		#}
+	{% endblock %}
+{% endif %}

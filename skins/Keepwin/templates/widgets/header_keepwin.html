@@ -37,7 +37,8 @@
 				<a id="post" href="{% url ask %}">{% trans %}Editor Post{% endtrans %}</a>
 			{% endif %}
 			{% if request.user.is_authenticated() and request.user.is_administrator() %}
-				<a href="{% url site_settings %}">{% trans %}settings{% endtrans %}</a>
+				<a href="{% url site_settings %}" class="menutitle ">{% trans %}settings{% endtrans %}</a>
+				<a href="{% url users_admin %}" class="menutitle ">{% trans %}Users{% endtrans %}</a>
 			{% endif %}
 		</div>
         <div class="clean"></div>

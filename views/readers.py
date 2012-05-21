@@ -177,7 +177,12 @@ def questions(request, **kwargs):
         return HttpResponse(simplejson.dumps(ajax_data), mimetype = 'application/json')
 
     else: # non-AJAX branch
-
+        
+        try:
+            tag_list=list()
+            tag_list=askbot_settings.MANDATORY_TAGS.split(',')
+        except:
+            tag_list=list()
         template_data = {
             'active_tab': 'questions',
             'author_name' : meta_data.get('author_name',None),
@@ -207,6 +212,7 @@ def questions(request, **kwargs):
             'query_string': search_state.query_string(),
             'search_state': search_state,
             'feed_url': context_feed_url,
+            'tag_list': tag_list,
         }
         #return render_into_skin('main_page_twmode.html', template_data, request)
         return render_into_skin(settings.MAIN_PAGE, template_data, request)
@@ -465,7 +471,6 @@ def question(request, id):#refactor - long subroutine. display question body, an
     # Handle URL mapping - from old Q/A/C/ URLs to the new one
     if not models.Post.objects.get_questions().filter(id=id).exists() and models.Post.objects.get_questions().filter(old_question_id=id).exists():
         old_question = models.Post.objects.get_questions().get(old_question_id=id)
-
         # If we are supposed to show a specific answer or comment, then just redirect to the new URL...
         if show_answer:
             try:
@@ -496,6 +501,7 @@ def question(request, id):#refactor - long subroutine. display question body, an
     #in the case if the permalinked items or their parents are gone - redirect
     #redirect also happens if id of the object's origin post != requested id
     show_post = None #used for permalinks
+    
     if show_comment:
         #if url calls for display of a specific comment,
         #check that comment exists, that it belongs to
@@ -553,7 +559,6 @@ def question(request, id):#refactor - long subroutine. display question body, an
         return HttpResponseRedirect(reverse('index'))
 
     thread = question_post.thread
-
     #redirect if slug in the url is wrong
     if request.path.split('/')[-1] != question_post.slug:
         logging.debug('no slug match!')
@@ -570,7 +575,6 @@ def question(request, id):#refactor - long subroutine. display question body, an
     answers = answers.select_related('thread', 'author', 'last_edited_by')
     answers = answers.order_by({"latest":"-added_at", "oldest":"added_at", "votes":"-score" }[answer_sort_method])
     answers = list(answers)
-    
     # TODO: Add unit test to catch the bug where precache_comments() is called above (before) reordering the accepted answer to the top
     #Post.objects.precache_comments(for_posts=[question_post] + answers, visitor=request.user)
 
@@ -587,7 +591,6 @@ def question(request, id):#refactor - long subroutine. display question body, an
             user_answer_votes[vote.voted_post.id] = int(vote)
 
     filtered_answers = [answer for answer in answers if ((not answer.deleted) or (answer.deleted and answer.author_id == request.user.id))]
-
     #resolve page number and comment number for permalinks
     show_comment_position = None
     if show_comment:
@@ -600,7 +603,6 @@ def question(request, id):#refactor - long subroutine. display question body, an
     if show_page > objects_list.num_pages:
         return HttpResponseRedirect(question_post.get_absolute_url())
     page_objects = objects_list.page(show_page)
-
     #count visits
     #import ipdb; ipdb.set_trace()
     if functions.not_a_robot_request(request):
@@ -642,7 +644,6 @@ def question(request, id):#refactor - long subroutine. display question body, an
                         actor = request.user,
                         context_object = question_post,
                     )
-
     paginator_data = {
         'is_paginated' : (objects_list.count > const.ANSWERS_PAGE_SIZE),
         'pages': objects_list.num_pages,
@@ -682,7 +683,6 @@ def question(request, id):#refactor - long subroutine. display question body, an
         else:
             if (question_post.author_id == request.user.id):
                 thread.passcode = '' 
-
     data = {
         'page_class': 'question-page',
         'active_tab': 'questions',

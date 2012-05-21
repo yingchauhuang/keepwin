@@ -490,7 +490,7 @@ class DumpUploadForm(forms.Form):
 
 class PassCodeForm(forms.Form):    
     passcode  = PassCodeField()
-
+    
 class ShowQuestionForm(forms.Form):
     """Cleans data necessary to access answers and comments
     by the respective comment or answer id - necessary
@@ -791,13 +791,8 @@ class ChangeUserStatusForm(forms.Form):
         return self.cleaned_data
 
 class UserLayoutForm(forms.Form):
-    layout = forms.CharField(
-                             label = _('userlayout'),
-                            max_length = 64,
-                            widget = forms.TextInput(
-                                            attrs = {'size':64},
-                                        )
-                        )
+    main_template = forms.CharField()
+    sidebar_template = forms.CharField()
     
 class SendMessageForm(forms.Form):
     subject_line = forms.CharField(

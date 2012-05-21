@@ -43,16 +43,13 @@ TYPE_TRANSACTION = (
 )
 
 TYPE_LAYOUT_USER_DEFINE = -1
-TYPE_LAYOUT_QUESTION = 1
-TYPE_LAYOUT_ANSWER = 2
-TYPE_LAYOUT_TAG = 3
+TYPE_LAYOUT_SYSTEM = 1
+
 TYPE_LAYOUT = (
 #    (TYPE_TRANSACTION_BUY_CREDICTCARD, _('buy bonus online via creditcard')),
 #    (TYPE_TRANSACTION_BUY_ATM, _('buy bonus online via ATM')),
-    (TYPE_LAYOUT_QUESTION, _('User Question Layout')),
     (TYPE_LAYOUT_USER_DEFINE, _('User Define Layout')),
-    (TYPE_LAYOUT_ANSWER, _('User Anser Layout')),
-    (TYPE_LAYOUT_TAG, _('User Tag Layout')),
+    (TYPE_LAYOUT_SYSTEM, _('System Layout')),
 )
 #user gender 
 USER_GENDER_CHOICES = (

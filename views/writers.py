@@ -264,13 +264,18 @@ def ask(request):#view used to ask a new question
         form = forms.AskForm()
         if 'title' in request.GET: # prepopulate title (usually from search query on main page)
             form.initial['title'] = request.GET['title']
-
+    try:
+        tag_list=list()
+        tag_list=askbot_settings.MENU_LIST.split(',')
+    except:
+        tag_list=list()
     data = {
         'active_tab': 'ask',
         'page_class': 'ask-page',
         'form' : form,
         'mandatory_tags': models.tag.get_mandatory_tags(),
         'email_validation_faq_url':reverse('faq') + '#validate',
+        'tag_list': tag_list,
     }
     return render_into_skin('ask.html', data, request)
 

@@ -1,0 +1,8 @@
+{% from "macros.html" import tag_menu %}
+<div id="submenu">
+	<ul class="menu">
+		{% for tag in tag_list %}
+			<li>{{ tag_menu(tag, search_state=search_state) }}</li>
+		{% endfor %}
+	</ul>
+</div>

@@ -223,7 +223,7 @@ body.user-messages {
 /* ----- Header, check blocks/header.html ----- */
 #header {
   margin-top: 0px;
-  background: #463E41;
+  background: #660066;
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 .content-wrapper {
@@ -284,7 +284,11 @@ body.user-messages {
   /* for #header.with-logo it is modified */
 
 }
-#metaNav a {
+#submenu { margin: 2px 0px 2px 0px;height:30px; background:url("images/sub_menu.jpg")}
+#submenu ul.menu{clear:both;height:30px;list-style-type:none;position:relative;width:682px;float:right;left:25px;z-index:0;}
+#submenu ul.menu li{display:inline;float:left;padding:5px;height:40px}
+#submenu a.menutitle:link,#submenu a.menutitle:hover,#submenu a.menutitle:visited,#submenu a.menutitle:active{text-indent:10px;color:white;padding:7px 10px;height:auto;text-shadow:2px 2px 2px #222;text-decoration:none;}
+#metaNav a{
   color: #e2e2ae;
   padding: 15px 0px 0px 5px;
   height: 25px;
@@ -294,7 +298,7 @@ body.user-messages {
   font-weight: 100;
   text-decoration: none;
   display: block;
-  float: left;
+  float: left; 
 }
 #metaNav a:hover {
   text-decoration: underline;
@@ -2272,6 +2276,8 @@ ul#related-tags li {
 #email-input-fs #id_password,
 #local_login_buttons #id_password,
 #password-fs #id_password,
+#password-fs #id_new_password,
+#password-fs #id_new_password_retyped,
 #openid-fs #id_password {
   font-size: 12px;
   line-height: 20px;

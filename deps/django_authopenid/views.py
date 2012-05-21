@@ -351,17 +351,27 @@ def signin(request):
                             return HttpResponseRedirect(next_url)
                     elif password_action == 'change_password':
                         if request.user.is_authenticated():
-                            new_password = \
-                                login_form.cleaned_data['new_password']
-                            AuthBackend.set_password(
-                                            user=request.user,
-                                            password=new_password,
-                                            provider_name=provider_name
+                            user = authenticate(
+                                username = request.user.username,
+                                password = login_form.cleaned_data['password'],
+                                provider_name = provider_name,
+                                method = 'password'
+                            )
+                            if user is None:
+                                msg = _('The password is not correct') % {'provider': provider_name}
+                                request.user.message_set.create(message = msg)
+                            else:
+                                new_password = \
+                                    login_form.cleaned_data['new_password']
+                                AuthBackend.set_password(
+                                                user=request.user,
+                                                password=new_password,
+                                                provider_name=provider_name
+                                            )
+                                request.user.message_set.create(
+                                            message = _('Your new password saved')
                                         )
-                            request.user.message_set.create(
-                                        message = _('Your new password saved')
-                                    )
-                            return HttpResponseRedirect(next_url)
+                                return HttpResponseRedirect(next_url)
                     else:
                         logging.critical(
                             'unknown password action %s' % password_action

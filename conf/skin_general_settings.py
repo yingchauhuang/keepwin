@@ -76,7 +76,7 @@ settings.register(
     values.LongStringValue(
         GENERAL_SKIN_SETTINGS,
         'MAIN_AD_CONTENT',
-        default = '',
+        default = '<iframe src="http://view.atdmt.com/TW6/iview/msnnktwn001728x90Xtwmhsb0000001tw6/direct;wi.728;hi.90/01?click=" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="728" height="90"> </iframe>',
         description = _('Custom portion of the HTML in Main AD Bar'),
         help_text = _(
                     '<strong>To use this option</strong>, '
@@ -113,7 +113,7 @@ settings.register(
                         'or uncheck in the case you do not want the logo to '
                         'appear in the default location'
                     ),
-        default = False
+        default = True
     )
 )
 
@@ -169,13 +169,11 @@ settings.register(
     values.StringValue(
         GENERAL_SKIN_SETTINGS,
         'ASKBOT_DEFAULT_SKIN',
-        default = 'default',
+        default = 'Keepwin',
         choices = skin_utils.get_skin_choices(),
         description = _('Select skin'),
     )
 )
-
-
 
 settings.register(
     values.BooleanValue(

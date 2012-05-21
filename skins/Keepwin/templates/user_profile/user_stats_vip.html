@@ -8,43 +8,59 @@
     there is no html markup in this file
 #}
 <!-- questions.html -->
+
 {% block title %}{% spaceless %}{% trans %}Questions{% endtrans %}{% endspaceless %}{% endblock %}
 {% block content %}
-	<div class="portlet">
-		<div class="portlet-header">User Profile</div>
-		<div class="portlet-content">{% include "user_profile/user_info_brief.html" %}</div>
+	{% for main_template in main_list %}
+	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" id="{{main_template.id}}">
+		<div class="portlet-header ui-widget-header ui-corner-all">
+			<span class="ui-icon ui-icon-minusthick" tempid="{{main_template.id}}"></span>
+			{{main_template.profilelayout.title}}
+		</div>
+		{% if main_template.profilelayout.is_system_layout() %}
+			<div class="portlet-content">{% include main_template.profilelayout.html %}</div>
+		{% else %}
+			<div class="portlet-content">{{main_template.content}}</div>
+		{% endif %}
 	</div>
-
-	<div class="portlet">
-		<div class="portlet-header">User Tages</div>
-		<div class="portlet-content">{% include "user_profile/user_stats_tags.html" %}</div>
-	</div>
-	
-	<div class="portlet">
-		<div class="portlet-header">Feeds</div>
-		<div class="portlet-content">{% include "main_page/questions_loop_vip.html" %}</div>
-	</div>
+	{% endfor %}	
     {# ==== END: main_page/content.html === #}
 {% endblock %}
 {% block sidebar %}
-	<div class="portlet">
-		<div class="portlet-header">Side Bar VIP</div>
-		<div class="portlet-content">{% include "main_page/sidebar_vip.html" %}</div>
+	{% for sidebar_template in sidebar_list %}
+	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" id="{{sidebar_template.id}}">
+		<div class="portlet-header ui-widget-header ui-corner-all">
+			<span class="ui-icon ui-icon-minusthick" tempid="{{sidebar_template.id}}"></span>
+			{{sidebar_template.profilelayout.title}}
+		</div>
+		{% if sidebar_template.profilelayout.is_system_layout() %}
+			<div class="portlet-content">{% include sidebar_template.profilelayout.html %}</div>
+		{% else %}
+			<div class="portlet-content">{{sidebar_template.content}}</div>
+		{% endif %}
 	</div>
+	{% endfor %}
 {% endblock %}
 {% block endjs %}
 	<link href="{{"/style/jquery.ui.theme.css"|media }}" rel="stylesheet" type="text/css" />
 	<style>
-	.column { width: 340px; float: left; padding-bottom: 100px; }
-	.portlet { margin: 0 1em 1em 0; }
-	.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+	.portlet { margin: 10px 0px 5px 0px; }
+	.portlet-header { margin: 2px 0px 2px 0px;}
 	.portlet-header .ui-icon { float: right; }
-	.portlet-content { padding: 0.4em; }
+	.portlet-content { padding: 0px 0px 2px 0px }
 	.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
 	.ui-sortable-placeholder * { visibility: hidden; }
 	</style>
     {% include "main_page/javascript.html" %}
-	    <script type="text/javascript">
+	<script>
+	$(function() {
+		$( ".portlet-header .ui-icon" ).click(function() {
+			$( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
+			$( this ).parents( ".portlet:first" ).find( ".portlet-content" ).toggle();
+		});
+	});
+	</script>
+	<script type="text/javascript">
         $(document).ready(function(){
             $('.badge-context-toggle').each(function(idx, elem){
                 var context_list = $(elem).parent().next('ul');

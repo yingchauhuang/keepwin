@@ -237,6 +237,11 @@ urlpatterns = patterns('',
         views.users.users, 
         name='users'
     ),
+    url(
+        r'^%s$' % _('users_admin/'),
+        views.users.users_admin, 
+        name='users_admin'
+    ),
     #todo: rename as user_edit, b/c that's how template is named
     url(
         r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('edit/')),
@@ -288,6 +293,10 @@ urlpatterns = patterns('',
         {'feed_dict': feeds},
         name='feeds'
     ),
+    url(r'^%s$' % _('save_template/'), views.users.save_template, name='save_template'),
+    url(r'^%s$' % _('add_template/'), views.users.add_template, name='add_template'), 
+    url(r'^%s$' % _('del_template/'), views.users.delete_template, name='delete_template'), 
+    url(r'^%s$' % _('update_template/'), views.users.update_template_content, name='update_template_content'), 
     #upload url is ajax only
     url( r'^%s$' % _('upload/'), views.writers.upload, name='upload'),
     url(r'^%s$' % _('feedback/'), views.meta.feedback, name='feedback'),

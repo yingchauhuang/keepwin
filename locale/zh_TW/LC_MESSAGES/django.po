@@ -1540,15 +1540,16 @@ msgstr "標籤最大的長度(字元數目)"
 
 #: conf/forum_data_rules.py:95
 msgid "Mandatory tags"
-msgstr "更新標籤"
+msgstr "主網頁標籤設定"
 
 #: conf/forum_data_rules.py:98
 msgid ""
 "At least one of these tags will be required for any new or newly edited "
 "question. A mandatory tag may be wildcard, if the wildcard tags are active."
 msgstr ""
-"在發表看法時最少要輸入一個標籤"
-"再輸入標籤查詢命令時. 可以使用萬用字元如果萬用標籤功能有啟動的話"
+"<strong>如何設定主網頁標籤</strong>,"
+"輸入您要呈現的標籤, 並以逗號隔開"
+"(請注意不要輸入全形文字)"
 
 #: conf/forum_data_rules.py:110
 msgid "Force lowercase the tags"
@@ -3095,6 +3096,10 @@ msgstr "請選擇超過 %(len)s 個字元的密碼"
 msgid "Current password"
 msgstr "目前的密碼"
 
+#: deps/django_authopenid/views.py:361
+msgid "The password is not correct"
+msgstr "原密碼輸入錯誤, 請輸入正確 密碼"
+
 #: deps/django_authopenid/forms.py:346
 msgid ""
 "Old password is incorrect.                     Please enter the correct "
@@ -4423,6 +4428,10 @@ msgid "close"
 msgstr "關閉"
 
 #: skins/common/templates/widgets/edit_post.html:21
+msgid "Please select your tag"
+msgstr "請務必選擇您的文章分類(至少一種分類), 才能發文 "
+
+#: skins/common/templates/widgets/edit_post.html:21
 msgid "one of these is required"
 msgstr "其中之一是必需的"
 
@@ -5364,6 +5373,36 @@ msgstr "找不到任何資料"
 msgid "Users"
 msgstr "用戶"
 
+#: skins/default/templates/user_layout.html:14
+msgid "Edit User define Content"
+msgstr "編輯使用者自訂內容"
+
+#: skins/default/templates/user_layout.html:14
+msgid "User Define Content"
+msgstr "請輸入您自定義的內容(HTML 格式)"
+
+#: skins/default/templates/user_layout.html:14
+msgid "-add a new layout-"
+msgstr "-新增模板項目-"
+
+#: skins/default/templates/user_layout.html:14
+msgid "Add Layout"
+msgstr "新增模板"
+
+#: skins/default/templates/user_layout.html:14
+msgid "Update Content"
+msgstr "更新自訂內容"
+
+
+
+#: skins/default/templates/users.html:14
+msgid "successful add a template"
+msgstr "您成功的新增一個模板"
+
+#: skins/default/templates/users.html:14
+msgid "You have added a template already."
+msgstr "這個模板已經在您的設定中, 請選擇其他模板"
+
 #: skins/default/templates/users.html:14
 msgid "see people with the highest reputation"
 msgstr "瀏覽有最高積分的使用者"
@@ -5396,7 +5435,7 @@ msgstr "以帳號來排序"
 #: skins/default/templates/users.html:39
 #, python-format
 msgid "users matching query %(suser)s:"
-msgstr "使用者查詢 %(suser)s:"
+msgstr "查詢 %(suser)s 使用者的結果:"
 
 #: skins/default/templates/users.html:42
 msgid "Nothing found."
@@ -5734,7 +5773,14 @@ msgstr ""
 msgid "once you sign in you will be able to subscribe for any updates here"
 msgstr ""
 "<strong>這裡</strong> (當您登入後)您可以訂閱定期的這個看法回應通知 !"
+
 #: skins/default/templates/user_profile/user.html:12
+#, python-format
+msgid "Please insert the user which you want to search:"
+msgstr "請輸入您要查詢的使用者:"
+
+#: skins/default/templates/user_profile/user.html:12
+#: skins/default/templates/user_profile/user_admin.html:12
 #, python-format
 msgid "%(username)s's profile"
 msgstr "%(username)s的簡介"
@@ -5861,9 +5907,13 @@ msgstr "真實姓名"
 msgid "member for"
 msgstr "會員起始"
 
+#: skins/default/templates/user_profile/user_info.html:58
+msgid "Current Status"
+msgstr "會員狀態"
+
 #: skins/default/templates/user_profile/user_info.html:63
 msgid "last seen"
-msgstr "上次使用"
+msgstr "上次被點閱"
 
 #: skins/default/templates/user_profile/user_info.html:69
 msgid "user website"

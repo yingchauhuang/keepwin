@@ -539,11 +539,17 @@ class Post(models.Model):
         if self.is_answer():
             if not question_post:
                 question_post = self.thread._question_post()
-            return u'%(base)s%(slug)s?answer=%(id)d#answer-container-%(id)d' % {
+            return u'%(base)s%(slug)s?answer=%(id)d' % {
                 'base': urlresolvers.reverse('question', args=[question_post.id]),
                 'slug': django_urlquote(slugify(self.thread.title)),
                 'id': self.id
             }
+            '''
+				return u'%(base)s%(slug)s?answer=%(id)d#answer-container-%(id)d' % {
+                'base': urlresolvers.reverse('question', args=[question_post.id]),
+                'slug': django_urlquote(slugify(self.thread.title)),
+                'id': self.id
+            '''
         elif self.is_question():
             url = urlresolvers.reverse('question', args=[self.id])
             if no_slug is False:

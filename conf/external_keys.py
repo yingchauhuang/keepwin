@@ -34,6 +34,7 @@ settings.register(
         EXTERNAL_KEYS,
         'GOOGLE_ANALYTICS_KEY',
         description=_('Google Analytics key'),
+        default = 'UA-31742535-1',
         help_text=_(
             'Obtain is at <a href="%(url)s">'
             'Google Analytics</a> site, if you '
@@ -49,7 +50,7 @@ settings.register(
         EXTERNAL_KEYS,
         'USE_RECAPTCHA',
         description=_('Enable recaptcha (keys below are required)'),
-        default=False
+        default=True
     )
 )
 
@@ -57,6 +58,7 @@ settings.register(
     livesettings.StringValue(
         EXTERNAL_KEYS,
         'RECAPTCHA_KEY',
+        default = '6Lele9ESAAAAAMYUto4i_gidB4KWoRv7wl72b0Xy',
         description=_('Recaptcha public key')
     )
 )
@@ -66,6 +68,7 @@ settings.register(
         EXTERNAL_KEYS,
         'RECAPTCHA_SECRET',
         description=_('Recaptcha private key'),
+        default = '6Lele9ESAAAAAOg75m3hJ7UzWQeBFRbsplZa4Xxl',
         help_text=_(
                         'Recaptcha is a tool that helps distinguish '
                         'real people from annoying spam robots. '
@@ -80,6 +83,7 @@ settings.register(
         EXTERNAL_KEYS,
         'FACEBOOK_KEY',
         description=_('Facebook public API key'),
+        default = '380972548592522',
         help_text=_(
                      'Facebook API key and Facebook secret '
                      'allow to use Facebook Connect login method '
@@ -94,6 +98,7 @@ settings.register(
     livesettings.StringValue(
         EXTERNAL_KEYS,
         'FACEBOOK_SECRET',
+        default = 'eeb0f187ee9c9fbad12b1f2e40bd7bc9',
         description=_('Facebook secret key')
     )
 )

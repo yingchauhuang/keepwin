@@ -93,6 +93,8 @@ class Command(BaseCommand):
                                     is_charged = False,
                                     cost = 0,
                                     featurepic= None, 
+                                    subtitle=nvalue[0:20],
+                                    passcode='',
                                 )
                         else:
                             print 'Inserted already dropped Item:'+item.title

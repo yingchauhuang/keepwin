@@ -331,8 +331,8 @@ class Thread(models.Model):
     SUMMARY_NEWEST_CACHE_KEY_TPL = 'thread-question-summary-newest-%d'
 
     title = models.CharField(max_length=300)
-    subtitle = models.CharField(max_length=300,default='')
-    passcode = models.CharField(max_length=10,default='')
+    subtitle = models.CharField(max_length=300,default=None)
+    passcode = models.CharField(max_length=10,default=None)
 
     tags = models.ManyToManyField('Tag', related_name='threads')
 

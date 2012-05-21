@@ -46,7 +46,7 @@ settings.register(
     livesettings.BooleanValue(
         USER_SETTINGS,
         'ALLOW_ADD_REMOVE_LOGIN_METHODS',
-        default = False,
+        default = True,
         description = _('Allow adding and removing login methods')
     )
 )
@@ -105,7 +105,7 @@ settings.register(
     livesettings.StringValue(
         USER_SETTINGS,
         'NAME_OF_ANONYMOUS_USER',
-        default = '',
+        default = 'admin',
         description = _('Name for the Anonymous user')
     )
 )

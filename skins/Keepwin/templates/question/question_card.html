@@ -12,14 +12,14 @@
     <h1><a href="{{ question.get_absolute_url() }}">{{ thread.get_title(question)|escape }}</a></h1>
     {% include "question/question_tags.html" %}
     {# ==== END: question/question_tags.html" #}
-
+	<div class="post-update-info-container">
+		{# ==== START: "question/question_author_info.html" #}
+		{% include "question/question_author_info.html" %}
+		{# ==== END: "question/question_author_info.html" #}
+	</div>
     <div id="question-table" {% if question.deleted %}class="deleted"{%endif%}>
         <div class="question-body">
-            <div class="post-update-info-container">
-                {# ==== START: "question/question_author_info.html" #}
-                {% include "question/question_author_info.html" %}
-                {# ==== END: "question/question_author_info.html" #}
-            </div>
+
 			{% if settings.PRESENT_ORIGINAL_POST %}
 				{{ question.text }}
 			{% else %}

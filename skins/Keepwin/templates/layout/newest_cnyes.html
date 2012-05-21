@@ -1,0 +1,11 @@
+<!-- users_questions.html -->
+{% import "macros.html" as macros %}
+<table class="font10gray" cellpadding="3" cellspacing="0">
+	<tbody>
+{% for question in questions %}
+{{macros.question_summary_cnyes(question.thread, question, extra_class='narrow', search_state=search_state)}}
+{% endfor %}
+	</tbody>
+</table>
+
+<!-- end users_questions.html -->

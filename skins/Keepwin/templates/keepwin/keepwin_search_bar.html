@@ -4,6 +4,8 @@
     <form 
         {% if active_tab == "tags" %}
             action="{% url tags %}" 
+		{% elif active_tab == "users_admin" %}
+            action="{% url users_admin %}" 
         {% elif active_tab == "users" %}
             action="{% url users %}" 
         {% else %}

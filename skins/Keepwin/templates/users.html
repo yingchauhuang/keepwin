@@ -36,7 +36,7 @@
 <div class="clean"></div>
 <p>
     {% if suser %}
-        {% trans %}users matching query {{suser}}:{% endtrans %}
+        <h2>{% trans %}users matching query {{suser}}:{% endtrans %}</h2>
     {% endif %}
     {% if not users.object_list %}
         <span>{% trans %}Nothing found.{% endtrans %}</span>
@@ -46,6 +46,10 @@
 <div class="pager">
     {{ macros.paginator(paginator_context) }}
 </div>              
+{% endblock %}
+{% block sidebar %}
+<h2>{% trans %}Please insert the user which you want to search:{% endtrans %}</h2>
+{% include "keepwin/keepwin_search_bar.html" %}
 {% endblock %}
 {% block endjs %}
     <script type="text/javascript">

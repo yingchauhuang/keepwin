@@ -13,6 +13,7 @@ import datetime
 from datetime import datetime as Cdatetime
 import logging
 import operator
+import sys
 from decimal import *
 from django.db.models import Count, Q
 from django.conf import settings as django_settings
@@ -43,6 +44,7 @@ from askbot.templatetags import extra_tags
 from askbot.search.state_manager import SearchState
 from askbot.models import Post
 from askbot.models.user import UserInfo
+from askbot.models.profilelayout import UserProfileLayout,ProfileLayout,UserProfileLayoutManager
 
 def owner_or_moderator_required(f):
     @functools.wraps(f)
@@ -122,6 +124,72 @@ def users(request):
         'paginator_context' : paginator_context
     }
     return render_into_skin('users.html', data, request)
+
+def users_admin(request):
+    is_paginated = True
+    sortby = request.GET.get('sort', 'reputation')
+    suser = request.REQUEST.get('query',  "")
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    if suser == "":
+        if sortby == "newest":
+            order_by_parameter = '-date_joined'
+        elif sortby == "last":
+            order_by_parameter = 'date_joined'
+        elif sortby == "user":
+            order_by_parameter = 'username'
+        else:
+            # default
+            order_by_parameter = '-reputation'
+
+        objects_list = Paginator(
+                            models.User.objects.all().order_by(
+                                                order_by_parameter
+                                            ),
+                            const.USERS_PAGE_SIZE
+                        )
+        base_url = reverse('users') + '?sort=%s&' % sortby
+    else:
+        sortby = "reputation"
+        objects_list = Paginator(
+                            models.User.objects.filter(
+                                                username__icontains = suser
+                                            ).order_by(
+                                                '-reputation'
+                                            ),
+                            const.USERS_PAGE_SIZE
+                        )
+        base_url = reverse('users') + '?name=%s&sort=%s&' % (suser, sortby)
+
+    try:
+        users_page = objects_list.page(page)
+    except (EmptyPage, InvalidPage):
+        users_page = objects_list.page(objects_list.num_pages)
+
+    paginator_data = {
+        'is_paginated' : is_paginated,
+        'pages': objects_list.num_pages,
+        'page': page,
+        'has_previous': users_page.has_previous(),
+        'has_next': users_page.has_next(),
+        'previous': users_page.previous_page_number(),
+        'next': users_page.next_page_number(),
+        'base_url' : base_url
+    }
+    paginator_context = functions.setup_paginator(paginator_data) #
+    data = {
+        'active_tab': 'users_admin',
+        'page_class': 'users-page',
+        'users' : users_page,
+        'suser' : suser,
+        'keywords' : suser,
+        'tab_id' : sortby,
+        'paginator_context' : paginator_context
+    }
+    return render_into_skin('users_admin.html', data, request)
 
 @csrf.csrf_protect
 def user_moderate(request, subject, context):
@@ -217,13 +285,134 @@ def user_moderate(request, subject, context):
     context.update(data)
     return render_into_skin('user_profile/user_moderate.html', context, request)
 
+def save_template(request):
+    if request.method == "POST":
+        try:
+            main_template = request.POST['main_template']
+            sidebar_template = request.POST['sidebar_template']
+            user = request.user
+            user.main_template=main_template
+            user.sidebar_template=sidebar_template 
+            user.save()
+            data = simplejson.dumps({
+                'message': 'Your config is saved'
+            })
+        except:
+            data = simplejson.dumps({
+                'message': 'Data Error'
+            })
+    return HttpResponse(data, mimetype = 'application/json')
+
+def update_template_content(request):
+    if request.method == "POST":
+        try:
+            template_id = request.POST['id']
+            content = request.POST['content']
+            if (UserProfileLayout.objects.update_template(userprofilelayoutid=template_id,content=content)):
+                data = simplejson.dumps({
+                    'message': _('successful update template content'),
+                    'id': template_id,
+                    'content': content,
+                    'success': True,
+                })
+            else:    
+                data = simplejson.dumps({
+                    'message': _('update template content failure.'),
+                    'id': template_id,
+                    'content': content,
+                    'success': False,
+                })
+
+        except:
+            data = simplejson.dumps({
+                'message': _('update template content failure.')+sys.exc_info()[0],
+                'id': template_id,
+                'content': content,
+                'success': False,
+            })
+    return HttpResponse(data, mimetype = 'application/json')
+
+
+def add_template(request):
+    if request.method == "POST":
+        try:
+            template_id = request.POST['id']
+            user = request.user
+            newtemplate, is_new=user.add_template(template_id,'')
+            if (is_new):
+                user.main_template=user.main_template+','+unicode(newtemplate.id)
+                user.save()
+                data = simplejson.dumps({
+                    'message': _('successful add a template'),
+                    'id': newtemplate.id,
+                    'type': newtemplate.profilelayout.layout_type,
+                    'is_new': is_new,
+                })
+            else:    
+                data = simplejson.dumps({
+                    'message': _('You have added a template already.'),
+                    'id': newtemplate.id,
+                    'type': newtemplate.profilelayout.layout_type,
+                    'is_new': is_new,
+                })
+
+        except:
+            data = simplejson.dumps({
+                'message': sys.exc_info()[0],
+                'id': '',
+                'type': 1,
+                'is_new': False,
+            })
+    return HttpResponse(data, mimetype = 'application/json')
+
+def delete_template(request):
+    if request.method == "POST":
+        try:
+            template_id = request.POST['id']
+            user = request.user
+            user.delete_template(template_id)
+            
+            data = simplejson.dumps({
+                'message': 'You have deleted template',
+                'id': template_id,
+                'success': True,
+            })
+        except:
+            data = simplejson.dumps({
+                'message': sys.exc_info()[0],
+                'id;: template_id ,'
+                'success': False,
+            })
+    return HttpResponse(data, mimetype = 'application/json')
+
 @csrf.csrf_protect
 def user_layout(request, subject, context):
     """user layout
     """
-
-
     user_layout_form = forms.UserLayoutForm()
+    user = request.user
+    profilelayouts = ProfileLayout.objects.all()
+    userprofilelayouts = UserProfileLayout.objects.filter(user=user)
+
+    main_list = list()
+    sidebar_list= list()
+    main_id_list = user.main_template.split(',')
+    sidebar_id_list = user.sidebar_template.split(',')
+
+    for id in main_id_list:
+        try:
+            layout=userprofilelayouts.get(id=id)
+            main_list.append(layout)
+        except:
+            logging.debug('Error in main_id_list: %s' % ','.join(unicode(id)))
+        
+    for id in sidebar_id_list:
+        try:
+            layout=userprofilelayouts.get(id=id)
+            sidebar_list.append(layout)
+        except:
+            logging.debug('Error in sidebar_id_list: %s' % ','.join(unicode(id)))
+                    
     if request.method == 'POST':
             user_layout_form = forms.UserLayoutForm(request.POST)
             if user_layout_form.is_valid():
@@ -240,6 +429,9 @@ def user_layout(request, subject, context):
         'tab_description': _('add transaction to modify user balance'),
         'page_title': _('add transaction'),
         'user_layout_form': user_layout_form,
+        'profilelayouts' : profilelayouts,
+        'main_list': main_list,
+        'sidebar_list': sidebar_list,
 
     }
     context.update(data)
@@ -647,6 +839,27 @@ def user_stats_vip(request, user, context):
 
     badges = badges_dict.items()
     badges.sort(key=operator.itemgetter(1), reverse=True)
+    
+    userprofilelayouts = UserProfileLayout.objects.filter(user=user)
+
+    main_list = list()
+    sidebar_list= list()
+    main_id_list = user.main_template.split(',')
+    sidebar_id_list = user.sidebar_template.split(',')
+
+    for id in main_id_list:
+        try:
+            layout=userprofilelayouts.get(id=id)
+            main_list.append(layout)
+        except:
+            logging.debug('Error in main_id_list: %s' % ','.join(unicode(id)))
+        
+    for id in sidebar_id_list:
+        try:
+            layout=userprofilelayouts.get(id=id)
+            sidebar_list.append(layout)
+        except:
+            logging.debug('Error in sidebar_id_list: %s' % ','.join(unicode(id)))
 
     data = {
         'active_tab':'users',
@@ -672,6 +885,8 @@ def user_stats_vip(request, user, context):
 
         'badges': badges,
         'total_badges' : len(badges),
+        'main_list': main_list,
+        'sidebar_list': sidebar_list,
     }
     context.update(data)
 

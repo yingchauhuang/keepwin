@@ -114,6 +114,13 @@
                     {% trans %}To change your password - please enter the new one twice, then submit{% endtrans %}
                 </h2>
                 <table class="login">
+					<tr>
+                        <td><label for="id_password">{% trans %}Password{% endtrans %}</label></td>
+                        <td>
+                            {{login_form.password}}
+                            <span class="error">{{login_form.password.errors[0]}}</span>
+                        </td>
+                    </tr>
                     <tr>
                         <td><label for="id_new_password">{% trans %}New password{% endtrans %}</label></td>
                         <td>

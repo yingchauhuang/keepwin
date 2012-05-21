@@ -1,0 +1,23 @@
+<!-- user_info.html -->
+{% import "macros.html" as macros %}
+<table class="user-info-table">
+    <tr>
+        <td width="360" style="padding-left:5px;vertical-align: top;">
+            <table class="user-details">
+                <img alt="" src={{'/images/icon_reply_s.gif'|media}} class="valignmid padding_right">
+				<span class="number">{{user.responses}}</span><br>
+				<img alt="" src={{'/images/icon_hotnumber_s.gif'|media}} class="valignmid padding_right">
+				<span class="number">{{user.views}}</span><br>
+				<img alt="" src={{'/images/point.gif'|media}} class="valignmid padding_right">
+				<span class="number">{{user.receive_points}}</span><br>
+                {% if view_user.last_seen %}
+                <tr>
+                    <td>{% trans %}last seen{% endtrans %}</td>
+                    <td><strong title="{{ view_user.last_seen }}">{{view_user.last_seen|diff_date}}</strong></td>
+                </tr>
+                {% endif %}
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- end user_info.html -->

@@ -1,0 +1,8 @@
+{% from "macros.html" import tag_menu %}
+<!-- question_summary_newest.html -->
+<tr>
+	<td nowrap="">{{ question.added_at|date }}</td>
+	<td width="100%"><a class="link" href="{{ question.get_absolute_url(thread=thread) }}">{{thread.get_title(question)|escape}}</a></td>
+	<td nowrap="">{{ tag_menu(thread.get_tag_names()[0], search_state=search_state) }}</td>
+</tr>
+
