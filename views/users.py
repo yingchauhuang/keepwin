@@ -80,7 +80,7 @@ def users(request):
             order_by_parameter = '-reputation'
 
         objects_list = Paginator(
-                            models.User.objects.all().order_by(
+                            models.User.objects.filter(status__in=['d','m']).order_by(
                                                 order_by_parameter
                                             ),
                             const.USERS_PAGE_SIZE
@@ -151,7 +151,7 @@ def users_admin(request):
                                             ),
                             const.USERS_PAGE_SIZE
                         )
-        base_url = reverse('users') + '?sort=%s&' % sortby
+        base_url = reverse('users_admin') + '?sort=%s&' % sortby
     else:
         sortby = "reputation"
         objects_list = Paginator(
@@ -162,7 +162,7 @@ def users_admin(request):
                                             ),
                             const.USERS_PAGE_SIZE
                         )
-        base_url = reverse('users') + '?name=%s&sort=%s&' % (suser, sortby)
+        base_url = reverse('users_admin') + '?name=%s&sort=%s&' % (suser, sortby)
 
     try:
         users_page = objects_list.page(page)
@@ -338,6 +338,7 @@ def update_template_content(request):
 
 
 def add_template(request):
+    is_new=False
     if request.method == "POST":
         try:
             template_id = request.POST['id']
@@ -365,7 +366,7 @@ def add_template(request):
                 'message': sys.exc_info()[0],
                 'id': '',
                 'type': 1,
-                'is_new': False,
+                'is_new': is_new,
             })
     return HttpResponse(data, mimetype = 'application/json')
 
@@ -547,7 +548,7 @@ def edit_user(request, id):
             user.website = sanitize_html(form.cleaned_data['website'])
             user.location = sanitize_html(form.cleaned_data['city'])
             user.date_of_birth = form.cleaned_data.get('birthday', None)
-            user.about = sanitize_html(form.cleaned_data['about'])
+            user.about = form.cleaned_data['about']
             user.country = form.cleaned_data['country']
             user.show_country = form.cleaned_data['show_country']
 
@@ -1432,7 +1433,35 @@ def user(request, id, slug=None, tab_name=None):
     }
     return user_view_func(request, profile_owner, context)
 
+#todo: rename this function - variable named user is everywhere
+def user_admin(request):
+    """Show the infor of admin
+    """
+    try:
+        profile_owner =  models.User.objects.get(username = askbot_settings.NAME_OF_ADMINISTRATOR_USER)
+    except:
+        profile_owner = get_object_or_404(models.User, id = 1)
 
+    tab_name = request.GET.get('sort', 'stats')
+
+    user_view_func = USER_VIEW_CALL_TABLE.get(tab_name, user_stats)
+
+    search_state = SearchState( # Non-default SearchState with user data set
+        scope=None,
+        sort=None,
+        query=None,
+        tags=None,
+        author=profile_owner.id,
+        page=None,
+        user_logged_in=profile_owner.is_authenticated(),
+    )
+
+    context = {
+        'view_user': profile_owner,
+        'search_state': search_state,
+        'user_follow_feature_on': ('followit' in django_settings.INSTALLED_APPS),
+    }
+    return user_stats_vip(request, profile_owner, context)
 
 @csrf.csrf_exempt
 def update_has_custom_avatar(request):

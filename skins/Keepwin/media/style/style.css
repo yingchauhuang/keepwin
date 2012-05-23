@@ -7,7 +7,7 @@
 /* CSS3 Elements */
 /* Library of predifined less functions styles */
 /* ----- General HTML Styles----- */
-*{ font-family: "微軟正黑體",Arial;}
+*{ font-family: "新細明體",Arial;}
 
 body {
   /*background: yellow;*/
@@ -16,7 +16,7 @@ body {
 	margin: 0;
 	padding: 0;
 	color: #000;
-	font-family: "微軟正黑體",Arial;
+	font-family: "新細明體",Arial;
 	background: #F1CF00;
 	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#F1CF00), to(#FFFFFF));
 	background: -webkit-linear-gradient(#F1CF00, #FFFFFF);
@@ -189,8 +189,8 @@ body.user-messages {
   position: fixed;
   top: 25%;
   left: 25%;
-  width: 50%;
-  height: 50%;
+  width: auto;
+  height: auto;
   z-index: 100;
   padding: 0;
   font-size: 24px;
@@ -223,7 +223,7 @@ body.user-messages {
 /* ----- Header, check blocks/header.html ----- */
 #header {
   margin-top: 0px;
-  background: #660066;
+  background: #44226f;
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 .content-wrapper {
@@ -2703,6 +2703,24 @@ ins .post-tag, ins p, ins {
   font-weight: bold;
 }
 /* ----- Footer links , check blocks/footer.html----- */
+#keepwinground {
+  width: 100%;
+  clear: both;
+  border-top: 1px solid #000;
+  padding: 6px 0 0 0;
+  background: #16160f;
+  font-size: 16px;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  background: url(../images/linkback.jpg)
+}
+#keepwinground p {
+  margin-bottom: 0;
+}
+#keepwinground a {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 #ground {
   width: 100%;
   clear: both;

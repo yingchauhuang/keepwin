@@ -6,6 +6,7 @@
 	{{ featurePIC(thread,question,60) }}
 	</a>
 		<div class="to_feed_tag">
+			<a href="{% url user_profile question.author.id, question.author.username|slugify %}?sort=vip">{{ question.author.username }}</a>
 			{{ tag_list_widget(thread.get_tag_names(), search_state=search_state) }}
 		</div>
 	</div>

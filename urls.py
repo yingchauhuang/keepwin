@@ -293,6 +293,7 @@ urlpatterns = patterns('',
         {'feed_dict': feeds},
         name='feeds'
     ),
+	url(r'^%s$' % _('user_admin/'), views.users.user_admin, name='user_admin'),
     url(r'^%s$' % _('save_template/'), views.users.save_template, name='save_template'),
     url(r'^%s$' % _('add_template/'), views.users.add_template, name='add_template'), 
     url(r'^%s$' % _('del_template/'), views.users.delete_template, name='delete_template'), 

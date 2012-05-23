@@ -1054,7 +1054,7 @@ msgstr "徽章設定"
 
 #: conf/badges.py:23
 msgid "Disciplined: minimum upvotes for deleted post"
-msgstr "自我規範: 自己刪除掉的內容也至少獲得幾次『讚』"
+msgstr "自我規範: 自己刪除掉的內容也至少獲得幾次『水唷』"
 
 #: conf/badges.py:32
 msgid "Peer Pressure: minimum downvotes for deleted post"
@@ -1062,30 +1062,30 @@ msgstr "同儕壓力: 自己刪除掉的內容也至少獲得幾次『噓』 "
 
 #: conf/badges.py:41
 msgid "Teacher: minimum upvotes for the answer"
-msgstr "老師: 回應最少要獲得幾次『讚』"
+msgstr "老師: 回應最少要獲得幾次『水唷』"
 
 #: conf/badges.py:50
 msgid "Nice Answer: minimum upvotes for the answer"
-msgstr "妙答: 回應最少要獲得幾次『讚』"
+msgstr "妙答: 回應最少要獲得幾次『水唷』"
 
 #: conf/badges.py:59
 msgid "Good Answer: minimum upvotes for the answer"
-msgstr "好回應: 回應最少要獲得幾次『讚』"
+msgstr "好回應: 回應最少要獲得幾次『水唷』"
 
 #: conf/badges.py:68
 msgid "Great Answer: minimum upvotes for the answer"
-msgstr "精闢答案: 回應最少要獲得幾次『讚』"
+msgstr "精闢答案: 回應最少要獲得幾次『水唷』"
 
 #: conf/badges.py:77
 msgid "Nice Question: minimum upvotes for the question"
-msgstr "妙問: 看法最少要獲得幾次『讚』"
+msgstr "妙問: 看法最少要獲得幾次『水唷』"
 #: conf/badges.py:86
 msgid "Good Question: minimum upvotes for the question"
-msgstr "好看法: 看法最少要獲得幾次『讚』"
+msgstr "好看法: 看法最少要獲得幾次『水唷』"
 
 #: conf/badges.py:95
 msgid "Great Question: minimum upvotes for the question"
-msgstr "問的極好: 看法最少要獲得幾次『讚』"
+msgstr "問的極好: 看法最少要獲得幾次『水唷』"
 
 #: conf/badges.py:104
 msgid "Popular Question: minimum views"
@@ -1100,22 +1100,22 @@ msgid "Famous Question: minimum views"
 msgstr "著名看法: 看法最少要被瀏覽幾次"
 #: conf/badges.py:131
 msgid "Self-Learner: minimum answer upvotes"
-msgstr "自學者: 回應自己的看法最少要獲得幾次『讚』"
+msgstr "自學者: 回應自己的看法最少要獲得幾次『水唷』"
 #: conf/badges.py:140
 msgid "Civic Duty: minimum votes"
 msgstr "社會責任: 最少要給出的評分次數"
 
 #: conf/badges.py:149
 msgid "Enlightened Duty: minimum upvotes"
-msgstr "具啟發性定義: 最少要獲得『讚』的次數"
+msgstr "具啟發性定義: 最少要獲得『水唷』的次數"
 
 #: conf/badges.py:158
 msgid "Guru: minimum upvotes"
-msgstr "大師: 最少要獲得『讚』的次數"
+msgstr "大師: 最少要獲得『水唷』的次數"
 
 #: conf/badges.py:167
 msgid "Necromancer: minimum upvotes"
-msgstr "法師: 最少要獲得『讚』的次數"
+msgstr "法師: 最少要獲得『水唷』的次數"
 
 #: conf/badges.py:176
 msgid "Necromancer: minimum delay in days"
@@ -1825,7 +1825,7 @@ msgstr "積分門檻"
 
 #: conf/minimum_reputation.py:22
 msgid "Upvote"
-msgstr "讚(+1)"
+msgstr "水唷(+1)"
 
 #: conf/minimum_reputation.py:31
 msgid "Downvote"
@@ -1912,7 +1912,7 @@ msgstr "每個使用者每天可以獲得的最多積分"
 
 #: conf/reputation_changes.py:32
 msgid "Gain for receiving an upvote"
-msgstr "取得到一個『讚』, 獲得"
+msgstr "取得到一個『水唷』, 獲得"
 
 #: conf/reputation_changes.py:41
 msgid "Gain for the author of accepted answer"
@@ -1955,7 +1955,7 @@ msgstr "看法提出者標註 5次相同的修正, 喪失"
 
 #: conf/reputation_changes.py:148
 msgid "Loss for post owner when upvote is canceled"
-msgstr "看法提出者取消對於您的內容的『讚』評價, 喪失"
+msgstr "看法提出者取消對於您的內容的『水唷』評價, 喪失"
 
 #: conf/sidebar_main.py:12
 msgid "Main page sidebar"
@@ -2854,7 +2854,7 @@ msgstr "標記最佳答案"
 
 #: const/__init__.py:130
 msgid "upvoted"
-msgstr "『讚』"
+msgstr "『水唷』"
 
 #: const/__init__.py:131
 msgid "downvoted"
@@ -3555,7 +3555,7 @@ msgstr "請登入 立刻使用%s ! "
 
 #: models/badges.py:129
 msgid "Deleted own post with %(votes)s or more upvotes"
-msgstr "刪除評分大於 %(votes)s 次『讚』的張貼"
+msgstr "刪除評分大於 %(votes)s 次『水唷』的張貼"
 
 #: models/badges.py:133
 msgid "Disciplined"
@@ -3572,7 +3572,7 @@ msgstr "同儕壓力"
 #: models/badges.py:174
 #, python-format
 msgid "Received at least %(votes)s upvote for an answer for the first time"
-msgstr "第一次回應獲得至少 %(votes)s 次『讚』"
+msgstr "第一次回應獲得至少 %(votes)s 次『水唷』"
 
 #: models/badges.py:178
 msgid "Teacher"
@@ -3584,7 +3584,7 @@ msgstr "贊成者"
 
 #: models/badges.py:219
 msgid "First upvote"
-msgstr "第一個說『讚』"
+msgstr "第一個說『水唷』"
 
 #: models/badges.py:227
 msgid "Critic"
@@ -3604,7 +3604,7 @@ msgstr " 給出超過 %(num)s 評分 "
 
 #: models/badges.py:252
 msgid "Answered own question with at least %(num)s up votes"
-msgstr "回應至少有%(num)s個讚的看法"
+msgstr "回應至少有%(num)s個水唷的看法"
 #: models/badges.py:256
 msgid "Self-Learner"
 msgstr "自學者"
@@ -3615,7 +3615,7 @@ msgstr "妙答"
 
 #: models/badges.py:309 models/badges.py:321 models/badges.py:333
 msgid "Answer voted up %(num)s times"
-msgstr "回應獲得超過%(num)s 次『讚』"
+msgstr "回應獲得超過%(num)s 次『水唷』"
 
 #: models/badges.py:316
 msgid "Good Answer"
@@ -3630,7 +3630,7 @@ msgstr "妙問"
 
 #: models/badges.py:345 models/badges.py:357 models/badges.py:369
 msgid "Question voted up %(num)s times"
-msgstr "看法獲得超過%(num)s 次『讚』"
+msgstr "看法獲得超過%(num)s 次『水唷』"
 
 #: models/badges.py:352
 msgid "Good Question"
@@ -4790,17 +4790,17 @@ msgstr "積分機制如何運作?"
 #: skins/default/templates/faq_static.html:21
 msgid "Rep system summary"
 msgstr ""
-"當某個看法或回應收到『讚』的評價, 使用者會增加積分 "
+"當某個看法或回應收到『水唷』的評價, 使用者會增加積分 "
 "我們透過這些積分機制來衡量論壇對使用者的信任及評價 "
 "您在論壇中的各種操作將會影響您的積分 "
 
 #: skins/default/templates/faq_static.html:22
 #, python-format
 msgid ""
-"例如, 您問了一個很好的看法或者有一個好回應, 您將會收到『讚』的評價 "
+"例如, 您問了一個很好的看法或者有一個好回應, 您將會收到『水唷』的評價 "
 "反過來說, 您的回應是誤導他人, 您將會收到『噓』的評價 "
-"每個『讚』會收到 <strong>"
-"%(REP_GAIN_FOR_RECEIVING_UPVOTE)s</strong> 積分, 每個『讚』會扣除"
+"每個『水唷』會收到 <strong>"
+"%(REP_GAIN_FOR_RECEIVING_UPVOTE)s</strong> 積分, 每個『水唷』會扣除"
 "<strong>%(REP_LOSS_FOR_RECEIVING_DOWNVOTE)s</strong> 積分. 每天您"
 "最多可以得到 <strong>%(MAX_REP_GAIN_PER_USER_PER_DAY)s</strong> 積分 "
 "以下表格說明每個操作所帶來的積分影響."
@@ -4809,7 +4809,7 @@ msgstr ""
 #: skins/default/templates/faq_static.html:32
 #: skins/default/templates/user_profile/user_votes.html:13
 msgid "upvote"
-msgstr "『讚』"
+msgstr "『水唷』"
 
 #: skins/default/templates/faq_static.html:37
 msgid "use tags"
@@ -5104,10 +5104,10 @@ msgstr "關注 %(alias)s"
 
 #: skins/default/templates/macros.html:29
 msgid "i like this question (click again to cancel)"
-msgstr "我要對這個看法說『讚』(再點擊一次取消)"
+msgstr "我要對這個看法說『水唷』(再點擊一次取消)"
 #: skins/default/templates/macros.html:31
 msgid "i like this answer (click again to cancel)"
-msgstr "我要對這個看法說『讚』(再點擊一次取消)"
+msgstr "我要對這個看法說『水唷』(再點擊一次取消)"
 #: skins/default/templates/macros.html:37
 msgid "current number of votes"
 msgstr "目前評分次數"
@@ -5378,8 +5378,12 @@ msgid "Nothing found"
 msgstr "找不到任何資料"
 
 #: skins/default/templates/users.html:4 skins/default/templates/users.html:6
-msgid "Users"
-msgstr "用戶"
+msgid "Users List"
+msgstr "用戶列"
+
+#: skins/default/templates/users.html:4 skins/default/templates/users.html:6
+msgid "Moderator List"
+msgstr "版主列"
 
 #: skins/default/templates/user_layout.html:14
 msgid "Edit User define Content"
@@ -6212,11 +6216,11 @@ msgstr[1]  "<span class=\"count\">%(cnt)s</span> 評分..."
 
 #: skins/default/templates/user_profile/user_stats.html:50
 msgid "thumb up"
-msgstr "豎大拇指 『讚』"
+msgstr "豎大拇指 『水唷』"
 
 #: skins/default/templates/user_profile/user_stats.html:51
 msgid "user has voted up this many times"
-msgstr "使用者已經說『讚』 許多次"
+msgstr "使用者已經說『水唷』 許多次"
 
 #: skins/default/templates/user_profile/user_stats.html:54
 msgid "thumb down"
@@ -6532,19 +6536,19 @@ msgstr "登出"
 
 #: skins/default/templates/widgets/header.html:8
 msgid "Register"
-msgstr "會員註冊"
+msgstr "註冊"
 
 #: skins/default/templates/widgets/header.html:8
 msgid "Announce"
-msgstr "公告欄"
+msgstr "公告"
 
 #: skins/default/templates/widgets/header.html:8
 msgid "Advertise"
-msgstr "我要刊登廣告"
+msgstr "刊登廣告"
 
 #: skins/default/templates/widgets/header.html:8
 msgid "Editor Post"
-msgstr "版主發文"
+msgstr "發文"
 
 #: skins/default/templates/widgets/user_navigation.html:10
 msgid "login"
