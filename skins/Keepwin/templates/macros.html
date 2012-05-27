@@ -120,8 +120,7 @@ poor design of the data or methods on data objects #}
            {% else %}
                 {%- trans %}posted{% endtrans %}
            {% endif %}
-					<strong>{{post.added_at|time}}</strong>
-					<strong>{{post.added_at|date}}</strong>
+					<strong>{{post.added_at.replace(microsecond=0)}}</strong>
         </p>
         <img width="35" height="35"
             src="{{'/images/wiki.png'|media}}"
@@ -141,11 +140,9 @@ poor design of the data or methods on data objects #}
                 {% trans %}posted{% endtrans %}
             {% endif %}
             {% if post.__class__.__name__ == 'PostRevision' %}
-					<strong>{{post.revised_at|time}}</strong>
-					<strong>{{post.revised_at|date}}</strong>
+					<strong>{{post.revised_at.replace(microsecond=0)}}</strong>
             {% else %}
-					<strong>{{post.added_at|time}}</strong>
-					<strong>{{post.added_at|date}}</strong>
+					<strong>{{post.added_at.replace(microsecond=0)}}</strong>
             {% endif %}
         </p>
         {{ post_contributor_avatar_and_credentials(post, post.author) }}
