@@ -631,7 +631,7 @@ def question(request, id):#refactor - long subroutine. display question body, an
         if update_view_count:
             thread.increase_view_count()
             #Add by YC compute the total view count for this thread owner
-            question_post.increase_view_count()
+            #question_post.increase_view_count()
 
         #2) question view count per user and clear response displays
         if request.user.is_authenticated():
@@ -640,11 +640,12 @@ def question(request, id):#refactor - long subroutine. display question body, an
 
         #3) send award badges signal for any badges
         #that are awarded for question views
-        award_badges_signal.send(None,
-                        event = 'view_question',
-                        actor = request.user,
-                        context_object = question_post,
-                    )
+        # Remove fro YC 0525
+        #award_badges_signal.send(None,
+        ##                event = 'view_question',
+        #               actor = request.user,
+        #                context_object = question_post,
+        #            )
     paginator_data = {
         'is_paginated' : (objects_list.count > const.ANSWERS_PAGE_SIZE),
         'pages': objects_list.num_pages,

@@ -120,7 +120,11 @@ poor design of the data or methods on data objects #}
            {% else %}
                 {%- trans %}posted{% endtrans %}
            {% endif %}
-           <strong>{{post.added_at|diff_date}}</strong>
+				{% if post.added_at.date() == post.added_at.today().date() %}
+					<strong>{{post.added_at|time}}</strong>
+				{% else %}
+					<strong>{{post.added_at|date}}</strong>
+				{% endif %}
         </p>
         <img width="35" height="35"
             src="{{'/images/wiki.png'|media}}"
@@ -140,9 +144,17 @@ poor design of the data or methods on data objects #}
                 {% trans %}posted{% endtrans %}
             {% endif %}
             {% if post.__class__.__name__ == 'PostRevision' %}
-                <strong>{{post.revised_at|diff_date}}</strong>
+				{% if post.revised_at.date() == post.revised_at.today().date() %}
+					<strong>{{post.revised_at|time}}</strong>
+				{% else %}
+					<strong>{{post.revised_at|date}}</strong>
+				{% endif %}
             {% else %}
-                <strong>{{post.added_at|diff_date}}</strong>
+				{% if post.added_at.date() == post.added_at.today().date() %}
+					<strong>{{post.added_at|time}}</strong>
+				{% else %}
+					<strong>{{post.added_at|date}}</strong>
+				{% endif %}
             {% endif %}
         </p>
         {{ post_contributor_avatar_and_credentials(post, post.author) }}
@@ -365,6 +377,7 @@ for the purposes of the AJAX comment editor #}
     {% endif %}
 {%- endmacro -%}
 
+
 {%- macro post_comments_widget(
         post=None,
         show_post = None,
@@ -375,40 +388,11 @@ for the purposes of the AJAX comment editor #}
     )
 -%}
     {% spaceless %}
+    {% if post.comment_count > 0 %}
+        <h2 id="comment-title">Comments</h2>
+        <div class="clean"></div> 
+    {% endif %}
     {% set widget_id = 'comments-for-' + post.post_type + '-' + post.id|string %}
-	<div class="controls">
-		{% set can_post = user|can_post_comment(post) %}
-		{% if show_post == post and show_comment %}
-			{% if show_comment_position > max_comments %}
-				{{
-					add_or_show_comments_button(
-										post = post,
-										can_post = can_post,
-										max_comments = show_comment_position,
-										widget_id = widget_id
-									)
-				}}
-			{% else %}
-				{{
-					add_or_show_comments_button(
-										post = post,
-										can_post = can_post,
-										max_comments = max_comments,
-										widget_id = widget_id
-									)
-				}}
-			{% endif %}
-		{% else %}
-			{{
-				add_or_show_comments_button(
-									post = post,
-									can_post = can_post,
-									max_comments = max_comments,
-									widget_id = widget_id
-								)
-			}}
-		{% endif %}
-	</div>
     <div class="comments" id="{{widget_id}}">
         <div class="content">
             {% if show_post == post and show_comment and show_comment_position > max_comments %}
@@ -443,9 +427,43 @@ for the purposes of the AJAX comment editor #}
                 </div>
             {% endfor %}
         </div>
+        <div class="controls">
+            {% set can_post = user|can_post_comment(post) %}
+            {% if show_post == post and show_comment %}
+                {% if show_comment_position > max_comments %}
+                    {{
+                        add_or_show_comments_button(
+                                            post = post,
+                                            can_post = can_post,
+                                            max_comments = show_comment_position,
+                                            widget_id = widget_id
+                                        )
+                    }}
+                {% else %}
+                    {{
+                        add_or_show_comments_button(
+                                            post = post,
+                                            can_post = can_post,
+                                            max_comments = max_comments,
+                                            widget_id = widget_id
+                                        )
+                    }}
+                {% endif %}
+            {% else %}
+                {{
+                    add_or_show_comments_button(
+                                        post = post,
+                                        can_post = can_post,
+                                        max_comments = max_comments,
+                                        widget_id = widget_id
+                                    )
+                }}
+            {% endif %}
+        </div>
     </div>
     {% endspaceless %}
 {%- endmacro -%}
+
 
 {%- macro reversible_sort_button(button_sort_criterium=None, asc_tooltip=None,
             desc_tooltip=None, label=None, current_sort_method=None, search_state=None) -%}

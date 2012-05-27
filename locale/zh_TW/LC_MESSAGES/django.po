@@ -905,6 +905,11 @@ msgstr "以上是必選選項,請選上述選項之一"
 #: django_authopenid/views.py:1126
 msgid "Your register form, have some errors. Please re-fill the data carefully"
 msgstr "您所填的註冊內容有些錯誤及不完整的地方. 請參考紅色的錯誤訊息,再重新填寫!"
+
+#: views/users.py:1126
+msgid "The Data you input have some errors. Please re-fill the data carefully"
+msgstr "您所填的內容有些錯誤及不完整的地方. 請參考資料後顯示的錯誤訊息,再重新輸入!"
+
 # footer.html
 #: urls.py:57
 #, fuzzy

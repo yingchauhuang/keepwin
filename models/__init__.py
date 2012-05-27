@@ -5,6 +5,7 @@ import logging
 import hashlib
 import datetime
 import re
+import urllib
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.db.models import signals as django_signals
 from django.template import Context
@@ -1601,13 +1602,13 @@ def user_post_answer(
         wiki=wiki,
         is_private=is_private
     )
-    #Add by YC
-    question.increase_responses_count()
-    award_badges_signal.send(None,
-        event='post_answer',
-        actor=self,
-        context_object=answer_post
-    )
+    #Add by YC  --remove for performance 201120525
+    #question.increase_responses_count()
+    #award_badges_signal.send(None,
+    #    event='post_answer',
+    #    actor=self,
+    #    context_object=answer_post
+    #)
     return answer_post
 
 def user_visit_question(self, question=None, timestamp=None):

@@ -393,14 +393,18 @@ def get_tags_by_wildcard(request):
     """returns an json encoded array of tag names
     in the response to a wildcard tag name
     """
-    matching_tags = models.Tag.objects.get_by_wildcards(
-                        [request.GET['wildcard'],]
-                    )
-    count = matching_tags.count()
-    names = matching_tags.values_list('name', flat = True)[:20]
-    re_data = simplejson.dumps({'tag_count': count, 'tag_names': list(names)})
-    return HttpResponse(re_data, mimetype = 'application/json')
-
+    try:
+        matching_tags = models.Tag.objects.get_by_wildcards(
+                            [request.GET['wildcard'],]
+                        )
+        count = matching_tags.count()
+        names = matching_tags.values_list('name', flat = True)[:20]
+        re_data = simplejson.dumps({'tag_count': count, 'tag_names': list(names)})
+        return HttpResponse(re_data, mimetype = 'application/json')
+    except:
+        count = 0
+        re_data = simplejson.dumps({'tag_count': count, 'tag_names': list()})
+        return HttpResponse(re_data, mimetype = 'application/json')
 @decorators.get_only
 def get_tag_list(request):
     """returns tags to use in the autocomplete

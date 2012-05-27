@@ -1212,7 +1212,25 @@ def user_transaction(request, user, context):
                 beginDate=query_trans_form.cleaned_data['beginDate'] 
                 endDate=query_trans_form.cleaned_data['endDate'] 
             else:
-                message=query_trans_form.errors
+                #message=query_trans_form.errors
+                message=_('The Data you input have some errors. Please re-fill the data carefully')
+                data = {
+                    'active_tab':'users',
+                    'page_class': 'user-profile-page',
+                    'tab_name': 'transaction',
+                    'tab_description': _('user balance'),
+                    'page_title': _('profile - user balance'),
+                    'transactions': None,
+                    'query_trans_form': query_trans_form,
+                    'trans': None,
+                    'confirmation':confirmation,
+                    'message':message,
+                    'amount': amount,
+                    'qid': qid,
+                    'title': title,
+                }
+                context.update(data)
+                return render_into_skin('user_profile/user_transaction.html', context, request)
         elif 'query_confirm' in request.POST:
             trans_confirm_form = forms.TransactionConfirmForm(request.POST)
             if trans_confirm_form.is_valid():

@@ -49,15 +49,17 @@
 							</td>
 						</table>
 					</form>
-					{% for transaction in transactions %}
-					<p>
-						<span class="karma-gained">{{ transaction.income }}</span>
-						<span class="karma-lost">{{ transaction.outcome }}</span>
-						{{ transaction.get_explanation_snippet() }}
-						<span class="small">({{transaction.trans_at|diff_date}})</span>
-						<div class="clean"></div>                  
-					</p>
-					{% endfor %}
+					{% if transactions %}
+						{% for transaction in transactions %}
+						<p>
+							<span class="karma-gained">{{ transaction.income }}</span>
+							<span class="karma-lost">{{ transaction.outcome }}</span>
+							{{ transaction.get_explanation_snippet() }}
+							<span class="small">({{transaction.trans_at|diff_date}})</span>
+							<div class="clean"></div>                  
+						</p>
+						{% endfor %}
+					{% endif %}
 					<h3>{% trans balance=view_user.balance %}Your current  balance is {{ balance}} USD{% endtrans %}</h3>
                 {% endif %}
             </div>
