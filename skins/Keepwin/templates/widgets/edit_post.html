@@ -78,7 +78,8 @@
 <script>
 function initCKEDITOR()
 {
-	var editor = CKEDITOR.replace( 'editor' ,{skin:'v2',language:'zh',filebrowserBrowseUrl: '/m/common/media/filemanager/index.html',});
+	//var editor = CKEDITOR.replace( 'editor' ,{skin:'v2',language:'zh',filebrowserBrowseUrl: '/m/common/media/filemanager/index.html',});
+	var editor = CKEDITOR.replace( 'editor' ,{skin:'v2',language:'zh',filebrowserUploadUrl : '/admin/c5filemanager/?path=%2Fupload%2F&mode=add&showThumbs=true',});
 	//var editor1 = CKEDITOR.replace( 'featurepic', { skin:'v2',language:'zh',filebrowserBrowseUrl: '/m/common/media/filemanager/index.html',} );
 	var editor1 = CKEDITOR.replace( 'featurepic', { skin:'v2',language:'zh-tw',filebrowserBrowseUrl: '/m/common/media/filemanager/index.html',toolbar :[[ 'Image','Flash'],[ 'UIColor' ]],} );
 }
