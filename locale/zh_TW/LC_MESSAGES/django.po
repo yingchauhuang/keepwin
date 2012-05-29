@@ -321,6 +321,10 @@ msgstr "點擊以觀賞最新文章"
 msgid "by view"
 msgstr "熱門文章"
 
+#: skins\default\templates\main_page\tab_bar_keepwin.html:52
+msgid "Today Hot"
+msgstr "當日熱門"
+
 #: skins\default\templates\main_page\tab_bar_keepwin.html:54
 msgid "click to see the least viewed questions"
 msgstr "點擊以觀賞最少人點閱文章"
