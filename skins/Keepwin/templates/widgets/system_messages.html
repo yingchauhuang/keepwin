@@ -1,8 +1,9 @@
-<div class="notify" style="display:none">
+<div id="System-Message" style="position:absolute;left:-999em">
+<div id="dialog-message" title="靈龜穩賺網" >
     {% if user_messages %}
         {% for message in user_messages %}
-			  <p class="notification">{{ message }}</p>
+              <p class="notification">{{ message }}</p>
         {% endfor %}
     {% endif %}
-    <a id="closeNotify" onclick="notify.close(true)"></a>
+</div>
 </div>
