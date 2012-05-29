@@ -476,7 +476,7 @@ class Post(models.Model):
 
         #a hack allowing to save denormalized .summary field for questions
         if hasattr(post, 'summary'):
-            post.summary = strip_tags(post.html)[:200]
+            post.summary = strip_tags(post.html)[:180]
 
         #delete removed mentions
         for rm in removed_mentions:

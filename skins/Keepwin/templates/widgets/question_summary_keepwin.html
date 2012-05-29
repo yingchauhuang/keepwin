@@ -12,7 +12,7 @@
 	</div>
 	<a title="{{thread.title|striptags}}" href="{{ question.get_absolute_url(thread=thread) }}" class="group">
 		<h3>{{thread.get_title(question)|escape}}</h3>
-		<p>{{ question.summary|escape }}...</p>
+		<p>{{ thread.subtitle|escape }}...</p>
 		{{thread.view_count|humanize_counter}}{% trans cnt=thread.view_count %}view{% pluralize %}views{% endtrans %}
 		{{thread.answer_count|humanize_counter}}{% if thread.accepted_answer_id %}{% endif %}{% trans cnt=thread.answer_count %}answer{% pluralize %}answers{% endtrans %}
 	</a>

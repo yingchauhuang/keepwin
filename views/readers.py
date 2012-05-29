@@ -672,6 +672,9 @@ def question(request, id):#refactor - long subroutine. display question body, an
             if ((answer.is_private) and (answer.author != request.user)):
                 answer.html=_('This is a private answer');
                 answer.text=_('This is a private answer');
+                for comment in answer._cached_comments:
+                    comment.html=_('This is a private answer');
+                    comment.text=_('This is a private answer');
     passcode_form =PassCodeForm() 
     if (thread.passcode != ''):
         if request.method == 'POST':
