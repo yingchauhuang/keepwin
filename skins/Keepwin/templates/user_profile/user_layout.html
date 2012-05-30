@@ -85,7 +85,7 @@
 	{% endfor %}
 </SELECT>
 	<input type="button" value="{% trans %}Add Layout{% endtrans %}" onclick="javascript:add1Block()"/>
-	<input type="button" value="{% trans %}Save{% endtrans %}" onclick="javascript:saveLayout()"/>
+	<!-- <input type="button" value="{% trans %}Save{% endtrans %}" onclick="javascript:saveLayout()"/>-->
 	<input type="hidden" name="id_main_template" id="id_main_template">
 	<input type="hidden" name="id_sidebar_template" id="id_sidebar_template">
 </div>
@@ -118,7 +118,8 @@
 		function sortTable() 
 		{
 				$( ".column" ).sortable({
-					connectWith: ".column"
+					connectWith: ".column",
+					update: function(event, ui) { saveLayout(); }
 				});
 				$( ".portlet-header .ui-icon-minusthick" ).click(function() {
 					$.post("/del_template/",{id: $(this).attr("tempid")},finishdeleteBlock,"json")
@@ -206,7 +207,7 @@
 			}
 			main_data=contentL.toString();
 			sidebar_data=contentR.toString();
-			$.post("/save_template/",{main_template:main_data,sidebar_template:sidebar_data},function(data){alert(data.message);},"json")
+			$.post("/save_template/",{main_template:main_data,sidebar_template:sidebar_data},function(data){if (!data.success){alert(data.message);}},"json")
 		}
 		sortTable();
 		var allFields = $( [] ).add("#dialog-form #ID").add("#dialog-form #Content");

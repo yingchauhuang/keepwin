@@ -6101,6 +6101,21 @@ msgstr "您的社交圈目前是空的. 您想要『關注』其他人嗎? 請�
 
 #: skins/default/templates/user_profile/user_network.html:21
 #, python-format
+msgid "profile - user balance"
+msgstr "簡介 - 使用者帳戶紀錄"
+
+#: skins/default/templates/user_profile/user_network.html:21
+#, python-format
+msgid "profile - network"
+msgstr "簡介 - 社交圈"
+
+#: skins/default/templates/user_profile/user_network.html:21
+#, python-format
+msgid "profile - layout"
+msgstr "簡介 - 佈景主題"
+
+#: skins/default/templates/user_profile/user_network.html:21
+#, python-format
 msgid "%(username)s's network is empty"
 msgstr "%(username)s的社交圈目前是空的"
 
@@ -6108,6 +6123,12 @@ msgstr "%(username)s的社交圈目前是空的"
 #: skins/default/templates/user_profile/user_tabs.html:31
 msgid "layout"
 msgstr "佈景主題"
+
+
+#: skins/default/templates/user_profile/user_recent.html:4
+#: skins/default/templates/user_profile/user_tabs.html:31
+msgid "change user default page layout"
+msgstr "設計版主首頁的呈現內容"
 
 #: skins/default/templates/user_profile/user_recent.html:4
 #: skins/default/templates/user_profile/user_tabs.html:31
@@ -6161,6 +6182,11 @@ msgstr "結束日期"
 #, python-format
 msgid "Query"
 msgstr "查詢"
+
+#: users.html:35
+#, python-format
+msgid "Save Template Error"
+msgstr "儲存首頁設定錯誤!"
 
 #: skins/default/templates/user_profile/user_transaction.html:35
 #, python-format
@@ -6301,6 +6327,10 @@ msgstr "評分"
 
 #: skins/default/templates/user_profile/user_tabs.html:40 views/users.py:973
 msgid "email subscription settings"
+msgstr "Email 訂閱設定"
+
+#: skins/default/templates/user_profile/user_tabs.html:40 views/users.py:973
+msgid "email subscriptions"
 msgstr "Email 訂閱設定"
 
 #: skins/default/templates/user_profile/user_tabs.html:46 views/users.py:211
@@ -6810,6 +6840,10 @@ msgstr ""
 #: views/users.py:212
 msgid "moderate user"
 msgstr "版主"
+
+#: views/users.py:212
+msgid "moderate user role"
+msgstr "調整使用者權限"
 
 #: views/users.py:386
 msgid "user profile"

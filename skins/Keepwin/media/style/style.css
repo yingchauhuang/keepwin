@@ -10,26 +10,26 @@
 *{ font-family: "新細明體",Arial;color: #000;}
 
 body {
-  /*background: yellow;*/
+    background: white;
 	font-size: 14px;
 	line-height: 150%;
 	margin: 0;
 	padding: 0;
 	color: #000;
 	font-family: "新細明體",Arial;
-	background: #F1CF00;
+  /*background: #F1CF00;
 	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#F1CF00), to(#FFFFFF));
 	background: -webkit-linear-gradient(#F1CF00, #FFFFFF);
 	background: -moz-linear-gradient(#F1CF00, #FFFFFF);
 	background: -ms-linear-gradient(#F1CF00, #FFFFFF);
 	background: -o-linear-gradient(#F1CF00, #FFFFFF);
-	background: linear-gradient(#F1CF00, #FFFFFF);
+	background: linear-gradient(#F1CF00, #FFFFFF);*/
 	/* For Internet Explorer 5.5 - 7 */
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F1CF00, endColorstr=#FFFFFFFF);
+	/* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F1CF00, endColorstr=#FFFFFFFF); */
 	/* For Internet Explorer 8 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#F1CF00, endColorstr=#FFFFFFFF)";
+	/* -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#F1CF00, endColorstr=#FFFFFFFF)";*/
 }
-.header-wrapper {background:url('images/header_bar.jpg')}
+/*.header-wrapper {background:url('images/header_bar.jpg')} */
 .member_notice {font-size: 16px;line-height: 24px;} 
 .main_wrap
 {
@@ -2704,7 +2704,7 @@ ins .post-tag, ins p, ins {
 }
 /* ----- Footer links , check blocks/footer.html----- */
 #keepwinground {
-  width: 100%;
+  width: 960px;
   clear: both;
   border-top: 1px solid #000;
   padding: 6px 0 0 0;

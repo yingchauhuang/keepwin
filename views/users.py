@@ -271,9 +271,9 @@ def user_moderate(request, subject, context):
     data = {
         'active_tab': 'users',
         'page_class': 'user-profile-page',
-        'tab_name': 'moderation',
+        'tab_name': 'moderate user role',
         'tab_description': _('moderate this user'),
-        'page_title': _('moderate user'),
+        'page_title': _('moderate user role'),
         'change_user_status_form': user_status_form,
         'change_user_reputation_form': user_rep_form,
         'send_message_form': send_message_form,
@@ -295,11 +295,13 @@ def save_template(request):
             user.sidebar_template=sidebar_template 
             user.save()
             data = simplejson.dumps({
-                'message': 'Your config is saved'
+                'success': True,
+                'message': _('Your config is saved')
             })
         except:
             data = simplejson.dumps({
-                'message': 'Data Error'
+                'success': False,
+                'message': _('Save Template Error')
             })
     return HttpResponse(data, mimetype = 'application/json')
 
@@ -430,9 +432,9 @@ def user_layout(request, subject, context):
     data = {
         'active_tab': 'users',
         'page_class': 'user-profile-page',
-        'tab_name': 'addtransaction',
-        'tab_description': _('add transaction to modify user balance'),
-        'page_title': _('add transaction'),
+        'tab_name':  _('layout'),
+        'tab_description': _('change user default page layout'),
+        'page_title': _('profile - layout'),
         'user_layout_form': user_layout_form,
         'profilelayouts' : profilelayouts,
         'main_list': main_list,
@@ -1140,6 +1142,8 @@ def user_network(request, user, context):
         raise Http404
     data = {
         'tab_name': 'network',
+        'tab_description' : _('followers and followed users'),
+        'page_title' : _('profile - network'),
         'followed_users': user.get_followed_users(),
         'followers': user.get_followers(),
     }
