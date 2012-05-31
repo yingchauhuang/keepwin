@@ -15,23 +15,12 @@
 	{% include "main_page/submenu.html" %}
 	{% include "main_page/newest_keepwin.html" %}
 	<div class="main_wrap">
-		<div class="TitleBar_Content">
-			<h2 class="Title_Content"></h2>
-		</div>
 		{% include "main_page/tab_bar_keepwin.html" %}
 		{# ==== BEGIN: main_page/content.html === #}
 		<div id="question-list">
 			{% include "main_page/questions_loop_keepwin.html" %}
 		</div>
 		{% include "main_page/paginator.html" %}
-	</div>
-	<div class="main_wrap">
-		<div class="TitleBar_Blogger">
-			<h2 class="Title_Blogger"></h2>
-		</div>
-		<div id="blogger-list">
-			{% include "main_page/contributors_loop_keepwin.html" %}
-		</div>
 	</div>
     {# ==== END: main_page/content.html === #}
     {% include "main_page/footerbar.html" %}
