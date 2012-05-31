@@ -303,6 +303,11 @@ def save_template(request):
                 'success': False,
                 'message': _('Save Template Error')
             })
+    else:
+        data = simplejson.dumps({
+                'success': False,
+                'message': _('Save Template Error-- Please use post')
+            })
     return HttpResponse(data, mimetype = 'application/json')
 
 def update_template_content(request):

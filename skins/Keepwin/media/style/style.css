@@ -36,6 +36,7 @@ body {
 background: #F0F6F9;
 border: 1px solid #346F97;
 margin: 3px 0px 4px 0px;
+border-radius: 10px;
 }
 div {
   margin: 0 auto;
@@ -223,7 +224,7 @@ body.user-messages {
 /* ----- Header, check blocks/header.html ----- */
 #header {
   margin-top: 0px;
-  background: #44226f;
+  background: #660066;
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 .content-wrapper {
@@ -284,10 +285,10 @@ body.user-messages {
   /* for #header.with-logo it is modified */
 
 }
-#submenu { margin: 2px 0px 2px 0px;height:30px; background:url("images/sub_menu.jpg")}
+#submenu { margin: 2px 0px 2px 0px;height:30px; background:#660066;border-radius: 5px;}
 #submenu ul.menu{clear:both;height:30px;list-style-type:none;position:relative;width:682px;float:right;left:25px;z-index:0;}
-#submenu ul.menu li{display:inline;float:left;padding:5px;height:40px}
-#submenu a.menutitle:link,#submenu a.menutitle:hover,#submenu a.menutitle:visited,#submenu a.menutitle:active{text-indent:10px;color:white;padding:7px 10px;height:auto;text-shadow:2px 2px 2px #222;text-decoration:none;}
+#submenu ul.menu li{display:inline;float:left;padding:5px;height:40px;font-size: 18px;}
+#submenu a.menutitle:link,#submenu a.menutitle:hover,#submenu a.menutitle:visited,#submenu a.menutitle:active{text-indent:12px;color:white;padding:7px 10px;height:auto;text-shadow:2px 2px 2px #222;text-decoration:none;}
 #metaNav a{
   color: #e2e2ae;
   padding: 15px 0px 0px 5px;
@@ -2711,15 +2712,18 @@ ins .post-tag, ins p, ins {
   background: #16160f;
   font-size: 16px;
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  background: url(../images/linkback.jpg)
+  background: #660066;/* url(../images/linkback.jpg) */
 }
 #keepwinground p {
   margin-bottom: 0;
+  color:white;height:auto;text-shadow:2px 2px 2px #222;
 }
 #keepwinground a {
   color: black;
   text-decoration: none;
   cursor: pointer;
+  color:white;height:auto;text-shadow:2px 2px 2px #222;
+  margin-left:40px;
 }
 #ground {
   width: 100%;
