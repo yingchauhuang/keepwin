@@ -498,23 +498,25 @@ class Post(models.Model):
 
         #todo: this is handled in signal because models for posts
         #are too spread out
-        from askbot.models import signals
-        signals.post_updated.send(
-            post = post,
-            updated_by = author,
-            newly_mentioned_users = newly_mentioned_users,
-            timestamp = timestamp,
-            created = created,
-            diff = diff,
-            sender = post.__class__
-        )
+        #remove by YC for performance
+        #from askbot.models import signals
+        #signals.post_updated.send(
+        #    post = post,
+        #    updated_by = author,
+        #    newly_mentioned_users = newly_mentioned_users,
+        #    timestamp = timestamp,
+        #    created = created,
+        #    diff = diff,
+        #    sender = post.__class__
+        #)
 
-        try:
-            from askbot.conf import settings as askbot_settings
-            if askbot_settings.GOOGLE_SITEMAP_CODE != '':
-                ping_google()
-        except Exception:
-            logging.debug('cannot ping google - did you register with them?')
+        # for google SEO close by YC
+        #try:
+        #    from askbot.conf import settings as askbot_settings
+        #    if askbot_settings.GOOGLE_SITEMAP_CODE != '':
+        #        ping_google()
+        #except Exception:
+        #    logging.debug('cannot ping google - did you register with them?')
 
     ######################################
     # TODO: Rename the methods above instead of doing this assignment
