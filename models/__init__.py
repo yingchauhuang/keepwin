@@ -1541,7 +1541,7 @@ def user_post_answer(
                 ):
 
     #todo: move this to assertion - user_assert_can_post_answer
-    if self == question.author and not self.is_administrator():
+    '''if self == question.author and not self.is_administrator():
 
         # check date and rep required to post answer to own question
 
@@ -1578,7 +1578,7 @@ def user_post_answer(
             raise django_exceptions.PermissionDenied(error_message)
 
     self.assert_can_post_answer()
-
+    '''
     if getattr(question, 'post_type', '') != 'question':
         raise TypeError('question argument must be provided')
     if body_text is None:
