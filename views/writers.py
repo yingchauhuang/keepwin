@@ -485,8 +485,8 @@ def edit_answer(request, id):
         return HttpResponseRedirect(answer.get_absolute_url())
 
 #todo: rename this function to post_new_answer
-@decorators.check_authorization_to_post(_('Please log in to answer questions'))
-@decorators.check_spam('text')
+#@decorators.check_authorization_to_post(_('Please log in to answer questions'))
+#@decorators.check_spam('text')
 def answer(request, id):#process a new answer
     """view that posts new answer
 
