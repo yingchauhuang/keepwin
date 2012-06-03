@@ -6,6 +6,7 @@ import hashlib
 import datetime
 import re
 import urllib
+from django.db.models import Max
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.db.models import signals as django_signals
 from django.template import Context
@@ -1541,7 +1542,8 @@ def user_post_answer(
                 ):
 
     #todo: move this to assertion - user_assert_can_post_answer
-    '''if self == question.author and not self.is_administrator():
+    '''
+    if self == question.author and not self.is_administrator():
 
         # check date and rep required to post answer to own question
 
@@ -1603,7 +1605,8 @@ def user_post_answer(
         is_private=is_private
     )
     #Add by YC  --remove for performance 201120525
-    #question.increase_responses_count()
+    question.increase_responses_count()
+    #Add by YC
     #award_badges_signal.send(None,
     #    event='post_answer',
     #    actor=self,
@@ -1624,6 +1627,10 @@ def user_visit_question(self, question=None, timestamp=None):
 
     try:
         question_view = QuestionView.objects.get(who=self, question=question)
+        if (datetime.datetime.today().hour<6):
+            maxDate = QuestionView.objects.all().aggregate(Max('when'))
+            if maxDate['when__max'].day != datetime.datetime.today().day:
+                Post.objects.raw('UPDATE askbot_thread SET today_view_count=0;')
     except QuestionView.DoesNotExist:
         question_view = QuestionView(who=self, question=question)
 

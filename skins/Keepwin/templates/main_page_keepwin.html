@@ -14,6 +14,11 @@
     <!-- {% include "main_page/headline.html" %} -->
 	{% include "main_page/submenu.html" %}
 	{% include "main_page/newest_keepwin.html" %}
+	<div class="today_wrap">
+		<div id="question-list">
+			{% include "main_page/questions_loop_todayhot.html" %}
+		</div>
+	</div>
 	<div class="main_wrap">
 		{% include "main_page/tab_bar_keepwin.html" %}
 		{# ==== BEGIN: main_page/content.html === #}

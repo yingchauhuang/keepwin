@@ -295,7 +295,7 @@ msgstr "關聯"
 
 #: skins\default\templates\main_page\tab_bar_keepwin.html:43
 msgid "by date"
-msgstr "最新"
+msgstr "最新文章"
 
 #: skins\default\templates\main_page\tab_bar_keepwin.html:45
 msgid "click to see the oldest questions"
