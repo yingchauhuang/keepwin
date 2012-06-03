@@ -181,8 +181,11 @@ def questions(request, **kwargs):
         try:
             tag_list=list()
             tag_list=askbot_settings.MANDATORY_TAGS.split(',')
+            
+            todayhot = models.Thread.objects.get_today_hot()
         except:
             tag_list=list()
+            todayhot=list()
         template_data = {
             'active_tab': 'questions',
             'author_name' : meta_data.get('author_name',None),
@@ -197,6 +200,7 @@ def questions(request, **kwargs):
             'page_size': page_size,
             'query': search_state.query,
             'threads' : page,
+            'todayhot' : todayhot,
             'questions_count' : paginator.count,
             'reset_method_count': reset_method_count,
             'scope': search_state.scope,

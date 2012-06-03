@@ -1,0 +1,19 @@
+{% import "macros.html" as macros %}
+{# cache 0 "questionshot" questions search_tags scope sort query context.page language_code #}
+<!-- questions_loop_todayhot.html -->
+<div id="index-category" class="group">
+		<div class="category">
+			<div class="row group">
+			{% for hot in todayhot %}
+					{# {{macros.question_summary_keepwin(hot, hot._question_post(), search_state=search_state)}} #}
+					{{ hot.get_summary_keepwin_html(search_state=search_state) }}
+			{% endfor %}
+			</div>
+        </div>
+		
+</div>
+{% if todayhot|length == 0 %}
+    {% include "main_page/nothing_found.html" %}
+{% else %}
+{% endif %}
+

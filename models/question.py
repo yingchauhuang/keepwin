@@ -1,7 +1,7 @@
 import datetime
 import operator
 import re
-
+import sys
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
@@ -103,7 +103,54 @@ class ThreadManager(models.Manager):
 
         return thread
 
- 
+    def get_for_query(self, search_query, qs=None):
+        """returns a query set of questions,
+        matching the full text query
+        """
+        if not qs:
+            qs = self.all()
+#        if getattr(settings, 'USE_SPHINX_SEARCH', False):
+#            matching_questions = Question.sphinx_search.query(search_query)
+#            question_ids = [q.id for q in matching_questions]
+#            return qs.filter(posts__post_type='question', posts__deleted=False, posts__self_question_id__in=question_ids)
+        if askbot.get_database_engine_name().endswith('mysql') \
+            and mysql.supports_full_text_search():
+            return qs.filter(
+                models.Q(title__search = search_query) |
+                models.Q(tagnames__search = search_query) |
+                models.Q(posts__deleted=False, posts__text__search = search_query)
+            )
+        elif 'postgresql_psycopg2' in askbot.get_database_engine_name():
+            rank_clause = "ts_rank(askbot_thread.text_search_vector, plainto_tsquery(%s))"
+            search_query = '&'.join(search_query.split())
+            extra_params = (search_query,)
+            extra_kwargs = {
+                'select': {'relevance': rank_clause},
+                'where': ['askbot_thread.text_search_vector @@ plainto_tsquery(%s)'],
+                'params': extra_params,
+                'select_params': extra_params,
+            }
+            return qs.extra(**extra_kwargs)
+        else:
+            return qs.filter(
+                models.Q(title__icontains=search_query) |
+                models.Q(tagnames__icontains=search_query) |
+                models.Q(posts__deleted=False, posts__text__icontains = search_query)
+            )
+
+
+    def get_today_hot(self):  # TODO: !! review, fix, and write tests for this
+        """
+        """
+        try:
+            # TODO: add a possibility to see deleted questions
+            qs = self.filter(posts__post_type='question', posts__deleted=False).order_by('-today_view_count','-last_activity_at') [0:9] # (***) brings `askbot_post` into the SQL query, see the ordering section below
+            qs = qs.only('id', 'title', 'view_count', 'answer_count', 'last_activity_at', 'last_activity_by', 'closed', 'tagnames', 'accepted_answer')
+        except:
+            logging.debug(sys.exc_info()[0])
+            qs = list()
+        return qs
+    
     def get_for_query(self, search_query, qs=None):
         """returns a query set of questions,
         matching the full text query
@@ -339,6 +386,7 @@ class Thread(models.Model):
     # Denormalised data, transplanted from Question
     tagnames = models.CharField(max_length=125)
     view_count = models.PositiveIntegerField(default=0)
+    today_view_count = models.PositiveIntegerField(default=0)
     favourite_count = models.PositiveIntegerField(default=0)
     answer_count = models.PositiveIntegerField(default=0)
     last_activity_at = models.DateTimeField(default=datetime.datetime.now)
@@ -386,7 +434,7 @@ class Thread(models.Model):
 
     def increase_view_count(self, increment=1):
         qset = Thread.objects.filter(id=self.id)
-        qset.update(view_count=models.F('view_count') + increment)
+        qset.update(view_count=models.F('view_count') + increment,today_view_count=models.F('today_view_count') + increment)
         self.view_count = qset.values('view_count')[0]['view_count'] # get the new view_count back because other pieces of code relies on such behaviour
         ####################################################################
         self.update_summary_html() # regenerate question/thread summary html
