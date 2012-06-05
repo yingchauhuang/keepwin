@@ -122,7 +122,8 @@
 					update: function(event, ui) { saveLayout(); }
 				});
 				$( ".portlet-header .ui-icon-minusthick" ).click(function() {
-					$.post("/del_template/",{id: $(this).attr("tempid")},finishdeleteBlock,"json")
+					$.post("/del_template/",{id: $(this).attr("tempid")},finishdeleteBlock,"json");
+					saveLayout();
 				});
 				$( ".portlet-header .ui-icon-wrench" ).click(function() {
 					$( "#dialog-form #ID" ).val($(this).attr("tempid"))
@@ -161,11 +162,13 @@
 				{
 					$("#sidebarL").append('<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" id="'+data.id+'"><div class="portlet-header ui-widget-header ui-corner-all"><span class="ui-icon ui-icon-minusthick"></span>'+$("#leftcombo :selected").text()+'</div><div class="portlet-content" id="'+data.id+'"></div></div>');
 					$("#sidebarL").sortable('refresh');
+					saveLayout();
 				}
 				else
 				{
 					$("#sidebarL").append('<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" id="'+data.id+'"><div class="portlet-header ui-widget-header ui-corner-all"><span class="ui-icon ui-icon-minusthick"></span><span class="ui-icon ui-icon-wrench"></span>'+$("#leftcombo :selected").text()+'</div><div class="portlet-content" id="'+data.id+'"></div></div>');
 					$("#sidebarL").sortable('refresh');
+					saveLayout();
 				}
 				sortTable();
 			}
