@@ -761,7 +761,7 @@ def user_stats_vip(request, user, context):
     question_filter = {}
     if request.user != user:
         question_filter['is_anonymous'] = False
-
+    question_filter['deleted'] = False
     #
     # Questions
     #
