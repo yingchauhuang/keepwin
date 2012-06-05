@@ -10,6 +10,7 @@ import datetime
 import logging
 import urllib
 import operator
+import sys
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, Http404, HttpResponseNotAllowed
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
@@ -62,12 +63,152 @@ DEFAULT_PAGE_SIZE = 60
 def index(request):#generates front page - shows listing of questions sorted in various ways
     """index view mapped to the root url of the Q&A site
     """
-    return HttpResponseRedirect(reverse('questions'))
+    return HttpResponseRedirect(reverse('mainpage'))
 
-def questions(request, **kwargs):
+def mainpage(request, **kwargs):
     """
     List of Questions, Tagged questions, and Unanswered questions.
     matching search query or user selection
+    """
+    if request.method != 'GET':
+        return HttpResponseNotAllowed(['GET'])
+
+    """
+    search_state = SearchState(user_logged_in=request.user.is_authenticated(), **kwargs)
+    page_size = int(askbot_settings.DEFAULT_QUESTIONS_PAGE_SIZE)
+
+    qs, meta_data = models.Thread.objects.run_advanced_search(request_user=request.user, search_state=search_state)
+
+    
+    paginator = Paginator(qs, page_size)
+    if paginator.num_pages < search_state.page:
+        search_state.page = 1
+    page = paginator.page(search_state.page)
+
+    page.object_list = list(page.object_list) # evaluate queryset
+
+    # INFO: Because for the time being we need question posts and thread authors
+    #       down the pipeline, we have to precache them in thread objects
+    models.Thread.objects.precache_view_data_hack(threads=page.object_list)
+
+    related_tags = Tag.objects.get_related_to_search(threads=page.object_list, ignored_tag_names=meta_data.get('ignored_tag_names', []))
+    tag_list_type = askbot_settings.TAG_LIST_FORMAT
+    if tag_list_type == 'cloud': #force cloud to sort by name
+        related_tags = sorted(related_tags, key = operator.attrgetter('name'))
+
+    #contributors = list(models.Thread.objects.get_thread_contributors(thread_list=page.object_list).only('id', 'username', 'gravatar'))
+    contributors = list(models.Thread.objects.get_today_contributors().only('id', 'username', 'gravatar'))
+    
+    paginator_context = {
+        'is_paginated' : (paginator.count > page_size),
+
+        'pages': paginator.num_pages,
+        'page': search_state.page,
+        'has_previous': page.has_previous(),
+        'has_next': page.has_next(),
+        'previous': page.previous_page_number(),
+        'next': page.next_page_number(),
+
+        'base_url' : search_state.query_string(),
+        'page_size' : page_size,
+    }
+
+    # We need to pass the rss feed url based
+    # on the search state to the template.
+    # We use QueryDict to get a querystring
+    # from dicts and arrays. Much cleaner
+    # than parsing and string formating.
+    rss_query_dict = QueryDict("").copy()
+    if search_state.query:
+        # We have search string in session - pass it to
+        # the QueryDict
+        rss_query_dict.update({"q": search_state.query})
+    if search_state.tags:
+        # We have tags in session - pass it to the
+        # QueryDict but as a list - we want tags+
+        rss_query_dict.setlist("tags", search_state.tags)
+    context_feed_url = '/feeds/rss/?%s' % rss_query_dict.urlencode() # Format the url with the QueryDict
+
+    reset_method_count = len(filter(None, [search_state.query, search_state.tags, meta_data.get('author_name', None)]))
+
+    if request.is_ajax():
+        q_count = paginator.count
+
+        if search_state.tags:
+            question_counter = ungettext('%(q_num)s question, tagged', '%(q_num)s questions, tagged', q_count)
+        else:
+            question_counter = ungettext('%(q_num)s question', '%(q_num)s questions', q_count)
+        question_counter = question_counter % {'q_num': humanize.intcomma(q_count),}
+
+        if q_count > page_size:
+            paginator_tpl = get_template('main_page/paginator.html', request)
+            paginator_html = paginator_tpl.render(Context({
+                'context': functions.setup_paginator(paginator_context),
+                'questions_count': q_count,
+                'page_size' : page_size,
+                'search_state': search_state,
+            }))
+        else:
+            paginator_html = ''
+
+        questions_tpl = get_template('main_page/questions_loop_twmode.html', request)
+        questions_html = questions_tpl.render(Context({
+            'threads': page,
+            'search_state': search_state,
+            'reset_method_count': reset_method_count,
+        }))
+
+        ajax_data = {
+            'query_data': {
+                'tags': search_state.tags,
+                'sort_order': search_state.sort,
+                'ask_query_string': search_state.ask_query_string(),
+            },
+            'paginator': paginator_html,
+            'question_counter': question_counter,
+            'faces': [extra_tags.gravatar(contributor, 48) for contributor in contributors],
+            'feed_url': context_feed_url,
+            'query_string': search_state.query_string(),
+            'page_size' : page_size,
+            'questions': questions_html.replace('\n',''),
+        }
+        ajax_data['related_tags'] = [{
+            'name': tag.name,
+            'used_count': humanize.intcomma(tag.local_used_count)
+        } for tag in related_tags]
+
+        return HttpResponse(simplejson.dumps(ajax_data), mimetype = 'application/json')
+
+    else: # non-AJAX branch
+    """    
+    try:
+        search_state = SearchState(user_logged_in=request.user.is_authenticated(), **kwargs)
+        tag_list=list()
+        newests=list()
+        todayhots=list()
+        newest_responses=list()
+        contributors=list()
+        tag_list=askbot_settings.MANDATORY_TAGS.split(',')
+        contributors = list(models.Thread.objects.get_today_contributors().only('id', 'username', 'gravatar'))
+        newests = models.Thread.objects.get_newests()
+        todayhots = models.Thread.objects.get_today_hots()
+        newest_responses = models.Thread.objects.get_newest_responses()
+    except:
+        logging.debug(sys.exc_info()[0])
+    template_data = {
+        'contributors' : contributors,
+        'newests' : newests,
+        'todayhots': todayhots,
+        'newest_responses' : newest_responses,
+        'tag_list': tag_list,
+        'search_state': search_state,
+    }
+    #return render_into_skin('main_page_twmode.html', template_data, request)
+    return render_into_skin(settings.MAIN_PAGE, template_data, request)
+
+def questions(request, **kwargs):
+    """
+    the main page for keepwin
     """
     if request.method != 'GET':
         return HttpResponseNotAllowed(['GET'])
@@ -219,7 +360,7 @@ def questions(request, **kwargs):
             'tag_list': tag_list,
         }
         #return render_into_skin('main_page_twmode.html', template_data, request)
-        return render_into_skin(settings.MAIN_PAGE, template_data, request)
+        return render_into_skin('main_page_twmode.html', template_data, request)
     
 def questions_snapshot(request, **kwargs):
     """

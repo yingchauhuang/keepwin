@@ -53,7 +53,20 @@ urlpatterns = patterns('',
         kwargs = {'object_name': 'Answer'},
         name='answer_revisions'
     ),
-
+    # The main page for keepwin                   
+    url(
+        # Note that all parameters, even if optional, are provided to the view. Non-present ones have None value.
+        (r'^%s' % _('mainpage') +
+            r'(%s)?' % r'/scope:(?P<scope>\w+)' +
+            r'(%s)?' % r'/sort:(?P<sort>[\w\-]+)' +
+            r'(%s)?' % r'/query:(?P<query>[^/]+)' +  # INFO: question string cannot contain slash (/), which is a section terminator
+            r'(%s)?' % r'/tags:(?P<tags>[\w+.#,-]+)' + # Should match: const.TAG_CHARS + ','; TODO: Is `#` char decoded by the time URLs are processed ??
+            r'(%s)?' % r'/author:(?P<author>\d+)' +
+            r'(%s)?' % r'/page:(?P<page>\d+)' +
+        r'/$'),
+        views.readers.mainpage, 
+        name='mainpage'
+    ),
     # BEGIN Questions (main page) urls. All this urls work both normally and through ajax
 
     url(

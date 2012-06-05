@@ -1,17 +1,17 @@
 {% import "macros.html" as macros %}
-{# cache 0 "todayhot" todayhots #}
-<!-- questions_loop_todayhot.html -->
+{# cache 0 "newest" newests #}
+<!-- questions_loop_newest.html -->
 <div id="index-category" class="group">
 		<div class="category">
 			<div class="row group">
-			{% for todayhot in todayhots %}
-					{{ todayhot.get_summary_keepwin_html(search_state=search_state) }}
+			{% for newest in newests %}
+					{{ newest.get_summary_keepwin_html(search_state=search_state) }}
 			{% endfor %}
 			</div>
         </div>
 		
 </div>
-{% if todayhots|length == 0 %}
+{% if newests|length == 0 %}
     {% include "main_page/nothing_found_keepwin.html" %}
 {% else %}
 {% endif %}
