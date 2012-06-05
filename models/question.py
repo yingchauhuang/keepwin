@@ -139,7 +139,7 @@ class ThreadManager(models.Manager):
             )
 
 
-    def get_today_hot(self):  # TODO: !! review, fix, and write tests for this
+    def get_today_hots(self):  # TODO: !! review, fix, and write tests for this
         """
         """
         try:
@@ -150,6 +150,31 @@ class ThreadManager(models.Manager):
             logging.debug(sys.exc_info()[0])
             qs = list()
         return qs
+    
+    def get_newests(self):  # TODO: !! review, fix, and write tests for this
+        """
+        """
+        try:
+            # TODO: add a possibility to see deleted questions
+            qs = self.filter(posts__post_type='question', posts__deleted=False).order_by('-last_activity_at') [0:9] # (***) brings `askbot_post` into the SQL query, see the ordering section below
+            qs = qs.only('id', 'title', 'view_count', 'answer_count', 'last_activity_at', 'last_activity_by', 'closed', 'tagnames', 'accepted_answer')
+        except:
+            logging.debug(sys.exc_info()[0])
+            qs = list()
+        return qs
+    
+    def get_newest_responses(self):  # TODO: !! review, fix, and write tests for this
+        """
+        """
+        try:
+            # TODO: add a possibility to see deleted questions
+            qs = self.filter(posts__post_type='question', posts__deleted=False).order_by('-answer_count') [0:9] # (***) brings `askbot_post` into the SQL query, see the ordering section below
+            qs = qs.only('id', 'title', 'view_count', 'answer_count', 'last_activity_at', 'last_activity_by', 'closed', 'tagnames', 'accepted_answer')
+        except:
+            logging.debug(sys.exc_info()[0])
+            qs = list()
+        return qs
+    
     
     def get_for_query(self, search_query, qs=None):
         """returns a query set of questions,

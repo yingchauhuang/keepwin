@@ -11,49 +11,23 @@
 <!-- questions_keepwin.html -->
 {% block title %}{% spaceless %}KeepWin{% endspaceless %}{% endblock %}
 {% block content %}
+    <!-- {% include "main_page/headline.html" %} -->
 	{% include "main_page/submenu.html" %}
 	{% include "main_page/newest_keepwin.html" %}
-	<table>
-		<tr><td>
-			<div id="submenu">
-			<ul class="menu">
-					<li><a href="/questions/scope:all/sort:age-desc/" title="瀏覽最新文章" class="menutitle ">最新文章</a></li>
-					<li style="float:right"><a href="/questions/scope:all/sort:age-desc/" title="瀏覽最新文章" class="menutitle "><img src={{'/images/but_more.gif'|media}} alt="more"></a></li>
-			</ul>
-			</div>
-			<div class="newest_wrap">
-				<div id="question-list">
-					{% include "main_page/questions_loop_newest.html" %}
-				</div>
-			</div>
-		</td></tr>
-		<tr><td>
-			<div id="submenu">
-			<ul class="menu">
-					<li><a href="/questions/scope:all/sort:view-desc/" title="瀏覽熱門文章" class="menutitle ">熱門文章</a></li>
-					<li style="float:right"><a href="/questions/scope:all/sort:view-desc/" title="瀏覽熱門文章" class="menutitle "><img src={{'/images/but_more.gif'|media}} alt="more"></a></li>
-			</ul>
-			</div>
-			<div class="today_wrap">
-				<div id="question-list">
-					{% include "main_page/questions_loop_todayhot.html" %}
-				</div>
-			</div>
-		</td></tr>
-		<tr><td>
-			<div id="submenu">
-			<ul class="menu">
-					<li><a href="/questions/scope:all/sort:answers-desc/" title="瀏覽最新回應" class="menutitle ">最新回應</a></li>
-					<li style="float:right"><a href="/questions/scope:all/sort:answers-desc/" title="瀏覽最新回應" class="menutitle "><img src={{'/images/but_more.gif'|media}} alt="more"></a></li>
-			</ul>
-			</div>
-			<div class="newest_response_wrap">
-				<div id="question-list">
-					{% include "main_page/questions_loop_newest_response.html" %}
-				</div>
-			</div>
-		</td></tr>
-	</table>
+	<div class="today_wrap">
+		<div id="question-list">
+			{% include "main_page/questions_loop_todayhot.html" %}
+		</div>
+	</div>
+	<div class="main_wrap">
+		<!-- {% include "main_page/tab_bar_keepwin.html" %} -->
+		{# ==== BEGIN: main_page/content.html === #}
+		<div id="question-list">
+			{% include "main_page/questions_loop_keepwin.html" %}
+		</div>
+		{% include "main_page/paginator.html" %}
+	</div>
+    {# ==== END: main_page/content.html === #}
     {% include "main_page/footerbar.html" %}
 	
 {% endblock %}
@@ -61,6 +35,7 @@
     {% include "main_page/sidebar.html" %}
 {% endblock %}
 {% block endjs %}
+    {% include "main_page/javascript.html" %}
 	<!--  Begin jCarousel Javascript  -->
 	<script src="{{"/js/jquery.jcarousel.js"|media}}"></script>
 	<link href="{{"/style/skin.css"|media }}" rel="stylesheet" type="text/css" />
@@ -79,25 +54,25 @@
 		<link href="{{"/style/jquery.ui.dialog.css"|media }}" rel="stylesheet" type="text/css" />
 		<link href="{{"/style/jquery.ui.core.css"|media }}" rel="stylesheet" type="text/css" />
 		<link href="{{"/style/jquery.ui.resizable.css"|media }}" rel="stylesheet" type="text/css" />
-		<script type="text/javascript">
-			$(document).ready(function(){
-				// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
-				$( "#dialog:ui-dialog" ).dialog( "destroy" );
-
-				$( "#dialog-message" ).dialog({
-					modal: true,
-					buttons: {
-						Ok: function() {
-							$( this ).dialog( "close" );
-						}
-					}
-				});
-				
-			});
-			$('#System-Message').hide().css({"position":"relative","left":"inherit"}).fadeIn(1500);
-		</script>
-	{% endif %}
 	<script type="text/javascript">
+		$(document).ready(function(){
+			// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+			$( "#dialog:ui-dialog" ).dialog( "destroy" );
+
+			$( "#dialog-message" ).dialog({
+				modal: true,
+				buttons: {
+					Ok: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+			
+		});
+		$('#System-Message').hide().css({"position":"relative","left":"inherit"}).fadeIn(1500);
+	</script>
+{% endif %}
+<script type="text/javascript">
 	function mycarousel_initCallback(carousel)
 	{
 		// Disable autoscrolling if the user clicks the prev or next button.
@@ -127,7 +102,7 @@
 		$('#wrap').hide().css({"position":"relative","left":"inherit"}).fadeIn(1500);
 		
 	});
-	</script>
+</script>
 <!--  End jCarousel Javascript  -->
 {% endblock %}
 <!-- end questions.html -->
