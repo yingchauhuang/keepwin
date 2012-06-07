@@ -360,7 +360,7 @@ class ThreadManager(models.Manager):
         # INFO: Evaluate this query to avoid subquery in the subsequent query below (At least MySQL can be awfully slow on subqueries)
         from askbot.conf import settings as askbot_settings
         avatar_limit = askbot_settings.SIDEBAR_MAIN_AVATAR_LIMIT
-        contributors = User.objects.filter(status__in=['d','m']).order_by('-views')[:avatar_limit]
+        contributors = User.objects.filter(status__in=['d','m'],NewestQ__today_view_count__gt=0).order_by('-views')[:avatar_limit]
 
         # Get the user latest post question
                          

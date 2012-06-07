@@ -5,8 +5,12 @@
 	<h3>{{ user.username }}</h3>
 	<img alt="" src={{'/images/icon_reply_s.gif'|media}} class="valignmid padding_right">
 	<span class="number">{{user.responses}}</span><br>
-	<img alt="" src={{'/images/icon_hotnumber_s.gif'|media}} class="valignmid padding_right">
-	<span class="number">{{user.views}}</span><br>
+	<img alt="" src={{'/images/icon_todayhotnumber_s.gif'|media}} class="valignmid padding_right">
+	{% if question %}
+		<span class="number">{{question.today_view_count}}</span><br>
+	{% else %}
+		<span class="number">0</span><br>
+	{% endif %}
 	<img alt="" src={{'/images/point.gif'|media}} class="valignmid padding_right">
 	<span class="number">{{user.receive_points}}</span><br>
 	{% if question %}
