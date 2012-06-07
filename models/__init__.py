@@ -1627,9 +1627,9 @@ def user_visit_question(self, question=None, timestamp=None):
 
     try:
         question_view = QuestionView.objects.get(who=self, question=question)
-        if (datetime.datetime.today().hour<6):
-            maxDate = QuestionView.objects.all().aggregate(Max('when'))
-            if maxDate['when__max'].day != datetime.datetime.today().day:
+        #if (datetime.datetime.today().hour<10):
+        maxDate = QuestionView.objects.all().aggregate(Max('when'))
+        if maxDate['when__max'].day != datetime.datetime.today().day:
                 Post.objects.raw('UPDATE askbot_thread SET today_view_count=0;')
     except QuestionView.DoesNotExist:
         question_view = QuestionView(who=self, question=question)
