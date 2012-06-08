@@ -1180,7 +1180,9 @@ EditCommentForm.prototype.getCounterUpdater = function(){
         //todo:
         //1) use class instead of color - move color def to css
         var color = 'maroon';
-        var chars = 10;
+        // The mininum characters for comment
+		//var chars = 10;
+		var chars = 0;
         if (length === 0){
             var feedback = interpolate(gettext('%s title minchars'), [chars]);
         }
