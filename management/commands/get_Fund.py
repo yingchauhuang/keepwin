@@ -1,4 +1,7 @@
-"""Fetch the fund basic information
+"""management command that
+creates the askbot user account programmatically
+the command can add password, but it will not create
+associations with any of the federated login providers
 """
 from optparse import make_option
 from django.core.management.base import BaseCommand, CommandError
@@ -8,10 +11,7 @@ from askbot import models
 import sys
 from time import mktime 
 import datetime
-import lxml.html
 from lxml import etree
-import urllib
-
 
 class Command(BaseCommand):
     "The command class itself"
@@ -36,23 +36,13 @@ class Command(BaseCommand):
         if options['URL'] is None:
             raise CommandError('the --URL argument is required')
         
-        URL = options['URL']
+
         try:
-            ur = urllib.urlopen(URL)
-            data = ur.read()
-            data = unicode(data.decode('big5'))
-            start=data.find('<table class="t04" border="0" cellspacing="0" cellpadding="0">')
-            end=data.find('<img border="0" src="/funddj/images/Extend/BT_Info.gif" /></a></td></tr>')
-            data=data[start:end]+'</a></td></tr></tbody></table>'
-            tree = lxml.html.document_fromstring(data)
-            items =tree.cssselect('tr td')
-            '''
-            tree = etree.parse(fileopen) 
-            tree = etree.parse(data)
-            items = doc.xpath('//table[@class="t04"]')[0]
-            '''
+            tree = etree.parse(URL)
+            items = tree.xpath("//Item")
             for item in items:
-                print 'Item:' + item.text
+                print 'The RSS Channel title:' + item.attrib['ID']
+                print 'The RSS Channel description:' + item.attrib['Name']
 
         except:
             print "Unexpected error:", sys.exc_info()[0]
