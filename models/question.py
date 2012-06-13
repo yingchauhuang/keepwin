@@ -453,7 +453,7 @@ class Thread(models.Model):
         post = getattr(self, '_response_cache', None)
         if post:
             return post
-        self._response_cache = Post.objects.filter(thread=self).order_by('last_edited_at')[0]
+        self._response_cache = Post.objects.filter(thread=self).order_by('-added_at')[0]
         return self._response_cache
     
     def get_absolute_url(self):
