@@ -5,7 +5,7 @@
 		<div class="category">
 			<div class="row group">
 			{% for newest_response in newest_responses %}
-					{{ newest_response.get_summary_keepwin_html(search_state=search_state) }}
+					{{ newest_response.get_summary_newest_response_html(search_state=search_state) }}
 			{% endfor %}
 			</div>
         </div>
