@@ -163,11 +163,12 @@ def user_update_blogger_html(self):
             question=None
         else:
             question=self.NewestQ
+            question.deleted=question._question_post().deleted
         context = {
             'user': self,       
             'question': question, # fetch new question post to make sure we're up-to-date
         }
-        html = get_template('widgets/blogger_summary.html').render(context)
+        html = get_template('widgets/blogger_summary_newest.html').render(context)
         # INFO: Timeout is set to 30 days:
         # * timeout=0/None is not a reliable cross-backend way to set infinite timeout
         # * We probably don't need to pollute the cache with threads older than 30 days
@@ -1368,6 +1369,8 @@ def user_delete_post(
         self.delete_answer(answer=post, timestamp=timestamp)
     elif post.post_type == 'question':
         self.delete_question(question=post, timestamp=timestamp)
+        #add by YC
+        self.update_NewestQ()
     else:
         raise TypeError('either Comment, Question or Answer expected')
 
