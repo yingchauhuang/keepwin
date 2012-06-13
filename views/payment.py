@@ -130,6 +130,16 @@ def Roturl(request, **kwargs):
     logging.debug('smilepayform error : %s' % (request.POST))
     return HttpResponse("Post Data Error.", content_type="text/plain")
 
+def ad_model(request, **kwargs):
+    """
+    """
+    template_data = {
+
+        }
+
+        #return render_into_skin('main_page_twmode.html', template_data, request)
+    return render_into_skin('advertisement/model.html', template_data, request)
+
 def ibon(request, **kwargs):
     """
     List of Questions, Tagged questions, and Unanswered questions.
