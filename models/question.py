@@ -401,6 +401,7 @@ class Thread(models.Model):
     SUMMARY_TWMODE_CACHE_KEY_TPL = 'thread-question-summary-twmode-%d'
     SUMMARY_KEEPWIN_CACHE_KEY_TPL = 'thread-question-summary-keepwin-%d'
     SUMMARY_NEWEST_CACHE_KEY_TPL = 'thread-question-summary-newest-%d'
+    SUMMARY_NEWEST_RESPONSE_CACHE_KEY_TPL = 'thread-question-summary-newest-response-%d'
 
     title = models.CharField(max_length=300)
     subtitle = models.CharField(max_length=300,default=None)
@@ -446,6 +447,15 @@ class Thread(models.Model):
         self._question_cache = Post.objects.get(post_type='question', thread=self)
         return self._question_cache
 
+    def _question_newest_response(self, refresh=False):
+        if refresh and hasattr(self, '_response_cache'):
+            delattr(self, '_response_cache')
+        post = getattr(self, '_response_cache', None)
+        if post:
+            return post
+        self._response_cache = Post.objects.filter(thread=self).order_by('last_edited_at')[0]
+        return self._response_cache
+    
     def get_absolute_url(self):
         return self._question_post().get_absolute_url()
 
@@ -783,7 +793,28 @@ class Thread(models.Model):
             html = html.replace(seq, full_url)
 
         return html
-    
+  
+    def get_summary_newest_response_html(self, search_state):
+        html = self.get_cached_summary_newest_response_html()
+        if not html:
+            html = self.update_summary_newest_response_html()
+
+        # use `<<<` and `>>>` because they cannot be confused with user input
+        # - if user accidentialy types <<<tag-name>>> into question title or body,
+        # then in html it'll become escaped like this: &lt;&lt;&lt;tag-name&gt;&gt;&gt;
+        regex = re.compile(r'<<<(%s)>>>' % const.TAG_REGEX_BARE)
+
+        while True:
+            match = regex.search(html)
+            if not match:
+                break
+            seq = match.group(0)  # e.g "<<<my-tag>>>"
+            tag = match.group(1)  # e.g "my-tag"
+            full_url = search_state.add_tag(tag).full_url()
+            html = html.replace(seq, full_url)
+
+        return html
+      
     def get_summary_newest_html(self, search_state):
         html = self.get_cached_summary_newest_html()
         if not html:
@@ -838,6 +869,9 @@ class Thread(models.Model):
     def get_cached_summary_newest_html(self):
         return cache.cache.get(self.SUMMARY_NEWEST_CACHE_KEY_TPL % self.id)
     
+    def get_cached_summary_newest_response_html(self):
+        return cache.cache.get(self.SUMMARY_NEWEST_CACHE_KEY_TPL % self.id)
+    
     def update_summary_html(self):
         context = {
             'thread': self,
@@ -883,6 +917,21 @@ class Thread(models.Model):
         cache.cache.set(self.SUMMARY_KEEPWIN_CACHE_KEY_TPL % self.id, html, timeout=60*60*24*30)
         return html
 
+    def update_summary_newest_response_html(self):
+        context = {
+            'thread': self,
+            'question': self._question_newest_response(refresh=True),  # fetch new question post to make sure we're up-to-date
+            'search_state': DummySearchState(),
+        }
+        html = get_template('widgets/question_summary_newest_response.html').render(context)
+        # INFO: Timeout is set to 30 days:
+        # * timeout=0/None is not a reliable cross-backend way to set infinite timeout
+        # * We probably don't need to pollute the cache with threads older than 30 days
+        # * Additionally, Memcached treats timeouts > 30day as dates (https://code.djangoproject.com/browser/django/tags/releases/1.3/django/core/cache/backends/memcached.py#L36),
+        #   which probably doesn't break anything but if we can stick to 30 days then let's stick to it
+        cache.cache.set(self.SUMMARY_NEWEST_CACHE_KEY_TPL % self.id, html, timeout=60*60*24*30)
+        return html
+    
     def update_summary_newest_html(self):
         context = {
             'thread': self,
@@ -907,9 +956,11 @@ class Thread(models.Model):
     def summary_html_keepwin_cached(self):
         return cache.cache.has_key(self.SUMMARY_KEEPWIN_CACHE_KEY_TPL % self.id)
     
-    def get_cached_summary_newsest_html(self):
-        return cache.cache.get(self.SUMMARY_NEWSEST_CACHE_KEY_TPL % self.id)
-
+    def summary_html_newest_cached(self):
+        return cache.cache.has_key(self.SUMMARY_NEWEST_CACHE_KEY_TPL % self.id)
+    
+    def summary_html_newest_response_cached(self):
+        return cache.cache.has_key(self.SUMMARY_NEWEST_RESPONSE_CACHE_KEY_TPL % self.id)
 #class Question(content.Content):
 #    post_type = 'question'
 #    thread = models.ForeignKey('Thread', unique=True, related_name='questions')

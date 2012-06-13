@@ -3,7 +3,7 @@
 <div class="item">
 	<div class="to_newest_img">{{ gravatar(user,68) }}</div>
 	<h3>{{ user.username }}</h3>
-	{% if question %}
+	{% if not question.deleted %}
 		<h4><a title="{{question.title|striptags}}" href="{{ question.get_absolute_url() }}" class="group">
 			<p>{{question.title|striptags}}</p>
 		</a></h4><img alt="" src={{'/images/icon_aninew2.gif'|media}} class="valignmid">

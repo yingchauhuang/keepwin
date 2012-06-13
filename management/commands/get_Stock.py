@@ -44,6 +44,7 @@ class Command(BaseCommand):
             start=data.find('<table class="t04" border="0" cellspacing="0" cellpadding="0">')
             end=data.find('<img border="0" src="/funddj/images/Extend/BT_Info.gif" /></a></td></tr>')
             data=data[start:end]+'</a></td></tr></tbody></table>'
+            data=data.replace('&nbsp;', ' ')
             tree = lxml.html.document_fromstring(data)
             items =tree.cssselect('tr td')
             '''
@@ -52,7 +53,15 @@ class Command(BaseCommand):
             items = doc.xpath('//table[@class="t04"]')[0]
             '''
             for item in items:
-                print 'Item:' + item.text
+                if item.text!=None:
+                    text= unicode(item.text)
+                else:
+                    text= unicode(item.text_content())
 
+                if item.attrib['class']=='t2c1' or item.attrib['class']=='t2' :
+                    title=text
+                if item.attrib['class']=='t3t2':
+                    content=text
+                    print title + ' : '+content
         except:
             print "Unexpected error:", sys.exc_info()[0]
