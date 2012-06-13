@@ -13,12 +13,14 @@
 	{% endif %}
 	<img alt="" src={{'/images/point.gif'|media}} class="valignmid padding_right">
 	<span class="number">{{user.receive_points}}</span><br>
-	{% if not question.deleted %}
-		<h4><a title="{{question.title|striptags}}" href="{{ question.get_absolute_url() }}" class="group">
-			<p>{{question.title|striptags}}</p>
-		</a></h4>
-	{% else %}
-		<h4><p>文章已刪除</p></h4>
+	{% if question %}
+		{% if question.deleted %}
+			<h4><p>文章已刪除</p></h4>
+		{% else %}
+			<h4><a title="{{question.title|striptags}}" href="{{ question.get_absolute_url() }}" class="group">
+				<p>{{question.title|striptags}}</p>
+			</a></h4>
+		{% endif %}
 	{% endif %}
 </div>
 
