@@ -1,0 +1,33 @@
+{% import "macros.html" as macros %}
+{% extends "one_column_body.html" %}
+{% block content%}
+
+	
+<div class="demo">
+<h2>廣告版位、檔案與規格</h2>
+<div id="accordion">
+	<h3><a href="#">全網輪播 Banner</a></h3>
+	<div>
+		<p><img src={{'/images/main_banner.jpg'|media}} alt="全網輪播 Banner" width="600" height="300"  border="0"></p>
+	</div>
+	<h3><a href="#">右側邊攔 小看板</a></h3>
+	<div>
+		<p><img src={{'/images/sidebar_banner.jpg'|media}} alt="全網輪播 Banner" width="600" height="300"  border="0"></p>
+	</div>
+</div>
+</div><!-- End demo -->
+
+{% endblock %}
+{% block endjs %}
+<script src="{{"/js/jquery.ui.core.js"|media}}"></script>
+<script src="{{"/js/jquery.ui.widget.js"|media}}"></script>
+<script src="{{"/js/jquery.ui.accordion.js"|media}}"></script>
+<link href="{{"/style/jquery.ui.theme.css"|media }}" rel="stylesheet" type="text/css" />
+	<script>
+	$(function() {
+		$( "#accordion" ).accordion({
+			collapsible: true
+		});
+	});
+	</script>
+{% endblock %}

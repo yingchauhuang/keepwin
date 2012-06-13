@@ -31,7 +31,7 @@
 			{% endif %}
             <a id="register" href="/account/member_notice/" >{% trans %}Register{% endtrans %}</a>
 			<a id="announce" href="{% url user_admin %}" >{% trans %}Announce{% endtrans %}</a>
-			<a id="advertise" href="{% url users %}" >{% trans %}Advertise{% endtrans %}</a>
+			<a id="advertise" href="{% url ad_model %}" >{% trans %}Advertise{% endtrans %}</a>
 			<a id="announce" href="{% url users %}?sort=vip" >{% trans %}Moderator List{% endtrans %}</a>
 			
 			{% if request.user.is_authenticated() and request.user.can_post_user() %}

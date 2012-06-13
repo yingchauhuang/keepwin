@@ -107,6 +107,11 @@ urlpatterns = patterns('',
         name = 'api_get_questions'
     ),
     url(
+        r'^%s%s$' % (_('payment/'), _('ad_model/')), 
+        views.payment.ad_model, 
+        name='ad_model'
+    ),
+    url(
         r'^%s%s$' % (_('payment/'), _('Roturl/')), 
         views.payment.Roturl, 
         name='Payment_Roturl'
