@@ -49,6 +49,11 @@
                         $('#signin-form').submit();
                     } 
             });
+			FB.Event.subscribe('auth.sessionChange', function(response){
+                    if (response.session) {
+                        $('#signin-form').submit();
+                    } 
+            });
         };
     });
 </script>
