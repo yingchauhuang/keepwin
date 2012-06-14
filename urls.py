@@ -112,6 +112,11 @@ urlpatterns = patterns('',
         name='ad_model'
     ),
     url(
+        r'^%s%s$' % (_('payment/'), _('FB_Channel/')), 
+        views.payment.FB_Channel, 
+        name='FB_Channel'
+    ),
+    url(
         r'^%s%s$' % (_('payment/'), _('Roturl/')), 
         views.payment.Roturl, 
         name='Payment_Roturl'
