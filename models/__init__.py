@@ -2279,7 +2279,7 @@ def user_update_NewestQ(user):
     """Recount number of responses to the user.
     """
     try:
-        user.NewestQ = (Post.objects.filter(author=user).order_by('-added_at')[0]).thread
+        user.NewestQ = (Post.objects.filter(author=user,deleted=0).order_by('-added_at')[0]).thread
         user.save()
     except:
         return
