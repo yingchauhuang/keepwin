@@ -140,6 +140,16 @@ def ad_model(request, **kwargs):
         #return render_into_skin('main_page_twmode.html', template_data, request)
     return render_into_skin('advertisement/model.html', template_data, request)
 
+def FB_Channel(request, **kwargs):
+    """
+    """
+    template_data = {
+
+        }
+
+        #return render_into_skin('main_page_twmode.html', template_data, request)
+    return render_into_skin('FB_Channel.html', template_data, request)
+
 def ibon(request, **kwargs):
     """
     List of Questions, Tagged questions, and Unanswered questions.
