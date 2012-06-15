@@ -55,8 +55,7 @@
     {% endif %}
     <script type='text/javascript' src='{{"/js/jquery.validate.min.js"|media}}'></script>
     <script type='text/javascript' src='{{"/js/post.js"|media}}'></script>
- <!--   <script type='text/javascript' src='{{"/js/wmd/showdown.js"|media}}'></script>  --!>
- <!--   <script type='text/javascript' src='{{"/js/wmd/wmd.js"|media}}'></script>  --!>
+
     <script type="text/javascript">
     {% if settings.ENABLE_MATHJAX or settings.MARKUP_CODE_FRIENDLY %}
         var codeFriendlyMarkdown = true;
@@ -97,5 +96,77 @@
         
     });
     </script>
+	<script type='text/javascript' src='{{"/ckeditor/ckeditor/ckeditor.js"|media}}'></script>
+		<script>
+	function initCKEDITOR()
+	{
+		//var editor = CKEDITOR.replace( 'editor' ,{skin:'v2',language:'zh',filebrowserBrowseUrl: '/m/common/media/filemanager/index.html',});
+		var editor = CKEDITOR.replace( 'editor' ,{skin:'v2',language:'zh-tw',filebrowserBrowseUrl: '/m/common/media/filemanager/index.html',filebrowserUploadUrl : '/admin/c5filemanager/?path=%2Fupload%2F&mode=addfile&currentpath=xx&showThumbs=true',});
+		//var editor1 = CKEDITOR.replace( 'featurepic', { skin:'v2',language:'zh',filebrowserBrowseUrl: '/m/common/media/filemanager/index.html',} );
+		var editor1 = CKEDITOR.replace( 'featurepic', { skin:'v2',language:'zh-tw',filebrowserBrowseUrl: '/m/common/media/filemanager/index.html',filebrowserUploadUrl : '/admin/c5filemanager/?path=%2Fupload%2F&mode=addfile&currentpath=xx&showThumbs=true',toolbar :[[ 'Image','Flash'],[ 'UIColor' ]],} );
+	}
+	/* for Mozilla/Opera9 */
+	if (document.addEventListener) {
+	  document.addEventListener("DOMContentLoaded", initCKEDITOR, false);
+	}
+	else
+	{
+		if (/WebKit/i.test(navigator.userAgent)) { // sniff
+		  var _timer = setInterval(function() {
+			if (/loaded|complete/.test(document.readyState)) {
+			  initCKEDITOR(); // call the onload handler
+			}
+		  }, 10);
+		}
+		else
+		{
+			/* for other browsers */
+			window.onload = initCKEDITOR;
+		}
+	}
+	CKEDITOR.on( 'dialogDefinition', function( ev )
+	{
+		// Take the dialog name and its definition from the event data.
+		var dialogName = ev.data.name;
+		var dialogDefinition = ev.data.definition;
+
+		// Check if the definition is from the dialog we're
+		// interested on (the Link dialog).
+		if ( dialogName == 'link' )
+		{
+			// FCKConfig.LinkDlgHideAdvanced = true
+			dialogDefinition.removeContents( 'advanced' );
+
+			// FCKConfig.LinkDlgHideTarget = true
+			dialogDefinition.removeContents( 'target' );
+	/*
+	Enable this part only if you don't remove the 'target' tab in the previous block.
+
+			// FCKConfig.DefaultLinkTarget = '_blank'
+			// Get a reference to the "Target" tab.
+			var targetTab = dialogDefinition.getContents( 'target' );
+			// Set the default value for the URL field.
+			var targetField = targetTab.get( 'linkTargetType' );
+			targetField[ 'default' ] = '_blank';
+	*/
+		}
+
+		if ( dialogName == 'image' )
+		{
+			//FCKConfig.ImageDlgHideAdvanced = true	
+			dialogDefinition.removeContents( 'advanced' );
+			//FCKConfig.ImageDlgHideLink = true
+			dialogDefinition.removeContents( 'Link' );
+		}
+
+		if ( dialogName == 'flash' )
+		{
+			//CKConfig.FlashDlgHideAdvanced = true
+			dialogDefinition.removeContents( 'advanced' );
+		}
+
+	});
+
+	</script>
 {% endblock %}
 <!-- end question_edit.html -->
