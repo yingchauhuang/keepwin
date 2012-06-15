@@ -2576,7 +2576,7 @@ a:hover.medal {
 .karma-gained {
   font-weight: bold;
   background: #eee;
-  width: 25px;
+  width: 50px;
   margin-right: 5px;
   color: green;
   padding: 3px;
@@ -2592,7 +2592,7 @@ a:hover.medal {
 .karma-lost {
   font-weight: bold;
   background: #eee;
-  width: 25px;
+  width: 50px;
   color: red;
   padding: 3px;
   display: block;
