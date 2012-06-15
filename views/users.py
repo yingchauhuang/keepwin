@@ -716,15 +716,17 @@ def user_stats(request, user, context):
 
     for award in user_awards:
         # Fetch content object
-        if award.content_type_id == post_type.id:
-            award.content_object = awarded_posts_map[award.object_id]
-            award.content_object_is_post = True
-        else:
-            award.content_object_is_post = False
-
-        # "Assign" to its Badge
-        badges_dict[award.badge].append(award)
-
+        try:
+            if award.content_type_id == post_type.id:
+                award.content_object = awarded_posts_map[award.object_id]
+                award.content_object_is_post = True
+            else:
+                award.content_object_is_post = False
+    
+            # "Assign" to its Badge
+            badges_dict[award.badge].append(award)
+        except:
+            pass
     badges = badges_dict.items()
     badges.sort(key=operator.itemgetter(1), reverse=True)
 
