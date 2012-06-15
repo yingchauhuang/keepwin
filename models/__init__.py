@@ -2283,6 +2283,24 @@ def user_update_NewestQ(user):
         user.save()
     except:
         return
+    
+def user_recompute_Balance(user):
+    """Recompute the balance of user.
+    """
+    try:
+        transactions = Transaction.objects.filter(user=user).order_by('trans_at')
+        balance=0
+        for tran in transactions:
+            balance=balance+tran.income-tran.outcome
+            if balance<0 :
+                balance=0
+            tran.balance=balance
+            tran.save()
+        user.balance=balance
+        user.save()
+    except:
+        return
+    
 def user_receive_reputation(self, num_points):
     new_points = self.reputation + num_points
     if new_points > 0:
@@ -2392,6 +2410,7 @@ User.add_to_class('is_following_question', user_is_following_question)
 User.add_to_class('mark_tags', user_mark_tags)
 User.add_to_class('update_response_counts', user_update_response_counts)
 User.add_to_class('update_NewestQ', user_update_NewestQ)
+User.add_to_class('recompute_Balance', user_recompute_Balance)
 User.add_to_class('can_have_strong_url', user_can_have_strong_url)
 User.add_to_class('is_administrator', user_is_administrator)
 User.add_to_class('is_administrator_or_moderator', user_is_administrator_or_moderator)
