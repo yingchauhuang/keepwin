@@ -655,7 +655,7 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 >-->
 <img class="gravatar" 
     src="{{ question.get_featurePIC_url(size) }}"
-    title="{{question.summary|striptags}}" 
+    title="" 
     alt="{% trans threadtitle=thread.title %}{{threadtitle}} Title{% endtrans %}" 
 />
 <!-- </a> -->
