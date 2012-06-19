@@ -17,8 +17,9 @@
 		{% else %}
 			<p>{{ question.summary|escape }}...</p>
 		{% endif %}
-		{{thread.view_count|humanize_counter}}{% trans cnt=thread.view_count %}view{% pluralize %}views{% endtrans %}
-		{{thread.answer_count|humanize_counter}}{% if thread.accepted_answer_id %}{% endif %}{% trans cnt=thread.answer_count %}answer{% pluralize %}answers{% endtrans %}
+		{{ question.added_at|date}}
+		{{thread.view_count}}{% trans %}views{% endtrans %}
+		{{thread.answer_count}}{% trans %}answers{% endtrans %}
 	</a>
 	{% if question.is_charged %}
 			<div class="charged">
