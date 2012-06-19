@@ -18,8 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n!= 1;\n"
 
 #: views/payment.html:82
-msgid "Receive the iBon payment confirmation. USD"
-msgstr "收到iBon購買確認, 金額:"
+msgid "Receive the iBon payment confirmation."
+msgstr "收到iBon購買確認:"
 
 #: views/payment.html:82
 msgid "Dollars"
@@ -3818,6 +3818,10 @@ msgstr " <a href=\"/account/signin\">立刻登入</a>"
 msgid ">I want to pay now</a>"
 msgstr ">我要從我帳戶扣款來付費(所扣點數為樂捐行公益與支持網站行政用,版主所發文章內容與網站無關, 若有論及市場行情係版主自己看法,僅供參考,勿作為買賣依據!)</a>"
 
+#: models/post.py:1076
+msgid "\" title=\"I want to re-check now\">re-check</a>"
+msgstr "\" title=\"我已付款,要立刻查詢iBon付款情形\">(請求重查)</a>"
+
 #: models/post.py:1078
 msgid " <a class=\"tag tag-msg\" href=\"/payment/ibon/\">I want to purchase credicts</a>"
 msgstr " <a class=\"tag tag-msg\" href=\"/payment/ibon/\">我要購買點數</a>"
@@ -3896,6 +3900,18 @@ msgstr "%(people)s 評論回應"
 #: models/transaction
 msgid "<em>Bought the point. Reason:</em> %(reason)s"
 msgstr "<em>購買點數. 備註:</em> %(reason)s"
+
+#: models/transaction
+msgid "<em>ISSUE iBon. Reason:</em> %(reason)s"
+msgstr "<em>產生iBon條碼. 備註:</em> %(reason)s"
+
+#: models/transaction
+msgid "<em>ISSUE confirm. Reason:</em> %(reason)s"
+msgstr "<em>iBon付款確認. 備註:</em> %(reason)s"
+
+#: models/transaction
+msgid "<em>ISSUE error. Reason:</em> %(reason)s"
+msgstr "<em>iBon付款錯誤. 備註:</em> %(reason)s"
 
 #: models/repute.py:142
 #, python-format

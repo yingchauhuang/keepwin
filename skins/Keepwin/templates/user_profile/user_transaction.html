@@ -50,8 +50,7 @@
 						<p>
 							<span class="karma-gained">{{ transaction.income }}</span>
 							<span class="karma-lost">{{ transaction.outcome }}</span>
-							{{ transaction.get_explanation_snippet() }}
-							<span class="small">({{transaction.trans_at|diff_date}})</span>
+							<span class="small">{{ transaction.get_explanation_snippet() }}({{transaction.trans_at|diff_date}})</span>
 							<div class="clean"></div>                  
 						</p>
 						{% endfor %}
