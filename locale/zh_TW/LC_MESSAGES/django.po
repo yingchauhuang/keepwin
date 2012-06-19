@@ -6520,16 +6520,12 @@ msgstr "請儘量地清楚描述您的看法"
 msgid "Posted"
 msgstr "發佈"
 #: skins/default/templates/widgets/question_summary.html:12
-msgid "view"
-msgid_plural "views"
-msgstr[0] "瀏覽"
-msgstr[1] ""
+msgid "views"
+msgstr "人氣"
 
 #: skins/default/templates/widgets/question_summary.html:29
-msgid "answer"
-msgid_plural "answers"
-msgstr[0] "回應"
-msgstr[1] ""
+msgid "answers"
+msgstr "回應"
 
 #: skins/default/templates/widgets/question_summary.html:40
 msgid "vote"
