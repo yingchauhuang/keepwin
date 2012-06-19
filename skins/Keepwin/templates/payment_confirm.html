@@ -3,37 +3,37 @@
 <script> 
 function check_A(sb){
 	var ch=true
-	if(!f1.Od_sob.value.length){
+	if($("#f1 #Od_sob").attr("value")==undefined || $("#f1 #Od_sob").attr("value").legth==0){
 		alert("請輸入消費項目!")
 		ch=false
 	}
 	else{
-		if(!f1.Amount.value.length){
+		if($("#f1 #Amount").attr("value")==undefined || $("#f1 #Amount").attr("value").length==0){
 			alert("請輸入金額!")
 			ch=false
 		}
 		else{
-			if(!f1.Pur_Name.value.length){
+			if($("#f1 #Pur_Name").attr("value")==undefined || $("#f1 #Pur_Name").attr("value").length==0){
 				alert("請輸入購買人姓名!")
 				ch=false
 			}
 			else{
-				if(!f1.Mobile_Number.value.length){
+				if($("#f1 #Mobile_Number").attr("value")==undefined || $("#f1 #Mobile_Number").attr("value").length==0){
 					alert("請輸入行動電話!")
 					ch=false
 				}
 				else{
-					if(!f1.Tel_Number.value.length){
+					if($("#f1 #Tel_Number").attr("value")==undefined || $("#f1 #Tel_Number").attr("value").length==0){
 						alert("請輸入聯絡電話!")
 						ch=false
 					}
 					else{
-						if(!f1.Address.value.length){
+						if($("#f1 #Address").attr("value")==undefined || $("#f1 #Address").attr("value").length==0){
 						alert("請輸入送貨地址!")
 						ch=false
 						}
 						else{
-							if(!f1.Email.value.length){
+							if($("#f1 #Email").attr("value")==undefined || $("#f1 #Email").attr("value").length==0){
 								alert("請輸入電子信箱!")
 								ch=false
 							}
@@ -44,49 +44,49 @@ function check_A(sb){
 		}
 	}
 	if(ch){
-		f1.action="https://ssl.smse.com.tw/ezpos/mtmk_utf.asp?Pay_zg="+sb
-		f1.submit()
+		$("#f1").attr("action", "https://ssl.smse.com.tw/ezpos/mtmk_utf.asp?Pay_zg="+sb);
+		$("#f1").submit()
 	}
 } 
 
 function check_B(sb){
 	var ch=true
-	if(!f1.Shop_id.value.length){
+	if($("#f1 #Shop_id").attr("value")==undefined || $("#f1 #Shop_id").attr("value").length==0){
 		alert("請輸入LifeET機碼!")
 		ch=false
 	}
 	else{
-		if(!f1.Od_sob.value.length){
+		if($("#f1 #Od_sob").attr("value")==undefined || $("#f1 #Od_sob").attr("value").length==0){
 			alert("請輸入消費項目!")
 			ch=false
 		}
 		else{
-			if(!f1.Amount.value.length){
+			if($("#f1 #Amount").attr("value")==undefined || $("#f1 #Amount").attr("value").length==0){
 				alert("請輸入金額!")
 				ch=false
 			}
 			else{
-				if(!f1.Pur_Name.value.length){
+				if($("#f1 #Pur_Name").attr("value")==undefined || $("#f1 #Pur_Name").attr("value").length==0){
 					alert("請輸入購買人姓名!")
 					ch=false
 				}
 				else{
-					if(!f1.Mobile_Number.value.length){
+					if($("#f1 #Mobile_Number").attr("value")==undefined || $("#f1 #Mobile_Number").attr("value").length==0){
 						alert("請輸入行動電話!")
 						ch=false
 					}
 					else{
-						if(!f1.Tel_Number.value.length){
+						if($("#f1 #Tel_Number").attr("value")==undefined || $("#f1 #Tel_Number").attr("value").length==0){
 							alert("請輸入聯絡電話!")
 							ch=false
 						}
 						else{
-							if(!f1.Address.value.length){
+							if($("#f1 #Address").attr("value")==undefined || $("#f1 #Address").attr("value").length==0){
 								alert("請輸入送貨地址!")
 								ch=false
 							}
 							else{
-								if(!f1.Email.value.length){
+								if($("#f1 #Email").attr("value")==undefined || $("#f1 #Email").attr("value").length==0){
 									alert("請輸入電子信箱!")
 									ch=false
 								}
@@ -98,8 +98,8 @@ function check_B(sb){
 		}
 	}
 	if(ch){
-		f1.action="/ezpos/MTMK.asp?Pay_zg="+sb
-		f1.submit()
+		$("#f1").attr("action", "/ezpos/MTMK.asp?Pay_zg="+sb);
+		$("#f1").submit()
 		}
 } 
 
@@ -115,7 +115,7 @@ function check_B(sb){
 	<p align="right"><font size="2">消費項目：</font></td>                                                                                                                                                                                    
   <td width="72%" BGCOLOR="#CCFFCC" height="23">                                            
 											  
-  <input  type="text" name="Od_sob" size="47" value="購買靈龜點數" maxlength="20"></td>                                                              
+  <input  type="text" name="Od_sob" id="Od_sob" size="47" value="購買靈龜點數" maxlength="20"></td>                                                              
 </tr>                                                              
 <tr>                                                              
   <td width="28%" BGCOLOR="#CCFFCC" height="23">                                                              
@@ -124,7 +124,7 @@ function check_B(sb){
 								 
   <td width="72%" BGCOLOR="#CCFFCC" height="23">                                            
 											  
-  <input  type="text" name="Amount" size="17" value={{amount}}><font size="2">元                                                                                                                                                                                        
+  <input  type="text" name="Amount" id="Amount" size="17" value="{{amount}}"><font size="2">元                                                                                                                                                                                        
 	/ 台幣 ( 只能用數字 )</font></td>                                                                                                                                                                                       
 </tr>                                                                                                                                                                                       
 <tr>                                                                                                                                                                                       
@@ -132,63 +132,59 @@ function check_B(sb){
 	<p align="right"><font size="2">購買人姓名：</font></td>                                                                                                                                                                                       
   <td width="72%" BGCOLOR="#CCFFCC" height="23">                                              
 												
-  <input  type="text" name="Pur_Name" size="17" value={{user.username}} maxlength="20"></td>                                                      
+  <input  type="text" name="Pur_Name" id="Pur_Name" size="17" value="{{user.username}}" maxlength="20"></td>                                                      
 </tr>                                                      
 <tr>                                                      
   <td width="28%" align="right" BGCOLOR="#CCFFCC" height="23">                                                      
 	<p align="right"><font size="2">行動電話：</font></td>                                                      
   <td width="72%" BGCOLOR="#CCFFCC" height="23">                                              
-												
-  <input  type="text" name="Mobile_Number" size="17" value={{user.mobile}}>        
-		  
-  <font size="2">(如填寫錯誤將無法通過『防詐騙LifeET』的驗證)</font>        
-		  
+  <input  type="text" name="Mobile_Number" id="Mobile_Number" size="17" value="{{user.mobile}}">         
   </td>                                                     
 </tr>                                               
 												  
 <tr style="">                                                     
   <td width="28%" align="right" align="right" BGCOLOR="#CCFFCC" height="23"><font size="2">聯絡電話：</font></td>                                                     
-  <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Tel_Number" size="17" value={{user.mobile}}></td>                                                     
+  <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Tel_Number" id="Tel_Number" size="17" value="{{user.mobile}}"></td>                                                     
 </tr>                                                
 													
 <tr style="">                                                     
-  <td width="28%" align="right" align="right" BGCOLOR="#CCFFCC" height="23"><font size="2">送貨地址：</font></td>                                                     
-  <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Address" size="47" value={{user.address}}></td>                                                    
+  <td width="28%" align="right" align="right" BGCOLOR="#CCFFCC" height="23"><font size="2">發票地址：</font></td>                                                     
+  <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Address" id="Address" size="47" value="{{user.address}}"></td>                                                    
 </tr>                                             
 													
 <tr style="">                                                    
   <td width="28%" align="right" align="right" BGCOLOR="#CCFFCC" height="23"><font size="2">電子信箱：</font></td>                                                    
-  <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Email" size="47" value={{user.email}}></td>                                                    
+  <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Email" id="Email" size="47" value="{{user.email}}"></td>                                                    
 </tr>                                             
 													
 <tr style="">                                                    
   <td width="28%" align="right" align="right" height="23"><font size="2">發票抬頭：</font></td>                                                    
-  <td width="72%" height="23"><input  type="text" name="Invoice_Name" size="31" value=""></td>                                                    
+  <td width="72%" height="23"><input  type="text" name="Invoice_Name" id="Invoice_Name" size="31" value=""></td>                                                    
 </tr>                                             
 													 
 <tr style="">                                                                               
   <td width="28%" align="right" align="right" height="23"><font size="2">統一編號：</font></td>                                                    
-  <td width="72%" height="23"><input  type="text" name="Invoice_Num" size="31" value=""></td>                                                    
+  <td width="72%" height="23"><input  type="text" name="Invoice_Num" id="Invoice_Num" size="31" value=""></td>                                                    
 </tr>                                             
 													   
 <tr>                                                    
   <td width="28%" align="right" valign="top" height="62"><font size="2">備註：</font></td>                                                    
-  <td width="72%" height="62"><textarea  rows="3" name="Remark" cols="48"></textarea></td>                                                    
+  <td width="72%" height="62"><textarea  rows="3" name="Remark" id="Remark" cols="48"></textarea></td>                                                    
 </tr>                                              
 												   
-<tr style="">                 
+<tr style="display:none">                 
   <td width="28%"  BGCOLOR="#CCFFCC" align="right" valign="top" height="13"><font size="2">LifeET 機碼：</font></td>                                                     
-  <td width="72%"  BGCOLOR="#CCFFCC" height="13"><input  type="text" name="Shop_id" size="17" value=""><font size="2">(如使用『防詐騙LifeET』                 
+  <td width="72%"  BGCOLOR="#CCFFCC" height="13"><input  type="text" name="Shop_id" id="Shop_id" size="17" value=""><font size="2">(如使用『防詐騙LifeET』                 
 	為必填)</font></td>                                                    
 </tr>                 
 <tr>                                                    
   <td width="100%" align="right" colspan="2" height="1">                                                    
 	<p align="center">                                              
 	<input type="button" value="7-11 ibon" name="B1"  onclick=check_A("4")>         
-    <input type="button" value="ibon、LifeET 付費" name="B1"  onclick=check_A("4")>&nbsp;                                                    
-    <input type="button" value="FamiPort、LifeET付費" name="B1"  onclick=check_A("6")>&nbsp;                  
-    <input type="button" value="防詐騙 LifeET 付費" name="B4"  onclick=check_B("10")>&nbsp;     	
-	<input type="reset" value="重新輸入" name="B3">                                                   
+    <input style="display:none" type="button" value="ibon、LifeET 付費" name="B1"  onclick=check_A("4")>&nbsp;                                                    
+    <input style="display:none" type="button" value="FamiPort、LifeET付費" name="B1"  onclick=check_A("6")>&nbsp;                  
+    <input style="display:none" type="button" value="防詐騙 LifeET 付費" name="B4"  onclick=check_B("10")>&nbsp;     	
+	<input style="display:none" type="reset" value="重新輸入" name="B3">                                                   
 </td>                                                   
 </tr>                                                                                                   
 <tr>                                                     
