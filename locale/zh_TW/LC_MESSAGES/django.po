@@ -3816,7 +3816,7 @@ msgstr " <a href=\"/account/signin\">立刻登入</a>"
 
 #: models/post.py:1076
 msgid ">I want to pay now</a>"
-msgstr ">我要從我帳戶扣款來付費</a>"
+msgstr ">我要從我帳戶扣款來付費(所扣點數為樂捐行公益與支持網站行政用,版主所發文章內容與網站無關, 若有論及市場行情係版主自己看法,僅供參考,勿作為買賣依據!)</a>"
 
 #: models/post.py:1078
 msgid " <a class=\"tag tag-msg\" href=\"/payment/ibon/\">I want to purchase credicts</a>"
