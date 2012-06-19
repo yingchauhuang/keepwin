@@ -105,7 +105,7 @@ def Roturl(request, **kwargs):
                 user.balance = new_balance
                 user.save()
     
-                comment = _('Receive the iBon payment confirmation. ')+unicode(Amount)+_('Dollars')
+                comment = _('Receive the iBon payment confirmation.')+unicode(Amount)+_('Dollars')
                 transaction = Transaction(
                             user=user,
                             income=Amount,
@@ -183,7 +183,7 @@ def confirm(request, amount):
         request.user.message_set.create(message =unicode('<BR>')+ _('You have to login first.')+unicode('<a href="/account/signin/?bext=/">')+_('Login Now')+unicode('</a>'))
         return HttpResponseRedirect(reverse('index'))
     user=request.user
-    comment = unicode('<BR>')+user.username+_('Generate iBon Barcode, USD:')+unicode(amount)+_('Dollars')
+    comment = user.username+_('Generate iBon Barcode, USD:')+unicode(amount)+_('Dollars')
     transaction = Transaction(
                         user=user,
                         income=0,

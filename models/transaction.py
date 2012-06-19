@@ -93,7 +93,17 @@ class Transaction(models.Model):
         part of the purpose of this method is to hide this idiosyncracy
         """
         if (self.transaction_type != twmodeconst.TYPE_TRANSACTION_PAID_FOR_CONTENT and self.transaction_type != twmodeconst.TYPE_TRANSACTION_RECEIVE_FROM_CONTENT):#todo: hide magic number
-            return  _('<em>Bought the point. Reason:</em> %(reason)s') \
+            if (self.transaction_type == twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM):
+                return  _('<em>ISSUE confirm. Reason:</em> %(reason)s') \
+                                                    % {'reason':self.comment}
+            elif (self.transaction_type == twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE):
+                return _('<em>ISSUE iBon. Reason:</em> %(reason)s') \
+                                                    % {'reason':self.comment} +unicode('<a href="https://ssl.smse.com.tw/ezpos/roturl.asp?Dcvc=2644&Rvg2c=1&Data_id=')+unicode(self.id)+_('" title="I want to re-check now">re-check</a>')                                    
+            elif (self.transaction_type == twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_ERROR):
+                return  _('<em>ISSUE error. Reason:</em> %(reason)s') \
+                                                    % {'reason':self.comment}
+            else:
+                return  _('<em>Bought the point. Reason:</em> %(reason)s') \
                                                     % {'reason':self.comment}
         else:
             delta = self.income - self.outcome
