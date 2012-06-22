@@ -35,6 +35,11 @@ class QuestionHidden(exceptions.PermissionDenied):
     """raised when user cannot see deleted question
     """
     pass
+	
+class QuestionCharge(exceptions.PermissionDenied):
+    """raised when user cannot see deleted question
+    """
+    pass
 
 class AnswerHidden(exceptions.PermissionDenied):
     """raised when user cannot see deleted answer

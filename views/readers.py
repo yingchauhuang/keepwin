@@ -703,7 +703,9 @@ def question(request, id):#refactor - long subroutine. display question body, an
     except exceptions.QuestionHidden, error:
         request.user.message_set.create(message = unicode(error))
         return HttpResponseRedirect(reverse('index'))
-
+    except exceptions.QuestionCharge, error:
+        request.user.message_set.create(message = unicode(error))
+        return HttpResponseRedirect(reverse('index'))
     thread = question_post.thread
     #redirect if slug in the url is wrong
     if request.path.split('/')[-1] != question_post.slug:

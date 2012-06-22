@@ -1192,7 +1192,7 @@ class Post(models.Model):
                     message = unicode('<BR>')+_('Sorry, you need to paid')+unicode(self.cost)+_(' first, then you can read it')+unicode('<BR>')+_(' <a class="tag tag-msg" href="/payment/ibon/">I want to purchase credicts</a>')
                 transaction=Transaction.objects.get_question_transaction(user,self)
             if transaction == 0:
-                raise exceptions.QuestionHidden(message)
+                raise exceptions.QuestionCharge(message)
     def _answer__assert_is_visible_to(self, user):
         """raises QuestionHidden or AnswerHidden"""
         try:
