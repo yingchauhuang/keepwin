@@ -51,7 +51,7 @@
 							<span class="karma-gained">{{ transaction.income }}</span>
 							<span class="karma-lost">{{ transaction.outcome }}</span>
 							{% if request.user|can_moderate_user(view_user) %}
-								<span class="small">{{transaction.id}}{{ transaction.get_explanation_snippet() }}({{transaction.trans_at|diff_date}})</span>
+								<span class="small">{{transaction.id}}{{ transaction.get_explanation_snippet_admin() }}({{transaction.trans_at|diff_date}})</span>
 							{% else %}
 								<span class="small">{{ transaction.get_explanation_snippet() }}({{transaction.trans_at|diff_date}})</span>
 							{% endif %}
