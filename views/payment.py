@@ -97,7 +97,7 @@ def Roturl(request, **kwargs):
             issue = Transaction.objects.get(id=Data_id)
             if ((issue!=None)and(issue.transaction_type==twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM)):
                 #RESET Transaction...Rollback
-                lasttrans=Transaction.objects.get(refer_id=Data_id,transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON)
+                lasttrans=Transaction.objects.get(refer=Data_id,transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON)
                 if (lasttrans!=None):
                     user= User.objects.get(pk=uid)
                     new_balance = user.balance + int(Amount) - lasttrans.income + lasttrans.outcome
