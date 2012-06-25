@@ -60,6 +60,7 @@ class Transaction(models.Model):
     balance=models.DecimalField(default=0,max_digits=8, decimal_places=2)
     #todo: remove this denorm question field when Post model is set up
     question = models.ForeignKey('Post', null=True)
+    refer = models.ForeignKey('Transaction', null=True)
     #amount = models.SmallIntegerField(default=0)
     #is_auditted = models.BooleanField(default=False)
     #add summary field.
