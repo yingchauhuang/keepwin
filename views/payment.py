@@ -95,7 +95,33 @@ def Roturl(request, **kwargs):
             logging.debug('smilepayform Data_id: %s' % (Data_id)) 
             
             issue = Transaction.objects.get(id=Data_id)
-            if ((issue!=None)and(issue.transaction_type==twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE)):
+            if ((issue!=None)and(issue.transaction_type==twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM)):
+                #RESET Transaction...Rollback
+                lasttrans=Transaction.objects.get(refer_id=Data_id,transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON)
+                if (lasttrans!=None):
+                    user= User.objects.get(pk=uid)
+                    new_balance = user.balance + int(Amount) - lasttrans.income + lasttrans.outcome
+                    if new_balance < 0:
+                        new_balance = 0 
+                
+        
+                    user.balance = new_balance
+                    user.save()
+        
+                    lasttrans.comment = _('Receive the iBon payment confirmation.')+unicode(Amount)+_('Dollars')
+                    lasttrans.user=user
+                    lasttrans.income=Amount
+                    lasttrans.outcome=0
+                    lasttrans.trans_at=datetime.datetime.now()
+                    lasttrans.transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON #todo: fix magic number
+                    lasttrans.balance=user.balance
+                    lasttrans.refer=issue
+          
+                    lasttrans.save()
+                    issue.transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM 
+                    issue.save()
+                    return HttpResponse("Success!", content_type="text/plain")
+            elif (issue!=None):
                 user= User.objects.get(pk=uid)
                 new_balance = user.balance + int(Amount)
                 if new_balance < 0:
@@ -115,40 +141,14 @@ def Roturl(request, **kwargs):
                             trans_at=datetime.datetime.now(),
                             transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON, #todo: fix magic number
                             balance=user.balance,
-                            question_id=issue.id
+                            question=None,
+                            refer=issue
                         )
     
                 transaction.save()
                 issue.transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM 
                 issue.save()
                 return HttpResponse("Success!", content_type="text/plain")
-            elif ((issue!=None)and(issue.transaction_type==twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM)):
-                #RESET Transaction
-                lasttrans=Transaction.objects.get(question_id=Data_id,transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON)
-                if (lasttrans!=None):
-                    user= User.objects.get(pk=uid)
-                    new_balance = user.balance + int(Amount) - lasttrans.income + lasttrans.outcome
-                    if new_balance < 0:
-                        new_balance = 0 
-                
-        
-                    user.balance = new_balance
-                    user.save()
-        
-                    lasttrans.comment = _('Receive the iBon payment confirmation.')+unicode(Amount)+_('Dollars')
-                    lasttrans.user=user
-                    lasttrans.income=Amount
-                    lasttrans.outcome=0
-                    lasttrans.trans_at=datetime.datetime.now()
-                    lasttrans.transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON #todo: fix magic number
-                    lasttrans.balance=user.balance
-                    lasttrans.question_id=issue.id
-          
-                    lasttrans.save()
-                    issue.transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM 
-                    issue.save()
-                    return HttpResponse("Success!", content_type="text/plain")
-                
             else:
                 logging.warning('smilepayform warning error Date_id:%s Roturl : %s' % (Data_id,request.POST))
         else:
