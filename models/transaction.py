@@ -130,4 +130,51 @@ class Transaction(models.Model):
                                'link_title': link_title
                             }
 
+    def get_explanation_snippet_admin(self):
+        """returns HTML snippet with a link to related question
+        or a text description for a the reason of the reputation change
+
+        in the implementation description is returned only 
+        for Repute.reputation_type == 10 - "assigned by the moderator"
+
+        part of the purpose of this method is to hide this idiosyncracy
+        """
+        if (self.transaction_type != twmodeconst.TYPE_TRANSACTION_PAID_FOR_CONTENT and self.transaction_type != twmodeconst.TYPE_TRANSACTION_RECEIVE_FROM_CONTENT):#todo: hide magic number
+            if (self.transaction_type == twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM):
+                return  _('<em>ISSUE confirm. Reason:</em> %(reason)s') \
+                                                    % {'reason':self.comment} +unicode('<a href="https://ssl.smse.com.tw/ezpos/roturl.asp?Dcvc=2644&Rvg2c=1&Data_id=')+unicode(self.id)+_('" title="I want to re-check now">re-check</a>')                                    
+            elif (self.transaction_type == twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE):
+                return _('<em>ISSUE iBon. Reason:</em> %(reason)s') \
+                                                    % {'reason':self.comment} +unicode('<a href="https://ssl.smse.com.tw/ezpos/roturl.asp?Dcvc=2644&Rvg2c=1&Data_id=')+unicode(self.id)+_('" title="I want to re-check now">re-check</a>')                                    
+            elif (self.transaction_type == twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_ERROR):
+                return  _('<em>ISSUE error. Reason:</em> %(reason)s') \
+                                                    % {'reason':self.comment} +unicode('<a href="https://ssl.smse.com.tw/ezpos/roturl.asp?Dcvc=2644&Rvg2c=1&Data_id=')+unicode(self.id)+_('" title="I want to re-check now">re-check</a>')                                    
+            else:
+                return  _('<em>Bought the point. Reason:</em> %(reason)s') \
+                                                    % {'reason':self.comment}
+        else:
+            delta = self.income - self.outcome
+            link_title_data = {
+                                'points': abs(delta),
+                                'username': self.user.username,
+                                'question_title': self.question.thread.title
+                            }
+            if delta > 0:
+                link_title = _(
+                                '%(points)s points were added for %(username)s\'s '
+                                'contribution to question %(question_title)s'
+                            ) % link_title_data
+            else:
+                link_title = _(
+                                '%(points)s points were subtracted for %(username)s\'s '
+                                'contribution to question %(question_title)s'
+                            ) % link_title_data
+
+            return '<a href="%(url)s" title="%(link_title)s">%(question_title)s</a>' \
+                            % {
+                               'url': self.question.get_absolute_url(), 
+                               'question_title': self.question.thread.title,
+                               'link_title': link_title
+                            }
+
  
