@@ -1179,7 +1179,7 @@ class Post(models.Model):
                 user.assert_can_see_deleted_post(self)
             except django_exceptions.PermissionDenied:
                 raise exceptions.QuestionHidden(message)
-        if self.is_charged and self.author != user and !user.is_administrator():
+        if self.is_charged and self.author != user and not user.is_administrator():
             """Check if user is anonymous """
             transaction = 0
             if user.id==None:   
