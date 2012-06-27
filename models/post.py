@@ -1179,7 +1179,7 @@ class Post(models.Model):
                 user.assert_can_see_deleted_post(self)
             except django_exceptions.PermissionDenied:
                 raise exceptions.QuestionHidden(message)
-        if self.is_charged and self.author != user and not user.is_administrator():
+        if self.is_charged and self.author != user:
             """Check if user is anonymous """
             transaction = 0
             if user.id==None:   
@@ -1191,7 +1191,7 @@ class Post(models.Model):
                 else:
                     message = unicode('<BR>')+_('Sorry, you need to paid')+unicode(self.cost)+_(' first, then you can read it')+unicode('<BR>')+_(' <a class="tag tag-msg" href="/payment/ibon/">I want to purchase credicts</a>')
                 transaction=Transaction.objects.get_question_transaction(user,self)
-            if transaction == 0:
+            if ((transaction == 0) or (not user.is_administrator())):
                 raise exceptions.QuestionCharge(message)
     def _answer__assert_is_visible_to(self, user):
         """raises QuestionHidden or AnswerHidden"""

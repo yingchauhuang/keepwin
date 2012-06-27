@@ -32,7 +32,7 @@ from django.core.urlresolvers import reverse
 class TransactionManager(models.Manager):
     def get_question_transaction(self,user,question):
         if ((user is not None) and (question is not None)):
-            return self.filter(user=user, question=question).count()
+            return self.filter(user=user, question=question, transaction_type=twmodeconst.TYPE_TRANSACTION_PAID_FOR_CONTENT).count()
         else:
             return 0
 #        return self.get_query_set().filter(user=user,question=question)
