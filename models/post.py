@@ -1190,9 +1190,13 @@ class Post(models.Model):
                     message = unicode('<BR>')+_('Sorry, you need to paid')+unicode(self.cost)+_(' first, then you can read it')+_(' Current Balance is ')+unicode(user.balance)+_('USD')+unicode('<BR>')+' <a href="/users/'+unicode(user.id)+'/'+unicode(user.username)+'?sort=transaction&amount='+unicode(self.cost)+'&QID='+unicode(self.id)+'&confirmation=Y'+'"'+_('>I want to pay now</a>')
                 else:
                     message = unicode('<BR>')+_('Sorry, you need to paid')+unicode(self.cost)+_(' first, then you can read it')+unicode('<BR>')+_(' <a class="tag tag-msg" href="/payment/ibon/">I want to purchase credicts</a>')
-                transaction=Transaction.objects.get_question_transaction(user,self)
-            if ((transaction == 0) or (not user.is_administrator())):
-                raise exceptions.QuestionCharge(message)
+                transaction=Transaction.objects.get_question_transaction(user,self)    
+            if (transaction == 0):
+                try:
+                    if  (not user.is_administrator()):
+                        raise exceptions.QuestionCharge(message)
+                except:
+                    raise exceptions.QuestionCharge(message)
     def _answer__assert_is_visible_to(self, user):
         """raises QuestionHidden or AnswerHidden"""
         try:
