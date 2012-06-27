@@ -1854,7 +1854,8 @@ def user_add_user_transaction(  self,
                                 transaction_type=0,
                                 comment=None,
                                 timestamp=None,
-                                QID=None
+                                QID=None,
+                                refer=None
                             ):
     """add or subtract reputation of other user
     """
@@ -1882,10 +1883,12 @@ def user_add_user_transaction(  self,
                         trans_at=timestamp,
                         transaction_type=transaction_type, #todo: fix magic number
                         balance=user.balance,
-                        question_id=QID
+                        question_id=QID,
+                        refer=refer
                     )
 
     transaction.save()
+    return transaction 
 
 def user_can_post_user(self):
     if self.is_administrator():

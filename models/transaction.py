@@ -36,7 +36,16 @@ class TransactionManager(models.Manager):
         else:
             return 0
 #        return self.get_query_set().filter(user=user,question=question)
-    
+
+    def delete_paid_transaction(self,tid):
+        #This function only handle the delete of TYPE_TRANSACTION_PAID_FOR_CONTENT transaction
+        delete_trans =Transaction.objects.get(id=tid) 
+        if (delete_trans.transaction_type==twmodeconst.TYPE_TRANSACTION_PAID_FOR_CONTENT):
+            relate_trans=Transaction.objects.filter(refer=delete_trans)
+            for relate_tran in relate_trans:
+                relate_tran.delete_transaction()
+            delete_trans.delete_transaction()
+            
     def get_user_by_transactionID(self,tid):
         if ((tid is not None)):
             try:
@@ -84,6 +93,18 @@ class Transaction(models.Model):
 #            #todo: may optimize for bulk addition
 #            aas = TransactionAuditStatus(user = recipient, activity = self)
 #            aas.save()
+
+    def delete_transaction(self):
+        user = self.user
+
+        new_balance = user.balance - self.income + self.outcome
+        if new_balance < 0:
+            new_balance = 0 #todo: magic number
+            self.income = user.balance + self.outcome
+        user.balance = new_balance
+        user.save()
+        self.delete()
+
     def get_explanation_snippet(self):
         """returns HTML snippet with a link to related question
         or a text description for a the reason of the reputation change
