@@ -1255,7 +1255,7 @@ def user_transaction(request, user, context):
                         user = request.user
                         question = Post.objects.filter(id=qid)[0]
                         comment = _('Paid')+unicode(amount)+_('Dollars')+_(' To puchase:')+question.get_question_title()
-                        user.add_user_transaction(
+                        paytrans=user.add_user_transaction(
                                         user = user,
                                         income =0,
                                         outcome =amount,
@@ -1279,7 +1279,8 @@ def user_transaction(request, user, context):
                                         transaction_type=forms.TYPE_TRANSACTION_RECEIVE_FROM_CONTENT,
                                         comment = comment,
                                         timestamp = datetime.datetime.now(),
-                                        QID=qid
+                                        QID=qid,
+                                        refer=paytrans
                                     )
                         #add transaction to admin
                         admin = models.User.objects.get(username = askbot_settings.NAME_OF_ADMINISTRATOR_USER)
@@ -1291,7 +1292,8 @@ def user_transaction(request, user, context):
                                         transaction_type=forms.TYPE_TRANSACTION_RECEIVE_FROM_CONTENT,
                                         comment = comment,
                                         timestamp = datetime.datetime.now(),
-                                        QID=qid
+                                        QID=qid,
+                                        refer=paytrans
                                     )
                     except:
                         request.user.message_set.create(message = unicode('Plesae set the forum company ID correct'))
