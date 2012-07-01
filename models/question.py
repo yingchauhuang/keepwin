@@ -438,6 +438,9 @@ class Thread(models.Model):
     class Meta:
         app_label = 'askbot'
 
+    def __unicode__(self):
+        return u'%s[%s]' % (self.title, self.subtitle)
+    
     def _question_post(self, refresh=False):
         if refresh and hasattr(self, '_question_cache'):
             delattr(self, '_question_cache')

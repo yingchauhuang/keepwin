@@ -9,6 +9,7 @@ exactly match name of the model used in the project
 """
 from django.contrib import admin
 from askbot import models
+from django.utils.translation import ugettext as _
 
 class AnonymousQuestionAdmin(admin.ModelAdmin):
     """AnonymousQuestion admin class"""
@@ -21,13 +22,17 @@ class AnonymousQuestionAdmin(admin.ModelAdmin):
 
 #class FavoriteQuestionAdmin(admin.ModelAdmin):
 #    """  admin class"""
+def mark_deleted(modeladmin, request, queryset):
+    queryset.update(deleted=true)
+mark_deleted.short_description = _('Mark selected post as deleted')
 
 class PostAdmin(admin.ModelAdmin):
     """  admin class"""
-    list_display = ('thread','author','post_type','text','locked','last_edited_at')
+    list_display = ('author','post_type','thread','locked','last_edited_at')
     date_hierarchy = 'last_edited_at'
-    list_filter = ('author',)
-    
+    search_fields  = ('author__username','text')
+    actions = None
+    actions = [mark_deleted]
 class PostRevisionAdmin(admin.ModelAdmin):
     """  admin class"""
 
@@ -45,14 +50,14 @@ class TransactionAdmin(admin.ModelAdmin):
     #list_filter = ['trans_at']
     list_display = ('question','user', 'trans_at', 'transaction_type','income','outcome','balance','comment')
     date_hierarchy = 'trans_at'
-    list_filter = ('user',)
-
+    search_fields  = ('user__username','question__text')
+    actions = None
 class UserInforAdmin(admin.ModelAdmin):
     """  admin class"""
     #list_filter = ['trans_at']
     list_display = ('user','gender','education','income','occupational','template','mobile','mobile_verified','address')
-    list_filter = ('user',)
-    
+    search_fields  = ('user__username',)
+    actions = None
 admin.site.register(models.Post, PostAdmin)
 #admin.site.register(models.Tag, TagAdmin)
 #admin.site.register(models.Vote, VoteAdmin)
