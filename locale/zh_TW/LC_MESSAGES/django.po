@@ -7244,3 +7244,7 @@ msgstr "發文紀錄"
 #: models/user.py:302
 msgid "UserInfo"
 msgstr "使用者資料"
+
+#: models/user.py:302
+msgid "PostRevision"
+msgstr "發文修正紀錄"

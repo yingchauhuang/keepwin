@@ -298,9 +298,8 @@ class Post(models.Model):
     class Meta:
         app_label = 'askbot'
         db_table = 'askbot_post'
-
-    def description(self):
-        return _('Post')
+        verbose_name = _('Post')
+        verbose_name_plural = _('Post')
 
     def parse_post_text(post):
         """typically post has a field to store raw source text
@@ -1643,7 +1642,9 @@ class PostRevision(models.Model):
         unique_together = ('post', 'revision')
         ordering = ('-revision',)
         app_label = 'askbot'
-
+        verbose_name = _('PostRevision')
+        verbose_name_plural = _('PostRevision')
+        
     def revision_type_str(self):
         return self.REVISION_TYPE_CHOICES_DICT[self.revision_type]
 

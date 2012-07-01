@@ -84,7 +84,8 @@ class Transaction(models.Model):
     class Meta:
         app_label = 'askbot'
         db_table = u'transaction'
-
+        verbose_name = _('Transaction')
+        verbose_name_plural = _('Transaction')
 #    def add_recipients(self, recipients):
 #        """have to use a special method, because django does not allow
 #        auto-adding to M2M with "through" model
@@ -93,9 +94,6 @@ class Transaction(models.Model):
 #            #todo: may optimize for bulk addition
 #            aas = TransactionAuditStatus(user = recipient, activity = self)
 #            aas.save()
-
-    def description(self):
-        return _('Transaction')
     
     def delete_transaction(self):
         user = self.user
