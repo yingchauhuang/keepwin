@@ -136,6 +136,7 @@ def confirm(request, amount):
                         outcome=0,
                         comment=comment,
                         #question = fake_question,
+						invoice=False,
                         trans_at=datetime.datetime.now(),
                         transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE, #todo: fix magic number
                         balance=user.balance,

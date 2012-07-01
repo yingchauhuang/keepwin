@@ -44,6 +44,10 @@ function check_A(sb){
 		}
 	}
 	if(ch){
+		if($("#f1 #invoice").attr("value")=="yes")
+		{
+			$.post("/payment/invoiceconfirm/",{TID: {{Data_id}},invoice:"yes"},finishinvoiceconfirm,"json");
+		}
 		$("#f1").attr("action", "https://ssl.smse.com.tw/ezpos/mtmk_utf.asp?Pay_zg="+sb);
 		$("#f1").submit()
 	}
@@ -103,6 +107,18 @@ function check_B(sb){
 		}
 } 
 
+function finishinvoiceconfirm(data)
+{
+	if (data.success)
+	{
+
+	}
+	else
+	{
+		alert(data.message);
+	}
+}
+
 </script> 
 <form id="f1" method="POST" action="#" name="FrontPage_Form1">
 <table border="1" width="100%" bgcolor="#FFFFFF" cellspacing="0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bordercolor="#FFFFFF" height="319">
@@ -149,7 +165,8 @@ function check_B(sb){
 													
 <tr style="">                                                     
   <td width="28%" align="right" align="right" BGCOLOR="#CCFFCC" height="23"><font size="2">發票地址：</font></td>                                                     
-  <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Address" id="Address" size="47" value="{{user.address}}"></td>                                                    
+  <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Address" id="Address" size="47" value="{{user.address}}">
+  <input type="checkbox" name="invoice" id="invoice" value="yes">我要將發票捐贈給朝曦靈龜慈善協會<br>(若無填寫完整者，發票將逕行捐贈給社團法人朝曦靈龜慈善協會)</td>                                                    
 </tr>                                             
 													
 <tr style="">                                                    

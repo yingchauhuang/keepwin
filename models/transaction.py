@@ -62,19 +62,19 @@ class Transaction(models.Model):
     We keep some history data for user transaction
     """
     user = models.ForeignKey(User)
-    income = models.DecimalField(default=0,max_digits=6, decimal_places=2)
-    outcome = models.DecimalField(default=0,max_digits=6, decimal_places=2)
-    transaction_type = models.SmallIntegerField(choices = twmodeconst.TYPE_TRANSACTION)
-    trans_at = models.DateTimeField(default=datetime.datetime.now)
-    balance=models.DecimalField(default=0,max_digits=8, decimal_places=2)
+    income = models.DecimalField(default=0,max_digits=6, decimal_places=2,verbose_name=_('Income'))
+    outcome = models.DecimalField(default=0,max_digits=6, decimal_places=2,verbose_name=_('Outcome'))
+    transaction_type = models.SmallIntegerField(choices = twmodeconst.TYPE_TRANSACTION,verbose_name=_('Transaction_type'))
+    trans_at = models.DateTimeField(default=datetime.datetime.now,verbose_name=_('Trans_at'))
+    balance=models.DecimalField(default=0,max_digits=8, decimal_places=2,verbose_name=_('Balance'))
     #todo: remove this denorm question field when Post model is set up
-    question = models.ForeignKey('Post', null=True)
-    refer = models.ForeignKey('Transaction', null=True)
+    question = models.ForeignKey('Post', null=True,verbose_name=_('Question'))
+    refer = models.ForeignKey('Transaction', null=True,verbose_name=_('Refer'))
     #amount = models.SmallIntegerField(default=0)
     #is_auditted = models.BooleanField(default=False)
     #add summary field.
-    comment = models.CharField(max_length=128, null=True)
-
+    comment = models.CharField(max_length=128, null=True,verbose_name=_('Comment'))
+    invoice = models. NullBooleanField(default=False,verbose_name=_('Invoice'))
     objects = TransactionManager()
 
 

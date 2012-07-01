@@ -1880,6 +1880,7 @@ def user_add_user_transaction(  self,
                         outcome=outcome,
                         comment=comment,
                         #question = fake_question,
+						invoice=False,
                         trans_at=timestamp,
                         transaction_type=transaction_type, #todo: fix magic number
                         balance=user.balance,
