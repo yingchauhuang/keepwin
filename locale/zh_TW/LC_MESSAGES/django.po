@@ -7236,3 +7236,11 @@ msgstr "說明"
 #: models/transaction.py:65
 msgid "Invoice"
 msgstr "寄送發票"
+
+#: models/Post.py:302
+msgid "Post"
+msgstr "發文紀錄"
+
+#: models/user.py:302
+msgid "UserInfo"
+msgstr "使用者資料"

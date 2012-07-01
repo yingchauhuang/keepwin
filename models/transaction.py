@@ -94,6 +94,9 @@ class Transaction(models.Model):
 #            aas = TransactionAuditStatus(user = recipient, activity = self)
 #            aas.save()
 
+    def description(self):
+        return _('Transaction')
+    
     def delete_transaction(self):
         user = self.user
 
