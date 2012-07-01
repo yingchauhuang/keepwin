@@ -412,10 +412,9 @@ class UserInfo(models.Model):
 
     def __unicode__(self):
         return u'[%s]  Info' % (self.user.username)
-
-    def description(self):
-        return _('UserInfo')
     
     class Meta:
         app_label = 'askbot'
         db_table = u'userinfo'
+        verbose_name = _('UserInfo')
+        verbose_name_plural = _('UserInfo')
