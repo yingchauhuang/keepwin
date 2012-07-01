@@ -299,6 +299,8 @@ class Post(models.Model):
         app_label = 'askbot'
         db_table = 'askbot_post'
 
+    def description(self):
+        return _('Post')
 
     def parse_post_text(post):
         """typically post has a field to store raw source text

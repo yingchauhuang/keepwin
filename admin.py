@@ -22,6 +22,12 @@ class AnonymousQuestionAdmin(admin.ModelAdmin):
 #class FavoriteQuestionAdmin(admin.ModelAdmin):
 #    """  admin class"""
 
+class PostAdmin(admin.ModelAdmin):
+    """  admin class"""
+    list_display = ('thread','author','post_type','text','locked','last_edited_at')
+    date_hierarchy = 'last_edited_at'
+    list_filter = ('author',)
+    
 class PostRevisionAdmin(admin.ModelAdmin):
     """  admin class"""
 
@@ -46,7 +52,8 @@ class UserInforAdmin(admin.ModelAdmin):
     #list_filter = ['trans_at']
     list_display = ('user','gender','education','income','occupational','template','mobile','mobile_verified','address')
     list_filter = ('user',)
-admin.site.register(models.Post)
+    
+admin.site.register(models.Post, PostAdmin)
 #admin.site.register(models.Tag, TagAdmin)
 #admin.site.register(models.Vote, VoteAdmin)
 #admin.site.register(models.FavoriteQuestion, FavoriteQuestionAdmin)
