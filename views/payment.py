@@ -25,6 +25,7 @@ from askbot.twmode import twmode as twmodeconst
 from askbot.skins.loaders import render_into_skin, get_template
 from askbot.models.transaction import Transaction
 import logging
+from django.db import models
 #jinja2 template loading enviroment
 
 # used in index page
@@ -138,6 +139,7 @@ def Roturl(request, **kwargs):
                             outcome=0,
                             comment=comment,
                             #question = fake_question,
+							invoice=False,
                             trans_at=datetime.datetime.now(),
                             transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON, #todo: fix magic number
                             balance=user.balance,
@@ -201,6 +203,39 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
+def invoice_confirm(request):
+    """
+    List of Questions, Tagged questions, and Unanswered questions.
+    matching search query or user selection
+    """
+    if request.user.is_anonymous():
+        request.user.message_set.create(message =unicode('<BR>')+ _('You have to login first.')+unicode('<a href="/account/signin/?bext=/">')+_('Login Now')+unicode('</a>'))
+        return HttpResponseRedirect(reverse('index'))
+    try:
+        user=request.user
+        TID = request.POST['TID']
+        invoice = request.POST['invoice']
+        transaction = Transaction.objects.get(id=TID)
+        if transaction != None:
+            if invoice=='yes':
+                transaction.invoice=True
+                transaction.save()
+                data = simplejson.dumps({
+                    'success': True,
+                    'message': _('Set the invoice config')
+                })
+            else:
+                data = simplejson.dumps({
+                    'success': False,
+                    'message': _('Set the invoice config')
+                })
+    except:
+        data = simplejson.dumps({
+                'success': False,
+                'message': _('Set the invoice config Error')
+            })
+    return HttpResponse(data, mimetype = 'application/json')
+
 def confirm(request, amount):
     """
     List of Questions, Tagged questions, and Unanswered questions.
@@ -217,6 +252,7 @@ def confirm(request, amount):
                         outcome=0,
                         comment=comment,
                         #question = fake_question,
+						invoice=False,
                         trans_at=datetime.datetime.now(),
                         transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE, #todo: fix magic number
                         balance=user.balance,

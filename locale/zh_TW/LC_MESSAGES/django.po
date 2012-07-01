@@ -3077,8 +3077,8 @@ msgid "Education Background"
 msgstr "教育程度"
 
 #: deps/django_authopenid/forms.py:158
-msgid "Income"
-msgstr "年收入"
+#msgid "Income"
+#msgstr "年收入"
 
 #: deps/django_authopenid/forms.py:158
 msgid "Occupational"
@@ -7172,3 +7172,67 @@ msgstr "特惠活動"
 #: deps/django_authopenid/forms.py:158
 msgid "SAT44"
 msgstr "以上皆是,其他"
+
+#: models/user.py:264
+#msgid "Gender"
+#msgstr "性別"
+
+#: models/user.py:264
+msgid "Eeducation"
+msgstr "教育程度"
+
+#: models/user.py:264
+#msgid "AnnualIncome"
+#msgstr "年收入"
+
+#: models/user.py:264
+#msgid "Occupational"
+#msgstr "職業"
+
+#: models/user.py:264
+msgid "Template"
+msgstr "版主呈現設定"
+
+#: models/user.py:264
+msgid "Mobile_verified"
+msgstr "完成行動電話認證"
+
+#: models/user.py:264
+msgid "Address"
+msgstr "通訊住址"
+
+#: models/transaction.py:65
+msgid "Income"
+msgstr "收入"
+
+#: models/transaction.py:65
+msgid "Outcome"
+msgstr "支出"
+
+#: models/transaction.py:65
+msgid "Transaction_type"
+msgstr "交易型態"
+
+#: models/transaction.py:65
+msgid "Trans_at"
+msgstr "交易時間"
+
+#: models/transaction.py:65
+msgid "Balance"
+msgstr "帳戶餘額"
+
+#: models/transaction.py:65
+msgid "Question"
+msgstr "文章"
+
+#: models/transaction.py:65
+msgid "Refer"
+msgstr "關聯交易"
+
+#: models/transaction.py:65
+msgid "Comment"
+msgstr "說明"
+
+#: models/transaction.py:65
+msgid "Invoice"
+msgstr "寄送發票"

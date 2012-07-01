@@ -135,7 +135,12 @@ urlpatterns = patterns('',
         r'^%s(?P<amount>\d+)/%s$' % (_('payment/'), _('confirm/')), 
         views.payment.confirm, 
         name='Payment_confirm'
-    ),                 
+    ),
+    url(
+        r'^%s%s$' % (_('payment/'), _('invoiceconfirm/')), 
+        views.payment.invoice_confirm, 
+        name='Payment_invoice_confirm'
+    ),            
     url(
         r'^%s%s$' % (_('questions/'), _('ask/')), 
         views.writers.ask, 

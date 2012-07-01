@@ -409,7 +409,7 @@ class ClassicRegisterForm(SetPasswordForm):
     age = forms.IntegerField(label = _('Age'),initial='30',required=False)
     gender = forms.ChoiceField(label = _('Gender'),choices=USER_GENDER_CHOICES,required=False)
     education = forms.ChoiceField(label = _('Education Background'),choices=USER_EDUCATION_CHOICES,required=False)
-    income = forms.ChoiceField(label = _('Income'),choices=USER_INCOME_CHOICES,required=False)
+    income = forms.ChoiceField(label = _('AnnualIncome'),choices=USER_INCOME_CHOICES,required=False)
     occupational = forms.ChoiceField(label = _('Occupational'),choices=USER_OCCUPATIONAL_CHOICES,required=False)
     SAT1 = forms.BooleanField(label = _('SAT1'), required = False) 
     SAT2 = forms.BooleanField(label = _('SAT2'), required = False) 
