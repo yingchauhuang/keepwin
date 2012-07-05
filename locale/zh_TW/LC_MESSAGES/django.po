@@ -3052,6 +3052,10 @@ msgstr "購買需付費內容"
 msgid "receive the bonus from other people paid for it"
 msgstr "他人購買我的內容"
 
+#: const/__init__.py:316
+msgid "settle the money from keepwin"
+msgstr "靈龜穩賺網結帳"
+
 #: deps/django_authopenid/backends.py:88
 msgid ""
 "Welcome! Please set email address (important!) in your profile and adjust "
@@ -3912,6 +3916,10 @@ msgstr "<em>iBon付款確認. 備註:</em> %(reason)s"
 #: models/transaction
 msgid "<em>ISSUE error. Reason:</em> %(reason)s"
 msgstr "<em>iBon付款錯誤. 備註:</em> %(reason)s"
+
+#: models/transaction
+msgid "<em>Settle Account. Reason:</em> %(reason)s"
+msgstr "<em>系統結帳. 備註:</em> %(reason)s"
 
 #: models/repute.py:142
 #, python-format
@@ -7236,6 +7244,18 @@ msgstr "說明"
 #: models/transaction.py:65
 msgid "Invoice"
 msgstr "寄送發票"
+
+#: models/transaction.py:65
+msgid "is Settled"
+msgstr "完成結帳"
+
+#: models/init.py:1213
+msgid "Settle the user account"
+msgstr "進行戶頭結帳"
+
+#: models/transaction.py:65
+msgid "Settle_at"
+msgstr "結帳時間"
 
 #: models/Post.py:302
 msgid "Post"
