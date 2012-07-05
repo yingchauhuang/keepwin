@@ -5,6 +5,7 @@ import logging
 import hashlib
 import datetime
 import re
+import sys
 import urllib
 from django.db.models import Max
 from django.core.urlresolvers import reverse, NoReverseMatch
@@ -1193,6 +1194,35 @@ def user_retag_question(
         context_object=question,
         timestamp=timestamp
     )
+
+def user_settle_transaction(
+                    self,
+                ):
+    try:
+        transactions = Transaction.objects.filter(user=self,issettled=False).order_by('trans_at')
+        settlebalance=0
+        for tran in transactions:
+            if tran.transaction_type == twmodeconst.TYPE_TRANSACTION_RECEIVE_FROM_CONTENT :
+                settlebalance=settlebalance+tran.income
+            if settlebalance<0 :
+                settlebalance=0
+            tran.issettled=True
+            tran.settle_at=datetime.datetime.now()
+            tran.save()
+        if (settlebalance>0):
+            comment=_('Settle the user account')+unicode(settlebalance)+_('Dollars')
+            self.add_user_transaction(
+                                        user = self,
+                                        income =0,
+                                        outcome =settlebalance,
+                                        transaction_type=twmodeconst.TYPE_TRANSACTION_SETTLE_FROM_KEEPWIN,
+                                        comment = comment,
+                                        timestamp = datetime.datetime.now(),
+                                    )
+            self.balance=self.balance - settlebalance
+            self.save()
+    except:
+        return
 
 @auto_now_timestamp
 def user_accept_best_answer(
@@ -2446,6 +2476,7 @@ User.add_to_class('restore_post', user_restore_post)
 User.add_to_class('close_question', user_close_question)
 User.add_to_class('reopen_question', user_reopen_question)
 User.add_to_class('accept_best_answer', user_accept_best_answer)
+User.add_to_class('settle_transaction', user_settle_transaction)
 User.add_to_class('unaccept_best_answer', user_unaccept_best_answer)
 User.add_to_class(
     'update_wildcard_tag_selections',
