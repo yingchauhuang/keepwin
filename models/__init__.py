@@ -1219,8 +1219,8 @@ def user_settle_transaction(
                                         comment = comment,
                                         timestamp = datetime.datetime.now(),
                                     )
-            self.balance=self.balance - settlebalance
-            self.save()
+            #self.balance=self.balance - settlebalance
+            #self.save()
     except:
         return
 
