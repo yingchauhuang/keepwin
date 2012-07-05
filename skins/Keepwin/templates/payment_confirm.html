@@ -53,6 +53,21 @@ function check_A(sb){
 	}
 } 
 
+function invoice_check(invoice)
+{
+	if (invoice.checked) 
+	{ 
+		$("#f1 #Address").attr("value","台北市大安區忠孝東路四段76號9樓之1"); 
+		$("#f1 #Address").attr("readonly","readonly");
+		$("#f1 #Address").attr("disabled","disabled");
+	} 
+	else 
+	{
+		$("#f1 #Address").attr("readonly","");
+		$("#f1 #Address").attr("disabled","");
+	}
+}
+
 function check_B(sb){
 	var ch=true
 	if($("#f1 #Shop_id").attr("value")==undefined || $("#f1 #Shop_id").attr("value").length==0){
@@ -166,7 +181,7 @@ function finishinvoiceconfirm(data)
 <tr style="">                                                     
   <td width="28%" align="right" align="right" BGCOLOR="#CCFFCC" height="23"><font size="2">發票地址：</font></td>                                                     
   <td width="72%" BGCOLOR="#CCFFCC" height="23"><input  type="text" name="Address" id="Address" size="47" value="{{user.address}}">
-  <input type="checkbox" name="invoice" id="invoice" value="yes">我要將發票捐贈給朝曦靈龜慈善協會<br>(若無填寫完整者，發票將逕行捐贈給社團法人朝曦靈龜慈善協會)</td>                                                    
+  <input type="checkbox" name="invoice" id="invoice" value="yes"  onClick=invoice_check(this) >我要將發票捐贈給朝曦靈龜慈善協會<br>(若無填寫完整者，發票將逕行捐贈給社團法人朝曦靈龜慈善協會)</td>                                                    
 </tr>                                             
 													
 <tr style="">                                                    
