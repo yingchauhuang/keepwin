@@ -144,7 +144,8 @@ class ThreadManager(models.Manager):
         """
         try:
             # TODO: add a possibility to see deleted questions
-            qs = self.filter(posts__post_type='question', posts__deleted=False).order_by('-today_view_count','-last_activity_at') [0:9] # (***) brings `askbot_post` into the SQL query, see the ordering section below
+            lastweek= datetime.date.today() - datetime.timedelta(days=7)
+            qs = self.filter(posts__post_type='question', posts__deleted=False,posts__added_at__gte=lastweek).order_by('-today_view_count','-last_activity_at') [0:9] # (***) brings `askbot_post` into the SQL query, see the ordering section below
             qs = qs.only('id', 'title', 'view_count', 'answer_count', 'last_activity_at', 'last_activity_by', 'closed', 'tagnames', 'accepted_answer')
         except:
             logging.debug(sys.exc_info()[0])
