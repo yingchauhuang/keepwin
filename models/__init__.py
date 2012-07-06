@@ -2316,6 +2316,8 @@ def user_update_NewestQ(user):
         user.NewestQ = (Post.objects.filter(author=user,deleted=0,post_type='question').order_by('-added_at')[0]).thread
         user.save()
     except:
+        user.NewestQ = None
+        user.save()
         return
     
 def user_recompute_Balance(user):
