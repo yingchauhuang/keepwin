@@ -500,7 +500,7 @@ class Post(models.Model):
         #todo: this is handled in signal because models for posts
         #are too spread out
         #remove by YC for performance 2012/06/01
-        #from askbot.models import signals
+        from askbot.models import signals
         signals.post_updated.send(
             post = post,
             updated_by = author,
