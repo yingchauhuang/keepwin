@@ -1783,7 +1783,7 @@ var socialSharing = function(){
                     if(!window.open(url, "sharing", params)){
                         window.location.href=url;
                     }
-                }
+                },
 				default: function(data){
                     url = url.replace('{URL}', URL);
                 },
