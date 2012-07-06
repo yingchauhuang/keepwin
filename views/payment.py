@@ -121,7 +121,7 @@ def Roturl(request, **kwargs):
                     lasttrans.save()
                     issue.transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM 
                     issue.save()
-                    return HttpResponse("Success!", content_type="text/plain")
+                    return HttpResponse("123", content_type="text/plain")
             elif (issue!=None):
                 user= User.objects.get(pk=uid)
                 new_balance = user.balance + int(Amount)
@@ -150,7 +150,7 @@ def Roturl(request, **kwargs):
                 transaction.save()
                 issue.transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM 
                 issue.save()
-                return HttpResponse("Success!", content_type="text/plain")
+                return HttpResponse("123", content_type="text/plain")
             else:
                 logging.warning('smilepayform warning error Date_id:%s Roturl : %s' % (Data_id,request.POST))
         else:

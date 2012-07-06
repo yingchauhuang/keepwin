@@ -1186,7 +1186,9 @@ EditCommentForm.prototype.getCounterUpdater = function(){
         if (length === 0){
             var feedback = interpolate(gettext('%s title minchars'), [chars]);
         }
-        else if (length < 10){
+        //Modify by YC 
+		//else if (length < 10){
+		else if (length < 0){
             var feedback = interpolate(gettext('enter %s more characters'), [chars - length]);
         }
         else {
@@ -1323,7 +1325,9 @@ EditCommentForm.prototype.getSaveHandler = function(){
     var me = this;
     return function(){
         var text = me._textarea.val();
-        if (text.length < 10){
+		//Modify by YC 
+        //if (text.length < 10){
+		if (text.length < 0){
             me.focus();
             return false;
         }
