@@ -1784,6 +1784,9 @@ var socialSharing = function(){
                         window.location.href=url;
                     }
                 }
+				default: function(data){
+                    url = url.replace('{URL}', URL);
+                },
             });
         }
     }
