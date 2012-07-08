@@ -64,6 +64,11 @@ class RSSAdmin(admin.ModelAdmin):
     list_display = ('title','description','tagnames','imported')
     search_fields  = ('title','description')
     actions = None
+
+def fetch_article(modeladmin, request, queryset):
+    queryset.update(status='p')
+fetch_article.short_description = ""
+
 class RSSSourceAdmin(admin.ModelAdmin):
     """  admin RSS class"""
     #list_filter = ['trans_at']
