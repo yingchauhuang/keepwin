@@ -281,7 +281,7 @@
 	hs.graphicsDir = "/m/common/media/js/graphics/";
 	hs.wrapperClassName = 'wide-border';
 	$('div.question-body img').parent().append('<a href="'+$('div.question-body img').attr('src')+'" class="highslide" onclick="return hs.expand(this)" width=100% height=auto><img src="'+$('div.question-body img').attr('src')+'" alt="Highslide JS" title="{% trans %}Click to enlarge{% endtrans %}" /></a>');
-	$('div.question-body img:not(div.question-body a img)').hide()
+	//$('div.question-body img:not(div.question-body a img)').hide()
 	</script>
 
 {% endblock %}
