@@ -723,7 +723,7 @@ def question(request, id):#refactor - long subroutine. display question body, an
     answers = answers.select_related('thread', 'author', 'last_edited_by')
     #Add by YC for keepwin special requirement 2012/7/8
     #if answer_sort_method==None or answer_sort_method=='':
-        answer_sort_method='latest'
+    answer_sort_method='latest'
         
     answers = answers.order_by({"latest":"-added_at", "oldest":"added_at", "votes":"-score" }[answer_sort_method])
     answers = list(answers)
