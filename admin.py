@@ -58,6 +58,17 @@ class UserInforAdmin(admin.ModelAdmin):
     list_display = ('user','gender','education','income','occupational','template','mobile','mobile_verified','address')
     search_fields  = ('user__username',)
     actions = None
+class RSSAdmin(admin.ModelAdmin):
+    """  admin RSS class"""
+    #list_filter = ['trans_at']
+    list_display = ('title','description','tagnames','imported')
+    search_fields  = ('title','description')
+    actions = None
+class RSSSourceAdmin(admin.ModelAdmin):
+    """  admin RSS class"""
+    #list_filter = ['trans_at']
+    list_display = ('name','link','coding','fetchtime')
+    list_filter = ['name']
 admin.site.register(models.Post, PostAdmin)
 #admin.site.register(models.Tag, TagAdmin)
 #admin.site.register(models.Vote, VoteAdmin)
@@ -68,3 +79,5 @@ admin.site.register(models.PostRevision, PostRevisionAdmin)
 #admin.site.register(models.Activity, ActivityAdmin)
 admin.site.register(models.Transaction, TransactionAdmin)
 admin.site.register(models.UserInfo, UserInforAdmin)
+admin.site.register(models.RSS, RSSAdmin)
+admin.site.register(models.RSSSource, RSSSourceAdmin)
