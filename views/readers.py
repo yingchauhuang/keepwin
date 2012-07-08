@@ -721,6 +721,10 @@ def question(request, id):#refactor - long subroutine. display question body, an
     #load answers
     answers = thread.get_answers(user = request.user)
     answers = answers.select_related('thread', 'author', 'last_edited_by')
+    #Add by YC for keepwin special requirement 2012/7/8
+    #if answer_sort_method==None or answer_sort_method=='':
+        answer_sort_method='latest'
+        
     answers = answers.order_by({"latest":"-added_at", "oldest":"added_at", "votes":"-score" }[answer_sort_method])
     answers = list(answers)
     # TODO: Add unit test to catch the bug where precache_comments() is called above (before) reordering the accepted answer to the top
