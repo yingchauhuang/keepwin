@@ -257,6 +257,10 @@ msgstr "您輸入的通行碼不正確 !!!"
 msgid "post a comment"
 msgstr "提出評論"
 
+#: skins\default\templates\question.html:283
+msgid "post a comment"
+msgstr "點擊後圖片放大"
+
 #: skins\default\templates\main_page.html:11
 msgid "Questions"
 msgstr "個看法"

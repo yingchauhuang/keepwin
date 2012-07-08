@@ -76,7 +76,7 @@ class Transaction(models.Model):
     comment = models.CharField(max_length=128, null=True,verbose_name=_('Comment'))
     invoice = models. NullBooleanField(default=False,verbose_name=_('Invoice'))
     issettled = models. NullBooleanField(default=False,verbose_name=_('is Settled'))
-    settle_at = models.DateTimeField(default=datetime.datetime.now,verbose_name=_('Settle_at'))
+    settle_at = models.DateTimeField(default=None,verbose_name=_('Settle_at'))
     objects = TransactionManager()
 
 

@@ -8,14 +8,38 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Changing field 'Transaction.invoice'
-        db.alter_column(u'transaction', 'invoice', self.gf('django.db.models.fields.NullBooleanField')(null=True))
+        # Adding field 'Thread.today_view_count'
+        db.add_column('askbot_thread', 'today_view_count', self.gf('django.db.models.fields.PositiveIntegerField')(default=0), keep_default=False)
+
+        # Adding field 'Transaction.refer'
+        db.add_column(u'transaction', 'refer', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['askbot.Transaction'], null=True), keep_default=False)
+
+        # Adding field 'Transaction.invoice'
+        db.add_column(u'transaction', 'invoice', self.gf('django.db.models.fields.NullBooleanField')(default=False, null=True, blank=True), keep_default=False)
+
+        # Adding field 'Transaction.issettled'
+        db.add_column(u'transaction', 'issettled', self.gf('django.db.models.fields.NullBooleanField')(default=False, null=True, blank=True), keep_default=False)
+
+        # Adding field 'Transaction.settle_at'
+        db.add_column(u'transaction', 'settle_at', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now), keep_default=False)
 
 
     def backwards(self, orm):
         
-        # Changing field 'Transaction.invoice'
-        db.alter_column(u'transaction', 'invoice', self.gf('django.db.models.fields.BooleanField')())
+        # Deleting field 'Thread.today_view_count'
+        db.delete_column('askbot_thread', 'today_view_count')
+
+        # Deleting field 'Transaction.refer'
+        db.delete_column(u'transaction', 'refer_id')
+
+        # Deleting field 'Transaction.invoice'
+        db.delete_column(u'transaction', 'invoice')
+
+        # Deleting field 'Transaction.issettled'
+        db.delete_column(u'transaction', 'issettled')
+
+        # Deleting field 'Transaction.settle_at'
+        db.delete_column(u'transaction', 'settle_at')
 
 
     models = {
@@ -235,9 +259,11 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'income': ('django.db.models.fields.DecimalField', [], {'default': '0', 'max_digits': '6', 'decimal_places': '2'}),
             'invoice': ('django.db.models.fields.NullBooleanField', [], {'default': 'False', 'null': 'True', 'blank': 'True'}),
+            'issettled': ('django.db.models.fields.NullBooleanField', [], {'default': 'False', 'null': 'True', 'blank': 'True'}),
             'outcome': ('django.db.models.fields.DecimalField', [], {'default': '0', 'max_digits': '6', 'decimal_places': '2'}),
             'question': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['askbot.Post']", 'null': 'True'}),
             'refer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['askbot.Transaction']", 'null': 'True'}),
+            'settle_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'trans_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'transaction_type': ('django.db.models.fields.SmallIntegerField', [], {}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})

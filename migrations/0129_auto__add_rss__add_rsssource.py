@@ -8,20 +8,39 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding field 'Transaction.issettled'
-        db.add_column(u'transaction', 'issettled', self.gf('django.db.models.fields.NullBooleanField')(default=False, null=True, blank=True), keep_default=False)
+        # Adding model 'RSS'
+        db.create_table(u'RSS', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('title', self.gf('django.db.models.fields.CharField')(max_length=180)),
+            ('link', self.gf('django.db.models.fields.CharField')(max_length=180)),
+            ('tagnames', self.gf('django.db.models.fields.CharField')(max_length=125)),
+            ('guid', self.gf('django.db.models.fields.CharField')(max_length=360)),
+            ('pubDate', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
+            ('description', self.gf('django.db.models.fields.TextField')(null=True)),
+            ('imported', self.gf('django.db.models.fields.NullBooleanField')(default=False, null=True, blank=True)),
+        ))
+        db.send_create_signal('askbot', ['RSS'])
 
-        # Adding field 'Transaction.settle_at'
-        db.add_column(u'transaction', 'settle_at', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now), keep_default=False)
+        # Adding model 'RSSSource'
+        db.create_table(u'RSSSource', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=64)),
+            ('link', self.gf('django.db.models.fields.CharField')(max_length=180)),
+            ('coding', self.gf('django.db.models.fields.CharField')(max_length=16)),
+            ('fetchtime', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
+            ('numbers', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
+            ('success', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
+        ))
+        db.send_create_signal('askbot', ['RSSSource'])
 
 
     def backwards(self, orm):
         
-        # Deleting field 'Transaction.issettled'
-        db.delete_column(u'transaction', 'issettled')
+        # Deleting model 'RSS'
+        db.delete_table(u'RSS')
 
-        # Deleting field 'Transaction.settle_at'
-        db.delete_column(u'transaction', 'settle_at')
+        # Deleting model 'RSSSource'
+        db.delete_table(u'RSSSource')
 
 
     models = {
@@ -189,6 +208,27 @@ class Migration(SchemaMigration):
             'reputation_type': ('django.db.models.fields.SmallIntegerField', [], {}),
             'reputed_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+        },
+        'askbot.rss': {
+            'Meta': {'object_name': 'RSS', 'db_table': "u'RSS'"},
+            'description': ('django.db.models.fields.TextField', [], {'null': 'True'}),
+            'guid': ('django.db.models.fields.CharField', [], {'max_length': '360'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'imported': ('django.db.models.fields.NullBooleanField', [], {'default': 'False', 'null': 'True', 'blank': 'True'}),
+            'link': ('django.db.models.fields.CharField', [], {'max_length': '180'}),
+            'pubDate': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'tagnames': ('django.db.models.fields.CharField', [], {'max_length': '125'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '180'})
+        },
+        'askbot.rsssource': {
+            'Meta': {'object_name': 'RSSSource', 'db_table': "u'RSSSource'"},
+            'coding': ('django.db.models.fields.CharField', [], {'max_length': '16'}),
+            'fetchtime': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'link': ('django.db.models.fields.CharField', [], {'max_length': '180'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '64'}),
+            'numbers': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
+            'success': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
         },
         'askbot.tag': {
             'Meta': {'ordering': "('-used_count', 'name')", 'object_name': 'Tag', 'db_table': "u'tag'"},
