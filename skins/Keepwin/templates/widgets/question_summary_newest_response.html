@@ -15,7 +15,11 @@
 		{% if question.post_type=='question' %}
 			<p>{{ thread.subtitle|escape }}...</p>
 		{% else %}
-			<p>{{ question.summary|escape }}...</p>
+			{% if question.is_private %}
+				<p>{% trans %}This is a private answer{% endtrans %}</p>
+			{% else %}
+				<p>{{ question.summary|escape }}...</p>
+			{% endif %}
 		{% endif %}
 		{{ question.added_at|date}}
 		{{thread.view_count}}{% trans %}views{% endtrans %}
