@@ -10,6 +10,8 @@ exactly match name of the model used in the project
 from django.contrib import admin
 from askbot import models
 from django.utils.translation import ugettext as _
+from django.contrib.contenttypes.models import ContentType
+from django.http import HttpResponseRedirect
 
 class AnonymousQuestionAdmin(admin.ModelAdmin):
     """AnonymousQuestion admin class"""
@@ -31,8 +33,8 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('author','post_type','thread','locked','last_edited_at')
     date_hierarchy = 'last_edited_at'
     search_fields  = ('author__username','text')
-    actions = None
     actions = [mark_deleted]
+
 class PostRevisionAdmin(admin.ModelAdmin):
     """  admin class"""
 
@@ -66,14 +68,19 @@ class RSSAdmin(admin.ModelAdmin):
     actions = None
 
 def fetch_article(modeladmin, request, queryset):
-    queryset.update(status='p')
-fetch_article.short_description = ""
+    selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
+    ct = ContentType.objects.get_for_model(queryset.model)
+    return HttpResponseRedirect("/export/?ct=%s&ids=%s" % (ct.pk, ",".join(selected)))
+fetch_article.short_description = _('Fetch Article')
 
 class RSSSourceAdmin(admin.ModelAdmin):
     """  admin RSS class"""
     #list_filter = ['trans_at']
     list_display = ('name','link','coding','fetchtime')
     list_filter = ['name']
+    actions = [fetch_article]
+
+admin.site.disable_action('delete_selected')    
 admin.site.register(models.Post, PostAdmin)
 #admin.site.register(models.Tag, TagAdmin)
 #admin.site.register(models.Vote, VoteAdmin)
