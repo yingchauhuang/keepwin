@@ -130,7 +130,7 @@ User.add_to_class(
 )
 
 User.add_to_class('new_response_count', models.IntegerField(default=0))
-User.add_to_class('receive_points', models.IntegerField(default=0))
+User.add_to_class('receive_points',models.DecimalField(default=0,max_digits=6, decimal_places=2,verbose_name=_('Receive_Points')))
 User.add_to_class('seen_response_count', models.IntegerField(default=0))
 User.add_to_class('consecutive_days_visit_count', models.IntegerField(default=0))
 
