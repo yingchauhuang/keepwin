@@ -7,6 +7,7 @@ from askbot.views import commands
 from askbot.views import users
 from askbot.views import meta
 from askbot.views import payment
+from askbot.views import editor
 from django.conf import settings
 
 if 'avatar' in settings.INSTALLED_APPS:

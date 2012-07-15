@@ -1,0 +1,24 @@
+{% extends "two_column_body.html" %}
+<!-- question.html -->
+{% block title %}{% endblock %}
+{% block meta_description %}
+{% endblock %}
+{% block keywords %}{% endblock %}
+{% block forestyle %}{% endblock %}
+{% block forejs %}{% endblock %}
+{% block content %}
+<table>
+	{% for rss in RSSs %}
+    <tr>
+        {# ==== START: RSS/rss_card.html ==== #}
+        {% include "RSS/rss_card.html" %}
+        {# ==== END: RSS/rss_card.html ==== #}
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+{% block endjs %}
+{% endblock %}
