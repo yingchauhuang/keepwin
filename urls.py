@@ -107,6 +107,11 @@ urlpatterns = patterns('',
         name = 'api_get_questions'
     ),
     url(
+        r'^%s%s$' % (_('editor/'), _('rss/')), 
+        views.editor.rss, 
+        name='editor_rss'
+    ),
+    url(
         r'^%s%s$' % (_('payment/'), _('ad_model/')), 
         views.payment.ad_model, 
         name='ad_model'

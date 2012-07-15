@@ -130,6 +130,7 @@ User.add_to_class(
 )
 
 User.add_to_class('new_response_count', models.IntegerField(default=0))
+User.add_to_class('receive_points', models.IntegerField(default=0))
 User.add_to_class('seen_response_count', models.IntegerField(default=0))
 User.add_to_class('consecutive_days_visit_count', models.IntegerField(default=0))
 
@@ -1903,6 +1904,7 @@ def user_add_user_transaction(  self,
         outcome = user.balance + income
 
     user.balance = new_balance
+    user.receive_points = user.receive_points + income
     user.save()
 
     transaction = Transaction(
