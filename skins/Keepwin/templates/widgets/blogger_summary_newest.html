@@ -12,7 +12,7 @@
 		<span class="number">0</span><br>
 	{% endif %}
 	<img alt="" src={{'/images/point.gif'|media}} class="valignmid padding_right">
-	<span class="number">{{user.receive_points|default_if_none:0}}</span><br>
+	<span class="number">{{user.receive_points}}</span><br>
 	{% if question %}
 		{% if question.deleted==1 %}
 			<h4><p>文章已刪除</p></h4>
