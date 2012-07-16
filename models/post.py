@@ -500,16 +500,16 @@ class Post(models.Model):
         #todo: this is handled in signal because models for posts
         #are too spread out
         #remove by YC for performance 2012/06/01
-        from askbot.models import signals
-        signals.post_updated.send(
-            post = post,
-            updated_by = author,
-            newly_mentioned_users = newly_mentioned_users,
-            timestamp = timestamp,
-            created = created,
-            diff = diff,
-            sender = post.__class__
-        )
+        #from askbot.models import signals
+        #signals.post_updated.send(
+        #    post = post,
+        #    updated_by = author,
+        #    newly_mentioned_users = newly_mentioned_users,
+        #    timestamp = timestamp,
+        #    created = created,
+        #    diff = diff,
+        #    sender = post.__class__
+        #)
 
         # for google SEO close by YC
         #try:
