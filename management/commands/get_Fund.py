@@ -35,7 +35,7 @@ class Command(BaseCommand):
 
         if options['URL'] is None:
             raise CommandError('the --URL argument is required')
-        
+        URL = options['URL']
 
         try:
             tree = etree.parse(URL)
