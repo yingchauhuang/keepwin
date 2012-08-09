@@ -1925,8 +1925,12 @@ def user_add_user_transaction(  self,
                         question_id=QID,
                         refer=refer
                     )
-
+        
     transaction.save()
+    if transaction_type==twmodeconst.TYPE_TRANSACTION_PAID_FOR_CONTENT and refer==None:
+        transaction.refer=transaction
+        transaction.save()
+        #transaction.refer_id=transaction.id
     return transaction 
 
 def user_can_post_user(self):

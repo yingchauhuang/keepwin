@@ -12,6 +12,9 @@ from askbot import models
 from django.utils.translation import ugettext as _
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect
+from askbot.models.transaction import Transaction
+#from django.contrib.admin.filterspecs import FilterSpec, ChoicesFilterSpec,DateFieldFilterSpec
+from django.db import connection
 
 class AnonymousQuestionAdmin(admin.ModelAdmin):
     """AnonymousQuestion admin class"""
@@ -52,8 +55,27 @@ class TransactionAdmin(admin.ModelAdmin):
     #list_filter = ['trans_at']
     list_display = ('question','user', 'trans_at', 'transaction_type','income','outcome','balance','comment')
     date_hierarchy = 'trans_at'
+    list_filter = ('transaction_type',)
     search_fields  = ('user__username','question__text')
     actions = None
+    
+class TransactionCheckAdmin(admin.ModelAdmin):
+    """  admin class"""
+    #list_filter = ['trans_at']
+    list_display = ('question','user', 'trans_at', 'transaction_type','income','outcome','balance','comment')
+    #date_hierarchy = 'trans_at'
+    def queryset(self, request):
+        qs = super(TransactionCheckAdmin, self).queryset(request)
+        cursor = connection.cursor()
+        cursor.execute("select refer_id from (select refer_id,sum(outcome) as outcome,sum(income) as income from transaction where transaction_type in (20,10) and issettled!=True group by refer_id) as t where t.income!=t.outcome and refer_id is not null;")
+        unbalance_question = list()
+        unbalance_question_result = cursor.fetchall()
+        for row in unbalance_question_result:
+            unbalance_question.append(row[0])
+        return qs.filter(refer__in=unbalance_question)
+    #search_fields  = ('user__username','question__text')
+    #actions = None
+    
 class UserInforAdmin(admin.ModelAdmin):
     """  admin class"""
     #list_filter = ['trans_at']
@@ -90,6 +112,7 @@ admin.site.register(models.PostRevision, PostRevisionAdmin)
 #admin.site.register(models.Repute, ReputeAdmin)
 #admin.site.register(models.Activity, ActivityAdmin)
 admin.site.register(models.Transaction, TransactionAdmin)
+#admin.site.register(models.Transaction, TransactionCheckAdmin)
 admin.site.register(models.UserInfo, UserInforAdmin)
 admin.site.register(models.RSS, RSSAdmin)
 admin.site.register(models.RSSSource, RSSSourceAdmin)
