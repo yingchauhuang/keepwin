@@ -61,10 +61,7 @@
     {% include "main_page/sidebar.html" %}
 {% endblock %}
 {% block endjs %}
-	<!--  Begin jCarousel Javascript  -->
-	<script src="{{"/js/jquery.jcarousel.js"|media}}"></script>
-	<link href="{{"/style/skin.css"|media }}" rel="stylesheet" type="text/css" />
-	
+		
 	{% if user_messages %}
 		<script src="{{"/js/jquery.ui.core.js"|media}}"></script>
 		<script src="{{"/js/jquery.ui.widget.js"|media}}"></script>
@@ -100,6 +97,9 @@
 			$('#System-Message').hide().css({"position":"relative","left":"inherit"}).fadeIn(1500);
 		</script>
 	{% endif %}
+	<!--  Begin jCarousel Javascript  -->
+	<script src="{{"/js/jquery.jcarousel.min.js"|media}}"></script>
+	<link href="{{"/style/skin.css"|media }}" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
 	function mycarousel_initCallback(carousel)
 	{
@@ -121,7 +121,8 @@
 		//$('#wrap').show();
 	};
 
-	jQuery(document).ready(function() {
+	//jQuery(document)
+	$(document).ready(function() {
 			jQuery('#mycarousel').jcarousel({
 			auto: 5,
 			wrap: 'circular',

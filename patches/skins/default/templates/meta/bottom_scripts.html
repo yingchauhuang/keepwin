@@ -30,14 +30,6 @@
     askbot['urls']['user_signin'] = '{{ settings.LOGIN_URL }}';
     askbot['settings']['static_url'] = '{{ settings.STATIC_URL }}';
 </script>
-<script 
-    type="text/javascript"
-    {% if settings.DEBUG %}
-        src="{{"/js/jquery-1.4.3.js"|media}}"
-    {% else %}
-        src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"
-    {% endif %}
-></script>
 <!-- History.js --> 
 <script type='text/javascript' src="{{"/js/jquery.history.js"|media }}"></script>
 <script type='text/javascript' src="{{"/js/utils.js"|media }}"></script>
@@ -76,39 +68,6 @@ function init()
 </script>
 <!-- End datepicker Javascript -->
 
-<!--  Begin jCarousel Javascript  -->
-<script src="{{"/js/jquery.jcarousel.js"|media}}"></script>
-<link href="{{"/style/skin.css"|media }}" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-
-function mycarousel_initCallback(carousel)
-{
-    // Disable autoscrolling if the user clicks the prev or next button.
-    carousel.buttonNext.bind('click', function() {
-        carousel.startAuto(0);
-    });
-
-    carousel.buttonPrev.bind('click', function() {
-        carousel.startAuto(0);
-    });
-
-    // Pause autoscrolling if the user moves with the cursor over the clip.
-    carousel.clip.hover(function() {
-        carousel.stopAuto();
-    }, function() {
-        carousel.startAuto();
-    });
-};
-
-jQuery(document).ready(function() {
-	    jQuery('#mycarousel').jcarousel({
-        auto: 2,
-        wrap: 'last',
-        initCallback: mycarousel_initCallback
-    });
-});
-</script>
-<!--  End jCarousel Javascript  -->
 
 {% if settings.ENABLE_MATHJAX %}
     <script type='text/javascript' src="{{settings.MATHJAX_BASE_URL}}/MathJax.js">

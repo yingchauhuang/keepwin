@@ -44,7 +44,8 @@ class TransactionManager(models.Manager):
             relate_trans=Transaction.objects.filter(refer=delete_trans)
             for relate_tran in relate_trans:
                 relate_tran.delete_transaction()
-            delete_trans.delete_transaction()
+            #becasue the original PAID transaction's refer is self. remove delete_trans.delete_transaction() prevent delete twice
+            #delete_trans.delete_transaction()
             
     def get_user_by_transactionID(self,tid):
         if ((tid is not None)):
