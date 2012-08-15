@@ -1,0 +1,58 @@
+{% extends "user_profile/user.html" %}
+<!-- user_settlement.html -->
+{% block profilesection %}
+    {% trans %}Transaction{% endtrans %}
+{% endblock %}
+{% block usercontent %}
+        <h3>{% trans %}settlement{% endtrans %}</h3>
+		<h2>{{ message}}</h2>
+		<form method="post">{% csrf_token %}
+			<input type="hidden" name="sort" value="transaction"/>
+			<table>
+				<tr>
+					<td><label for="id_beginDate">{% trans %}From{% endtrans %}</label></td>
+					<td>{{ settletransaction_form.SettleDate}}</td>
+					<td>{% if settletransaction_form.SettleDate.errors %}
+							<p class="error">{{settletransaction_form.SettleDate.errors|join(', ')}}</p>
+						{% endif %}
+					</td>
+					<td cellspacing="3"><input type="ubmit" class="submit" name="settlement" value="{% trans %}Query{% endtrans %}" /></td>
+				</td>
+			</table>
+		</form>
+					
+{% endblock %}
+{% block userjs %}
+	<!-- Begin datepicker Javascript -->
+	<script src="{{"/js/jquery.ui.core.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.widget.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.datepicker.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.datepicker-zh-TW.js"|media}}"></script>
+	<link href="{{"/style/jquery.ui.datepicker.css"|media }}" rel="stylesheet" type="text/css" />
+	<link href="{{"/style/jquery.ui.theme.css"|media }}" rel="stylesheet" type="text/css" />
+	<link href="{{"/style/datepicker.css"|media }}" rel="stylesheet" type="text/css" />
+	<script>
+	$().ready(init);
+	function init()
+	{
+		$( "input#id_beginDate, input#id_endDate" ).datepicker( "option", "zh-TW");
+		$( "input#id_beginDate, input#id_endDate" ).datepicker( "option", "dateFormat", "YYYY/mm/dd" );
+		var dates = $( "input#id_beginDate, input#id_endDate" ).datepicker({
+			defaultDate: "+1w",
+			changeMonth: true,
+			showButtonPanel: true,
+			numberOfMonths: 1,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "id_beginDate" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+	}
+	</script>
+	
+{% endblock %}<!-- end user_settlement.html -->

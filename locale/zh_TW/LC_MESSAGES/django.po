@@ -258,7 +258,7 @@ msgid "post a comment"
 msgstr "提出評論"
 
 #: skins\default\templates\question.html:283
-msgid "post a comment"
+msgid "Click to enlarge"
 msgstr "點擊後圖片放大"
 
 #: skins\default\templates\main_page.html:11
@@ -6371,7 +6371,31 @@ msgstr "新增加交易已改變使用者帳戶餘額"
 
 #: skins/default/templates/user_profile/user_tabs.html:58
 msgid "add transaction"
-msgstr "調整使用者帳戶餘額"
+msgstr "調整帳戶"
+
+#: skins/default/templates/user_profile/user_tabs.html:58
+msgid "settlement"
+msgstr "結帳"
+
+#: skins/default/templates/user_profile/user_tabs.html:56
+msgid "settlement and generate invoice"
+msgstr "結帳交易並產生相對應發票"
+
+#: skins/default/templates/user_profile/user_tabs.html:58
+msgid "rollback transaction"
+msgstr "交易回沖"
+
+#: skins/default/templates/user_profile/user_tabs.html:56
+msgid "rollback transaction and modify balance"
+msgstr "結帳交易回沖及自動調整帳戶餘額"
+
+#: skins/default/templates/user_profile/user_tabs.html:58
+msgid "transaction checking"
+msgstr "交易檢覈"
+
+#: skins/default/templates/user_profile/user_tabs.html:56
+msgid "transaction checking before settlement"
+msgstr "結帳前交易帳務檢覈"
 
 #: skins/default/templates/user_profile/user_votes.html:4
 msgid "votes"

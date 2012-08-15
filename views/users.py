@@ -768,8 +768,8 @@ def user_stats_vip(request, user, context):
     # Questions
     #
     questions = user.posts.get_questions().filter(**question_filter).\
-                    order_by('-score', '-thread__last_activity_at').\
-                    select_related('thread', 'thread__last_activity_by')[:100]
+                    order_by('-added_at','-score').\
+                    select_related('thread', 'added_at')[:100]
 
     #added this if to avoid another query if questions is less than 100
     if len(questions) < 100:
@@ -1345,6 +1345,88 @@ def user_transaction(request, user, context):
     context.update(data)
     return render_into_skin('user_profile/user_transaction.html', context, request)
 
+def user_settlement(request, user, context):
+    """user settlement
+    """
+    settletransaction_form = forms.SettleTransactionForm()
+    message=''
+    if request.method == 'POST':
+        if 'settlement' in request.POST:
+            settletransaction_form = forms.SettleTransactionForm(request.POST)
+            if settletransaction_form.is_valid():
+                settledate=settletransaction_form.cleaned_data['SettleDate'] 
+            else:
+                #message=query_trans_form.errors
+                message=_('The Data you input have some errors. Please re-fill the data carefully')
+                transactions = None
+    data = {
+        'active_tab': 'users',
+        'page_class': 'user-profile-page',
+        'tab_name': 'moderate user role',
+        'tab_description': _('moderate this user'),
+        'page_title': _('moderate user role'),
+        'settletransaction_form': settletransaction_form,
+        'message': message
+    }
+    context.update(data)
+    return render_into_skin('user_profile/user_settlement.html', context, request)
+
+def user_rollback_transaction(request, user, context):
+    """user rollback_transaction
+    """
+    rollback_transaction_form= forms.RollbackTransactionForm()
+    message=''
+    if request.method == 'POST':
+        if 'rollback_transaction' in request.POST:
+            rollback_transaction_form = forms.RollbackTransactionForm(request.POST)
+            if urollback_transaction_form.is_valid():
+                subject.set_status( rollback_transaction_form.cleaned_data['transaction_id'] )
+           
+    data = {
+        'active_tab': 'users',
+        'page_class': 'user-profile-page',
+        'tab_name': 'moderate user role',
+        'tab_description': _('moderate this user'),
+        'page_title': _('moderate user role'),
+        'rollback_transaction_form': rollback_transaction_form,
+        'message': message
+    }
+    context.update(data)
+    return render_into_skin('user_profile/user_rollback_transaction.html', context, request)
+
+def user_transaction_checking(request, user, context):
+    """transaction_checking
+    """
+    query_trans_form = forms.QueryTransactionForm()
+    message=''
+    if request.method == 'POST':
+        if 'transaction_checking' in request.POST:
+            query_trans_form = forms.QueryTransactionForm(request.POST)
+            if query_trans_form.is_valid():
+                beginDate=query_trans_form.cleaned_data['beginDate'] 
+                endDate=query_trans_form.cleaned_data['endDate'] 
+                transactions = models.Transaction.objects.filter(user=user,trans_at__gte=beginDate-datetime.timedelta(days=1) ,trans_at__lte=endDate+datetime.timedelta(days=1) ).select_related('question', 'question__thread', 'user').order_by('-trans_at')
+
+            else:
+                #message=query_trans_form.errors
+                message=_('The Data you input have some errors. Please re-fill the data carefully')
+                transactions = None
+    else:
+        message=''
+        transactions = None
+    data = {
+        'active_tab':'users',
+        'page_class': 'user-profile-page',
+        'tab_name': 'transaction',
+        'tab_description': _('user balance'),
+        'page_title': _('profile - user balance'),
+        'transactions': transactions,
+        'query_trans_form': query_trans_form,
+        'message':message,
+    }
+    context.update(data)
+    return render_into_skin('user_profile/user_transaction_checking.html', context, request)
+
 
 def user_favorites(request, user, context):
     favorite_threads = user.user_favorite_questions.values_list('thread', flat=True)
@@ -1431,6 +1513,9 @@ USER_VIEW_CALL_TABLE = {
     'email_subscriptions': user_email_subscriptions,
     'moderation': user_moderate,
     'addtransaction': user_add_transaction,
+    'settlement': user_settlement,
+    'rollback_transaction': user_rollback_transaction,
+    'transaction_checking': user_transaction_checking,
     'layout': user_layout,
 }
 #todo: rename this function - variable named user is everywhere

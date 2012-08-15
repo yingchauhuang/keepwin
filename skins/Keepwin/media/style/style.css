@@ -45,10 +45,10 @@ border-radius: 10px;
 .newest_response_wrap
 {
 background: #F0F6F9;
-height:435px;
-border: 1px solid #346F97;
+height:500px;
+/*border: 1px solid #346F97;
 margin: 3px 0px 4px 0px;
-border-radius: 10px;
+border-radius: 10px; */
 }
 div {
   margin: 0 auto;
@@ -3739,7 +3739,7 @@ margin: 0 10px 0 0;}
 }
 #index-category .category {
 	float:left;
-	width:726px;
+	width:730px;
 	background:#fff;
 	border:1px solid #ccc;
 }
@@ -3792,10 +3792,10 @@ margin: 0 10px 0 0;}
 	height:160px;
 	float:left;
 	clear:none;
-	margin:0px 0 0px 0px;
+	margin:0px 0px 0px 1px;
 	display:block;
 	border:8px solid #ccc;
-	border-width:0 1px 1px;
+	border-width:1px 1px;
 	background:white;
 	padding-bottom:0px;
 	overflow:hidden;
