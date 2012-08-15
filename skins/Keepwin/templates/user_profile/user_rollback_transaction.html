@@ -1,0 +1,18 @@
+{% extends "user_profile/user.html" %}
+<!-- user_rollback_transaction.html -->
+{% block profilesection %}
+    {% trans %}moderation{% endtrans %}
+{% endblock %}
+{% block usercontent %}
+    <h3>{% trans %}rollback transaction{% endtrans %}
+    </h3>
+    <form method="post">{% csrf_token %}
+        <input type="hidden" name="sort" value="moderate"/>
+        <table class="form-as-table">
+        {{ rollback_transaction_form.as_table() }}
+        </table>
+        <p id="id_user_status_info">
+        </p>
+        <input type="submit" class="submit" name="rollback_transaction" value="{% trans %}Save{% endtrans %}" />
+    </form>
+{% endblock %}

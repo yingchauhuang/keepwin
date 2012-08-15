@@ -635,11 +635,30 @@ class SmilePayForm(forms.Form):
         super(SmilePayForm, self).__init__(*arg, **kwarg)
         
 class TransactionConfirmForm(forms.Form):
-    confirm_payment = forms.CharField(label = _('Payment Confirmation'),max_length=2,required=True)
+    confirm_payment = forms.CharField(label = _('Payment Confirmation'),max_length=10,required=True)
     amount = forms.IntegerField(required=True)
     qid = forms.IntegerField(required=True)
     def __init__(self, *arg, **kwarg):
             super(TransactionConfirmForm, self).__init__(*arg, **kwarg)
+
+class RollbackTransactionForm(forms.Form):
+    transaction_id = forms.IntegerField(required=True)
+    def __init__(self, *arg, **kwarg):
+            super(RollbackTransactionForm, self).__init__(*arg, **kwarg)
+            
+class SettleTransactionForm(forms.Form):
+    """Query User transaction record by submitting this form
+    """
+    SettleDate = forms.DateField(
+                                    label=_('Begin Date'),
+                                    help_text=_('for the transaction query begin date, format: DD/MM/YYYY'),
+                                    input_formats=['%Y/%m/%d',],
+                                    required=False,
+                                    initial= (datetime.date.today( ) - datetime.timedelta(days=120)),
+                                    widget=forms.DateInput(format='%Y/%m/%d')
+                                )
+    def __init__(self, *arg, **kwarg):
+            super(SettleTransactionForm, self).__init__(*arg, **kwarg)
             
 class QueryTransactionForm(forms.Form):
     """Query User transaction record by submitting this form

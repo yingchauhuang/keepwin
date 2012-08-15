@@ -65,6 +65,24 @@
             href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=addtransaction"
         ><span>{% trans %}add transaction{% endtrans %}</span></a>
         {% endif %}
+		{% if request.user|can_moderate_user(view_user) %}
+        <a id="settlement" {% if tab_name=="settlement" %}class="on"{% endif %} 
+            title="{% trans %}settlement and generate invoice{% endtrans %}" 
+            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=settlement"
+        ><span>{% trans %}settlement{% endtrans %}</span></a>
+        {% endif %}
+		{% if request.user|can_moderate_user(view_user) %}
+        <a id="rollback_transaction" {% if tab_name=="rollback_transaction" %}class="on"{% endif %} 
+            title="{% trans %}rollback transaction and modify balance{% endtrans %}" 
+            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=rollback_transaction"
+        ><span>{% trans %}rollback transaction{% endtrans %}</span></a>
+        {% endif %}
+		{% if request.user|can_moderate_user(view_user) %}
+        <a id="transaction_checking" {% if tab_name=="transaction_checking" %}class="on"{% endif %} 
+            title="{% trans %}transaction checking before settlement{% endtrans %}" 
+            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=transaction_checking"
+        ><span>{% trans %}transaction checking{% endtrans %}</span></a>
+        {% endif %}
     </div>
 </div>
 <div class="clean"></div>
