@@ -4,8 +4,8 @@
     {% trans %}moderation{% endtrans %}
 {% endblock %}
 {% block usercontent %}
-    <h3>{% trans %}rollback transaction{% endtrans %}
-    </h3>
+    <h3>{% trans %}rollback transaction{% endtrans %}</h3>
+	<h2>{{ message}}</h2>
     <form method="post">{% csrf_token %}
         <input type="hidden" name="sort" value="moderate"/>
         <table class="form-as-table">

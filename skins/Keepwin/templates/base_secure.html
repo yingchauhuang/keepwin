@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- template base.html -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    {% spaceless %}
+    <head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31742535-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+        <title>{% block title %}{% endblock %} - {{ settings.APP_TITLE|escape }}</title>
+        {% include "meta/html_head_meta.html" %}
+        <link rel="shortcut icon" href="{{ settings.SITE_FAVICON|media }}" />
+        {% include "meta/html_head_stylesheets.html" %}
+        {% block forestyle %}{% endblock %}
+        {% include "meta/html_head_javascript.html" %}
+        {% if settings.USE_CUSTOM_HTML_HEAD %}
+            {{ settings.CUSTOM_HTML_HEAD }}
+        {% endif %}
+    </head>
+    {% endspaceless %}
+    <body class="{% block body_class %}{% endblock %}{% if user_messages %} user-messages{% endif %}{% if page_class %} {{page_class}}{% endif %}{% if request.user.is_anonymous() %} anon{% endif %} lang-{{settings.LANGUAGE_CODE}}">
+        {% include "widgets/system_messages.html" %}
+        {% include "debug_header.html" %}
+        {% include "custom_header.html" ignore missing %}
+        {% if settings.CUSTOM_HEADER|trim != '' %}
+        <div id="custom-header">
+            {{settings.CUSTOM_HEADER}}
+        </div>
+        {% endif %}
+        {# {% include "widgets/secondary_header.html" %} #} {# Scope selector, search input and ask button #}  
+        {% if settings.ENABLE_LEADING_SIDEBAR %}
+        <div id="leading-sidebar">
+            {{ settings.LEADING_SIDEBAR }}
+        </div>
+        {% endif %}
+        <div class="header-wrapper">
+			<div class="content-wrapper">
+			{% include "widgets/header_keepwin_secure.html" %} {# Logo, user tool navigation and meta navitation #}
+            {% block body %}
+            {% endblock %}
+			</div>
+        </div>
+        {% if settings.FOOTER_MODE == 'default' %}
+            {% include "widgets/footer.html" %}
+        {% elif settings.FOOTER_MODE == 'customize' %}
+            {{ settings.CUSTOM_FOOTER }}
+        {% endif %}
+        {% include "custom_footer.html" ignore missing %}
+        {% include "meta/bottom_scripts.html" %}
+        {% block endjs %}
+        {% endblock %}
+        <script type="text/javascript">
+            for (url_name in askbot['urls']){
+                askbot['urls'][url_name] = cleanUrl(askbot['urls'][url_name]);
+            }
+        </script>
+    </body>
+</html>
+<!-- end template base.html -->

@@ -1,0 +1,47 @@
+<!-- template header.html -->
+{% import "macros.html" as macros %}
+<div 
+    id="header"
+    class="without-logo"
+>
+{% if settings.SHOW_LOGO %}
+   {% include "widgets/logo.html" %}
+{% endif %}
+<div id="ad_29646" class="catbar-ad">
+</div>
+
+    <div 
+    id="header"
+    class="sub-header"
+	>
+        <div id="metaNav">
+			<a id="home" href="{% url mainpage %}">{% trans %}Home{% endtrans %}</a>
+			{% if request.user.is_authenticated() %}
+				<a id="login" href="{{ request.user.get_absolute_url() }}">{{ request.user.username }}</a> 
+				{% if settings.USE_ASKBOT_LOGIN_SYSTEM %}
+					 <a id="logout" href="{{ settings.LOGOUT_URL }}?next={{ settings.LOGOUT_REDIRECT_URL }}">({% trans %}logout{% endtrans %})</a>
+				{% else %}
+					 <a id="logout" href="{{ settings.LOGOUT_URL }}?next={{ settings.LOGOUT_REDIRECT_URL }}"></a>
+				{% endif %}
+				{{ macros.inbox_link(request.user) }}
+				{{ macros.moderation_items_link(request.user, moderation_items) }}
+			{% elif settings.USE_ASKBOT_LOGIN_SYSTEM %}
+				<a id="login" href="{{ settings.LOGIN_URL }}?next={{request.path|clean_login_url}}">{% trans %}login{% endtrans %}</a>
+			{% endif %}
+            <a id="register" href="/account/member_notice/" >{% trans %}Register{% endtrans %}</a>
+			<a id="announce" href="{% url user_admin %}" >{% trans %}Announce{% endtrans %}</a>
+			<a id="advertise" href="{% url ad_model %}" >{% trans %}Advertise{% endtrans %}</a>
+			<a id="announce" href="{% url users %}?sort=vip" >{% trans %}Moderator List{% endtrans %}</a>
+			
+			{% if request.user.is_authenticated() and request.user.can_post_user() %}
+				<a id="post" href="{% url ask %}">{% trans %}Editor Post{% endtrans %}</a>
+			{% endif %}
+			{% if request.user.is_authenticated() and request.user.is_administrator() %}
+				<a href="{% url site_settings %}" class="menutitle ">{% trans %}settings{% endtrans %}</a>
+				<a href="{% url users_admin %}" class="menutitle ">{% trans %}Users List{% endtrans %}</a>
+			{% endif %}
+		</div>
+        <div class="clean"></div>
+    </div>
+</div>
+<!-- end template header.html -->
