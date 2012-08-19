@@ -1,44 +1,69 @@
 {% extends "user_profile/user.html" %}
 <!-- user_transaction_checking.html -->
 {% block profilesection %}
-    {% trans %}Transaction{% endtrans %}
+    {% trans %}transaction checking{% endtrans %}
 {% endblock %}
 {% block usercontent %}
-        <h3>{% trans %}settlement{% endtrans %}</h3>
+        <h3>{% trans %}transaction checking{% endtrans %}</h3>
 		<h2>{{ message}}</h2>
 		<form method="post">{% csrf_token %}
 			<input type="hidden" name="sort" value="transaction"/>
 			<table>
 				<tr>
-					<td><label for="id_beginDate">{% trans %}From{% endtrans %}</label></td>
+					<td><label width="80px" for="id_beginDate">{% trans %}From{% endtrans %}</label></td>
 					<td>{{ query_trans_form.beginDate}}</td>
 					<td>{% if query_trans_form.beginDate.errors %}
 							<p class="error">{{query_trans_form.beginDate.errors|join(', ')}}</p>
 						{% endif %}
 					</td>
-					<td><label for="id_endDate">{% trans %}To{% endtrans %}</label></td>
+				</tr>
+				<tr>
+					<td><label width="80px" for="id_endDate">{% trans %}To{% endtrans %}</label></td>
 					<td>{{ query_trans_form.endDate}}</td>
 					<td>{% if query_trans_form.endDate.errors %}
 							<p class="error">{{query_trans_form.endDate.errors|join(', ')}}</p>
 						{% endif %}
 					</td>
-					<td cellspacing="3"><input type="ubmit" class="submit" name="check_trans" value="{% trans %}Query{% endtrans %}" /></td>
-				</td>
+				</tr>
+				<tr>
+					<td cellspacing="3"><input type="Submit" class="submit" name="transaction_checking" value="{% trans %}Execute{% endtrans %}" /></td>
+				</tr>
 			</table>
 		</form>
-		{% if transactions %}
-			{% for transaction in transactions %}
-			<p>
-				<span class="karma-gained">{{ transaction.income }}</span>
-				<span class="karma-lost">{{ transaction.outcome }}</span>
-				{% if request.user|can_moderate_user(view_user) %}
-					<span class="small">{{transaction.id}}{{ transaction.get_explanation_snippet_admin() }}({{transaction.trans_at|diff_date}})</span>
-				{% else %}
-					<span class="small">{{ transaction.get_explanation_snippet() }}({{transaction.trans_at|diff_date}})</span>
-				{% endif %}
-				<div class="clean"></div>                  
-			</p>
-			{% endfor %}
+		{% if finish %}
+			{% if transactions %}
+			<table>
+				<tr>
+					<td cellspacing="5">{% trans %}Here are the transactions can't pass checking{% endtrans %}
+					</td>
+				<tr>
+				<tr>
+					<th><span class="karma-summary">{% trans %}User{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Income{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Outcome{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Comment{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Refer ID{% endtrans %}</span></th>
+				</tr>
+				{% for transaction in transactions %}
+				<tr>
+					<td><span class="karma-detail">{{ transaction.user.username|trim }}</span></td>
+					<td><span class="karma-gained">{{ transaction.income }}</span></td>
+					<td><span class="karma-lost">{{ transaction.outcome }}</span></td>
+					<td>
+					{% if request.user|can_moderate_user(view_user) %}
+						<span class="small">{{transaction.id}}{{ transaction.get_explanation_snippet_admin() }}({{transaction.trans_at|diff_date}})</span>
+					{% else %}
+						<span class="small">{{ transaction.get_explanation_snippet() }}({{transaction.trans_at|diff_date}})</span>
+					{% endif %}
+					</td>
+					<td><span class="karma-detail">{{ transaction.refer_id }}</span> </td>
+				</tr>
+				{% endfor %}
+			</table>
+			{% else %}
+				<p>{% trans %}There is no abnormal transaction record{% endtrans %}
+				</p>
+			{% endif %}
 		{% endif %}
 {% endblock %}
 {% block userjs %}

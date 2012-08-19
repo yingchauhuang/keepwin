@@ -45,6 +45,19 @@ from askbot.search.state_manager import SearchState
 from askbot.models import Post
 from askbot.models.user import UserInfo
 from askbot.models.profilelayout import UserProfileLayout,ProfileLayout,UserProfileLayoutManager
+from django.db import connection
+
+#template filter to trim any leading or trailing whitespace
+from django import template
+from django.template.defaultfilters import stringfilter
+from askbot.models.transaction import Transaction
+
+register = template.Library()
+
+@register.filter
+@stringfilter
+def trim(value):
+    return value.strip()
 
 def owner_or_moderator_required(f):
     @functools.wraps(f)
@@ -335,7 +348,7 @@ def update_template_content(request):
 
         except:
             data = simplejson.dumps({
-                'message': _('update template content failure.')+sys.exc_info()[0],
+                'message': _('update template content failure.')+unicode(sys.exc_info()[0]),
                 'id': template_id,
                 'title': title,
                 'content': content,
@@ -370,7 +383,7 @@ def add_template(request):
 
         except:
             data = simplejson.dumps({
-                'message': sys.exc_info()[0],
+                'message': unicode(sys.exc_info()[0]),
                 'id': '',
                 'type': 1,
                 'is_new': is_new,
@@ -391,7 +404,7 @@ def delete_template(request):
             })
         except:
             data = simplejson.dumps({
-                'message': sys.exc_info()[0],
+                'message': unicode(sys.exc_info()[0]),
                 'id;: template_id ,'
                 'success': False,
             })
@@ -1352,13 +1365,19 @@ def user_settlement(request, user, context):
     message=''
     if request.method == 'POST':
         if 'settlement' in request.POST:
-            settletransaction_form = forms.SettleTransactionForm(request.POST)
-            if settletransaction_form.is_valid():
-                settledate=settletransaction_form.cleaned_data['SettleDate'] 
-            else:
-                #message=query_trans_form.errors
-                message=_('The Data you input have some errors. Please re-fill the data carefully')
-                transactions = None
+            try:
+                settletransaction_form = forms.SettleTransactionForm(request.POST)
+                if settletransaction_form.is_valid():
+                    settledate=settletransaction_form.cleaned_data['SettleDate'] 
+                    users = models.User.objects.all()
+                    for user in users:
+                        user.settle_transaction(settledate)
+                else:
+                    #message=query_trans_form.errors
+                    message=_('The Data you input have some errors. Please re-fill the data carefully')
+                    transactions = None
+            except:
+                message=unicode(sys.exc_info()[0])
     data = {
         'active_tab': 'users',
         'page_class': 'user-profile-page',
@@ -1378,10 +1397,13 @@ def user_rollback_transaction(request, user, context):
     message=''
     if request.method == 'POST':
         if 'rollback_transaction' in request.POST:
-            rollback_transaction_form = forms.RollbackTransactionForm(request.POST)
-            if urollback_transaction_form.is_valid():
-                subject.set_status( rollback_transaction_form.cleaned_data['transaction_id'] )
-           
+            try:
+                rollback_transaction_form = forms.RollbackTransactionForm(request.POST)
+                if rollback_transaction_form.is_valid():
+                    Transaction.objects.delete_paid_transaction(rollback_transaction_form.cleaned_data['transaction_id'] )
+                message=_('This transaction has been rollbacked. Please re-check the account to double check transaction')
+            except:
+                message=_('This Transaction ID miahgt be error')+unicode(sys.exc_info()[0])
     data = {
         'active_tab': 'users',
         'page_class': 'user-profile-page',
@@ -1398,21 +1420,33 @@ def user_transaction_checking(request, user, context):
     """transaction_checking
     """
     query_trans_form = forms.QueryTransactionForm()
+    transactions = None
+    finish = None
     message=''
     if request.method == 'POST':
         if 'transaction_checking' in request.POST:
-            query_trans_form = forms.QueryTransactionForm(request.POST)
-            if query_trans_form.is_valid():
-                beginDate=query_trans_form.cleaned_data['beginDate'] 
-                endDate=query_trans_form.cleaned_data['endDate'] 
-                transactions = models.Transaction.objects.filter(user=user,trans_at__gte=beginDate-datetime.timedelta(days=1) ,trans_at__lte=endDate+datetime.timedelta(days=1) ).select_related('question', 'question__thread', 'user').order_by('-trans_at')
-
-            else:
-                #message=query_trans_form.errors
-                message=_('The Data you input have some errors. Please re-fill the data carefully')
-                transactions = None
+            try:
+                query_trans_form = forms.QueryTransactionForm(request.POST)
+                if query_trans_form.is_valid():
+                    beginDate=query_trans_form.cleaned_data['beginDate'] 
+                    endDate=query_trans_form.cleaned_data['endDate'] 
+                    cursor = connection.cursor()
+                    cursor.execute("select refer_id from (select refer_id,sum(outcome) as outcome,sum(income) as income from transaction where transaction_type in (20,10) and issettled!=True group by refer_id) as t where t.income!=t.outcome and refer_id is not null;")
+                    unbalance_question = list()
+                    unbalance_question_result = cursor.fetchall()
+                    for row in unbalance_question_result:
+                        unbalance_question.append(row[0])
+                    transactions = models.Transaction.objects.filter(refer__in=unbalance_question,trans_at__gte=beginDate-datetime.timedelta(days=1) ,trans_at__lte=endDate+datetime.timedelta(days=1) ).select_related('question', 'question__thread', 'user').order_by('-trans_at')
+                    message=_('Finish transaction checking')
+                    finish = True
+                else:
+                    #message=query_trans_form.errors
+                    message=_('The Data you input have some errors. Please re-fill the data carefully')
+                    transactions = None
+            except:
+                message=unicode(sys.exc_info()[0])
     else:
-        message=''
+        message=_('Please fill the date for transaction checking')
         transactions = None
     data = {
         'active_tab':'users',
@@ -1422,6 +1456,7 @@ def user_transaction_checking(request, user, context):
         'page_title': _('profile - user balance'),
         'transactions': transactions,
         'query_trans_form': query_trans_form,
+        'finish': finish,
         'message':message,
     }
     context.update(data)

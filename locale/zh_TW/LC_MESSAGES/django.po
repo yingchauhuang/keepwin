@@ -25,7 +25,35 @@ msgstr "收到iBon購買確認:"
 msgid "Dollars"
 msgstr "點"
 
-#: views/user.py:920
+#: user template
+msgid "This Transaction ID miahgt be error"
+msgstr "交易ID可能輸入錯誤"
+
+#: user template
+msgid "User"
+msgstr "使用者"
+
+#: user template
+msgid "Execute"
+msgstr "執行指令"
+
+#: user template
+#msgid "Income"
+#msgstr "收入"
+
+#: user template
+#msgid "Outcome"
+#msgstr "支出"
+
+#: user template
+#msgid "Comment"
+#msgstr "說明"
+
+#: user template
+msgid "Refer ID"
+msgstr "相關交易"
+
+#: views/user.py:90
 msgid " To puchase:"
 msgstr " 來購買:"
 
@@ -527,6 +555,10 @@ msgstr "請輸入提出金額"
 msgid "Transaction Type"
 msgstr "請選擇交易型態"
 
+#: forms.py:406
+msgid "Transaction ID"
+msgstr "交易ID"
+
 #: forms.py:365
 msgid "Enter Comment"
 msgstr "請輸入要給使用者的說明"
@@ -918,6 +950,26 @@ msgstr "您所填的註冊內容有些錯誤及不完整的地方. 請參考紅�
 msgid "The Data you input have some errors. Please re-fill the data carefully"
 msgstr "您所填的內容有些錯誤及不完整的地方. 請參考資料後顯示的錯誤訊息,再重新輸入!"
 
+#: views/users.py:1126
+msgid "Please fill the date for transaction checking"
+msgstr "請輸入您要進行交易檢覈的資料區間!"
+
+#: views/users.py:1126
+msgid "Finish transaction checking"
+msgstr "交易檢覈完畢! "
+
+#: views/users.py:1126
+msgid "This transaction has been rollbacked. Please re-check the account to double check transaction"
+msgstr "這個交易已經被回沖! 請到帳戶資料中查詢是否正確回沖!"
+
+#: views/users.py:1126
+msgid "There is no abnormal transaction record"
+msgstr "沒有任何異常的交易資料! "
+
+#: views/users.py:1126
+msgid "Here are the transactions can't pass checking"
+msgstr "以下是系統檢查出有異常的交易資料! "
+
 # footer.html
 #: urls.py:57
 #, fuzzy
@@ -1207,6 +1259,7 @@ msgid ""
 "Default notification frequency questions individually                        "
 "selected by the user"
 msgstr "使用者設定的常見看法"
+
 #: conf/email.py:93
 msgid ""
 "Option to define frequency of emailed updates for: Question individually "
