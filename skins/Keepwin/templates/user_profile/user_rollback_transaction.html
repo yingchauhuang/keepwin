@@ -1,7 +1,7 @@
 {% extends "user_profile/user.html" %}
 <!-- user_rollback_transaction.html -->
 {% block profilesection %}
-    {% trans %}moderation{% endtrans %}
+    {% trans %}rollback transaction{% endtrans %}
 {% endblock %}
 {% block usercontent %}
     <h3>{% trans %}rollback transaction{% endtrans %}</h3>
@@ -13,6 +13,6 @@
         </table>
         <p id="id_user_status_info">
         </p>
-        <input type="submit" class="submit" name="rollback_transaction" value="{% trans %}Save{% endtrans %}" />
+        <input type="submit" class="submit" name="rollback_transaction" value="{% trans %}Execute{% endtrans %}" />
     </form>
 {% endblock %}

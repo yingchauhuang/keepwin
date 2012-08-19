@@ -642,7 +642,7 @@ class TransactionConfirmForm(forms.Form):
             super(TransactionConfirmForm, self).__init__(*arg, **kwarg)
 
 class RollbackTransactionForm(forms.Form):
-    transaction_id = forms.IntegerField(required=True)
+    transaction_id = forms.IntegerField(required=True,label=_('Transaction ID'),)
     def __init__(self, *arg, **kwarg):
             super(RollbackTransactionForm, self).__init__(*arg, **kwarg)
             

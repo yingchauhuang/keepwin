@@ -1196,12 +1196,20 @@ def user_retag_question(
         context_object=question,
         timestamp=timestamp
     )
-
+    
 def user_settle_transaction(
                     self, year,mon,day
                 ):
     try:
-        transactions = Transaction.objects.filter(user=self,issettled=False,trans_at__lte=datetime.date(year, mon, day)).order_by('trans_at')
+        settledate=datetime.date(year, mon, day)
+        self.user_settle_transaction(settledate)
+    except:
+        return
+def user_settle_transaction(
+                    self, settledate
+                ):
+    try:
+        transactions = Transaction.objects.filter(user=self,issettled=False,trans_at__lte=settledate).order_by('trans_at')
         settlebalance=0
         for tran in transactions:
             if tran.transaction_type == twmodeconst.TYPE_TRANSACTION_RECEIVE_FROM_CONTENT :
