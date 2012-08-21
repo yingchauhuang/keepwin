@@ -655,8 +655,8 @@ def user_stats(request, user, context):
     # Questions
     #
     questions = user.posts.get_questions().filter(**question_filter).\
-                    order_by('-score', '-thread__last_activity_at').\
-                    select_related('thread', 'thread__last_activity_by')[:100]
+                    order_by('-added_at','-score').\
+                    select_related('thread', 'added_at')[:100]
 
     #added this if to avoid another query if questions is less than 100
     if len(questions) < 100:
@@ -1267,6 +1267,8 @@ def user_transaction(request, user, context):
                         qid = trans_confirm_form.cleaned_data['qid']
                         user = request.user
                         question = Post.objects.filter(id=qid)[0]
+                        question.Thread.paid_count=question.Thread.paid_count+1
+                        question.save()
                         comment = _('Paid')+unicode(amount)+_('Dollars')+_(' To puchase:')+question.get_question_title()
                         paytrans=user.add_user_transaction(
                                         user = user,

@@ -11,8 +11,12 @@
 	{% else %}
 		<span class="number">0</span><br>
 	{% endif %}
-	<img alt="" src={{'/images/point.gif'|media}} class="valignmid padding_right">
-	<span class="number">{{user.receive_points}}</span><br>
+	<img alt="" src={{'/images/pur_num.gif'|media}} class="valignmid padding_right">
+	{% if question %}
+		<span class="number">{{question.paid_count}}</span><br>
+	{% else %}
+		<span class="number">0</span><br>
+	{% endif %}
 	{% if question %}
 		{% if question.deleted==1 %}
 			<h4><p>文章已刪除</p></h4>
