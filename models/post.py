@@ -265,7 +265,7 @@ class Post(models.Model):
     score = models.IntegerField(default=0)
     vote_up_count = models.IntegerField(default=0)
     vote_down_count = models.IntegerField(default=0)
-
+    
     comment_count = models.PositiveIntegerField(default=0)
     offensive_flag_count = models.SmallIntegerField(default=0)
 

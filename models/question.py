@@ -158,7 +158,7 @@ class ThreadManager(models.Manager):
         try:
             # TODO: add a possibility to see deleted questions
             qs = self.filter(posts__post_type='question', posts__deleted=False).order_by('-askbot_post.added_at') [0:9] # (***) brings `askbot_post` into the SQL query, see the ordering section below
-            qs = qs.only('id', 'title', 'view_count', 'answer_count', 'last_activity_at', 'last_activity_by', 'closed', 'tagnames', 'accepted_answer')
+            qs = qs.only('id', 'title', 'view_count', 'answer_count','last_activity_at', 'last_activity_by', 'closed', 'tagnames', 'accepted_answer')
         except:
             logging.debug(sys.exc_info()[0])
             qs = list()
@@ -416,6 +416,7 @@ class Thread(models.Model):
     today_view_count = models.PositiveIntegerField(default=0)
     favourite_count = models.PositiveIntegerField(default=0)
     answer_count = models.PositiveIntegerField(default=0)
+    paid_count = models.PositiveIntegerField(default=0)
     last_activity_at = models.DateTimeField(default=datetime.datetime.now)
     last_activity_by = models.ForeignKey(User, related_name='unused_last_active_in_threads')
 
