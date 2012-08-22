@@ -83,18 +83,7 @@
             href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=transaction_checking"
         ><span>{% trans %}transaction checking{% endtrans %}</span></a>
         {% endif %}
-		{% if request.user|is_administrator_or_moderator(view_user) %}
-        <a id="rsssource" {% if tab_name=="rsssource" %}class="on"{% endif %} 
-            title="{% trans %}rss source management{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=rsssource"
-        ><span>{% trans %}rss source{% endtrans %}</span></a>
-        {% endif %}
-		{% if request.user|is_administrator_or_moderator(view_user) %}
-        <a id="rsseditor" {% if tab_name=="rsseditor" %}class="on"{% endif %} 
-            title="{% trans %}rss data editor{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=rsseditor"
-        ><span>{% trans %}rss editor{% endtrans %}</span></a>
-        {% endif %}
+
     </div>
 </div>
 <div class="clean"></div>
