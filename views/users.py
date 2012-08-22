@@ -1268,7 +1268,7 @@ def user_transaction(request, user, context):
                         user = request.user
                         question = Post.objects.filter(id=qid)[0]
                         question.Thread.paid_count=question.Thread.paid_count+1
-                        question.save()
+                        question.Thread.save()
                         comment = _('Paid')+unicode(amount)+_('Dollars')+_(' To puchase:')+question.get_question_title()
                         paytrans=user.add_user_transaction(
                                         user = user,
@@ -1464,7 +1464,85 @@ def user_transaction_checking(request, user, context):
     context.update(data)
     return render_into_skin('user_profile/user_transaction_checking.html', context, request)
 
+def user_rsssource(request, user, context):
+    """rss source management , manual execution
+    """
+    query_trans_form = forms.QueryTransactionForm()
+    transactions = None
+    finish = None
+    message=''
+    if request.method == 'POST':
+        if 'transaction_checking' in request.POST:
+            try:
+                query_trans_form = forms.QueryTransactionForm(request.POST)
+                if query_trans_form.is_valid():
+                    beginDate=query_trans_form.cleaned_data['beginDate'] 
+                    endDate=query_trans_form.cleaned_data['endDate'] 
+                    rsssources = models.rsssources.objects.all()
+                    message=_('Finish transaction checking')
+                    finish = True
+                else:
+                    #message=query_trans_form.errors
+                    message=_('The Data you input have some errors. Please re-fill the data carefully')
+                    transactions = None
+            except:
+                message=unicode(sys.exc_info()[0])
+    else:
+        message=_('Please fill the date for transaction checking')
+        transactions = None
+    data = {
+        'active_tab':'users',
+        'page_class': 'user-profile-page',
+        'tab_name': 'transaction',
+        'tab_description': _('user balance'),
+        'page_title': _('profile - user balance'),
+        'rsssources': rsssources,
+        'query_trans_form': query_trans_form,
+        'finish': finish,
+        'message':message,
+    }
+    context.update(data)
+    return render_into_skin('user_profile/user_transaction_checking.html', context, request)
 
+def user_rsseditor(request, user, context):
+    """transaction_checking
+    """
+    query_trans_form = forms.QueryTransactionForm()
+    transactions = None
+    finish = None
+    message=''
+    if request.method == 'POST':
+        if 'transaction_checking' in request.POST:
+            try:
+                query_trans_form = forms.QueryTransactionForm(request.POST)
+                if query_trans_form.is_valid():
+                    beginDate=query_trans_form.cleaned_data['beginDate'] 
+                    endDate=query_trans_form.cleaned_data['endDate'] 
+                    rsss = models.RSS.objects.filter(pubDate__gte=beginDate-datetime.timedelta(days=1) ,pubDate__lte=endDate+datetime.timedelta(days=1) ).order_by('-pubDate')
+                    message=_('Finish transaction checking')
+                    finish = True
+                else:
+                    #message=query_trans_form.errors
+                    message=_('The Data you input have some errors. Please re-fill the data carefully')
+                    rsss = None
+            except:
+                message=unicode(sys.exc_info()[0])
+    else:
+        message=_('Please fill the date for transaction checking')
+        rsss = None
+    data = {
+        'active_tab':'users',
+        'page_class': 'user-profile-page',
+        'tab_name': 'transaction',
+        'tab_description': _('user balance'),
+        'page_title': _('profile - user balance'),
+        'rsss': rsss,
+        'query_trans_form': query_trans_form,
+        'finish': finish,
+        'message':message,
+    }
+    context.update(data)
+    return render_into_skin('user_profile/user_transaction_checking.html', context, request)
 def user_favorites(request, user, context):
     favorite_threads = user.user_favorite_questions.values_list('thread', flat=True)
     questions = models.Post.objects.filter(post_type='question', thread__in=favorite_threads)\
@@ -1553,6 +1631,8 @@ USER_VIEW_CALL_TABLE = {
     'settlement': user_settlement,
     'rollback_transaction': user_rollback_transaction,
     'transaction_checking': user_transaction_checking,
+    'rsssource': user_rsssource,
+    'rsseditor': user_rsseditor,
     'layout': user_layout,
 }
 #todo: rename this function - variable named user is everywhere
