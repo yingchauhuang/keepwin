@@ -1267,8 +1267,8 @@ def user_transaction(request, user, context):
                         qid = trans_confirm_form.cleaned_data['qid']
                         user = request.user
                         question = Post.objects.filter(id=qid)[0]
-                        question.Thread.paid_count=question.Thread.paid_count+1
-                        question.Thread.save()
+                        question.thread.paid_count=question.thread.paid_count+1
+                        question.thread.save()
                         comment = _('Paid')+unicode(amount)+_('Dollars')+_(' To puchase:')+question.get_question_title()
                         paytrans=user.add_user_transaction(
                                         user = user,
