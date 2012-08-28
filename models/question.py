@@ -440,7 +440,10 @@ class Thread(models.Model):
     
     class Meta:
         app_label = 'askbot'
-
+        db_table = u'Thread'
+        verbose_name = _('Thread')
+        verbose_name_plural = _('Thread')
+        
     def __unicode__(self):
         return u'%s[%s]' % (self.title, self.subtitle)
     

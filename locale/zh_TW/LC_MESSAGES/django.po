@@ -3934,6 +3934,10 @@ msgid "\" and \"%s\""
 msgstr ""
 
 #: models/question.py:66
+msgid "Thread"
+msgstr "文章"
+
+#: models/question.py:66
 msgid "\" and more"
 msgstr "查看更多"
 
