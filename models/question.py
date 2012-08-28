@@ -440,7 +440,7 @@ class Thread(models.Model):
     
     class Meta:
         app_label = 'askbot'
-        db_table = u'Thread'
+        db_table = u'askbot_thread'
         verbose_name = _('Thread')
         verbose_name_plural = _('Thread')
         
