@@ -381,6 +381,10 @@ msgstr "最近更新的看法"
 #msgid "by answers"
 #msgstr "回應"
 
+#: skins\default\templates\main_page\tab_bar.html:70
+msgid "paids"
+msgstr "購買"
+
 #: skins\default\templates\main_page\tab_bar.html:72
 #msgid "click to see the least answered questions"
 #msgstr "最久沒回應的看法"
@@ -5916,6 +5920,22 @@ msgstr "暱稱"
 #: skins/default/templates/user_profile/user_email_subscriptions.html:21
 msgid "Update"
 msgstr "更新"
+
+#: skins/default/templates/user_profile/user_tabs.html:42
+msgid "rss source management"
+msgstr "rss來源管理"
+
+#: skins/default/templates/user_profile/user_tabs.html:42
+msgid "rss source"
+msgstr "rss來源"
+
+#: skins/default/templates/user_profile/user_tabs.html:42
+msgid "rss article editoring"
+msgstr "rss文章編輯"
+
+#: skins/default/templates/user_profile/user_tabs.html:42
+msgid "rss editor"
+msgstr "rss編輯"
 
 #: skins/default/templates/user_profile/user_email_subscriptions.html:4
 #: skins/default/templates/user_profile/user_tabs.html:42

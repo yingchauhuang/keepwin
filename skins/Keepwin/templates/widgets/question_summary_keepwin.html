@@ -24,6 +24,7 @@
 		{{ question.added_at|date}}</BR>
 		{% trans %}views{% endtrans %}{{thread.view_count}}
 		{% trans %}answers{% endtrans %}{{thread.answer_count}}
+		{% trans %}paids{% endtrans %}{{thread.paid_count}}
 	</a>
 	{% if question.is_charged %}
 			<div class="charged">

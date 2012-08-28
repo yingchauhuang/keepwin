@@ -1,0 +1,43 @@
+{% extends "user_profile/user.html" %}
+<!-- user_transaction_checking.html -->
+{% block profilesection %}
+    {% trans %}rss source{% endtrans %}
+{% endblock %}
+{% block usercontent %}
+        <h3>{% trans %}rss source{% endtrans %}</h3>
+		<h2>{{ message}}</h2>
+		{% if rsssources %}
+		<table>
+			<tr>
+				<td cellspacing="5">{% trans %}Here are the rss source list{% endtrans %}
+				</td>
+			<tr>
+			<tr>
+				<th><span class="karma-summary">{% trans %}Name{% endtrans %}</span></th>
+				<th><span class="karma-summary">{% trans %}Link{% endtrans %}</span></th>
+				<th><span class="karma-summary">{% trans %}Coding{% endtrans %}</span></th>
+				<th><span class="karma-summary">{% trans %}Fetch Times{% endtrans %}</span></th>
+				<th><span class="karma-summary">{% trans %}numbers{% endtrans %}</span></th>
+				<th><span class="karma-summary">{% trans %}success{% endtrans %}</span></th>
+			</tr>
+			{% for rsssource in rsssources %}
+			<tr>
+				<td><span class="karma-gained">{{ rsssource.name|trim }}</span></td>
+				<td><span class="karma-detail">{{ rsssource.link }}</span></td>
+				<td><span class="karma-gained">{{ rsssource.coding }}</span></td>
+				<td><span class="karma-detail">{{ rsssource.fetchtime }}</span> </td>
+				<td><span class="karma-detail">{{ rsssource.numbers }}</span> </td>
+				<td><span class="karma-detail">{{ rsssource.success }}</span> </td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+			<p>{% trans %}There is no rss source{% endtrans %}
+			</p>
+		{% endif %}
+
+{% endblock %}
+{% block userjs %}
+	
+	<!-- End datepicker Javascript -->
+{% endblock %}<!-- end user_transaction_checking.html -->

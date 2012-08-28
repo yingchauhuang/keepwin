@@ -1,0 +1,102 @@
+{% extends "user_profile/user.html" %}
+<!-- user_transaction_checking.html -->
+{% block profilesection %}
+    {% trans %}rss editor{% endtrans %}
+{% endblock %}
+{% block usercontent %}
+        <h3>{% trans %}rss editor{% endtrans %}</h3>
+		<h2>{{ message}}</h2>
+		<form method="post">{% csrf_token %}
+			<input type="hidden" name="sort" value="transaction"/>
+			<table>
+				<tr>
+					<td><label width="80px" for="id_beginDate">{% trans %}From{% endtrans %}</label></td>
+					<td>{{ query_trans_form.beginDate}}</td>
+					<td>{% if query_trans_form.beginDate.errors %}
+							<p class="error">{{query_trans_form.beginDate.errors|join(', ')}}</p>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<td><label width="80px" for="id_endDate">{% trans %}To{% endtrans %}</label></td>
+					<td>{{ query_trans_form.endDate}}</td>
+					<td>{% if query_trans_form.endDate.errors %}
+							<p class="error">{{query_trans_form.endDate.errors|join(', ')}}</p>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<td cellspacing="3"><input type="Submit" class="submit" name="transaction_checking" value="{% trans %}Execute{% endtrans %}" /></td>
+				</tr>
+			</table>
+		</form>
+		{% if finish %}
+			{% if transactions %}
+			<table>
+				<tr>
+					<td cellspacing="5">{% trans %}Here are the transactions can't pass checking{% endtrans %}
+					</td>
+				<tr>
+				<tr>
+					<th><span class="karma-summary">{% trans %}User{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Income{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Outcome{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Comment{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Refer ID{% endtrans %}</span></th>
+				</tr>
+				{% for transaction in transactions %}
+				<tr>
+					<td><span class="karma-detail">{{ transaction.user.username|trim }}</span></td>
+					<td><span class="karma-gained">{{ transaction.income }}</span></td>
+					<td><span class="karma-lost">{{ transaction.outcome }}</span></td>
+					<td>
+					{% if request.user|can_moderate_user(view_user) %}
+						<span class="small">{{transaction.id}}{{ transaction.get_explanation_snippet_admin() }}({{transaction.trans_at|diff_date}})</span>
+					{% else %}
+						<span class="small">{{ transaction.get_explanation_snippet() }}({{transaction.trans_at|diff_date}})</span>
+					{% endif %}
+					</td>
+					<td><span class="karma-detail">{{ transaction.refer_id }}</span> </td>
+				</tr>
+				{% endfor %}
+			</table>
+			{% else %}
+				<p>{% trans %}There is no abnormal transaction record{% endtrans %}
+				</p>
+			{% endif %}
+		{% endif %}
+{% endblock %}
+{% block userjs %}
+	<!-- Begin datepicker Javascript -->
+	<script src="{{"/js/jquery.ui.core.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.widget.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.datepicker.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.datepicker-zh-TW.js"|media}}"></script>
+	<link href="{{"/style/jquery.ui.datepicker.css"|media }}" rel="stylesheet" type="text/css" />
+	<link href="{{"/style/jquery.ui.theme.css"|media }}" rel="stylesheet" type="text/css" />
+	<link href="{{"/style/datepicker.css"|media }}" rel="stylesheet" type="text/css" />
+	<script>
+	$().ready(init);
+	function init()
+	{
+		$( "input#id_beginDate, input#id_endDate" ).datepicker( "option", "zh-TW");
+		$( "input#id_beginDate, input#id_endDate" ).datepicker( "option", "dateFormat", "YYYY/mm/dd" );
+		var dates = $( "input#id_beginDate, input#id_endDate" ).datepicker({
+			defaultDate: "+1w",
+			changeMonth: true,
+			showButtonPanel: true,
+			numberOfMonths: 1,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "id_beginDate" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+	}
+	</script>
+	<!-- End datepicker Javascript -->
+{% endblock %}<!-- end user_transaction_checking.html -->

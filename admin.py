@@ -31,6 +31,18 @@ def mark_deleted(modeladmin, request, queryset):
     queryset.update(deleted=true)
 mark_deleted.short_description = _('Mark selected post as deleted')
 
+class ThreadAdmin(admin.ModelAdmin):
+    """  admin class"""
+    list_display = ('title','tagnames','subtitle','OnTop')
+    date_hierarchy = 'last_activity_at'
+    search_fields  = ('title','subtitle')
+    actions = [mark_deleted]
+    fieldsets = (
+        (None, {
+            'fields': ('title','tagnames','subtitle','OnTop')
+        }),
+    )
+    
 class PostAdmin(admin.ModelAdmin):
     """  admin class"""
     list_display = ('author','post_type','thread','locked','last_edited_at')
@@ -102,7 +114,8 @@ class RSSSourceAdmin(admin.ModelAdmin):
     list_filter = ['name']
     actions = [fetch_article]
 
-admin.site.disable_action('delete_selected')    
+#admin.site.disable_action('delete_selected')  
+admin.site.register(models.Thread, ThreadAdmin)  
 admin.site.register(models.Post, PostAdmin)
 #admin.site.register(models.Tag, TagAdmin)
 #admin.site.register(models.Vote, VoteAdmin)
