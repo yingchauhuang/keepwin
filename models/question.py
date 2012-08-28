@@ -62,7 +62,7 @@ class ThreadManager(models.Manager):
     def create_new(self, title, author, added_at, wiki, text, tagnames=None, is_anonymous=False, is_charged = False, cost = 0 ,featurepic=None,subtitle=None,passcode=None):
         # TODO: Some of this code will go to Post.objects.create_new
 
-        thread = super(ThreadManager, self).create(title=title, tagnames=tagnames, last_activity_at=added_at, last_activity_by=author, subtitle=subtitle,passcode=passcode,)
+        thread = super(ThreadManager, self).create(title=title, tagnames=tagnames, last_activity_at=added_at, last_activity_by=author, subtitle=subtitle,passcode=passcode,OnTop=False)
         
         question = Post(
             post_type='question',
@@ -315,7 +315,7 @@ class ThreadManager(models.Manager):
             'relevance-desc': '-relevance', # special Postgresql-specific ordering, 'relevance' quaso-column is added by get_for_query()
         }
         orderby = QUESTION_ORDER_BY_MAP[search_state.sort]
-        qs = qs.extra(order_by=[orderby])
+        qs = qs.extra(order_by=['-OnTop',orderby])
 
         # HACK: We add 'ordering_key' column as an alias and order by it, because when distict() is used,
         #       qs.extra(order_by=[orderby,]) is lost if only `orderby` column is from askbot_post!
