@@ -157,7 +157,7 @@ class ThreadManager(models.Manager):
         """
         try:
             # TODO: add a possibility to see deleted questions
-            qs = self.filter(posts__post_type='question', posts__deleted=False).order_by('-askbot_post.added_at') [0:9] # (***) brings `askbot_post` into the SQL query, see the ordering section below
+            qs = self.filter(posts__post_type='question', posts__deleted=False).order_by('-OnTop','-askbot_post.added_at') [0:9] # (***) brings `askbot_post` into the SQL query, see the ordering section below
             qs = qs.only('id', 'title', 'view_count', 'answer_count','last_activity_at', 'last_activity_by', 'closed', 'tagnames', 'accepted_answer')
         except:
             logging.debug(sys.exc_info()[0])
@@ -424,6 +424,7 @@ class Thread(models.Model):
     favorited_by    = models.ManyToManyField(User, through='FavoriteQuestion', related_name='unused_favorite_threads')
 
     closed          = models.BooleanField(default=False)
+    OnTop           = models.BooleanField(default=False)
     closed_by       = models.ForeignKey(User, null=True, blank=True) #, related_name='closed_questions')
     closed_at       = models.DateTimeField(null=True, blank=True)
     close_reason    = models.SmallIntegerField(

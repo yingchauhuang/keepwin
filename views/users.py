@@ -44,6 +44,7 @@ from askbot.templatetags import extra_tags
 from askbot.search.state_manager import SearchState
 from askbot.models import Post
 from askbot.models.user import UserInfo
+from askbot.models.RSS import RSS,RSSSource
 from askbot.models.profilelayout import UserProfileLayout,ProfileLayout,UserProfileLayoutManager
 from django.db import connection
 
@@ -1467,29 +1468,9 @@ def user_transaction_checking(request, user, context):
 def user_rsssource(request, user, context):
     """rss source management , manual execution
     """
-    query_trans_form = forms.QueryTransactionForm()
-    transactions = None
-    finish = None
     message=''
-    if request.method == 'POST':
-        if 'transaction_checking' in request.POST:
-            try:
-                query_trans_form = forms.QueryTransactionForm(request.POST)
-                if query_trans_form.is_valid():
-                    beginDate=query_trans_form.cleaned_data['beginDate'] 
-                    endDate=query_trans_form.cleaned_data['endDate'] 
-                    rsssources = models.rsssources.objects.all()
-                    message=_('Finish transaction checking')
-                    finish = True
-                else:
-                    #message=query_trans_form.errors
-                    message=_('The Data you input have some errors. Please re-fill the data carefully')
-                    transactions = None
-            except:
-                message=unicode(sys.exc_info()[0])
-    else:
-        message=_('Please fill the date for transaction checking')
-        transactions = None
+    
+    rsssources = RSSSource.objects.all()
     data = {
         'active_tab':'users',
         'page_class': 'user-profile-page',
@@ -1497,12 +1478,10 @@ def user_rsssource(request, user, context):
         'tab_description': _('user balance'),
         'page_title': _('profile - user balance'),
         'rsssources': rsssources,
-        'query_trans_form': query_trans_form,
-        'finish': finish,
         'message':message,
     }
     context.update(data)
-    return render_into_skin('user_profile/user_transaction_checking.html', context, request)
+    return render_into_skin('user_profile/user_rss_source.html', context, request)
 
 def user_rsseditor(request, user, context):
     """transaction_checking
@@ -1542,7 +1521,7 @@ def user_rsseditor(request, user, context):
         'message':message,
     }
     context.update(data)
-    return render_into_skin('user_profile/user_transaction_checking.html', context, request)
+    return render_into_skin('user_profile/user_rss_editor.html', context, request)
 def user_favorites(request, user, context):
     favorite_threads = user.user_favorite_questions.values_list('thread', flat=True)
     questions = models.Post.objects.filter(post_type='question', thread__in=favorite_threads)\

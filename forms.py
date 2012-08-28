@@ -659,7 +659,18 @@ class SettleTransactionForm(forms.Form):
                                 )
     def __init__(self, *arg, **kwarg):
             super(SettleTransactionForm, self).__init__(*arg, **kwarg)
-            
+
+class RSSSourceForm(forms.Form):
+    """Query User transaction record by submitting this form
+    """
+
+    name = forms.CharField(max_length=64)
+    link = forms.CharField(max_length=180)
+    coding = forms.CharField(max_length=16)
+
+    def __init__(self, *arg, **kwarg):
+            super(RSSSourceForm, self).__init__(*arg, **kwarg)
+                        
 class QueryTransactionForm(forms.Form):
     """Query User transaction record by submitting this form
     """

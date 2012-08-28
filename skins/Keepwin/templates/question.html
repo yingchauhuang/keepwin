@@ -282,7 +282,7 @@
 	hs.wrapperClassName = 'wide-border';
 	var images = $('div.question-body img');
 	images.each(function() {
-	  $(this).parent().append('<a href="'+$(this).attr('src')+'" class="highslide" onclick="return hs.expand(this)" width=100% height=auto><img src="'+$(this).attr('src')+'" alt="Highslide JS" title="{% trans %}Click to enlarge{% endtrans %}" /></a>');
+	  $(this).parent().append('<a href="'+$(this).attr('src')+'" class="highslide" onclick="return hs.expand(this)" width=javascript:screen.width height=auto><img src="'+$(this).attr('src')+'" alt="Highslide JS" title="{% trans %}Click to enlarge{% endtrans %}" /></a>');
       $(this).hide()
 	});
 	//$('div.question-body img').parent().append('<a href="'+$('div.question-body img').attr('src')+'" class="highslide" onclick="return hs.expand(this)" width=100% height=auto><img src="'+$('div.question-body img').attr('src')+'" alt="Highslide JS" title="{% trans %}Click to enlarge{% endtrans %}" /></a>');
