@@ -23,7 +23,7 @@
 		{% endif %}
 		{{ question.added_at|date}}</BR>
 		{% trans %}views{% endtrans %}{{thread.view_count}}
-		{% trans %}answers{% endtrans %}{{thread.answer_count}}
+		{% trans %}answers{% endtrans %}{{thread.answer_count}}</BR>
 		{% trans %}paids{% endtrans %}{{thread.paid_count}}
 	</a>
 	{% if question.is_charged %}
