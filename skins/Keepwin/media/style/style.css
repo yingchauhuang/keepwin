@@ -45,7 +45,7 @@ border-radius: 10px;
 .newest_response_wrap
 {
 background: #F0F6F9;
-height:500px;
+height:580px;
 /*border: 1px solid #346F97;
 margin: 3px 0px 4px 0px;
 border-radius: 10px; */
@@ -3789,7 +3789,7 @@ margin: 0 10px 0 0;}
 #index-category .item {
 /*	width:350px;  */
 	width:240px;
-	height:160px;
+	height:180px;
 	float:left;
 	clear:none;
 	margin:0px 0px 0px 1px;
