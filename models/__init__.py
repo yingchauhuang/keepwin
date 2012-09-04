@@ -34,6 +34,7 @@ from askbot.models.meta import Vote
 from askbot.models.user import EmailFeedSetting, ActivityAuditStatus, Activity, UserInfo
 from askbot.models.transaction import Transaction
 from askbot.models.RSS import RSS,RSSSource
+from askbot.models.StockClose import StockClose,StockSymbol
 from askbot.models.profilelayout import UserProfileLayout,ProfileLayout
 from askbot.models.post import Post, PostRevision
 from askbot.models import signals
@@ -3060,6 +3061,8 @@ __all__ = [
         'Transaction',
         'RSS',
         'RSSSource',
+        'StockClose',
+        'StockSymbol',
         'User',
         'ProfileLayout',
         'UserProfileLayout',

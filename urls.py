@@ -5,11 +5,15 @@ import os.path
 from django.conf import settings
 from django.conf.urls.defaults import url, patterns, include
 from django.conf.urls.defaults import handler500, handler404
+
 from django.contrib import admin
 from askbot import views
 from askbot.feed import RssLastestQuestionsFeed, RssIndividualQuestionFeed
 from askbot.sitemap import QuestionsSitemap
 from askbot.skins.utils import update_media_revision
+from django.conf.urls.defaults import *
+
+import object_tools
 
 admin.autodiscover()
 update_media_revision()#needs to be run once, so put it here
@@ -27,8 +31,12 @@ sitemaps = {
     'questions': QuestionsSitemap
 }
 
+
+object_tools.autodiscover()
+
 APP_PATH = os.path.dirname(__file__)
 urlpatterns = patterns('',
+    url(r'^object-tools/', object_tools.tools.urls),                   
     url(r'^$', views.readers.index, name='index'),
     url(
         r'^sitemap.xml$', 

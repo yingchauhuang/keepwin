@@ -18,12 +18,16 @@
 			{% if question.is_private %}
 				<p>{% trans %}This is a private answer{% endtrans %}</p>
 			{% else %}
-				<p>{{ question.summary|escape }}...</p>
+				{% if question.is_charged %}
+					<p>{% trans %}This is a charged post{% endtrans %}</p>
+				{% else %}
+					<p>{{ question.summary|escape }}...</p>
+				{% endif %}
 			{% endif %}
 		{% endif %}
 		{{ question.added_at|date}}</BR>
-		{% trans %}views{% endtrans %}{{thread.view_count}}
-		{% trans %}answers{% endtrans %}{{thread.answer_count}}</BR>
+		{% trans cnt=thread.view_count %}view{% pluralize %}views{% endtrans %}{{thread.view_count}}
+		{% if thread.accepted_answer_id %}{% endif %}{% trans cnt=thread.answer_count %}answer{% pluralize %}answers{% endtrans %}{{thread.answer_count}}</BR>
 		{% trans %}paids{% endtrans %}{{thread.paid_count}}
 	</a>
 	{% if question.is_charged %}

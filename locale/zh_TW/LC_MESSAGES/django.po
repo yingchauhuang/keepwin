@@ -6648,13 +6648,18 @@ msgstr "請儘量地清楚描述您的看法"
 #: skins/default/templates/widgets/question_summary.html:11
 msgid "Posted"
 msgstr "發佈"
+
 #: skins/default/templates/widgets/question_summary.html:12
-msgid "views"
-msgstr "人氣"
+msgid "view"
+msgid_plural "views"
+msgstr[0] "人氣"
+msgstr[1] ""
 
 #: skins/default/templates/widgets/question_summary.html:29
-msgid "answers"
-msgstr "回應"
+msgid "answer"
+msgid_plural "answers"
+msgstr[0] "回應"
+msgstr[1] ""
 
 #: skins/default/templates/widgets/question_summary.html:40
 msgid "vote"
@@ -6935,6 +6940,11 @@ msgstr "謝謝您的意見及建議"
 #: views/meta.py:94
 msgid "We look forward to hearing your feedback! Please, give it next time :)"
 msgstr "我們期待聽到您的意見及建議! 如果可能的話, 請下次不吝指教!"
+
+#: views/readers.py:577
+#, python-format
+msgid "This is a charged post"
+msgstr "這是收費文章,您要付費才能看到回應內容 !!!!"
 
 #: views/readers.py:577
 #, python-format

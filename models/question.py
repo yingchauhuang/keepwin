@@ -169,7 +169,7 @@ class ThreadManager(models.Manager):
         """
         try:
             # TODO: add a possibility to see deleted questions
-            qs = self.filter(posts__post_type__iexact='question', posts__deleted=False).order_by('-last_activity_at') [0:9] # (***) brings `askbot_post` into the SQL query, see the ordering section below
+            qs = self.filter(posts__post_type='question', posts__deleted=False).order_by('-last_activity_at') [0:9] # (***) brings `askbot_post` into the SQL query, see the ordering section below
             qs = qs.only('id', 'title', 'view_count', 'answer_count', 'last_activity_at', 'last_activity_by', 'closed', 'tagnames', 'accepted_answer')
         except:
             logging.debug(sys.exc_info()[0])
@@ -929,7 +929,8 @@ class Thread(models.Model):
     def update_summary_newest_response_html(self):
         context = {
             'thread': self,
-            'question': self._question_newest_response(refresh=True),  # fetch new question post to make sure we're up-to-date
+            'question': self._question_post(refresh=True),  # fetch new question post to make sure we're up-to-date
+            'response': self._question_newest_response(refresh=True),  # fetch new question post to make sure we're up-to-date
             'search_state': DummySearchState(),
         }
         html = get_template('widgets/question_summary_newest_response.html').render(context)
