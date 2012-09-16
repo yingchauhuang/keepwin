@@ -24,10 +24,13 @@ def export_as_csv_action(description="Export selected objects as CSV file",
 
         response = HttpResponse(mimetype='text/csv')
         response['Content-Disposition'] = 'attachment; filename=%s.csv' % unicode(opts).replace('.', '_')
+        response['ContentType'] = 'application/ms-excel';
+        response['ContentEncoding'] =  "big5";
 
         writer = csv.writer(response)
+        #writer.writerow(unicode('\xef\xbb\xbf').encode("utf-8","replace"))
         if header:
-            writer.writerow(list(field_names))
+            writer.writerow(list(unicode(field_names).encode("big5","replace")))
         for obj in queryset:
             writer.writerow([unicode(getattr(obj, field)).encode("big5","replace") for field in field_names])
         return response
