@@ -972,7 +972,11 @@ msgstr "沒有任何異常的交易資料! "
 
 #: views/users.py:1126
 msgid "Here are the transactions can't pass checking"
-msgstr "以下是系統檢查出有異常的交易資料! "
+msgstr "以下是系統檢查出金額有異常的交易資料! "
+
+#: views/users.py:1126
+msgid "Here are the duplicate transactions"
+msgstr "以下是系統檢查出重複扣款的交易資料! "
 
 # footer.html
 #: urls.py:57
@@ -7024,11 +7028,16 @@ msgstr "變更已儲存"
 
 #: views/users.py:955
 msgid "email updates canceled"
-msgstr ""
+msgstr "取消郵件更新功能"
+
+
+#: views/users.py:955
+msgid "<BR>You have paid this article !"
+msgstr "<BR>您已經購買了本篇文章"
 
 #: views/users.py:974
 msgid "profile - email subscriptions"
-msgstr ""
+msgstr "簡介 - 訂閱電子郵件"
 
 #: views/writers.py:58
 msgid "Sorry, anonymous users cannot upload files"
