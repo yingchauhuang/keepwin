@@ -1271,6 +1271,11 @@ def user_transaction(request, user, context):
                         question.thread.paid_count=question.thread.paid_count+1
                         question.thread.save()
                         comment = _('Paid')+unicode(amount)+_('Dollars')+_(' To puchase:')+question.get_question_title()
+                        #re-check if the balance is enough or not
+                        if (amount>user.balance):
+                            errormessage = unicode('<BR>')+_('Sorry, you need to paid')+unicode(amount)+_(' first, then you can read it')+unicode('<BR>')+_(' <a class="tag tag-msg" href="/payment/ibon/">I want to purchase credicts</a>')
+                            request.user.message_set.create(message=errormessage)
+                            return HttpResponseRedirect(reverse('index'))
                         paytrans=user.add_user_transaction(
                                         user = user,
                                         income =0,

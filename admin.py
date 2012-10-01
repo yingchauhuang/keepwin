@@ -15,6 +15,7 @@ from django.http import HttpResponseRedirect
 from askbot.models.transaction import Transaction
 #from django.contrib.admin.filterspecs import FilterSpec, ChoicesFilterSpec,DateFieldFilterSpec
 from django.db import connection
+from CSV_Export import export_as_csv_action
 
 class AnonymousQuestionAdmin(admin.ModelAdmin):
     """AnonymousQuestion admin class"""
@@ -42,6 +43,15 @@ class ThreadAdmin(admin.ModelAdmin):
             'fields': ('title','tagnames','subtitle','OnTop')
         }),
     )
+        # Other stuff here
+    def get_actions(self, request):
+        actions = super(ThreadAdmin, self).get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
     
 class PostAdmin(admin.ModelAdmin):
     """  admin class"""
@@ -49,7 +59,16 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'last_edited_at'
     search_fields  = ('author__username','text')
     actions = [mark_deleted]
-
+        # Other stuff here
+    def get_actions(self, request):
+        actions = super(PostAdmin, self).get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
+    
 class PostRevisionAdmin(admin.ModelAdmin):
     """  admin class"""
 
@@ -69,7 +88,7 @@ class TransactionAdmin(admin.ModelAdmin):
     date_hierarchy = 'trans_at'
     list_filter = ('transaction_type',)
     search_fields  = ('user__username','question__text')
-    actions = None
+    actions = [export_as_csv_action("CSV Export")]
     
 class TransactionCheckAdmin(admin.ModelAdmin):
     """  admin class"""

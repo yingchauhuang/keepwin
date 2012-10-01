@@ -22,9 +22,9 @@
 			<a title="{{question.text|striptags}}" href="{{ question.get_absolute_url(thread=thread) }}">{{ thread.subtitle|escape }}</a>
 		</div>	
 		<div class="to_feed_satistics">
-			<li class="item-count">{{thread.view_count|humanize_counter}}{% trans cnt=thread.view_count %}view{% pluralize %}views{% endtrans %}</li>		
-			<li class="item-count">{{thread.answer_count|humanize_counter}}{% if thread.accepted_answer_id %}{% endif %}{% trans cnt=thread.answer_count %}answer{% pluralize %}answers{% endtrans %}</li>
-            <li class="item-count">{{question.score|humanize_counter}}{% trans cnt=question.score %}vote{% pluralize %}votes{% endtrans %}</li>		
+			<li class="item-count">{% trans cnt=thread.view_count %}view{% pluralize %}views{% endtrans %}{{thread.view_count|humanize_counter}}</li>		
+			<li class="item-count">{% if thread.accepted_answer_id %}{% endif %}{% trans cnt=thread.answer_count %}answer{% pluralize %}answers{% endtrans %}{{thread.answer_count|humanize_counter}}</li>
+            <li class="item-count">{% trans cnt=question.score %}vote{% pluralize %}votes{% endtrans %}{{question.score|humanize_counter}}</li>		
 			{% if question.is_charged %}
 			<div class="charged">
 				<img src="/m/common/media/images/icons/payment.jpg" alt="" />{{question.cost|humanize_counter}}{% trans %}Charged{% endtrans %}
