@@ -33,8 +33,8 @@ from askbot.models.tag import Tag, MarkedTag
 from askbot.models.meta import Vote
 from askbot.models.user import EmailFeedSetting, ActivityAuditStatus, Activity, UserInfo
 from askbot.models.transaction import Transaction
-from askbot.models.RSS import RSS,RSSSource
-from askbot.models.StockClose import StockClose,StockSymbol
+from askbot.models.rss import rss,rsssource
+from askbot.models.stockclose import stockclose,stocksymbol
 from askbot.models.profilelayout import UserProfileLayout,ProfileLayout
 from askbot.models.post import Post, PostRevision
 from askbot.models import signals
@@ -3059,10 +3059,10 @@ __all__ = [
         'ActivityAuditStatus',
         'EmailFeedSetting',
         'Transaction',
-        'RSS',
-        'RSSSource',
-        'StockClose',
-        'StockSymbol',
+        'rss',
+        'rsssource',
+        'stockclose',
+        'stocksymbol',
         'User',
         'ProfileLayout',
         'UserProfileLayout',

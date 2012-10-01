@@ -7,11 +7,11 @@ import time
 from time import mktime 
 from askbot import const
 
-class StockCloseManager(models.Manager):
+class stockcloseManager(models.Manager):
     def Insert(self,Symbol,tDate,Open,High,Low,Close,Volume):
-        CloseTick=StockClose.objects.get(Symbol=Symbol,tDate=tDate)
+        CloseTick=stockclose.objects.get(Symbol=Symbol,tDate=tDate)
         if CloseTick==None:
-            CloseTick=StockClose(Symbol=Symbol,tDate=tDate,Open=Open,High=High,Low=Low,Close=Close,Volume=Volume)
+            CloseTick=stockclose(Symbol=Symbol,tDate=tDate,Open=Open,High=High,Low=Low,Close=Close,Volume=Volume)
         else:
             CloseTick.Symbol=Symbol
             CloseTick.tDate=tDate
@@ -22,11 +22,11 @@ class StockCloseManager(models.Manager):
             CloseTick.Volume=Volume
         CloseTick.save()
     def Get(self,Symbol,beginDate,endDate):
-        return StockClose.objects.filter(Symbol=Symbol,tDate__gte=beginDate,tDate__lte=endDate)
+        return stockclose.objects.filter(Symbol=Symbol,tDate__gte=beginDate,tDate__lte=endDate)
 
         
 
-class StockClose(models.Model):
+class stockclose(models.Model):
     """
     The DB to store the Stock Close price
     """
@@ -37,7 +37,7 @@ class StockClose(models.Model):
     Low=models.FloatField(default=0,verbose_name=_('Low'))
     Close=models.FloatField(default=0,verbose_name=_('Close'))
     Volume=models.IntegerField(default=0,verbose_name=_('Volume'))
-    objects = StockCloseManager()
+    objects = stockcloseManager()
 
 
     def __unicode__(self):
@@ -45,35 +45,36 @@ class StockClose(models.Model):
 
     class Meta:
         app_label = 'askbot'
-        db_table = u'StockClose'
-        verbose_name = _('StockClose')
-        verbose_name_plural = _('StockClose')
+        db_table = u'stockclose'
+        verbose_name = _('stockclose')
+        verbose_name_plural = _('stockclose')
     
-class StockSymbolManager(models.Manager):
+class stocksymbolManager(models.Manager):
     def Insert(self,Symbol,Name,SName,CUR,Unit,Reference,EName,SEName):
-        StockSymbol=StockSymbol.objects.get(Symbol=Symbol)
-        if StockSymbol==None:
-            StockSymbol=StockSymbol(Symbol=Symbol,Name=Name,SName=SName,CUR=CUR,Unit=Unit,Reference=Reference,EName=EName,SEName=SEName)
+        stocksymbol=stocksymbol.objects.get(Symbol=Symbol)
+        if stocksymbol==None:
+            stocksymbol=stocksymbol(Symbol=Symbol,Name=Name,SName=SName,CUR=CUR,Unit=Unit,Reference=Reference,EName=EName,SEName=SEName)
         else:
-            StockSymbol.Symbol=Symbol
-            StockSymbol.Name=Name
-            StockSymbol.SName=SName
-            StockSymbol.CUR=CUR
-            StockSymbol.Unit=Unit
-            StockSymbol.Reference=Reference
-            StockSymbol.EName=EName
-            StockSymbol.SEName=SEName
+            stocksymbol.Symbol=Symbol
+            stocksymbol.Name=Name
+            stocksymbol.SName=SName
+            stocksymbol.CUR=CUR
+            stocksymbol.Unit=Unit
+            stocksymbol.Reference=Reference
+            stocksymbol.EName=EName
+            stocksymbol.SEName=SEName
         CloseTick.save()
     def Get(self,Symbol):
-        return StockSymbol.objects.filter(Symbol__contains=Symbol)
+        return stocksymbol.objects.filter(Symbol__contains=Symbol)
 
         
 
-class StockSymbol(models.Model):
+class stocksymbol(models.Model):
     """
     The DB to store the Stock Close proce
     """
     Symbol = models.CharField(max_length=8,primary_key=True)
+    Market = models.CharField(max_length=8,primary_key=True)
     Name = models.CharField(max_length=20,verbose_name=_('Stock Name'))
     SName = models.CharField(max_length=40,verbose_name=_('Short Name'))
     CUR = models.CharField(max_length=40,verbose_name=_('Currency'))
@@ -83,7 +84,7 @@ class StockSymbol(models.Model):
     SEName = models.CharField(max_length=40,verbose_name=_('Short English Name'))
     Uplimit=models.FloatField(default=0,verbose_name=_('Uplimit'))
     Downlimit=models.FloatField(default=0,verbose_name=_('Downlimit'))
-    objects = StockCloseManager()
+    objects = stockcloseManager()
 
 
     def __unicode__(self):
@@ -91,9 +92,9 @@ class StockSymbol(models.Model):
 
     class Meta:
         app_label = 'askbot'
-        db_table = u'StockSymbol'
-        verbose_name = _('StockSymbol')
-        verbose_name_plural = _('StockSymbol')
+        db_table = u'stocksymbol'
+        verbose_name = _('stocksymbol')
+        verbose_name_plural = _('stocksymbol')
     
 
 

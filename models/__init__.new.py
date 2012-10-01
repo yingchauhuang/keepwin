@@ -2957,6 +2957,10 @@ __all__ = [
         'ActivityAuditStatus',
         'EmailFeedSetting',
         'Transaction',
+        'rss',
+        'rsssource',
+        'stockclose',
+        'stocksymbol',
         'User',
 
         'ReplyAddress',

@@ -392,7 +392,7 @@ class Thread(models.Model):
         self.answer_accepted_at = timestamp
         self.save()
 
-    def set_last_activity(self, last_activity_at, last_activity_by):
+    def set_last_activity(self, last_activity_at):
         self.last_activity_at = last_activity_at
         self.last_activity_by = last_activity_by
         self.save()
