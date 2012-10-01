@@ -12,7 +12,7 @@
 	</div>
 	<a title="{{thread.title|striptags}}" href="{{ question.get_absolute_url(thread=thread) }}" class="group">
 		<h3>{{thread.get_title(question)|escape}}</h3>
-		{% if question.post_type=='question' %}
+		{% if response.post_type=='question' %}
 			<p>{{ thread.subtitle|escape }}...</p>
 		{% else %}
 			{% if response.is_private %}

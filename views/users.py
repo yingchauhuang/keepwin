@@ -44,7 +44,7 @@ from askbot.templatetags import extra_tags
 from askbot.search.state_manager import SearchState
 from askbot.models import Post
 from askbot.models.user import UserInfo
-from askbot.models.RSS import RSS,RSSSource
+from askbot.models.rss import rss,rsssource
 from askbot.models.profilelayout import UserProfileLayout,ProfileLayout,UserProfileLayoutManager
 from django.db import connection
 
@@ -1475,7 +1475,7 @@ def user_rsssource(request, user, context):
     """
     message=''
     
-    rsssources = RSSSource.objects.all()
+    rsssources = rsssource.objects.all()
     data = {
         'active_tab':'users',
         'page_class': 'user-profile-page',
@@ -1502,7 +1502,7 @@ def user_rsseditor(request, user, context):
                 if query_trans_form.is_valid():
                     beginDate=query_trans_form.cleaned_data['beginDate'] 
                     endDate=query_trans_form.cleaned_data['endDate'] 
-                    rsss = models.RSS.objects.filter(pubDate__gte=beginDate-datetime.timedelta(days=1) ,pubDate__lte=endDate+datetime.timedelta(days=1) ).order_by('-pubDate')
+                    rsss = models.rss.objects.filter(pubDate__gte=beginDate-datetime.timedelta(days=1) ,pubDate__lte=endDate+datetime.timedelta(days=1) ).order_by('-pubDate')
                     message=_('Finish transaction checking')
                     finish = True
                 else:

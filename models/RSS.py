@@ -7,7 +7,7 @@ import time
 from time import mktime 
 from askbot import const
 
-class RSSManager(models.Manager):
+class rssManager(models.Manager):
     def set_tag(self,id,tag):
         if ((user is not None) and (question is not None)):
             return self.filter(user=user, question=question, transaction_type=twmodeconst.TYPE_TRANSACTION_PAID_FOR_CONTENT).count()
@@ -18,9 +18,9 @@ class RSSManager(models.Manager):
 
         
 
-class RSS(models.Model):
+class rss(models.Model):
     """
-    The buffer to store the RSS
+    The buffer to store the rss
     """
     title = models.CharField(max_length=180)
     link = models.CharField(max_length=360)
@@ -29,37 +29,37 @@ class RSS(models.Model):
     pubDate = models.DateTimeField(default=None,verbose_name=_('pubDate'))
     description = models.TextField(null=True)
     imported = models. NullBooleanField(default=False,verbose_name=_('imported'))
-    objects = RSSManager()
+    objects = rssManager()
 
 
     def __unicode__(self):
-        return u'RSS:%s' % (self.title)
+        return u'rss:%s' % (self.title)
 
     class Meta:
         app_label = 'askbot'
-        db_table = u'RSS'
-        verbose_name = _('RSS')
-        verbose_name_plural = _('RSS')
+        db_table = u'rss'
+        verbose_name = _('rss')
+        verbose_name_plural = _('rss')
     
-    def delete_RSS(self):
+    def delete_rss(self):
         self.delete()
         
-    def import_RSS(self):
+    def import_rss(self):
         self.delete()
 
-class RSSSourceManager(models.Manager):
+class rsssourceManager(models.Manager):
     def fetch(self):
-        sources = RSSSource.objects.all()
+        sources = rsssource.objects.all()
         for source in sources:
             try:
                 d=feedparser.parse(source.link)
             except feedparser.bozo_exception:
                 d=feedparser.parse(source.link)
             try:
-                print 'The RSS Channel title:' + d.feed.title
-                print 'The RSS Channel description:' + d.feed.description
+                print 'The rss Channel title:' + d.feed.title
+                print 'The rss Channel description:' + d.feed.description
             except:
-                print 'The RSS Channel Data ERROR !!!'
+                print 'The rss Channel Data ERROR !!!'
             
             try:
                 for item in d.entries:
@@ -84,9 +84,9 @@ class RSSSourceManager(models.Manager):
                        except:
                            guid = None
                        try:
-                           if not RSS.objects.filter(link=nlink,pubDate=dt):
+                           if not rss.objects.filter(link=nlink,pubDate=dt):
                                 #print 'Insert Item:'+unicode(item.title.encode('utf8'),'utf8')
-                                rss = RSS(
+                                rss = rss(
                                           title = ntitle,
                                           link = nlink,
                                           tagnames = None,
@@ -99,7 +99,7 @@ class RSSSourceManager(models.Manager):
                            else:
                                 print 'Inserted already dropped Item:'+item.title
                        except askbot.models.post.DoesNotExist:
-                                rss = RSS(
+                                rss = rss(
                                           title = ntitle,
                                           link = nlink,
                                           tagnames = None,
@@ -113,9 +113,9 @@ class RSSSourceManager(models.Manager):
                         print "Unexpected error:", sys.exc_info()[0]
             except:
                     print "Unexpected error:", sys.exc_info()[0]
-class RSSSource(models.Model):
+class rsssource(models.Model):
     """
-    The buffer to store the RSS
+    The buffer to store the rss
     """
     name = models.CharField(max_length=64)
     link = models.CharField(max_length=180)
@@ -123,17 +123,17 @@ class RSSSource(models.Model):
     fetchtime = models.DateTimeField(default=None,verbose_name=_('fetch Time'))
     numbers = models.PositiveIntegerField(default=0)
     success = models.PositiveIntegerField(default=0)
-    objects = RSSSourceManager()
+    objects = rsssourceManager()
 
 
     def __unicode__(self):
-        return u'RSSSource: %s' % (self.name, self.trans_at)
+        return u'rsssource: %s' % (self.name, self.trans_at)
 
     class Meta:
         app_label = 'askbot'
-        db_table = u'RSSSource'
-        verbose_name = _('RSSSource')
-        verbose_name_plural = _('RSSSource')
+        db_table = u'rsssource'
+        verbose_name = _('rsssource')
+        verbose_name_plural = _('rsssource')
     
     def delete_transaction(self):
         self.delete()
