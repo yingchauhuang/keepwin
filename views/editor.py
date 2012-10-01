@@ -20,7 +20,7 @@ from django.contrib.auth.models import User
 from askbot.skins.loaders import render_into_skin, get_template
 import askbot
 import datetime
-from askbot.models.RSS import RSS
+from askbot.models.rss import rss
 import logging
 #jinja2 template loading enviroment
 
@@ -36,10 +36,10 @@ def rss(request):
     """
 
     user=request.user
-    RSSs=RSS.objects.all()
+    rsss=rss.objects.all()
     
     template_data = {
-        'RSSs': RSSs,
+        'rsss': rsss,
         }
 
         #return render_into_skin('main_page_twmode.html', template_data, request)

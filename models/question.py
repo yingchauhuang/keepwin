@@ -419,7 +419,7 @@ class Thread(models.Model):
     paid_count = models.PositiveIntegerField(default=0)
     last_activity_at = models.DateTimeField(default=datetime.datetime.now)
     last_activity_by = models.ForeignKey(User, related_name='unused_last_active_in_threads')
-
+    
     followed_by     = models.ManyToManyField(User, related_name='followed_threads')
     favorited_by    = models.ManyToManyField(User, through='FavoriteQuestion', related_name='unused_favorite_threads')
 
@@ -434,6 +434,7 @@ class Thread(models.Model):
                                         )
 
     accepted_answer = models.ForeignKey(Post, null=True, blank=True, related_name='+')
+    
     answer_accepted_at = models.DateTimeField(null=True, blank=True)
 
     objects = ThreadManager()
