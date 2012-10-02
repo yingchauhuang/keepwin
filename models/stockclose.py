@@ -74,7 +74,7 @@ class stocksymbol(models.Model):
     The DB to store the Stock Close proce
     """
     Symbol = models.CharField(max_length=8,primary_key=True)
-    Market = models.CharField(max_length=8,primary_key=True)
+    Market = models.CharField(max_length=8)
     Name = models.CharField(max_length=20,verbose_name=_('Stock Name'))
     SName = models.CharField(max_length=40,verbose_name=_('Short Name'))
     CUR = models.CharField(max_length=40,verbose_name=_('Currency'))
