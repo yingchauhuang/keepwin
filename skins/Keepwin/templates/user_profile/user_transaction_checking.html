@@ -31,7 +31,7 @@
 			</table>
 		</form>
 		{% if finish %}
-			{% if transactions %}
+			{% if unbalance_transactions or duplicate_transactions %}
 			<table>
 				<tr>
 					<td cellspacing="5">{% trans %}Here are the transactions can't pass checking{% endtrans %}
@@ -44,19 +44,45 @@
 					<th><span class="karma-summary">{% trans %}Comment{% endtrans %}</span></th>
 					<th><span class="karma-summary">{% trans %}Refer ID{% endtrans %}</span></th>
 				</tr>
-				{% for transaction in transactions %}
+				{% for unbalance_transaction in unbalance_transactions %}
 				<tr>
-					<td><span class="karma-detail">{{ transaction.user.username|trim }}</span></td>
-					<td><span class="karma-gained">{{ transaction.income }}</span></td>
-					<td><span class="karma-lost">{{ transaction.outcome }}</span></td>
+					<td><span class="karma-detail">{{ unbalance_transaction.user.username|trim }}</span></td>
+					<td><span class="karma-gained">{{ unbalance_transaction.income }}</span></td>
+					<td><span class="karma-lost">{{ unbalance_transaction.outcome }}</span></td>
 					<td>
 					{% if request.user|can_moderate_user(view_user) %}
-						<span class="small">{{transaction.id}}{{ transaction.get_explanation_snippet_admin() }}({{transaction.trans_at|diff_date}})</span>
+						<span class="small">{{unbalance_transaction.id}}{{ unbalance_transaction.get_explanation_snippet_admin() }}({{unbalance_transaction.trans_at|diff_date}})</span>
 					{% else %}
-						<span class="small">{{ transaction.get_explanation_snippet() }}({{transaction.trans_at|diff_date}})</span>
+						<span class="small">{{ unbalance_transaction.get_explanation_snippet() }}({{unbalance_transaction.trans_at|diff_date}})</span>
 					{% endif %}
 					</td>
-					<td><span class="karma-detail">{{ transaction.refer_id }}</span> </td>
+					<td><span class="karma-detail">{{ unbalance_transaction.refer_id }}</span> </td>
+				</tr>
+				{% endfor %}
+				<tr>
+					<td cellspacing="5">{% trans %}Here are the duplicate transactions{% endtrans %}
+					</td>
+				<tr>
+				<tr>
+					<th><span class="karma-summary">{% trans %}User{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Income{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Outcome{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Comment{% endtrans %}</span></th>
+					<th><span class="karma-summary">{% trans %}Refer ID{% endtrans %}</span></th>
+				</tr>
+				{% for duplicate_transaction in duplicate_transactions %}
+				<tr>
+					<td><span class="karma-detail">{{ duplicate_transaction.user.username|trim }}</span></td>
+					<td><span class="karma-gained">{{ duplicate_transaction.income }}</span></td>
+					<td><span class="karma-lost">{{ duplicate_transaction.outcome }}</span></td>
+					<td>
+					{% if request.user|can_moderate_user(view_user) %}
+						<span class="small">{{duplicate_transaction.id}}{{ duplicate_transaction.get_explanation_snippet_admin() }}({{duplicate_transaction.trans_at|diff_date}})</span>
+					{% else %}
+						<span class="small">{{ duplicate_transaction.get_explanation_snippet() }}({{duplicate_transaction.trans_at|diff_date}})</span>
+					{% endif %}
+					</td>
+					<td><span class="karma-detail">{{ duplicate_transaction.refer_id }}</span> </td>
 				</tr>
 				{% endfor %}
 			</table>

@@ -1268,6 +1268,11 @@ def user_transaction(request, user, context):
                         qid = trans_confirm_form.cleaned_data['qid']
                         user = request.user
                         question = Post.objects.filter(id=qid)[0]
+                        transaction=Transaction.objects.get_question_transaction(user,question)    
+                        if (transaction != 0):
+                            errormessage = _('<BR>You have paid this article !')
+                            request.user.message_set.create(message=errormessage)
+                            return HttpResponseRedirect(reverse('question', kwargs = {'id': question.id}))
                         question.thread.paid_count=question.thread.paid_count+1
                         question.thread.save()
                         comment = _('Paid')+unicode(amount)+_('Dollars')+_(' To puchase:')+question.get_question_title()
@@ -1276,6 +1281,7 @@ def user_transaction(request, user, context):
                             errormessage = unicode('<BR>')+_('Sorry, you need to paid')+unicode(amount)+_(' first, then you can read it')+unicode('<BR>')+_(' <a class="tag tag-msg" href="/payment/ibon/">I want to purchase credicts</a>')
                             request.user.message_set.create(message=errormessage)
                             return HttpResponseRedirect(reverse('index'))
+
                         paytrans=user.add_user_transaction(
                                         user = user,
                                         income =0,
@@ -1444,7 +1450,15 @@ def user_transaction_checking(request, user, context):
                     unbalance_question_result = cursor.fetchall()
                     for row in unbalance_question_result:
                         unbalance_question.append(row[0])
-                    transactions = models.Transaction.objects.filter(refer__in=unbalance_question,trans_at__gte=beginDate-datetime.timedelta(days=1) ,trans_at__lte=endDate+datetime.timedelta(days=1) ).select_related('question', 'question__thread', 'user').order_by('-trans_at')
+                    unbalance_transactions = models.Transaction.objects.filter(refer__in=unbalance_question,trans_at__gte=beginDate-datetime.timedelta(days=1) ,trans_at__lte=endDate+datetime.timedelta(days=1) ).select_related('question', 'question__thread', 'user').order_by('-trans_at')
+                    
+                    duplicate_question = list()
+                    cursor = connection.cursor()
+                    cursor.execute("select trans.refer_id from (select user_id,question_id from (select user_id,question_id, count(*) as num from transaction where transaction_type=10 and issettled!=True group by user_id, question_id) as t where t.num>1) as dup_t left join transaction as trans on trans.user_id=dup_t.user_id and trans.question_id=dup_t.question_id;")
+                    duplicate_question_result = cursor.fetchall()
+                    for row in duplicate_question_result:
+                        duplicate_question.append(row[0])
+                    duplicate_transactions = models.Transaction.objects.filter(id__in=duplicate_question,trans_at__gte=beginDate-datetime.timedelta(days=1) ,trans_at__lte=endDate+datetime.timedelta(days=1) ).select_related('question', 'question__thread', 'user').order_by('-trans_at')
                     message=_('Finish transaction checking')
                     finish = True
                 else:
@@ -1462,7 +1476,8 @@ def user_transaction_checking(request, user, context):
         'tab_name': 'transaction',
         'tab_description': _('user balance'),
         'page_title': _('profile - user balance'),
-        'transactions': transactions,
+        'unbalance_transactions': unbalance_transactions,
+        'duplicate_transactions': duplicate_transactions,
         'query_trans_form': query_trans_form,
         'finish': finish,
         'message':message,
