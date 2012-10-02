@@ -680,7 +680,7 @@ class QueryTransactionForm(forms.Form):
                                     help_text=_('for the transaction query begin date, format: DD/MM/YYYY'),
                                     input_formats=['%Y/%m/%d',],
                                     required=False,
-                                    initial= (datetime.date.today( ) - datetime.timedelta(days=120)),
+                                    initial= (datetime.date.today( ) - datetime.timedelta(days=30)),
                                     widget=forms.DateInput(format='%Y/%m/%d')
                                 )
     endDate = forms.DateField(
