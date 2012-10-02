@@ -1434,7 +1434,8 @@ def user_transaction_checking(request, user, context):
     """transaction_checking
     """
     query_trans_form = forms.QueryTransactionForm()
-    transactions = None
+    unbalance_transactions = None
+    duplicate_transactions = None
     finish = None
     message=''
     if request.method == 'POST':
@@ -1464,7 +1465,7 @@ def user_transaction_checking(request, user, context):
                 else:
                     #message=query_trans_form.errors
                     message=_('The Data you input have some errors. Please re-fill the data carefully')
-                    transactions = None
+                    
             except:
                 message=unicode(sys.exc_info()[0])
     else:
