@@ -670,7 +670,38 @@ class RSSSourceForm(forms.Form):
 
     def __init__(self, *arg, **kwarg):
             super(RSSSourceForm, self).__init__(*arg, **kwarg)
-                        
+
+class QueryRSSForm(forms.Form):
+    """Query RSS record by submitting this form
+    """
+
+    beginDate = forms.DateField(
+                                    label=_('Begin Date'),
+                                    help_text=_('for the transaction query begin date, format: DD/MM/YYYY'),
+                                    input_formats=['%Y/%m/%d',],
+                                    required=False,
+                                    initial= (datetime.date.today( ) - datetime.timedelta(days=30)),
+                                    widget=forms.DateInput(format='%Y/%m/%d')
+                                )
+    endDate = forms.DateField(
+                                    label=_('End Date'),
+                                    help_text=_('for the transaction query end date, format: DD/MM/YYYY'),
+                                    input_formats=['%Y/%m/%d',],
+                                    required=False,
+                                    initial=datetime.date.today,
+                                    widget=forms.DateInput(format='%Y/%m/%d')
+                                )
+    filter = forms.BooleanField(        
+        label = _('Only Show unedited article'),
+        help_text = _(
+            'This option is set, only show unedited articles'
+        ),
+        required = False,
+    )
+    tags   = TagNamesField()
+    def __init__(self, *arg, **kwarg):
+            super(QueryRSSForm, self).__init__(*arg, **kwarg)
+                            
 class QueryTransactionForm(forms.Form):
     """Query User transaction record by submitting this form
     """

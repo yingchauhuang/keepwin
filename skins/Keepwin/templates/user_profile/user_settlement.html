@@ -10,7 +10,7 @@
 			<input type="hidden" name="sort" value="transaction"/>
 			<table>
 				<tr>
-					<td><label for="id_SettleDate">{% trans %}From{% endtrans %}</label></td>
+					<td><label for="id_SettleDate">{% trans %}Settle Date{% endtrans %}</label></td>
 					<td>{{ settletransaction_form.SettleDate}}</td>
 					<td>{% if settletransaction_form.SettleDate.errors %}
 							<p class="error">{{settletransaction_form.SettleDate.errors|join(', ')}}</p>

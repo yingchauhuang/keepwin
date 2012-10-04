@@ -7381,6 +7381,10 @@ msgstr "進行戶頭結帳"
 msgid "Settle_at"
 msgstr "結帳時間"
 
+#: models/transaction.py:65
+msgid "Settle date"
+msgstr "結帳日期(這個日期之前的交易都會被結帳)"
+
 #: models/Post.py:302
 msgid "Post"
 msgstr "發文紀錄"
