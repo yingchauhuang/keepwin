@@ -1507,19 +1507,19 @@ def user_rsssource(request, user, context):
 def user_rsseditor(request, user, context):
     """transaction_checking
     """
-    query_trans_form = forms.QueryTransactionForm()
-    transactions = None
+    queryrss_form = forms.QueryRSSForm()
+    rsss = None
     finish = None
     message=''
     if request.method == 'POST':
         if 'transaction_checking' in request.POST:
             try:
-                query_trans_form = forms.QueryTransactionForm(request.POST)
-                if query_trans_form.is_valid():
-                    beginDate=query_trans_form.cleaned_data['beginDate'] 
-                    endDate=query_trans_form.cleaned_data['endDate'] 
+                queryrss_form = forms.QueryRSSForm(request.POST)
+                if queryrss_form.is_valid():
+                    beginDate=queryrss_form.cleaned_data['beginDate'] 
+                    endDate=queryrss_form.cleaned_data['endDate'] 
                     rsss = models.rss.objects.filter(pubDate__gte=beginDate-datetime.timedelta(days=1) ,pubDate__lte=endDate+datetime.timedelta(days=1) ).order_by('-pubDate')
-                    message=_('Finish transaction checking')
+                    message=_('Finish RSS Query')
                     finish = True
                 else:
                     #message=query_trans_form.errors
@@ -1528,16 +1528,16 @@ def user_rsseditor(request, user, context):
             except:
                 message=unicode(sys.exc_info()[0])
     else:
-        message=_('Please fill the date for transaction checking')
+        message=_('Please fill the date for RSS Query')
         rsss = None
     data = {
         'active_tab':'users',
         'page_class': 'user-profile-page',
-        'tab_name': 'transaction',
-        'tab_description': _('user balance'),
-        'page_title': _('profile - user balance'),
+        'tab_name': 'rsseditor',
+        'tab_description': _('RSS Edit'),
+        'page_title': _('profile - RSS Edit'),
         'rsss': rsss,
-        'query_trans_form': query_trans_form,
+        'query_trans_form': queryrss_form,
         'finish': finish,
         'message':message,
     }
