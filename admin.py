@@ -110,9 +110,17 @@ class TransactionCheckAdmin(admin.ModelAdmin):
 class UserInforAdmin(admin.ModelAdmin):
     """  admin class"""
     #list_filter = ['trans_at']
-    list_display = ('user','gender','education','income','occupational','template','mobile','mobile_verified','address')
+    list_display = ('user','balance','gender','education','income','occupational','template','mobile','mobile_verified','address')
     search_fields  = ('user__username',)
     actions = None
+    
+#class UserBalanceAdmin(admin.ModelAdmin):
+#    """  admin class"""
+#    #list_filter = ['trans_at']
+#    list_display = ('user', 'balance')
+#    search_fields  = ('username',)
+#    actions = None
+    
 class rssAdmin(admin.ModelAdmin):
     """  admin rss class"""
     #list_filter = ['trans_at']
@@ -146,5 +154,6 @@ admin.site.register(models.PostRevision, PostRevisionAdmin)
 admin.site.register(models.Transaction, TransactionAdmin)
 #admin.site.register(models.Transaction, TransactionCheckAdmin)
 admin.site.register(models.UserInfo, UserInforAdmin)
+#admin.site.register(models.User, UserBalanceAdmin)
 admin.site.register(models.rss, rssAdmin)
 admin.site.register(models.rsssource, rsssourceAdmin)
