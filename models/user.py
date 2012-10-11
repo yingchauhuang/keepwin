@@ -410,6 +410,9 @@ class UserInfo(models.Model):
     SAT44=models.BooleanField(default=False,verbose_name=_('SAT44'))
     SATOther=models.CharField(max_length=20,verbose_name=_('SATOther'))
 
+    def balance(self):
+        return self.user.balance
+    
     def __unicode__(self):
         return u'[%s]  Info' % (self.user.username)
     
