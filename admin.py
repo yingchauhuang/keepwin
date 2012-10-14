@@ -112,8 +112,7 @@ class UserInforAdmin(admin.ModelAdmin):
     #list_filter = ['trans_at']
     list_display = ('user','balance','gender','education','income','occupational','template','mobile','mobile_verified','address')
     search_fields  = ('user__username',)
-    actions = None
-    
+    actions = [export_as_csv_action("CSV Export")]
 #class UserBalanceAdmin(admin.ModelAdmin):
 #    """  admin class"""
 #    #list_filter = ['trans_at']
