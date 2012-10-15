@@ -31,14 +31,15 @@ def export_as_csv_action(description="Export selected objects as CSV file",
         writer = csv.writer(response)
         #writer.writerow(unicode('\xef\xbb\xbf').encode("utf-8","replace"))
         if header:
-            writer.writerow(list(unicode(fields).encoding("big5",replace)))
+            writer.writerow(list(fields))
         for obj in queryset:
             rowdata=list()
             for field in fields:
                 if hasattr(getattr(obj, field), '__call__'): 
-                    rowdata.append(unicode(getattr(obj, field)()).encoding("big5",replace))
+                    data=getattr(obj, field)()
                 else: 
-                    rowdata.append(unicode(getattr(obj, field)).encoding("big5",replace))
+                    data=getattr(obj, field)
+                rowdata.append(unicode(data).encode("big5","replace"))
             writer.writerow(rowdata)
         return response
     export_as_csv.short_description = description

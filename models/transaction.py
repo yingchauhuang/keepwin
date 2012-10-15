@@ -94,6 +94,9 @@ class Transaction(models.Model):
     
     def username(self):
         return self.user.username
+    
+    def trans_at_time(self):
+        return str(self.trans_at)
 
     def __unicode__(self):
         return u'[%s] add transaction at %s' % (self.user.username, self.trans_at)
