@@ -84,16 +84,16 @@ class PostRevisionAdmin(admin.ModelAdmin):
 class TransactionAdmin(admin.ModelAdmin):
     """  admin class"""
     #list_filter = ['trans_at']
-    list_display = ('question','user', 'trans_at', 'transaction_type','income','outcome','balance','comment')
+    list_display = ('questiontitle','username', 'trans_at', 'transaction_type','income','outcome','balance','comment')
     date_hierarchy = 'trans_at'
     list_filter = ('transaction_type',)
     search_fields  = ('user__username','question__text')
-    actions = [export_as_csv_action("CSV Export")]
+    actions = [export_as_csv_action("CSV Export",list_display)]
     
 class TransactionCheckAdmin(admin.ModelAdmin):
     """  admin class"""
     #list_filter = ['trans_at']
-    list_display = ('question','user', 'trans_at', 'transaction_type','income','outcome','balance','comment')
+    list_display = ('questiontitle','username', 'trans_at', 'transaction_type','income','outcome','balance','comment')
     #date_hierarchy = 'trans_at'
     def queryset(self, request):
         qs = super(TransactionCheckAdmin, self).queryset(request)
@@ -110,9 +110,9 @@ class TransactionCheckAdmin(admin.ModelAdmin):
 class UserInforAdmin(admin.ModelAdmin):
     """  admin class"""
     #list_filter = ['trans_at']
-    list_display = ('user','balance','gender','education','income','occupational','template','mobile','mobile_verified','address')
+    list_display = ('username','balance','gender','education','income','occupational','template','mobile','mobile_verified','address')
     search_fields  = ('user__username',)
-    actions = [export_as_csv_action("CSV Export")]
+    actions = [export_as_csv_action("CSV Export",list_display)]
 #class UserBalanceAdmin(admin.ModelAdmin):
 #    """  admin class"""
 #    #list_filter = ['trans_at']
