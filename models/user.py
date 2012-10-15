@@ -413,6 +413,9 @@ class UserInfo(models.Model):
     def balance(self):
         return self.user.balance
     
+    def username(self):
+        return self.user.username
+    
     def __unicode__(self):
         return u'[%s]  Info' % (self.user.username)
     

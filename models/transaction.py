@@ -80,6 +80,20 @@ class Transaction(models.Model):
     settle_at = models.DateTimeField(default=None,verbose_name=_('Settle_at'))
     objects = TransactionManager()
 
+    def questiontitle(self):
+        if self.question!= None:
+            if self.question.is_question():
+                return self.question.thread.title
+            elif self.question.is_answer():
+                return self.question.html
+            elif self.question.is_comment():
+                return self.question.text
+            raise NotImplementedError
+        else:
+            return ""
+    
+    def username(self):
+        return self.user.username
 
     def __unicode__(self):
         return u'[%s] add transaction at %s' % (self.user.username, self.trans_at)

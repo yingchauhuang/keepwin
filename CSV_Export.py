@@ -14,13 +14,14 @@ def export_as_csv_action(description="Export selected objects as CSV file",
         based on http://djangosnippets.org/snippets/1697/
         """
         opts = modeladmin.model._meta
-        field_names = set([field.name for field in opts.fields])
-        if fields:
-            fieldset = set(fields)
-            field_names = field_names & fieldset
-        elif exclude:
-            excludeset = set(exclude)
-            field_names = field_names - excludeset
+        #field_names = set([field.name for field in opts.fields])
+        #if fields:
+        #    fieldset = set(fields)
+        #    #field_names = field_names & fieldset
+        #    field_names = fieldset
+        #elif exclude:
+        #    excludeset = set(exclude)
+        #    field_names = field_names - excludeset
 
         response = HttpResponse(mimetype='text/csv')
         response['Content-Disposition'] = 'attachment; filename=%s.csv' % unicode(opts).replace('.', '_')
@@ -30,9 +31,15 @@ def export_as_csv_action(description="Export selected objects as CSV file",
         writer = csv.writer(response)
         #writer.writerow(unicode('\xef\xbb\xbf').encode("utf-8","replace"))
         if header:
-            writer.writerow(list(unicode(field_names).encode("big5","replace")))
+            writer.writerow(list(fields))
         for obj in queryset:
-            writer.writerow([unicode(getattr(obj, field)).encode("big5","replace") for field in field_names])
+            rowdata=list()
+            for field in fields:
+                if hasattr(getattr(obj, field), '__call__'): 
+                    rowdata.append(getattr(obj, field)())
+                else: 
+                    rowdata.append(getattr(obj, field))
+            writer.writerow(rowdata)
         return response
     export_as_csv.short_description = description
     return export_as_csv
