@@ -7,7 +7,7 @@
         <h3>{% trans %}transaction checking{% endtrans %}</h3>
 		<h2>{{ message}}</h2>
 		<form method="post">{% csrf_token %}
-			<input type="hidden" name="sort" value="transaction"/>
+			<input type="hidden" name="sort" value="transaction_checking"/>
 			<table>
 				<tr>
 					<td><label width="80px" for="id_beginDate">{% trans %}From{% endtrans %}</label></td>

@@ -1474,9 +1474,9 @@ def user_transaction_checking(request, user, context):
     data = {
         'active_tab':'users',
         'page_class': 'user-profile-page',
-        'tab_name': 'transaction',
-        'tab_description': _('user balance'),
-        'page_title': _('profile - user balance'),
+        'tab_name': 'transaction_checking',
+        'tab_description': _('user transaction checking'),
+        'page_title': _('profile - transaction checking'),
         'unbalance_transactions': unbalance_transactions,
         'duplicate_transactions': duplicate_transactions,
         'query_trans_form': query_trans_form,
@@ -1485,6 +1485,46 @@ def user_transaction_checking(request, user, context):
     }
     context.update(data)
     return render_into_skin('user_profile/user_transaction_checking.html', context, request)
+
+def user_all_balance(request, user, context):
+    """List user balance by special date
+    """
+    query_trans_form = forms.QueryTransactionForm()
+    user_balances = None
+    message=''
+    if request.method == 'POST':
+        if 'all_balance' in request.POST:
+            try:
+                query_trans_form = forms.QueryTransactionForm(request.POST)
+                if query_trans_form.is_valid():
+                    beginDate=query_trans_form.cleaned_data['beginDate'] 
+                    endDate=query_trans_form.cleaned_data['endDate'] 
+                    cursor = connection.cursor()
+                    cursor.execute("select T.user_id,auth_user.username, transaction.balance from (select user_id, max(trans_at) as max_trans_at from transaction where trans_at<'{0}' group by user_id) as T join transaction on transaction.trans_at=T.max_trans_at and transaction.user_id=T.user_id join auth_user on T.user_id=auth_user.id;".format(endDate))
+                    user_balances = cursor.fetchall()
+                    message=_('Finish all balance checking')
+                    finish = True
+                else:
+                    #message=query_trans_form.errors
+                    message=_('The Date you input have some errors. Please re-fill the date carefully')
+                    
+            except:
+                message=unicode(sys.exc_info()[0])
+    else:
+        message=_('Please fill the date for user balance query')
+        transactions = None
+    data = {
+        'active_tab':'users',
+        'page_class': 'user-profile-page',
+        'tab_name': 'all_balance',
+        'tab_description': _('all users balance'),
+        'page_title': _('profile - all users balance'),
+        'user_balances': user_balances,
+        'query_trans_form': query_trans_form,
+        'message':message,
+    }
+    context.update(data)
+    return render_into_skin('user_profile/user_all_balance.html', context, request)
 
 def user_rsssource(request, user, context):
     """rss source management , manual execution
@@ -1631,6 +1671,7 @@ USER_VIEW_CALL_TABLE = {
     'settlement': user_settlement,
     'rollback_transaction': user_rollback_transaction,
     'transaction_checking': user_transaction_checking,
+    'all_balance': user_all_balance,
     'rsssource': user_rsssource,
     'rsseditor': user_rsseditor,
     'layout': user_layout,

@@ -1,0 +1,137 @@
+{% import "macros.html" as macros %}
+{% extends "two_column_body.html" %}
+{# 
+    this template is split into several
+    blocks that are included here
+    the blocks are within directory templates/main_page
+    relative to the skin directory
+
+    there is no html markup in this file
+#}
+<!-- questions_keepwin.html -->
+{% block title %}{% spaceless %}KeepWin{% endspaceless %}{% endblock %}
+{% block content %}
+	{% include "main_page/submenu.html" %}
+	{% include "main_page/newest_keepwin.html" %}
+	<table>
+		<tr><td>
+			<div id="submenu">
+			<ul class="menu">
+					<li><a href="/questions/scope:all/sort:age-desc/" title="瀏覽最新文章" class="menutitle ">最新文章</a></li>
+					<li style="float:right"><a href="/questions/scope:all/sort:age-desc/" title="瀏覽最新文章" class="menutitle "><img src={{'/images/but_more.gif'|media}} alt="more"></a></li>
+			</ul>
+			</div>
+			<div class="newest_wrap">
+				<div id="question-list">
+					{% include "main_page/questions_loop_newest.html" %}
+				</div>
+			</div>
+		</td></tr>
+		<tr><td>
+			<div id="submenu">
+			<ul class="menu">
+					<li><a href="/questions/scope:all/sort:view-desc/" title="瀏覽熱門文章" class="menutitle ">熱門文章</a></li>
+					<li style="float:right"><a href="/questions/scope:all/sort:view-desc/" title="瀏覽熱門文章" class="menutitle "><img src={{'/images/but_more.gif'|media}} alt="more"></a></li>
+			</ul>
+			</div>
+			<div class="today_wrap">
+				<div id="question-list">
+					{% include "main_page/questions_loop_todayhot.html" %}
+				</div>
+			</div>
+		</td></tr>
+		<tr><td>
+			<div id="submenu">
+			<ul class="menu">
+					<li><a href="/questions/scope:all/sort:answers-desc/" title="瀏覽最新回應" class="menutitle ">最新回應</a></li>
+					<li style="float:right"><a href="/questions/scope:all/sort:activity-desc/" title="瀏覽最新回應" class="menutitle "><img src={{'/images/but_more.gif'|media}} alt="more"></a></li>
+			</ul>
+			</div>
+			<div class="newest_response_wrap">
+				<div id="question-list">
+					{% include "main_page/questions_loop_newest_response.html" %}
+				</div>
+			</div>
+		</td></tr>
+	</table>
+    {% include "main_page/footerbar.html" %}
+	
+{% endblock %}
+{% block sidebar %}
+    {% include "main_page/sidebar.html" %}
+{% endblock %}
+{% block endjs %}
+		
+	{% if user_messages %}
+		<script src="{{"/js/jquery.ui.core.js"|media}}"></script>
+		<script src="{{"/js/jquery.ui.widget.js"|media}}"></script>
+		<script src="{{"/js/jquery.ui.mouse.js"|media}}"></script>
+		<script src="{{"/js/jquery.ui.button.js"|media}}"></script>
+		<script src="{{"/js/jquery.ui.draggable.js"|media}}"></script>
+		<script src="{{"/js/jquery.ui.position.js"|media}}"></script>
+		<script src="{{"/js/jquery.ui.resizable.js"|media}}"></script>
+		<script src="{{"/js/jquery.ui.sortable.js"|media}}"></script>
+		<script src="{{"/js/jquery.ui.dialog.js"|media}}"></script>
+		<link href="{{"/style/jquery.ui.theme.css"|media }}" rel="stylesheet" type="text/css" />
+		<link href="{{"/style/jquery.ui.dialog.css"|media }}" rel="stylesheet" type="text/css" />
+		<link href="{{"/style/jquery.ui.core.css"|media }}" rel="stylesheet" type="text/css" />
+		<link href="{{"/style/jquery.ui.resizable.css"|media }}" rel="stylesheet" type="text/css" />
+		<script type="text/javascript">
+			$(document).ready(function(){
+				// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+				$( "#dialog:ui-dialog" ).dialog( "destroy" );
+
+				if ($( ".notification" ).text().length > 0)
+				{
+					$( "#dialog-message" ).dialog({
+						modal: true,
+						//buttons: {
+						//	Ok: function() {
+						//		$( this ).dialog( "close" );
+						//	}
+						//}
+					});
+				}
+				
+			});
+			$('#System-Message').hide().css({"position":"relative","left":"inherit"}).fadeIn(1500);
+		</script>
+	{% endif %}
+	<!--  Begin jCarousel Javascript  -->
+	<script src="{{"/js/jquery.jcarousel.min.js"|media}}"></script>
+	<link href="{{"/style/skin.css"|media }}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+	function mycarousel_initCallback(carousel)
+	{
+		// Disable autoscrolling if the user clicks the prev or next button.
+		carousel.buttonNext.bind('click', function() {
+			carousel.startAuto(0);
+		});
+
+		carousel.buttonPrev.bind('click', function() {
+			carousel.startAuto(0);
+		});
+
+		// Pause autoscrolling if the user moves with the cursor over the clip.
+		carousel.clip.hover(function() {
+			carousel.stopAuto();
+		}, function() {
+			carousel.startAuto();
+		});
+		//$('#wrap').show();
+	};
+
+	//jQuery(document)
+	$(document).ready(function() {
+			jQuery('#mycarousel').jcarousel({
+			auto: 5,
+			wrap: 'circular',
+			initCallback: mycarousel_initCallback
+		});
+		$('#wrap').hide().css({"position":"relative","left":"inherit"}).fadeIn(1500);
+		
+	});
+	</script>
+<!--  End jCarousel Javascript  -->
+{% endblock %}
+<!-- end questions.html -->

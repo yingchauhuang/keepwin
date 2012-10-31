@@ -34,7 +34,7 @@ from askbot.models.meta import Vote
 from askbot.models.user import EmailFeedSetting, ActivityAuditStatus, Activity, UserInfo
 from askbot.models.transaction import Transaction
 from askbot.models.rss import rss,rsssource
-from askbot.models.stockclose import stockclose,stocksymbol
+from askbot.models.stockclose import stockclose,stocksymbol,stockindustryratio,stockindustry,stockconceptgroup,stockconceptgrouprelation
 from askbot.models.profilelayout import UserProfileLayout,ProfileLayout
 from askbot.models.post import Post, PostRevision
 from askbot.models import signals
@@ -1221,6 +1221,8 @@ def user_settle_transaction(
             tran.settle_at=datetime.datetime.now()
             tran.save()
         if (settlebalance>0):
+            if settlebalance>self.balance:
+                settlebalance=self.balance
             comment=_('Settle the user account')+unicode(settlebalance)+_('Dollars')
             self.add_user_transaction(
                                         user = self,
@@ -3063,6 +3065,10 @@ __all__ = [
         'rsssource',
         'stockclose',
         'stocksymbol',
+        'stockindustryratio',
+        'stockindustry',
+        'stockconceptgroup',
+        'stockconceptgrouprelation',
         'User',
         'ProfileLayout',
         'UserProfileLayout',
