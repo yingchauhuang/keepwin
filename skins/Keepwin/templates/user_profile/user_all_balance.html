@@ -1,0 +1,91 @@
+{% extends "user_profile/user.html" %}
+<!-- user_transaction_checking.html -->
+{% block profilesection %}
+    {% trans %}transaction checking{% endtrans %}
+{% endblock %}
+{% block usercontent %}
+        <h3>{% trans %}User Balance{% endtrans %}</h3>
+		<h2>{{ message}}</h2>
+		<form method="post">{% csrf_token %}
+			<input type="hidden" name="sort" value="all_balance"/>
+			<table>
+				<tr visable="false">
+					<td><label width="80px" for="id_beginDate">{% trans %}From{% endtrans %}</label></td>
+					<td>{{ query_trans_form.beginDate}}</td>
+					<td>{% if query_trans_form.beginDate.errors %}
+							<p class="error">{{query_trans_form.beginDate.errors|join(', ')}}</p>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<td><label width="80px" for="id_endDate">{% trans %}To{% endtrans %}</label></td>
+					<td>{{ query_trans_form.endDate}}</td>
+					<td>{% if query_trans_form.endDate.errors %}
+							<p class="error">{{query_trans_form.endDate.errors|join(', ')}}</p>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<td cellspacing="3"><input type="Submit" class="submit" name="all_balance" value="{% trans %}Execute{% endtrans %}" /></td>
+				</tr>
+			</table>
+		</form>
+		{% if user_balances %}
+		<table>
+			<tr>
+				<td cellspacing="3">{% trans %}Here are the User Balance{% endtrans %}
+				</td>
+			<tr>
+			<tr>
+				<td><span class="karma-summary">{% trans %}ID{% endtrans %}</span></td>
+				<td><span class="karma-summary">{% trans %}User Name{% endtrans %}</span></td>
+				<td><span class="karma-summary">{% trans %}Balance{% endtrans %}</span></td>
+			</tr>
+			{% for user_balance in user_balances %}
+			<tr>
+				<td><span class="karma-gained">{{ user_balance[0] }}</span></td>
+				<td><span class="karma-detail">{{ user_balance[1]|trim }}</span></td>
+				<td><span class="karma-gained">{{ user_balance[2] }}</span></td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+			<p>{% trans %}There is no abnormal transaction record{% endtrans %}
+			</p>
+		{% endif %}
+
+{% endblock %}
+{% block userjs %}
+	<!-- Begin datepicker Javascript -->
+	<script src="{{"/js/jquery.ui.core.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.widget.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.datepicker.js"|media}}"></script>
+	<script src="{{"/js/jquery.ui.datepicker-zh-TW.js"|media}}"></script>
+	<link href="{{"/style/jquery.ui.datepicker.css"|media }}" rel="stylesheet" type="text/css" />
+	<link href="{{"/style/jquery.ui.theme.css"|media }}" rel="stylesheet" type="text/css" />
+	<link href="{{"/style/datepicker.css"|media }}" rel="stylesheet" type="text/css" />
+	<script>
+	$().ready(init);
+	function init()
+	{
+		$( "input#id_beginDate, input#id_endDate" ).datepicker( "option", "zh-TW");
+		$( "input#id_beginDate, input#id_endDate" ).datepicker( "option", "dateFormat", "YYYY/mm/dd" );
+		var dates = $( "input#id_beginDate, input#id_endDate" ).datepicker({
+			defaultDate: "+1w",
+			changeMonth: true,
+			showButtonPanel: true,
+			numberOfMonths: 1,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "id_beginDate" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+	}
+	</script>
+	<!-- End datepicker Javascript -->
+{% endblock %}<!-- end user_transaction_checking.html -->

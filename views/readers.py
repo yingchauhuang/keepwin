@@ -203,8 +203,8 @@ def mainpage(request, **kwargs):
         'tag_list': tag_list,
         'search_state': search_state,
     }
-    #return render_into_skin('main_page_twmode.html', template_data, request)
-    return render_into_skin(settings.MAIN_PAGE, template_data, request)
+    return render_into_skin('mainpage_keepwin.html', template_data, request)
+    #return render_into_skin(settings.MAIN_PAGE, template_data, request)
 
 def questions(request, **kwargs):
     """

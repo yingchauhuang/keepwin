@@ -1,103 +1,183 @@
 <!-- user_tabs.html -->
-<div class="tabBar tabBar-profile">
-    <div class="tabsC">
-        <a id="stats" {% if tab_name=="stats" %}class="on first"{%else%}class="first"{% endif %} 
+<script type='text/javascript' src="{{"/js/menu.js"|media }}"></script>
+<link href="{{"/style/menu.css"|media }}" rel="stylesheet" type="text/css" />
+<style type="text/css">
+* { margin:0;
+    padding:0;
+}
+div#menu {
+    margin:10px auto;
+    width:100%;
+	background:#606;
+}
+div#copyright {
+    margin:0 auto;
+    width:100%;
+    font:12px ;
+    color:#5d4381;
+    text-indent:20px;
+    padding:5px 0 0 0;
+}
+div#copyright a { color:#8a2be2; }
+div#copyright a:hover { color:#5d4381; }
+</style>
+<div id="menu">
+    <ul class="menu">
+		<li><a id="stats" {% if tab_name=="stats" %}class="on first"{%else%}class="first"{% endif %} 
             title="{% trans %}User profile{% endtrans %}" 
             href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=stats"
-        ><span>{% trans %}overview{% endtrans %}</span></a>
-        {% if request.user == view_user %}
-        <a id="inbox" {% if tab_name=="layout" %}class="on"{% endif %} 
-            title="{% trans %}change user default page layout{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=layout"
-        ><span>{% trans %}layout{% endtrans %}</span></a>
+			><span>{% trans %}overview{% endtrans %}</span></a>
+		</li>
+		<li><a href="#" class="parent"><span>{% trans %}User Setup{% endtrans %}</span></a>
+			<div><ul>
+				{% if request.user == view_user or request.user|can_moderate_user(view_user) %}
+				<li>
+					<a id="inbox" {% if tab_name=="inbox" %}class="on"{% endif %} 
+					title="{% trans %}comments and answers to others questions{% endtrans %}" 
+					href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=inbox"
+					><span>{% trans %}inbox{% endtrans %}</span></a>
+				</li>
+				{% endif %}
+				{% if user_follow_feature_on %}
+				<li>
+					<a id="network" {% if tab_name=="network" %}class="on"{% endif %} 
+					title="{% trans %}followers and followed users{% endtrans %}" 
+					href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=network"
+					><span>{% trans %}network{% endtrans %}</span></a>
+				</li>
+				{% endif %}
+				<li>
+					<a id="favorites" {% if tab_name=="favorites" %}class="on"{% endif %} 
+					title="{% trans %}questions that user is following{% endtrans %}"
+					href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=favorites"
+					><span>{% trans %}followed questions{% endtrans %}</span></a>
+				</li>
+				<li>
+					<a id="recent" {% if tab_name=="recent" %}class="on"{% endif %} 
+					title="{% trans %}recent activity{% endtrans %}" 
+					href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=recent"
+					><span>{% trans %}activity{% endtrans %}</span></a>
+				</li>
+				{% if request.user == view_user or request.user|can_moderate_user(view_user) %}
+				<li>
+					<a id="votes" {% if tab_name=="votes" %}class="on"{% endif %} 
+					title="{% trans %}user vote record{% endtrans %}"
+					href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=votes"
+					><span>{% trans %}casted votes{% endtrans %}</span></a>
+				</li>
+				{% endif %}
+				{% if request.user == view_user or request.user|can_moderate_user(view_user) %}
+				<li>
+					<a id="email_subscriptions" {% if tab_name=="email_subscriptions" %}class="on"{% endif %} 
+					title="{% trans %}email subscription settings{% endtrans %}" 
+					href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=email_subscriptions"
+					><span>{% trans %}subscriptions{% endtrans %}</span></a>
+				</li>
+				{% endif %}
+			</ul></div>
+        </li>
+		<li><a href="#" class="parent"><span>{% trans %}layout{% endtrans %}</span></a>
+			<div><ul>
+				<li>
+					<a id="inbox" {% if tab_name=="layout" %}class="on"{% endif %} 
+						title="{% trans %}change user default page layout{% endtrans %}" 
+						href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=layout"
+					><span>{% trans %}layout{% endtrans %}</span></a>
+				</li>
+			 </ul></div>
+        </li>
+
+        <li><a href="#" class="parent"><span>{% trans %}Account Record{% endtrans %}</span></a>
+            <div><ul>
+				<li>
+					<a id="reputation" {% if tab_name=="reputation" %}class="on"{% endif %} 
+					title="{% trans %}graph of user reputation{% endtrans %}" 
+					href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=reputation"
+					><span>{% trans %}reputation history{% endtrans %}</span></a>
+				</li>
+				{% if request.user == view_user or request.user|can_moderate_user(view_user) %}
+				<li>
+					<a id="transaction" {% if tab_name=="transaction" %}class="on"{% endif %} 
+						title="{% trans %}graph of user balance{% endtrans %}" 
+						href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=transaction"
+					><span>{% trans %}balance history{% endtrans %}</span></a>
+				</li>
+				{% endif %}
+			</ul></div>
+        </li>
+        <li><a href="#" class="parent"><span>{% trans %}administrator{% endtrans %}</span></a>
+             <div><ul>
+				{% if request.user|can_moderate_user(view_user) %}
+					<li>
+						<a id="moderation" {% if tab_name=="moderation" %}class="on"{% endif %} 
+						title="{% trans %}moderate this user{% endtrans %}" 
+						href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=moderation"
+						><span>{% trans %}moderation{% endtrans %}</span></a>
+					</li>
+				{% endif %}
+				{% if request.user|can_moderate_user(view_user) %}
+					<li>
+						<a id="addtransaction" {% if tab_name=="addtransaction" %}class="on"{% endif %} 
+							title="{% trans %}add transaction to change this user balance{% endtrans %}" 
+							href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=addtransaction"
+						><span>{% trans %}add transaction{% endtrans %}</span></a>
+					</li>
+				{% endif %}
+				{% if request.user|can_moderate_user(view_user) %}
+					<li>
+						<a id="settlement" {% if tab_name=="settlement" %}class="on"{% endif %} 
+							title="{% trans %}settlement and generate invoice{% endtrans %}" 
+							href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=settlement"
+						><span>{% trans %}settlement{% endtrans %}</span></a>
+					</li>
+				{% endif %}
+				{% if request.user|can_moderate_user(view_user) %}
+					<li>
+						<a id="rollback_transaction" {% if tab_name=="rollback_transaction" %}class="on"{% endif %} 
+							title="{% trans %}rollback transaction and modify balance{% endtrans %}" 
+							href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=rollback_transaction"
+						><span>{% trans %}rollback transaction{% endtrans %}</span></a>
+					</li>
+				{% endif %}
+				{% if request.user|can_moderate_user(view_user) %}
+					<li>
+						<a id="transaction_checking" {% if tab_name=="transaction_checking" %}class="on"{% endif %} 
+							title="{% trans %}transaction checking before settlement{% endtrans %}" 
+							href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=transaction_checking"
+						><span>{% trans %}transaction checking{% endtrans %}</span></a>
+					</li>
+				{% endif %}
+				{% if request.user|can_moderate_user(view_user) %}
+					<li>
+						<a id="all_balance" {% if tab_name=="all_balance" %}class="on"{% endif %} 
+							title="{% trans %}List all users balance on specific date{% endtrans %}" 
+							href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=all_balance"
+						><span>{% trans %}User Balance{% endtrans %}</span></a>
+					</li>
+				{% endif %}
+	
+			</ul></div>
+        </li>
+    	{% if settings.ENABLE_RSS_IMPORT and request.user|can_moderate_user(view_user) %}
+		<li><a href="#" class="parent"><span>{% trans %}RSS{% endtrans %}</span></a>
+            <div><ul>
+				<li>
+					<a id="rsssource" {% if tab_name=="rsssource" %}class="on"{% endif %} 
+						title="{% trans %}rss source management{% endtrans %}" 
+						href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=rsssource"
+					><span>{% trans %}rss source{% endtrans %}</span></a>
+				</li>
+				<li>
+					<a id="rsseditor" {% if tab_name=="rsseditor" %}class="on"{% endif %} 
+						title="{% trans %}rss article editoring{% endtrans %}" 
+						href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=rsseditor"
+					><span>{% trans %}rss editor{% endtrans %}</span></a>
+				</li>
+			</ul></div>
+        </li>
 		{% endif %}
-        {% if request.user == view_user or request.user|can_moderate_user(view_user) %}
-        <a id="inbox" {% if tab_name=="inbox" %}class="on"{% endif %} 
-            title="{% trans %}comments and answers to others questions{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=inbox"
-        ><span>{% trans %}inbox{% endtrans %}</span></a>
-        {% endif %}
-        {% if user_follow_feature_on %}
-        <a id="network" {% if tab_name=="network" %}class="on"{% endif %} 
-            title="{% trans %}followers and followed users{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=network"
-        ><span>{% trans %}network{% endtrans %}</span></a>
-        {% endif %}
-        <a id="reputation" {% if tab_name=="reputation" %}class="on"{% endif %} 
-            title="{% trans %}graph of user reputation{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=reputation"
-        ><span>{% trans %}reputation history{% endtrans %}</span></a>
-		{% if request.user == view_user or request.user|can_moderate_user(view_user) %}
-		<a id="transaction" {% if tab_name=="transaction" %}class="on"{% endif %} 
-            title="{% trans %}graph of user balance{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=transaction"
-        ><span>{% trans %}balance history{% endtrans %}</span></a>
-		{% endif %}
-        <a id="favorites" {% if tab_name=="favorites" %}class="on"{% endif %} 
-            title="{% trans %}questions that user is following{% endtrans %}"
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=favorites"
-        ><span>{% trans %}followed questions{% endtrans %}</span></a>
-        <a id="recent" {% if tab_name=="recent" %}class="on"{% endif %} 
-            title="{% trans %}recent activity{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=recent"
-        ><span>{% trans %}activity{% endtrans %}</span></a>
-        {% if request.user == view_user or request.user|can_moderate_user(view_user) %}
-        <a id="votes" {% if tab_name=="votes" %}class="on"{% endif %} 
-            title="{% trans %}user vote record{% endtrans %}"
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=votes"
-        ><span>{% trans %}casted votes{% endtrans %}</span></a>
-        {% endif %}
-        {% if request.user == view_user or request.user|can_moderate_user(view_user) %}
-        <a id="email_subscriptions" {% if tab_name=="email_subscriptions" %}class="on"{% endif %} 
-            title="{% trans %}email subscription settings{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=email_subscriptions"
-        ><span>{% trans %}subscriptions{% endtrans %}</span></a>
-        {% endif %}  
-        {% if request.user|can_moderate_user(view_user) %}
-        <a id="moderation" {% if tab_name=="moderation" %}class="on"{% endif %} 
-            title="{% trans %}moderate this user{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=moderation"
-        ><span>{% trans %}moderation{% endtrans %}</span></a>
-        {% endif %}
-		{% if request.user|can_moderate_user(view_user) %}
-        <a id="addtransaction" {% if tab_name=="addtransaction" %}class="on"{% endif %} 
-            title="{% trans %}add transaction to change this user balance{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=addtransaction"
-        ><span>{% trans %}add transaction{% endtrans %}</span></a>
-        {% endif %}
-		{% if request.user|can_moderate_user(view_user) %}
-        <a id="settlement" {% if tab_name=="settlement" %}class="on"{% endif %} 
-            title="{% trans %}settlement and generate invoice{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=settlement"
-        ><span>{% trans %}settlement{% endtrans %}</span></a>
-        {% endif %}
-		{% if request.user|can_moderate_user(view_user) %}
-        <a id="rollback_transaction" {% if tab_name=="rollback_transaction" %}class="on"{% endif %} 
-            title="{% trans %}rollback transaction and modify balance{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=rollback_transaction"
-        ><span>{% trans %}rollback transaction{% endtrans %}</span></a>
-        {% endif %}
-		{% if request.user|can_moderate_user(view_user) %}
-        <a id="transaction_checking" {% if tab_name=="transaction_checking" %}class="on"{% endif %} 
-            title="{% trans %}transaction checking before settlement{% endtrans %}" 
-            href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=transaction_checking"
-        ><span>{% trans %}transaction checking{% endtrans %}</span></a>
-        {% endif %}
-		{% if settings.ENABLE_RSS_IMPORT %}
-			{% if request.user|can_moderate_user(view_user) %}
-			<a id="rsssource" {% if tab_name=="rsssource" %}class="on"{% endif %} 
-				title="{% trans %}rss source management{% endtrans %}" 
-				href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=rsssource"
-			><span>{% trans %}rss source{% endtrans %}</span></a>
-			{% endif %}
-			{% if request.user|can_moderate_user(view_user) %}
-			<a id="rsseditor" {% if tab_name=="rsseditor" %}class="on"{% endif %} 
-				title="{% trans %}rss article editoring{% endtrans %}" 
-				href="{% url user_profile view_user.id, view_user.username|slugify %}?sort=rsseditor"
-			><span>{% trans %}rss editor{% endtrans %}</span></a>
-			{% endif %}
-		{% endif %}
-    </div>
+	</ul>
 </div>
+
 <div class="clean"></div>
 <!-- end user_tabs.html -->

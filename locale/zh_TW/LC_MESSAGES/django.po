@@ -6426,9 +6426,17 @@ msgstr "使用者所關注的看法..."
 msgid "recent activity"
 msgstr "最近活動"
 
+#: skins/default/templates/user_profile/user_tabs.html:33
+msgid "User Setup"
+msgstr "使用設定"
+
 #: skins/default/templates/user_profile/user_tabs.html:38 views/users.py:860
 msgid "user vote record"
 msgstr "使用者評分紀錄"
+
+#: skins/default/templates/user_profile/user_tabs.html:38 views/users.py:860
+msgid "Account Record"
+msgstr "使用者帳戶紀錄"
 
 #: skins/default/templates/user_profile/user_tabs.html:36
 msgid "casted votes"
@@ -6477,6 +6485,18 @@ msgstr "交易檢覈"
 #: skins/default/templates/user_profile/user_tabs.html:56
 msgid "transaction checking before settlement"
 msgstr "結帳前交易帳務檢覈"
+
+#: skins/default/templates/user_profile/user_all_balance.html:56
+msgid "User Balance"
+msgstr "使用者現金餘額"
+
+#: skins/default/templates/user_profile/user_all_balance.html:56
+msgid "User Name"
+msgstr "使用者名稱"
+
+#: skins/default/templates/user_profile/user_tabs.html:56
+msgid "List all users balance on specific date"
+msgstr "根據輸入日期列出使用者現金餘額"
 
 #: skins/default/templates/user_profile/user_votes.html:4
 msgid "votes"
