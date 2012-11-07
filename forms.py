@@ -40,7 +40,8 @@ TYPE_TRANSACTION_BUY_CTI  = 4
 #TYPE_TRANSACTION_BUY_GIFT  = 5
 TYPE_TRANSACTION_PAID_FOR_CONTENT = 10
 TYPE_TRANSACTION_RECEIVE_FROM_CONTENT  = 20
-
+TYPE_TRANSACTION_MODIFIED_BY_ADMIN = 90
+TYPE_TRANSACTION_SETTLE_FROM_KEEPWIN = 99
 #TYPE_ACTIVITY_EDIT_ANSWER = 18
 
 #todo: rename this to TYPE_TRANSACTION_CHOICES
@@ -52,33 +53,12 @@ TYPE_TRANSACTION = (
     (TYPE_TRANSACTION_BUY_CTI, _('buy bonus via Call Center Service')),
 #    (TYPE_TRANSACTION_BUY_GIFT, _('buy bonus via Gift card')),
     (TYPE_TRANSACTION_PAID_FOR_CONTENT, _('paid bonus for content')),
+    (TYPE_TRANSACTION_MODIFIED_BY_ADMIN, _('modified by administrator')),
     (TYPE_TRANSACTION_RECEIVE_FROM_CONTENT, _('receive the bonus from other people paid for it')),
+    (TYPE_TRANSACTION_SETTLE_FROM_KEEPWIN, _('settle the money from keepwin')),
 )
-                               
-                               
-#Add by YC for payment and transaction
-#TYPE_TRANSACTION_BUY_CREDICTCARD  = 1
-#TYPE_TRANSACTION_BUY_ATM = 2
-TYPE_TRANSACTION_BUY_IBON = 3
-TYPE_TRANSACTION_BUY_IBON_ISSUE = 30
-TYPE_TRANSACTION_BUY_CTI  = 4
-#TYPE_TRANSACTION_BUY_GIFT  = 5
-TYPE_TRANSACTION_PAID_FOR_CONTENT = 10
-TYPE_TRANSACTION_RECEIVE_FROM_CONTENT  = 20
-
-#TYPE_ACTIVITY_EDIT_ANSWER = 18
-
-#todo: rename this to TYPE_TRANSACTION_CHOICES
-TYPE_TRANSACTION = (
-#    (TYPE_TRANSACTION_BUY_CREDICTCARD, _('buy bonus online via creditcard')),
-#    (TYPE_TRANSACTION_BUY_ATM, _('buy bonus online via ATM')),
-    (TYPE_TRANSACTION_BUY_IBON, _('buy bonus via iBon')),
-    (TYPE_TRANSACTION_BUY_IBON_ISSUE, _('issue buy bonus via iBon')),
-    (TYPE_TRANSACTION_BUY_CTI, _('buy bonus via Call Center Service')),
-#    (TYPE_TRANSACTION_BUY_GIFT, _('buy bonus via Gift card')),
-    (TYPE_TRANSACTION_PAID_FOR_CONTENT, _('paid bonus for content')),
-    (TYPE_TRANSACTION_RECEIVE_FROM_CONTENT, _('receive the bonus from other people paid for it')),
-)
+                             
+                          
 
 
 #user status ch

@@ -3114,6 +3114,10 @@ msgid "paid bonus for content"
 msgstr "購買需付費內容"
 
 #: const/__init__.py:316
+msgid "modified by administrator"
+msgstr "工作人員調整帳戶餘額"
+
+#: const/__init__.py:316
 msgid "receive the bonus from other people paid for it"
 msgstr "他人購買我的內容"
 
