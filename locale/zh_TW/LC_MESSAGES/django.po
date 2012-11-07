@@ -3991,6 +3991,10 @@ msgid "<em>ISSUE error. Reason:</em> %(reason)s"
 msgstr "<em>iBon付款錯誤. 備註:</em> %(reason)s"
 
 #: models/transaction
+msgid "<em>Administrator Modified. Reason:</em> %(reason)s"
+msgstr "<em>人工調整. 備註:</em> %(reason)s"
+
+#: models/transaction
 msgid "<em>Settle Account. Reason:</em> %(reason)s"
 msgstr "<em>系統結帳. 備註:</em> %(reason)s"
 
