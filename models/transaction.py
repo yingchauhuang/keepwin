@@ -192,9 +192,12 @@ class Transaction(models.Model):
             elif (self.transaction_type == twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_ERROR):
                 return  _('<em>ISSUE error. Reason:</em> %(reason)s') \
                                                     % {'reason':self.comment} +unicode('<a href="https://ssl.smse.com.tw/ezpos/roturl.asp?Dcvc=2644&Rvg2c=1&Data_id=')+unicode(self.id)+_('" title="I want to re-check now">re-check</a>')                                    
+            elif (self.transaction_type == twmodeconst.TYPE_TRANSACTION_MODIFIED_BY_ADMIN):
+                return  _('<em>Administrator Modified. Reason:</em> %(reason)s') \
+                                                    % {'reason':self.comment} 
             elif (self.transaction_type == twmodeconst.TYPE_TRANSACTION_SETTLE_FROM_KEEPWIN):
                 return  _('<em>Settle Account. Reason:</em> %(reason)s') \
-                                                    % {'reason':self.comment} +unicode('<a href="https://ssl.smse.com.tw/ezpos/roturl.asp?Dcvc=2644&Rvg2c=1&Data_id=')+unicode(self.id)+_('" title="I want to re-check now">re-check</a>')                                    
+                                                    % {'reason':self.comment}                                                                                 
             else:
                 return  _('<em>Bought the point. Reason:</em> %(reason)s') \
                                                     % {'reason':self.comment}
