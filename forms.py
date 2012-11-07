@@ -556,11 +556,11 @@ class AddUserTransactionForm(forms.Form):
     be a moderator acually is
     """
 
-    user_income = forms.IntegerField(
+    user_income = forms.DecimalField(
                                     min_value = 0,
                                     label = _('Enter amount of income')
                                 )
-    user_outcome = forms.IntegerField(
+    user_outcome = forms.DecimalField(
                                     min_value = 0,
                                     label = _('Enter amount of outcome')
                                 )
