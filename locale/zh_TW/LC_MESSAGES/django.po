@@ -1051,9 +1051,12 @@ msgid "widgets/"
 msgstr ""
 
 #: urls.py:158
-#, fuzzy
 msgid "tags/"
 msgstr "標籤"
+
+#: urls.py:158
+msgid "Filter Tagged"
+msgstr "過濾已有標籤文章"
 
 #: urls.py:201
 msgid "subscribe-for-tags/"

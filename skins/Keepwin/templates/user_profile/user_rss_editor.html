@@ -10,23 +10,26 @@
 			<input type="hidden" name="sort" value="transaction"/>
 			<table>
 				<tr>
-					<td><label width="80px" for="id_beginDate">{% trans %}From{% endtrans %}</label></td>
-					<td>{{ query_trans_form.beginDate}}</td>
-					<td>{% if query_trans_form.beginDate.errors %}
+					<td ><label  for="id_beginDate">{% trans %}From{% endtrans %}</label></td>
+					<td  class="Date-Picker">{{ query_trans_form.beginDate}}</td>
+					<td >{% if query_trans_form.beginDate.errors %}
 							<p class="error">{{query_trans_form.beginDate.errors|join(', ')}}</p>
 						{% endif %}
 					</td>
-				</tr>
-				<tr>
-					<td><label width="80px" for="id_endDate">{% trans %}To{% endtrans %}</label></td>
-					<td>{{ query_trans_form.endDate}}</td>
-					<td>{% if query_trans_form.endDate.errors %}
+					<td ><label  for="id_endDate">{% trans %}To{% endtrans %}</label></td>
+					<td  class="Date-Picker">{{ query_trans_form.endDate}}</td>
+					<td >{% if query_trans_form.endDate.errors %}
 							<p class="error">{{query_trans_form.endDate.errors|join(', ')}}</p>
 						{% endif %}
 					</td>
+					<td><label  for="id_filter">{% trans %}Filter Tagged{% endtrans %}{{ query_trans_form.filter}}</label></td>
 				</tr>
 				<tr>
-					<td cellspacing="3"><input type="Submit" class="submit" name="transaction_checking" value="{% trans %}Execute{% endtrans %}" /></td>
+					
+					<td colspan="7"><label  for="id_tags">{% trans %}tags/{% endtrans %}{{ query_trans_form.tags}}</label></td>
+				</tr>
+				<tr>
+					<td colspan="7"><input type="Submit" class="submit" name="transaction_checking" value="{% trans %}Execute{% endtrans %}" /></td>
 				</tr>
 			</table>
 		</form>
