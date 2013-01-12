@@ -2205,7 +2205,8 @@ ul#related-tags li {
   width: 395px;
   font-size: 14px;
 }
-.user-profile-page .karma-details input[type="text"] {
+.user-profile-page .karma	-details input[type="text"],
+.user-profile-page .Date-Picker input[type="text"] {
   width: 80px;
 }
 .meta select,

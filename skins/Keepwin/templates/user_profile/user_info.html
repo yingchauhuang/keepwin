@@ -21,8 +21,8 @@
                     {% endif %}
                 {% endif %}
             </div>
-            <div class="scoreNumber">{{view_user.reputation|intcomma}}</div>
-            <p><b style="color:#777;">{% trans %}reputation{% endtrans %}</b></p>
+            <div class="scoreNumber">{{view_user.receive_points|intcomma}}</div>
+            <p><b style="color:#777;">{% trans %}receive points{% endtrans %}</b></p>
             {% if user_follow_feature_on %}
                 {{ macros.follow_user_toggle(visitor = request.user, subject = view_user) }}
             {% endif %}

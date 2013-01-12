@@ -671,13 +671,10 @@ class QueryRSSForm(forms.Form):
                                     initial=datetime.date.today,
                                     widget=forms.DateInput(format='%Y/%m/%d')
                                 )
-    filter = forms.BooleanField(        
-        label = _('Only Show unedited article'),
+    filter = forms.BooleanField(label = _('Only Show unedited article'),
         help_text = _(
             'This option is set, only show unedited articles'
-        ),
-        required = False,
-    )
+        ), required = False) 
     tags   = TagNamesField()
     def __init__(self, *arg, **kwarg):
             super(QueryRSSForm, self).__init__(*arg, **kwarg)

@@ -1051,9 +1051,12 @@ msgid "widgets/"
 msgstr ""
 
 #: urls.py:158
-#, fuzzy
 msgid "tags/"
 msgstr "標籤"
+
+#: urls.py:158
+msgid "Filter Tagged"
+msgstr "過濾已有標籤文章"
 
 #: urls.py:201
 msgid "subscribe-for-tags/"
@@ -5537,6 +5540,11 @@ msgstr "瀏覽有最高積分的使用者"
 #: skins/default/templates/user_profile/user_info.html:25
 msgid "reputation"
 msgstr "積分"
+
+#: skins/default/templates/users.html:15
+#: skins/default/templates/user_profile/user_info.html:25
+msgid "receive points"
+msgstr "收入累積"
 
 #: skins/default/templates/users.html:20
 msgid "see people who joined most recently"
