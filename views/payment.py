@@ -99,13 +99,12 @@ def Roturl(request, **kwargs):
             if ((issue!=None)and(issue.transaction_type==twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM)):
                 #RESET Transaction...Rollback
                 lasttrans=Transaction.objects.get(refer=Data_id,transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON)
+                user= User.objects.get(pk=uid)
                 if (lasttrans!=None):
-                    user= User.objects.get(pk=uid)
+                    
                     new_balance = user.balance + int(Amount) - lasttrans.income + lasttrans.outcome
                     if new_balance < 0:
                         new_balance = 0 
-                
-        
                     user.balance = new_balance
                     user.save()
         
@@ -119,6 +118,17 @@ def Roturl(request, **kwargs):
                     lasttrans.refer=issue
           
                     lasttrans.save()
+                    issue.transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM 
+                    issue.save()
+                    return HttpResponse("123", content_type="text/plain")
+                else:
+                    new_balance = user.balance + int(Amount) 
+                    if new_balance < 0:
+                        new_balance = 0 
+        
+                    user.balance = new_balance
+                    user.save()
+        
                     issue.transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE_CONFIRM 
                     issue.save()
                     return HttpResponse("123", content_type="text/plain")
