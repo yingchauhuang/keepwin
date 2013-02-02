@@ -1339,7 +1339,7 @@ def user_transaction(request, user, context):
             except:
                 message = 'The amount:'+unicode(amount)+' and qid:'+unicode(qid)  
         endDate= datetime.date.today( )
-        beginDate = (datetime.date.today( ) - datetime.timedelta(days=120))
+        beginDate = (datetime.date.today( ) - datetime.timedelta(days=30))
         query_trans_form = forms.QueryTransactionForm()
     transactions = models.Transaction.objects.filter(user=user,trans_at__gte=beginDate-datetime.timedelta(days=1) ,trans_at__lte=endDate+datetime.timedelta(days=1) ).select_related('question', 'question__thread', 'user').order_by('-trans_at')
 

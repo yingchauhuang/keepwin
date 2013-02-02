@@ -63,11 +63,11 @@ class Transaction(models.Model):
     We keep some history data for user transaction
     """
     user = models.ForeignKey(User)
-    income = models.DecimalField(default=0,max_digits=6, decimal_places=2,verbose_name=_('Income'))
-    outcome = models.DecimalField(default=0,max_digits=6, decimal_places=2,verbose_name=_('Outcome'))
+    income = models.DecimalField(default=0,max_digits=10, decimal_places=2,verbose_name=_('Income'))
+    outcome = models.DecimalField(default=0,max_digits=10, decimal_places=2,verbose_name=_('Outcome'))
     transaction_type = models.SmallIntegerField(choices = twmodeconst.TYPE_TRANSACTION,verbose_name=_('Transaction_type'))
     trans_at = models.DateTimeField(default=datetime.datetime.now,verbose_name=_('Trans_at'))
-    balance=models.DecimalField(default=0,max_digits=8, decimal_places=2,verbose_name=_('Balance'))
+    balance=models.DecimalField(default=0,max_digits=12, decimal_places=2,verbose_name=_('Balance'))
     #todo: remove this denorm question field when Post model is set up
     question = models.ForeignKey('Post', null=True,verbose_name=_('Question'))
     refer = models.ForeignKey('Transaction', null=True,verbose_name=_('Refer'))

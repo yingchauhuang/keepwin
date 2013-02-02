@@ -1904,46 +1904,51 @@ def user_add_user_transaction(  self,
                             ):
     """add or subtract reputation of other user
     """
-    if income < 0:
-        return
-    if outcome < 0:
-        return
-    if comment == None:
-        raise ValueError('comment is required to moderate user transaction')
-
-    new_balance = user.balance + income - outcome
-    if new_balance < 0:
-        new_balance = 0 #todo: magic number
-        outcome = user.balance + income
-
-    user.balance = new_balance
-    if user.receive_points==None:
-        user.receive_points = income
-    else:
-        user.receive_points = user.receive_points + income
-    user.save()
-
-    transaction = Transaction(
-                        user=user,
-                        income=income,
-                        outcome=outcome,
-                        comment=comment,
-                        #question = fake_question,
-						invoice=False,
-                        trans_at=timestamp,
-                        transaction_type=transaction_type, #todo: fix magic number
-                        balance=user.balance,
-                        question_id=QID,
-                        refer=refer
-                    )
-        
-    transaction.save()
-    if transaction_type==twmodeconst.TYPE_TRANSACTION_PAID_FOR_CONTENT and refer==None:
-        transaction.refer=transaction
+    try:
+        if income < 0:
+            return
+        if outcome < 0:
+            return
+        if comment == None:
+            raise ValueError('comment is required to moderate user transaction')
+    
+        new_balance = user.balance + income - outcome
+        if new_balance < 0:
+            new_balance = 0 #todo: magic number
+            outcome = user.balance + income
+    
+        user.balance = new_balance
+        if user.receive_points==None:
+            user.receive_points = income
+        else:
+            user.receive_points = user.receive_points + income
+        user.save()
+    
+        transaction = Transaction(
+                            user=user,
+                            income=income,
+                            outcome=outcome,
+                            comment=comment,
+                            #question = fake_question,
+    						invoice=False,
+                            trans_at=timestamp,
+                            transaction_type=transaction_type, #todo: fix magic number
+                            balance=user.balance,
+                            question_id=QID,
+                            refer=refer
+                        )
+            
         transaction.save()
-        #transaction.refer_id=transaction.id
-    return transaction 
-
+        if transaction_type==twmodeconst.TYPE_TRANSACTION_PAID_FOR_CONTENT and refer==None:
+            transaction.refer=transaction
+            transaction.save()
+            #transaction.refer_id=transaction.id
+        return transaction 
+    except :
+        message=unicode(sys.exc_info()[0])
+        logging.debug('user_add_user_transaction: %s' % ','.join(unicode(message)))
+        return transaction
+    
 def user_can_post_user(self):
     if self.is_administrator():
         return True
