@@ -781,9 +781,13 @@ def user_stats_vip(request, user, context):
     #
     # Questions
     #
+    #questions = user.posts.get_questions().filter(**question_filter).\
+    #                order_by('-added_at','-score').\
+    #                select_related('thread', 'added_at')[:100]
+                    
     questions = user.posts.get_questions().filter(**question_filter).\
                     order_by('-added_at','-score').\
-                    select_related('thread', 'added_at')[:100]
+                    select_related('thread', 'added_at')
 
     #added this if to avoid another query if questions is less than 100
     if len(questions) < 100:
