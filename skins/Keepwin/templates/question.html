@@ -9,8 +9,6 @@
     <link rel="canonical" href="{{settings.APP_URL}}{{question.get_absolute_url()}}" />
 {% endblock %}
 {% block forejs %}
-	{% if thread.passcode == '' %}
-
 		<script type="text/javascript">
 			//below is pure cross-browser javascript, no jQuery
 			$(document).ready(function(){
@@ -155,7 +153,6 @@
 				askbot['functions']['renderAddAnswerButton'] = render_add_answer_button;
 			})();
 		</script>
-	{% endif %}
 {% endblock %}
 {% block content %}
 	{% if thread.passcode == '' %}
