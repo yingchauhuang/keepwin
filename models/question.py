@@ -7,7 +7,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 from django.core import cache  # import cache, not from cache import cache, to be able to monkey-patch cache.cache in test cases
-
+from django.contrib.sites.models import Site
 import askbot
 import askbot.conf
 from askbot.models.tag import Tag
@@ -467,8 +467,11 @@ class Thread(models.Model):
         return self._response_cache
     
     def get_absolute_url(self):
-        return self._question_post().get_absolute_url()
+        return  self._question_post().get_absolute_url()
 
+    def get_absolute_url_yc(self):
+        return  'http://%s%s' % (Site.objects.get_current().domain,self._question_post().get_absolute_url())
+    
     def update_favorite_count(self):
         self.favourite_count = FavoriteQuestion.objects.filter(thread=self).count()
         self.save()

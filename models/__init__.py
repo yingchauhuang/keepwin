@@ -424,7 +424,8 @@ def _assert_user_can(
         return
     elif suspended_error_message and user.is_suspended():
         error_message = suspended_error_message
-    elif user.is_administrator() or user.is_moderator():
+    #elif user.is_administrator() or user.is_moderator():
+    elif user.is_administrator() :
         return
     elif low_rep_error_message and user.reputation < min_rep_setting:
         raise askbot_exceptions.InsufficientReputation(low_rep_error_message)

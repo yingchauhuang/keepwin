@@ -23,7 +23,7 @@ from django.utils.http import urlquote as django_urlquote
 from django.core import exceptions as django_exceptions
 from django.core.exceptions import ValidationError
 from django.contrib.contenttypes.models import ContentType
-
+from django.contrib.sites.models import Site
 import askbot
 
 from askbot.utils.slug import slugify
@@ -301,6 +301,10 @@ class Post(models.Model):
         verbose_name = _('Post')
         verbose_name_plural = _('Post')
 
+
+    def get_absolute_url_yc(self):
+        return  'http://%s%s' % (Site.objects.get_current().domain,self.get_absolute_url())
+    
     def parse_post_text(post):
         """typically post has a field to store raw source text
         in comment it is called .comment, in Question and Answer it is

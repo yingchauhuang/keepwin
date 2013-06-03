@@ -329,7 +329,8 @@ def _assert_user_can(
     elif post and owner_can and user == post.get_owner():
         if owner_min_rep_setting:
             if post.get_owner().reputation < owner_min_rep_setting:
-                if user.is_moderator() or user.is_administrator():
+                #if user.is_moderator() or user.is_administrator():
+				if user.is_administrator():
                     return
                 else:
                     assert(owner_low_rep_error_message is not None)
