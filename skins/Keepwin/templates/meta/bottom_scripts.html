@@ -17,7 +17,6 @@
         askbot['data']['userId'] = {{request.user.id}};
         askbot['data']['userIsAdminOrMod'] = {% if 
                                                 request.user.is_administrator()
-                                                or request.user.is_moderator()
                                             %}true{% else %}false{% endif %};
     {% else %}
         askbot['data']['userIsAuthenticated'] = false;
