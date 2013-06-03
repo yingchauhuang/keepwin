@@ -9,8 +9,9 @@
     <link rel="canonical" href="{{settings.APP_URL}}{{question.get_absolute_url()}}" />
 {% endblock %}
 {% block forejs %}
-		<script type="text/javascript">
-			//below is pure cross-browser javascript, no jQuery
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        //below is pure cross-browser javascript, no jQuery
 			$(document).ready(function(){
 				var data = askbot['data'];
 				if (data['userIsAuthenticated']){
@@ -152,7 +153,8 @@
 				askbot['functions']['renderAddCommentButton'] = render_add_comment_button;
 				askbot['functions']['renderAddAnswerButton'] = render_add_answer_button;
 			})();
-		</script>
+        /*]]>*/
+    </script>
 {% endblock %}
 {% block content %}
 	{% if thread.passcode == '' %}
