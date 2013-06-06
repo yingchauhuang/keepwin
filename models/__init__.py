@@ -79,7 +79,7 @@ post_save.connect(create_user_profile, sender=User)
 User.add_to_class('views', models.PositiveIntegerField(default=0))
 User.add_to_class('responses', models.PositiveIntegerField(default=0))
 User.add_to_class('NewestQ', models.ForeignKey(Thread, related_name=_('the_newest_post'), blank=True, null=True, on_delete=models.SET_NULL))
-User.add_to_class('balance', models.DecimalField(default=0,max_digits=8, decimal_places=2))
+User.add_to_class('balance', models.DecimalField(default=0,max_digits=20, decimal_places=2))
 
 User.add_to_class('gravatar', models.CharField(max_length=32))
 #User.add_to_class('has_custom_avatar', models.BooleanField(default=False))
@@ -131,7 +131,7 @@ User.add_to_class(
 )
 
 User.add_to_class('new_response_count', models.IntegerField(default=0))
-User.add_to_class('receive_points',models.DecimalField(default=0,max_digits=8, decimal_places=2))
+User.add_to_class('receive_points',models.DecimalField(default=0,max_digits=20, decimal_places=2))
 User.add_to_class('seen_response_count', models.IntegerField(default=0))
 User.add_to_class('consecutive_days_visit_count', models.IntegerField(default=0))
 
