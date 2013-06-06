@@ -56,7 +56,26 @@ class TransactionManager(models.Manager):
                 return None
         else:
             return None
-        
+    
+    def get_transactions_by_referID(self,referid):
+        if ((referid is not None)):
+            try:
+                transactions=self.filter(refer_id=referid)
+                return transactions
+            except:
+                return None
+        else:
+            return None
+    
+    def get_transaction_by_ID(self,tid):
+        if ((tid is not None)):
+            try:
+                transaction=self.get(pk=tid)
+                return transaction
+            except:
+                return None
+        else:
+            return None
 
 class Transaction(models.Model):
     """
