@@ -30,34 +30,7 @@ settings.register(
     )
 )
 
-settings.register(
-    values.BooleanValue(
-        GENERAL_SKIN_SETTINGS,
-        'MAIN_SHOW_AD',
-        description = _('Show advertisement block in main area'),
-        help_text = _(
-                    'Uncheck this if you want to hide the advertisement '
-                    'block from the mainarea' 
-                    ),
-        default = True
-    )
-)
 
-settings.register(
-    values.LongStringValue(
-        GENERAL_SKIN_SETTINGS,
-        'MAIN_AD_CONTENT',
-        default = '',
-        description = _('Custom portion of the HTML in Main AD Bar'),
-        help_text = _(
-                    '<strong>To use this option</strong>, '
-                    'check "Show advertisement block in main area;" '
-                    'above. Contents of this box will be inserted '
-                    'into the &lt;MAIN_AD_BAR&gt; portion of the HTML '
-                    'output.'
-                    )
-    )
-)
 
 settings.register(
     values.BooleanValue(
