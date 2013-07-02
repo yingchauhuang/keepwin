@@ -19,7 +19,7 @@
 			</h2>
 		</div>
 		<div class="to_feed_content_post">
-			<a title="{{question.text|striptags}}" href="{{ question.get_absolute_url(thread=thread) }}">{{ thread.subtitle|escape }}</a>
+			<a title="{{question.subtitle|striptags}}" href="{{ question.get_absolute_url(thread=thread) }}">{{ thread.subtitle|escape }}</a>
 		</div>	
 		<div class="to_feed_satistics">
 			<li class="item-count">{% trans cnt=thread.view_count %}view{% pluralize %}views{% endtrans %}{{thread.view_count|humanize_counter}}</li>		
