@@ -84,7 +84,7 @@ class PostRevisionAdmin(admin.ModelAdmin):
 class TransactionAdmin(admin.ModelAdmin):
     """  admin class"""
     #list_filter = ['trans_at']
-    list_display = ('questiontitle','username', 'trans_at_time', 'transaction_type','income','outcome','balance','comment')
+    list_display = ('questiontitle','username', 'trans_at_time', 'transaction_type','income','outcome','balance','comment','issettled')
     date_hierarchy = 'trans_at'
     list_filter = ('transaction_type',)
     search_fields  = ('user__username','question__text')

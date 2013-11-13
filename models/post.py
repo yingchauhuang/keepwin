@@ -1630,7 +1630,7 @@ class PostRevision(models.Model):
     revised_at = models.DateTimeField()
     featurepic = models.TextField(null=True, blank=True)
     summary    = models.CharField(max_length=300, blank=True)
-    text       = models.TextField()
+    text       = models.TextField(null=True)
 
     # Question-specific fields
     title      = models.CharField(max_length=300, blank=True, default='')
