@@ -274,8 +274,8 @@ class Post(models.Model):
     
     featurepic = models.TextField(null=True)
 
-    html = models.TextField(null=True)#html rendition of the latest revision
-    text = models.TextField(null=True)#denormalized copy of latest revision
+    html = models.TextField(null=True, blank=True)#html rendition of the latest revision
+    text = models.TextField(null=True, blank=True)#denormalized copy of latest revision
 
     # Denormalised data
     summary = models.CharField(max_length=180)
@@ -1630,7 +1630,7 @@ class PostRevision(models.Model):
     revised_at = models.DateTimeField()
     featurepic = models.TextField(null=True, blank=True)
     summary    = models.CharField(max_length=300, blank=True)
-    text       = models.TextField(null=True)
+    text       = models.TextField(null=True, blank=True)
 
     # Question-specific fields
     title      = models.CharField(max_length=300, blank=True, default='')
