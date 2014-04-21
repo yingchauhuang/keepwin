@@ -106,3 +106,15 @@ settings.register(
             )
     )
 )
+
+settings.register(
+    livesettings.StringValue(
+        QA_SITE_SETTINGS,
+        'PAYMENT_RETURN_URL',
+        description=_('Payment Return URL'),
+        help_text=_(
+                'If left empty, a default payment return URL '
+                'will be used instead'
+            )
+    )
+)

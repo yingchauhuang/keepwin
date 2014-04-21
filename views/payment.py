@@ -17,6 +17,7 @@ from django.core.urlresolvers import reverse
 from django.core import exceptions as django_exceptions
 from django.conf import settings
 from django.contrib.auth.models import User
+from askbot.conf.settings_wrapper import settings
 import askbot
 import datetime
 from askbot import const
@@ -149,7 +150,7 @@ def Roturl(request, **kwargs):
                             outcome=0,
                             comment=comment,
                             #question = fake_question,
-							invoice=False,
+                            invoice=False,
                             trans_at=datetime.datetime.now(),
                             transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON, #todo: fix magic number
                             balance=user.balance,
@@ -262,7 +263,7 @@ def confirm(request, amount):
                         outcome=0,
                         comment=comment,
                         #question = fake_question,
-						invoice=False,
+                        invoice=False,
                         trans_at=datetime.datetime.now(),
                         transaction_type=twmodeconst.TYPE_TRANSACTION_BUY_IBON_ISSUE, #todo: fix magic number
                         balance=user.balance,
@@ -281,3 +282,24 @@ def confirm(request, amount):
 
         #return render_into_skin('main_page_twmode.html', template_data, request)
     return render_into_skin('payment_confirm.html', template_data, request)
+
+def confirm_realgood(request, amount,transactionid,username):
+    """
+    List of Questions, Tagged questions, and Unanswered questions.
+    matching search query or user selection
+    """
+   
+    if (settings.PAYMENT_RETURN_URL==None):
+        Roturl='http://www.keepwin.com.tw/payment/Roturl/'
+    else:
+        Roturl=settings.PAYMENT_RETURN_URL
+    template_data = {
+        'Roturl': Roturl,
+        'Data_id': transactionid,             
+        'amount':amount,
+        'username':username,
+        'ip':get_client_ip(request),
+        }
+
+        #return render_into_skin('main_page_twmode.html', template_data, request)
+    return render_into_skin('payment_confirm_realgood.html', template_data, request)

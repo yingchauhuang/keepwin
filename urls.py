@@ -149,6 +149,14 @@ urlpatterns = patterns('',
         views.payment.confirm, 
         name='Payment_confirm'
     ),
+    url((r'^%s' % _('realgood') +
+        r'(%s)?' % r'/amount:(?P<amount>\d+)' +
+        r'(%s)?' % r'/tid:(?P<transactionid>\d+)' +
+        r'(%s)?' % r'/username:(?P<username>\w+)' +
+        r'/$'),
+        views.payment.confirm_realgood, 
+        name='Payment_confirm_realgood'
+    ),
     url(
         r'^%s%s$' % (_('payment/'), _('invoiceconfirm/')), 
         views.payment.invoice_confirm, 
@@ -334,7 +342,7 @@ urlpatterns = patterns('',
         {'feed_dict': feeds},
         name='feeds'
     ),
-	url(r'^%s$' % _('user_admin/'), views.users.user_admin, name='user_admin'),
+    url(r'^%s$' % _('user_admin/'), views.users.user_admin, name='user_admin'),
     url(r'^%s$' % _('save_template/'), views.users.save_template, name='save_template'),
     url(r'^%s$' % _('add_template/'), views.users.add_template, name='add_template'), 
     url(r'^%s$' % _('del_template/'), views.users.delete_template, name='delete_template'), 
